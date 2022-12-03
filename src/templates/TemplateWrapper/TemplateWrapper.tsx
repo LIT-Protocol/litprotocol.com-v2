@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet'
 import cx from 'classnames'
 
 import styles from './template-wrapper.module.scss'
-import ogImage from './og-card.png'
-import twitterImage from './twitter-card.png'
+import ogCard from './assets/ogCard.png'
+import twitterCard from './assets/twitterCard.png'
 
 interface TemplateWrapperProps {
   template?: string
@@ -18,8 +18,8 @@ const TemplateWrapper = (
   return (
     <>
       <Helmet>
-        <meta property="og:image" content={ogImage} />
-        <meta property="twitter:image" content={twitterImage} />
+        <meta property="og:image" content={ogCard} />
+        <meta property="twitter:image" content={twitterCard} />
       </Helmet>
       <div className={styles.wrapper}>{children}</div>
     </>
