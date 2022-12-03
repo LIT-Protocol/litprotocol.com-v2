@@ -13,7 +13,7 @@ const ProjectItem = (props: ProjectItemProps) => {
   const { name, description, image, link } = props
 
   return (
-    <a href={link} className={styles.wrapper}>
+    <a href={link} target={"_blank"} className={styles.wrapper}>
         <div className={styles.name}>
             {name}
             <Icons.Arrow />

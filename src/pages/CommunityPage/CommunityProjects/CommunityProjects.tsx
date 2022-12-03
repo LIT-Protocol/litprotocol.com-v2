@@ -13,6 +13,7 @@ import CharmverseImg from './assets/charmverse.png';
 import MonaImg from './assets/mona.png';
 import LensImg from './assets/lensProtocol.svg';
 import KrebitImg from './assets/krebit.png';
+import PartifulImg from './assets/partiful.png';
 
 const PROJECTS = [
   {
@@ -59,7 +60,7 @@ const PROJECTS = [
   },
   {
     name: 'Lens Protocol',
-    description: 'User-owned, open social graph that any application can plug into.',
+    description: 'User-owned, open social graph that any application can plug into',
     image: LensImg,
     link: 'https://www.lens.xyz/'
   },
@@ -68,6 +69,12 @@ const PROJECTS = [
     description: 'Your reputation passport for better job matching',
     image: KrebitImg,
     link: 'https://krebit.id/'
+  },
+  {
+    name: 'Partiful',
+    description: 'The most memorable parties are planned on Partiful',
+    image: PartifulImg,
+    link: 'https://partiful.com/'
   },
 ]
 
