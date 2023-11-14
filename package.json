@@ -30,6 +30,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
     "eslint-config-custom": "^0.0.0",
     "eslint-config-prettier": "^9.0.0",
     "sass": "^1.66.1"
