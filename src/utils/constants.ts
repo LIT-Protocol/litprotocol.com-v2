@@ -1,5 +1,6 @@
 // Resources
 export const DOCS_LINK = 'https://developer.litprotocol.com';
+export const EXPLAINER_VIDEO_LINK = "https://youtu.be/Q0J-ujKEyE8";
 export const MANIFESTO_LINK =
   'https://spark.litprotocol.com/mass-adoption-of-digital-ownership-and-progressive-self-custody/';
 export const USE_CASES_LINK =

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import styles from './landing-hero.module.scss';
-import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
+import { CONTACT_FORM, DOCS_LINK, EXPLAINER_VIDEO_LINK } from '@/utils/constants';
 import Key from './Key';
 
 const coords = [
@@ -336,12 +336,12 @@ const LandingHero = () => {
             </p>
             <div className={styles['btn-wrapper']}>
               <a
-                href={DOCS_LINK}
+                href={EXPLAINER_VIDEO_LINK}
                 className={`${styles['cta-btn']} ${styles['cta-btn--primary']}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Get started
+                Discover More
               </a>
               <a
                 href={CONTACT_FORM}
