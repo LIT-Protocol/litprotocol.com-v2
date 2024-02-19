@@ -1,0 +1,17 @@
+.overlay {
+  background-color: var(--lit-white);
+  position: center;
+  inset: 0;
+  animation: fadeIn 150ms ease-in-out;
+}
+
+.modal {
+  z-index: 50;
+  background-color: var(--lit-white);
+  position: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  animation: fadeIn 150ms ease-in-out;
+}

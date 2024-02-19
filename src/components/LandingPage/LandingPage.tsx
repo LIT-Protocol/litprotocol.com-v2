@@ -7,10 +7,13 @@ import LandingBlog from '../LandingBlog/LandingBlog';
 import LandingPartners from '../LandingPartners/LandingPartners';
 import LandingCta from '../LandingCta/LandingCta';
 import LandingHero from '../LandingHero/LandingHero';
+import { VideoDialog } from '../VideoModal/VideoModal';
+import { EXPLAINER_VIDEO_ID } from '@/utils/constants';
 
 const LandingPage = () => {
   return (
     <>
+      <VideoDialog/>
       <LandingHero />
       <LandingPartners />
       <LandingProducts />
