@@ -327,12 +327,10 @@ const LandingHero = () => {
     <section className={styles.container}>
       <div className={styles['content-wrapper']}>
         <div className={styles['hero-copy']}>
-          <h1 className={styles.title}>Build apps that put users in control</h1>
+          <h1 className={styles.title}>Sign. Encrypt. Compute. That's Lit.</h1>
           <div>
             <p className={styles.subtitle}>
-              Lit is a key management network for decentralized signing and
-              encryption. Create apps and wallets that use secrets without
-              single points of failure.
+              Builders of apps, wallets, protocols, and AI agents use Lit to advance digital ownership with decentralized keys and private, immutable programs.
             </p>
             <div className={styles['btn-wrapper']}>
               <a
