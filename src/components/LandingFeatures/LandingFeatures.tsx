@@ -8,7 +8,7 @@ const features = [
   {
     title: 'Distributed trust',
     description:
-      'Harnessing multi-party computation (MPC) and threshold secret schemes (TSS), Lit distributes encrypted key shares across the Lit network. Neither you nor your users need to store any private key material.',
+      'Harnessing multi-party computation (MPC) and threshold signature schemes (TSS), Lit distributes encrypted key shares across the Lit network. Neither you nor your users need to store any private key material.',
     highlight: 'No party ever possesses the entire key.',
     Icon: Threshold,
   },
@@ -33,14 +33,9 @@ const LandingFeatures = () => {
     <section className={styles.section}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <div className={styles.badge}>
-            <span className={styles.badge__copy}>Globally Distributed</span>
-          </div>
           <h2 className={styles.title}>The Lit Network</h2>
           <p className={styles.subtitle}>
-            Currently in developer preview, Lit is a network of 30+ nodes
-            utilizing cutting-edge cryptography, robust hardware, and
-            peer-to-peer networking to securely generate and manage keys.
+            Currently in Mainnet Beta, Lit  is a decentralized network that utilizes cutting-edge cryptography, sealed confidential hardware, and peer-to-peer networking to securely generate and manage non-custodial keys and execute private, immutable programs.
           </p>
         </div>
         <div className={styles.grid}>
