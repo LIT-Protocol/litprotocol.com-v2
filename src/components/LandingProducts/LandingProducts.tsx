@@ -9,17 +9,14 @@ const LandingProducts = () => {
     <section className={styles.section}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Sign. Encrypt. Compute.</h2>
+          <h2 className={styles.title}>An Integrated Network and Developer Platform for Digital Ownership and AI</h2>
           <p className={styles.subtitle}>
-            Keys managed on Lit are distributed and fault tolerant, so no
-            centralized authority can ever withhold access. Use Lit to build
-            digital ownership experiences with greater privacy, flexibility, and
-            control.
+            Craft seamless onboarding experiences, control access, compute over private data, sign transactions, and train AIs confidentially, all without trusted middlemen or custodians. 
           </p>
         </div>
         <Product
-          badge={'Distributed Wallets'}
-          title={'Streamline user experience with distributed wallets'}
+          badge={'User Wallets'}
+          title={'Simple web3 onboarding that keeps users in control'}
           description={
             'Empower your users with wallets secured by their existing authentication like social logins and passkeys. Deliver seamless onboarding, easy recovery, and user-centric security features—all without worrying about managing private keys.'
           }
@@ -89,10 +86,10 @@ const LandingProducts = () => {
         />
         <hr className={styles.divider}></hr>
         <Product
-          badge={'Serverless Functions'}
-          title={'Power your apps with serverless signing automations'}
+          badge={'Decentralized Compute'}
+          title={'Power your apps with serverless automation'}
           description={
-            'Create immutable serverless functions for event-based signing, encryption, and identity management. Add advanced functionality to your apps and iterate faster, all without the burden of scaling key infrastructure.'
+            'Use Lit Actions to build protocols for cross-chain messaging, privacy-preserving AI, transaction automation, and more.'
           }
           cta={{
             link: 'https://developer.litprotocol.com/v3/sdk/wallets/conditional-signing',
