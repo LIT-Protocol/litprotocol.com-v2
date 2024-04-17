@@ -327,7 +327,8 @@ const LandingHero = () => {
     <section className={styles.container}>
       <div className={styles['content-wrapper']}>
         <div className={styles['hero-copy']}>
-          <h1 className={styles.title}>Sign. Encrypt. Compute. That's Lit.</h1>
+          <h1 className={styles.title}>Sign. Encrypt. Compute.</h1>
+          <h1 className={styles.title}>That's Lit</h1>
           <div>
             <p className={styles.subtitle}>
               Builders of apps, wallets, protocols, and AI agents use Lit to advance digital ownership with decentralized keys and private, immutable programs.
