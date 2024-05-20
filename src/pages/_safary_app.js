@@ -4,7 +4,6 @@ import { appWithTranslation } from 'next-i18next';
 import { createClient } from 'urql';
 import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
-import Head from 'next/head';
 
 const client = createClient({
   url: 'https://api.litprotocol.com/v1/graphql',
