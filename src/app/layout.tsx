@@ -42,6 +42,7 @@ export default function RootLayout({
         data-domain="litprotocol.com"
         src="https://plausible.io/js/script.js"
       ></Script>
+      <script>var script=document.createElement('script');script.src="https://tag.safary.club/stag-0.1.8.js";script.async=true;script.setAttribute('data-name','safary-sdk');script.setAttribute('data-product-id','prd_dNLbLtl5Df');script.integrity="sha256-z7Q6yDsMizDd8yey+3sZkFVx8BjF98GQA6z7I3BcCJc=";script.crossOrigin="anonymous";var target=document.head||document.body;target.appendChild(script);</script>
       <html lang="en">
         <body>{children}</body>
       </html>
