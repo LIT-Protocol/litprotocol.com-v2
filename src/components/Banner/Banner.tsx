@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className={styles.banner}>
       <p>
-        Lit v0.1 is live! Read the announcement {' '}
+        $LITKEY Community Sale starting 3/23. Learn more {' '}
         <a href={BANNER_LINK} className={styles.banner__link}>
            here.
         </a>
