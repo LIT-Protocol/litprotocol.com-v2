@@ -1,6 +1,6 @@
 // Resources
 export const DOCS_LINK = 'https://developer.litprotocol.com';
-export const BANNER_LINK = 'legion.cc/access?ref=lit_protocol_legion';
+export const BANNER_LINK = 'https://legion.cc/access?ref=lit_protocol_legion';
 export const MANIFESTO_LINK =
   'https://spark.litprotocol.com/mass-adoption-of-digital-ownership-and-progressive-self-custody/';
 export const USE_CASES_LINK =
