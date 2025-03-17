@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className={styles.banner}>
       <p>
-        $LITKEY Community Sale starting 3/23. Learn more {' '}
+        $LITKEY Community Sale starting 3/24. Learn more {' '}
         <a href={BANNER_LINK} className={styles.banner__link}>
            here.
         </a>
