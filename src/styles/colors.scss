@@ -1,6 +1,6 @@
 :root {
-  --lit-white: rgb(255, 255, 255);
-  --lit-black: rgb(11, 13, 15);
+  --lit-white: #F3EFEE;
+  --lit-black: #121619;
   --lit-gray-50: rgb(242, 244, 248);
   --lit-gray-100: rgb(221, 225, 230);
   --lit-gray-200: rgb(193, 199, 205);
@@ -11,9 +11,14 @@
   --lit-gray-700: rgb(52, 58, 63);
   --lit-gray-800: rgb(33, 39, 42);
   --lit-gray-900: rgb(18, 22, 25);
-  --lit-orange: rgb(255, 66, 5);
+  --lit-orange: #FF4205;
   --lit-orange-light: rgb(255, 132, 79);
   --lit-orange-dark: rgb(230, 41, 0);
   --lit-pink: rgb(170, 17, 85);
   --lit-pink-dark: rgb(117, 10, 65);
+  --lit-yellow: #FFBE3F;
+  --lit-light-blue: #A5B9CC;
+  --lit-royal-blue: #003265;
+  --lit-blue-gray: #A5B9CC;
+  --lit-brown: #5C1E0A;
 }

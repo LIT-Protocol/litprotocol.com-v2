@@ -45,56 +45,12 @@ const posts = [
    image: SignDecryptImg,
    alt: 'Solid blue',
   },
-  
-  //{
-  //  title: 'Mass Adoption of Digital Ownership and Progressive Self Custody',
-  //  slug: 'mass-adoption-of-digital-ownership-and-progressive-self-custody',
-  //  image: AdoptionImg,
-  //  alt: 'Light paint',
-  // },
-  //{
-  //  title:
-  //    'BackedBy X Lit: Decentralized Tools to Empower Web3 Content Creators',
-  //  slug: 'backedby-x-lit',
-  //  image: BackedByImg,
-  //  alt: 'Glass wave',
-  // },
-  //{
-  //  title: 'Oamo x Lit: Data Brokerage with Built-in Privacy and Permissioning',
-  //  slug: 'oamo-privacy-n-permissioning',
-  //  image: OamoImg,
-  //  alt: 'Colorful nodes',
-  // },
-  //{
-  //  title: 'From Session Keys to Session Signatures: Part 1',
-  //  slug: 'session-sig-part-1',
-  //  image: SessionKeysImg,
-  //  alt: 'Glassy ribbons',
-  //},
-  // {
-  //   title: 'Learning Lab @ Lit',
-  //   slug: 'learning-lab-lit',
-  //   image: LearningLabImg,
-  //   alt: '3d grid plane and interconnected nodes',
-  // },
   {
     title: 'Authenticity in the AI Era',
     slug: 'authenticity-matters',
     image: AIImg,
     alt: 'Yellow light streaks',
   },
-  // {
-  //   title: 'Introducing The Ignite Prize: A Web3 Hackathon Meta-Bounty',
-  //   slug: 'the-ignite-prize',
-  //   image: IgnitePrizeImg,
-  //   alt: 'Ignite Prize',
-  // },
-  // {
-  //  title: 'Wallet Abstraction: Google OAuth x Lit PKP',
-  //  slug: 'wallet-abstraction-with-google-oauthe',
-  //  image: WalletAbstractionImg,
-   // alt: 'Colorful glassy flame',
- // },
 ];
 
 const LandingBlog = () => {

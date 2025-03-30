@@ -3,7 +3,7 @@
 .section {
   position: relative;
   padding: 3rem 1rem;
-  background-color: var(--lit-orange);
+  background-color: transparent;
 
   @include md {
     padding: 4rem 1rem;

@@ -12,6 +12,7 @@ import lens from './assets/lens.svg';
 import livepeer from './assets/livepeer.svg';
 import streamr from './assets/streamr.svg';
 import Image from 'next/image';
+import { Container } from '@mantine/core';
 
 const logos = [
   {
@@ -66,8 +67,7 @@ const logos = [
 
 const LandingPartners = () => {
   return (
-    <section className={styles.section}>
-      {/* <h6 className={styles.title}>Partnered with world-class builders</h6> */}
+    <Container className={styles.section}>
       <div className={styles.marquee}>
         <div className={styles.marquee__group}>
           {Object.values(logos).map((logo, i) => (
@@ -84,7 +84,7 @@ const LandingPartners = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 

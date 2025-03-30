@@ -1,17 +1,15 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import styles from './navmenu.module.scss';
 import {
+  CAREERS_LINK,
+  COMMUNITY_LINK,
   CONTACT_FORM,
-  DISCORD_LINK,
   DOCS_LINK,
   GITHUB_LINK,
-  LINKEDIN_LINK,
-  MANIFESTO_LINK,
   SPARK_LINK,
-  TWITTER_LINK,
+  WHITEPAPER_LINK,
 } from '@/utils/constants';
 import LitLogo from '../LitLogo/LitLogo';
-import Banner from '../Banner/Banner';
 
 const NavMenu = ({
   menuOpen,
@@ -25,7 +23,6 @@ const NavMenu = ({
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content className={styles.modal}>
-          <Banner />
           <header className={styles.header}>
             <div className={styles.header__wrapper}>
               <a href="/">
@@ -88,16 +85,12 @@ const NavMenu = ({
           </header>
           <nav className={styles.nav}>
             <div className={styles.nav__wrapper}>
+            <div className={styles.nav__links}>
+                <h6 className={styles.nav__category}>Vincent</h6>
+                Coming soon!!
+              </div>
               <div className={styles.nav__links}>
-                <h6 className={styles.nav__category}>Resources</h6>
-                {/* <a
-                  href={MANIFESTO_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.nav__link}
-                >
-                  Our Mission
-                </a> */}
+                <h6 className={styles.nav__category}>Developers</h6>
                 <a
                   href={DOCS_LINK}
                   target="_blank"
@@ -107,6 +100,37 @@ const NavMenu = ({
                   Docs
                 </a>
                 <a
+                  href={GITHUB_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nav__link}
+                >
+                  Github
+                </a>
+                <a
+                  href={WHITEPAPER_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nav__link}
+                >
+                  Whitepaper
+                </a>
+
+              </div>
+              <div className={styles.nav__links}>
+                <h6 className={styles.nav__category}>Community</h6>
+                <a
+                  href={COMMUNITY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nav__link}
+                >
+                  Resources
+                </a>
+              </div>
+              <div className={styles.nav__links}>
+                <h6 className={styles.nav__category}>Company</h6>
+                <a
                   href={SPARK_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -115,39 +139,20 @@ const NavMenu = ({
                   Blog
                 </a>
                 <a
-                  href={GITHUB_LINK}
+                  href={CAREERS_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.nav__link}
                 >
-                  GitHub
-                </a>
-              </div>
-              <div className={styles.nav__links}>
-                <h6 className={styles.nav__category}>Social</h6>
-                <a
-                  href={TWITTER_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.nav__link}
-                >
-                  Twitter
+                  Careers
                 </a>
                 <a
-                  href={DISCORD_LINK}
+                  href={CONTACT_FORM}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.nav__link}
                 >
-                  Discord
-                </a>
-                <a
-                  href={LINKEDIN_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.nav__link}
-                >
-                  LinkedIn
+                  Contact
                 </a>
               </div>
             </div>
