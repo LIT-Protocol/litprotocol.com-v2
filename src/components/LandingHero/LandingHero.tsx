@@ -14,22 +14,20 @@ const LandingHero = () => {
         <div className={styles.inner}>
           <div className={styles.content}>
             <Title className={styles.title}>
-              A{' '}
               <Text
                 component="span"
                 inherit
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
               >
-                fully featured
+                Universal Control
               </Text>{' '}
-              React components library
+              For Web3 Builders
             </Title>
 
             <Text className={styles.description} mt={30}>
-              Build fully functional accessible web applications with ease –
-              Mantine includes more than 100 customizable components and hooks
-              to cover you in any situation
+              Lit Protocol’s decentralized signing & encryption network powers
+              interoperability, data sovereignty & autonomous systems.
             </Text>
 
             <Group>

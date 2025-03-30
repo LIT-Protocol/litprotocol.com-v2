@@ -10,7 +10,6 @@ const LandingPage = () => {
   return (
     <>
       <LandingHero />
-      {/* <LandingBlog /> */}
       <Metrics />
       <LandingFeatures /> {/* contains content of lit network*/}
       <LitNetwork />

@@ -1,0 +1,58 @@
+.wrapper {
+  padding: 6rem 0;
+  background-color: var(--lit-black);
+  width: 100%;
+  color: var(--lit-white);
+  max-width: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  width: 100%;
+}
+
+.metric {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.groupedMetrics {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.groupedMetrics > *:nth-child(1) .metric {
+  background: linear-gradient(
+    to right,
+    var(--lit-orange),
+    var(--lit-orange-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.groupedMetrics > *:nth-child(2) .metric {
+    background: linear-gradient(
+    to right,
+    var(--lit-yellow),
+    var(--lit-yellow-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.groupedMetrics > *:nth-child(3) .metric {
+    background: linear-gradient(
+    to right,
+    var(--lit-light-blue),
+    var(--lit-light-blue-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
