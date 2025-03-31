@@ -15,13 +15,17 @@ interface ArticleProps {
 function Article({ image, title, category }: ArticleProps) {
   return (
     <Card className={classes.card}>
-      <Group wrap="nowrap" gap={0}>
-        <Image src={image} height={160} />
+      <Group wrap="nowrap" gap={0} style={{ width: '100%', height: '100%' }}>
+        <Image 
+          src={image} 
+          height={160} 
+          style={{ maxWidth: '40%', objectFit: 'cover', flexShrink: 0 }} 
+        />
         <div className={classes.body}>
           <Text tt="uppercase" c="dimmed" fw={700} size="xs">
             {category}
           </Text>
-          <Text className={classes.title} mt="xs" mb="md">
+          <Text className={classes.carouselTitle} mt="xs" mb="md">
             {title}
           </Text>
         </div>
@@ -72,36 +76,65 @@ const data = [
 
 export function BlogCarousel() {
   const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: 48em)`); // Using a more standard breakpoint
+  const mobile = useMediaQuery(`(max-width: 48em)`);
 
   const slides = data.map(item => (
-    <Carousel.Slide key={item.title}>
+    <Carousel.Slide key={item.title} className={classes.slide}>
       <Article {...item} />
     </Carousel.Slide>
   ));
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        overflow: 'visible',
-        transform: 'none',
-        width: '100%',
-        maxWidth: '800px',
-        margin: '0 auto', // carousel had to reset styles because of hero styling, needs to be revisited/fixed, arrows aren't showing and carousel is acting like mobile version
-      }}
-    >
+    <div className={classes.carouselWrapper}>
       <Carousel
         withControls
         loop
-        slideSize={mobile ? '100%' : '50%'}
-        slideGap={mobile ? 2 : 'xl'}
-        align="start"
-        slidesToScroll={mobile ? 1 : 2}
+        slideSize="100%" // Show only one slide at a time
+        slideGap={0} // No gap needed since only one slide is visible
+        align="center"
+        slidesToScroll={1}
+        draggable={false} // Optional: disable dragging to ensure clean transitions
         styles={{
-          root: { transform: 'none' },
-          viewport: { overflow: 'hidden' },
-          container: { display: 'flex', flexDirection: 'row' },
+          root: { 
+            width: '100%',
+            overflow: 'hidden'
+          },
+          viewport: { 
+            overflow: 'hidden' // Hide overflow to ensure only current slide is visible
+          },
+          container: { 
+            display: 'flex',
+            alignItems: 'stretch'
+          },
+          slide: { 
+            display: 'flex',
+            flex: '0 0 100%', // Take full width, don't shrink
+            width: '100%',
+            maxWidth: '100%',
+            margin: '0 auto',
+            height: 'auto',
+            minHeight: '300px'
+          },
+          controls: {
+            position: 'absolute', 
+            width: '105%', // Make it slightly wider than container
+            display: 'flex',
+            justifyContent: 'space-between',
+            top: '50%', 
+            transform: 'translateY(-50%)',
+            left: '-2.5%', // Center it by offsetting the extra width
+            zIndex: 2 // Ensure controls are above content
+          },
+          control: {
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: '36px',
+            height: '36px',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            }
+          }
         }}
       >
         {slides}

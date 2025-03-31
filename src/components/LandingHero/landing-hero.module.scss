@@ -1,206 +1,5 @@
 @import '../../styles/mixins.scss';
 
-.container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  padding: 0 1rem 3rem;
-  background-color: var(--lit-white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @include lg {
-    min-height: clamp(32rem, 60vw, 48rem);
-    padding-top: 4rem;
-  }
-
-  @include xl {
-    min-height: 48rem;
-    padding-top: 0;
-  }
-}
-
-.content-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap-reverse;
-  align-items: center;
-  justify-content: center;
-
-  @include lg {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-}
-
-.hero-copy {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  text-align: center;
-  max-width: 48rem;
-
-  @include lg {
-    text-align: left;
-    max-width: 40rem;
-    flex-shrink: 0;
-    padding-bottom: 6rem;
-  }
-
-  @include xl {
-    max-width: 48rem;
-  }
-}
-
-.title {
-
-  @include sm {
-    font-size: 3rem;
-  }
-
-  @include md {
-    font-size: 4rem;
-  }
-
-  @include lg {
-    font-size: 3.5rem;
-  }
-
-  @include xl {
-    font-size: 4.5rem;
-  }
-}
-
-.subtitle {
-  font-size: 1rem;
-  line-height: 1.5rem;
-  font-weight: 300;
-  color: var(--lit-gray-700);
-  margin-top: 0.75rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 32rem;
-
-  @include sm {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    margin-top: 1rem;
-  }
-
-  @include md {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    max-width: none;
-  }
-}
-
-.btn-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-
-  @media only screen and (min-width: 448px) {
-    flex-wrap: nowrap;
-  }
-
-  @include lg {
-    justify-content: flex-start;
-  }
-}
-
-.cta-btn {
-  width: 100%;
-  display: inline-flex;
-  justify-content: center;
-  background-color: var(--lit-orange);
-  color: var(--lit-white);
-  border: 1px solid var(--lit-orange);
-  border-radius: 999px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.625rem 1rem 0.5rem;
-
-  @media only screen and (min-width: 448px) {
-    width: auto;
-  }
-
-  @include sm {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-.cta-btn--primary {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-
-  &:hover {
-    background-color: var(--lit-orange-dark);
-    border-color: var(--lit-orange-dark);
-  }
-}
-
-.cta-btn--outline {
-  background-color: transparent;
-  color: var(--lit-gray-900);
-  border-color: var(--lit-gray-900);
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: var(--lit-gray-50);
-  }
-}
-
-.img-wrapper {
-  width: auto;
-  height: clamp(20rem, 50vh, 32rem);
-  transform: rotate(45deg);
-  margin: -2rem -2rem -2rem 0;
-
-  @include sm {
-    margin: -2rem -2rem -4rem 0;
-  }
-
-  @include md {
-    height: clamp(32rem, 60vh, 48rem);
-    margin: -5rem -2rem -5rem 0;
-  }
-
-  @include lg {
-    position: absolute;
-    top: 50%;
-    right: -10vw;
-    transform: translate(0, -50%);
-    width: clamp(32rem, 55vw, 56rem);
-    height: auto;
-    margin: -1rem 0;
-  }
-
-  @include xxxl {
-    right: -8rem;
-    width: auto;
-    height: 56rem;
-  }
-}
-
-.hero-img {
-  width: auto;
-  height: 100%;
-}
-
-.hero-key:hover [data-shape='key'][data-reveal='true'] {
-  animation: fadeIn 1.2s ease-in-out calc(var(--animation-order, 1) * 30ms);
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0.2;
@@ -212,8 +11,6 @@
 
 .root {
   background-color: #11284b;
-  background-size: cover;
-  background-position: center;
   background-image: linear-gradient(
     220deg,
     var(--lit-royal-blue) 0%,
@@ -258,6 +55,23 @@
     max-width: 100%;
     font-size: 34px;
     line-height: 1.15;
+  }
+
+
+  @include sm {
+    font-size: 3rem;
+  }
+
+  @include md {
+    font-size: 4rem;
+  }
+
+  @include lg {
+    font-size: 3.5rem;
+  }
+
+  @include xl {
+    font-size: 4.5rem;
   }
 }
 
