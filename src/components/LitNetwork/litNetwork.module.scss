@@ -1,0 +1,137 @@
+.root {
+  background-color: var(--lit-black);
+  color: var(--lit-white);
+  padding: 6rem 0;
+}
+
+.container {
+    display: flex;
+}
+
+.cardGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__heading {
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &__cards {
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+.selected,
+.unselected {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  width: 60%;
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
+
+.selected {
+  background: linear-gradient(
+    to right,
+    var(--lit-royal-blue),
+    var(--lit-black)
+  );
+
+  &__title {
+    color: var(--lit-blue-accent);
+  }
+
+  border: 2px solid var(--lit-blue-stroke);
+  border-radius: 0.5rem;
+  color: var(--lit-white);
+}
+
+.unselected {
+  background: linear-gradient(
+    45deg,
+    var(--network-gradient-color-1) 8%,
+    var(--network-gradient-color-2) 40%,
+    var(--network-gradient-color-3) 100%
+  );
+  border-radius: 0.5rem;
+  color: var(--lit-blue-gray);
+  position: relative;
+
+  &__inner {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+// Add animation for content
+.selected__title,
+.unselected__title,
+.selected > p,
+.unselected__inner > p {
+  transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.fadeOut {
+  animation: fadeOut 0.3s ease-in-out;
+}
+
+.iconOutline {
+  background-color: transparent !important;
+  border: none !important;
+
+  // Target all children recursively
+  * {
+    color: var(--lit-light-blue) !important;
+    background-color: transparent !important;
+  }
+
+  svg {
+    stroke: var(--lit-light-blue) !important;
+    fill: transparent !important;
+  }
+}
+
+.imageContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px; // Adjust based on layout needs
+  }
+  
+  .fullImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
