@@ -3,25 +3,26 @@ import { Group, Image, Card, Text, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import classes from './blog-carousel.module.css';
 
+// You can add these if you have them
+// import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
+
 interface ArticleProps {
   image: string;
   title: string;
+  category: string;
 }
 
-function Article({ image, title }: ArticleProps) {
+function Article({ image, title, category }: ArticleProps) {
   return (
     <Card className={classes.card}>
       <Group wrap="nowrap" gap={0}>
-        <Image
-          src={image}
-          height={160}
-        />
+        <Image src={image} height={160} />
         <div className={classes.body}>
           <Text tt="uppercase" c="dimmed" fw={700} size="xs">
-            {title}
+            {category}
           </Text>
           <Text className={classes.title} mt="xs" mb="md">
-            The best laptop for Frontend engineers in 2022
+            {title}
           </Text>
         </div>
       </Group>
@@ -29,6 +30,7 @@ function Article({ image, title }: ArticleProps) {
   );
 }
 
+// Keep your existing data object
 const data = [
   {
     image:
@@ -70,22 +72,40 @@ const data = [
 
 export function BlogCarousel() {
   const theme = useMantineTheme();
-  const mobile = useMediaQuery((`max-width: 20rem`));
-  const slides = data.map((item) => (
+  const mobile = useMediaQuery(`(max-width: 48em)`); // Using a more standard breakpoint
+
+  const slides = data.map(item => (
     <Carousel.Slide key={item.title}>
       <Article {...item} />
     </Carousel.Slide>
   ));
 
   return (
-  <Carousel
-    slideSize={mobile ? '100%' : '50%'}
-    slideGap={mobile ? 2 : 'xl'}
-    align="start"
-    slidesToScroll={mobile ? 1 : 2}
-    styles={{ root: { maxWidth: '800px', margin: '0 auto' } }}
-  >
-    {slides}
-  </Carousel>
+    <div
+      style={{
+        position: 'relative',
+        overflow: 'visible',
+        transform: 'none',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto', // carousel had to reset styles because of hero styling, needs to be revisited/fixed, arrows aren't showing and carousel is acting like mobile version
+      }}
+    >
+      <Carousel
+        withControls
+        loop
+        slideSize={mobile ? '100%' : '50%'}
+        slideGap={mobile ? 2 : 'xl'}
+        align="start"
+        slidesToScroll={mobile ? 1 : 2}
+        styles={{
+          root: { transform: 'none' },
+          viewport: { overflow: 'hidden' },
+          container: { display: 'flex', flexDirection: 'row' },
+        }}
+      >
+        {slides}
+      </Carousel>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 .card {
-    height: 440px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,4 +25,19 @@
   
   .body {
     padding: var(--mantine-spacing-md);
+  }
+
+  .carouselWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .carouselWrapper :global(.mantine-Carousel-control) {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
   }
