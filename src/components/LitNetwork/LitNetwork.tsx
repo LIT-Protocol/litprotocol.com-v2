@@ -1,7 +1,7 @@
 'use client';
 import { Card, Container, Group, Image, Text, ThemeIcon } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
-import styles from './litNetwork.module.scss';
+import styles from './lit-network.module.scss';
 import {
   IconCurrencyRipple,
   IconPackages,

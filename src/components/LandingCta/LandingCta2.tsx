@@ -1,13 +1,5 @@
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
-import {
-  Button,
-  Card,
-  Container,
-  Group,
-  Input,
-  Text,
-  ThemeIcon,
-} from '@mantine/core';
+import { Button, Card, Container, Group, Text, TextInput } from '@mantine/core';
 import {
   IconArrowNarrowRight,
   IconBrandDiscord,
@@ -51,9 +43,9 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
       style={{ cursor: 'pointer' }}
       className={styles.ctas}
     >
-      <Icon size={25} />
-      <Text>{name}</Text>
-      <Text>{context}</Text>
+      <Icon size={25} stroke={1} className={styles.ctas__icon} />
+      <Text className={styles.ctas__name}>{name}</Text>
+      <Text className={styles.ctas__context}>{context}</Text>
     </Card>
   );
 }
@@ -62,12 +54,20 @@ function Newsletter() {
     <Card className={styles.newsletter}>
       <Text className={styles.newsletter__cta}>Be the first to know</Text>
       <Group className={styles.newsletter__group}>
-        <Text>
+        <Text className={styles.newsletter__text}>
           Lorem ipsum enim elementum nibh elementum augue sit neque est lacus.
         </Text>
         <Group className={styles.signup}>
           <Group>
-            <Input></Input>
+            <TextInput
+              classNames={{
+                root: styles.inputRoot,
+                wrapper: styles.inputWrapper, 
+                input: styles.input,
+                label: styles.label,
+              }}
+              placeholder="Enter your email"
+            />
             <Button
               type="submit"
               rightSection={<IconArrowNarrowRight stroke={2} />}
