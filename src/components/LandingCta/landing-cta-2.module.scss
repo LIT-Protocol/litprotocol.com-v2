@@ -1,0 +1,57 @@
+@import 'src/styles/mixins.scss';
+
+.root {
+    padding: 4rem 0 10rem 0;
+}
+
+.ctas {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% / 3);
+}
+
+.linksGroup {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ctaText {
+  color: var(--lit-white);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  width: 40%;
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+}
+
+.newsletter {
+    display: flex;
+
+    &__cta {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: row;
+    }
+
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+
+    &__disclaimer {
+        font-size: .75rem;
+    }
+}

@@ -13,7 +13,7 @@ const LandingPage = () => {
       <Metrics />
       <LandingFeatures /> {/* contains content of lit network*/}
       <LitNetwork />
-      <LandingCta />
+      {/* Ctas have been added to the footer */}
     </>
   );
 };

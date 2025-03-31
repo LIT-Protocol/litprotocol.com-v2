@@ -1,7 +1,7 @@
 import { Carousel } from '@mantine/carousel';
 import { Group, Image, Card, Text, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import classes from './CardsCarousel.module.css';
+import classes from './blog-carousel.module.css';
 
 interface ArticleProps {
   image: string;
