@@ -1,6 +1,5 @@
-import LandingFeatures from '../LandingFeatures/LandingFeatures';
+import LandingFeatures2 from '../LandingFeatures/LandingFeatures2';
 // import LandingPartners from '../LandingPartners/LandingPartners';
-import LandingCta from '../LandingCta/LandingCta';
 import LandingHero from '../LandingHero/LandingHero';
 // import LandingBlog from '../LandingBlog/LandingBlog';
 import Metrics from '../Metrics/Metrics';
@@ -11,7 +10,7 @@ const LandingPage = () => {
     <>
       <LandingHero />
       <Metrics />
-      <LandingFeatures /> {/* contains content of lit network*/}
+      <LandingFeatures2/> {/* contains content of lit network*/}
       <LitNetwork />
       {/* Ctas have been added to the footer */}
     </>

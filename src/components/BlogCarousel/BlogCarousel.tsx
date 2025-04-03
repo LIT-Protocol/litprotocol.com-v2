@@ -75,8 +75,6 @@ const data = [
 ];
 
 export function BlogCarousel() {
-  const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: 48em)`);
 
   const slides = data.map(item => (
     <Carousel.Slide key={item.title} className={classes.slide}>

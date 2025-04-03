@@ -10,8 +10,17 @@ export const CONTACT_FORM = 'https://forms.gle/n4WKtsyxaduEz8dDA';
 export const CALENDAR_LINK = 'https://litgateway.com/calendar';
 export const GITHUB_LINK = 'https://github.com/LIT-Protocol';
 export const WHITEPAPER_LINK = 'https://github.com/LIT-Protocol/whitepaper';
-export const AUDIT_LINK = 'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
-export const COMMUNITY_LINK ="https://developer.litprotocol.com/support/intro";
+export const AUDIT_LINK =
+  'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
+export const COMMUNITY_LINK = 'https://developer.litprotocol.com/support/intro';
+
+// Product
+export const LIT_WALLET_LINK =
+  'https://developer.litprotocol.com/user-wallets/overview';
+export const ENCRYPTION_LINK =
+  'https://developer.litprotocol.com/sdk/access-control/intro';
+export const LIT_ACTIONS_LINK =
+  'https://developer.litprotocol.com/sdk/serverless-signing/overview';
 
 // Social
 export const TWITTER_LINK = 'https://twitter.com/litprotocol';

@@ -10,7 +10,7 @@ import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 const LandingHero = () => {
   return (
     <div className={styles.root}>
-      <Container size="lg">
+      <Container>
         <div className={styles.inner}>
           <div className={styles.content}>
             <Title className={styles.title}>
