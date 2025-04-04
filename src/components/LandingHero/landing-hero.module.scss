@@ -36,12 +36,11 @@
 }
 
 .content {
-  padding-top: calc(var(--mantine-spacing-xl) * 2);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
-  margin-right: calc(var(--mantine-spacing-xl) * 3);
+  padding: 1.5rem;
 
   @include md {
     margin-right: 0;
+    padding: 0;
   }
 }
 

@@ -1,5 +1,13 @@
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
-import { Button, Card, Container, Group, Text, TextInput, Title } from '@mantine/core';
+import {
+  Button,
+  Card,
+  Container,
+  Group,
+  Text,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import {
   IconArrowNarrowRight,
   IconBrandDiscord,
@@ -62,7 +70,7 @@ function Newsletter() {
             <TextInput
               classNames={{
                 root: styles.inputRoot,
-                wrapper: styles.inputWrapper, 
+                wrapper: styles.inputWrapper,
                 input: styles.input,
                 label: styles.label,
               }}
@@ -96,9 +104,7 @@ const LandingCta2 = () => {
     <div className={styles.root}>
       <Container size="lg">
         <Group className={styles.ctaText}>
-          <Title order={3}>
-            Learn, connect, & collaborate.
-          </Title>
+          <Title order={3}>Learn, connect, & collaborate.</Title>
           <Text>
             Lorem ipsum enim elementum nibh elementum augue sit neque est lacus.
           </Text>
