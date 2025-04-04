@@ -10,7 +10,7 @@ const LandingPage = () => {
     <>
       <LandingHero />
       <Metrics />
-      <LandingFeatures2/> {/* contains content of lit network*/}
+      <LandingFeatures2/>
       <LitNetwork />
       {/* Ctas have been added to the footer */}
     </>
