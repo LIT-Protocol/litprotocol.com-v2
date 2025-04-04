@@ -2,6 +2,7 @@ import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
+import '@mantine/carousel/styles.css';
 import '@mantine/core/styles.css';
 import {
   ColorSchemeScript,

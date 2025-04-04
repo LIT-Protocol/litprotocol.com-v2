@@ -9,7 +9,7 @@ import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 
 const LandingHero = () => {
   return (
-    <div className={styles.root}>
+    <div className={styles.hero}>
       <Container>
         <div className={styles.inner}>
           <div className={styles.content}>
@@ -20,9 +20,18 @@ const LandingHero = () => {
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
               >
-                Universal Control
+                Universal Accounts
               </Text>{' '}
-              For Web3 Builders
+              and{' '}
+              <Text
+                component="span"
+                inherit
+                variant="gradient"
+                gradient={{ from: 'pink', to: 'yellow' }}
+              >
+                Access Control Network
+              </Text>{' '}
+              for the Autonomous Web
             </Title>
 
             <Text className={styles.description} mt={30}>
@@ -58,7 +67,17 @@ const LandingHero = () => {
           </div>
         </div>
         <LandingPartners />
-        <BlogCarousel />
+        <div
+          style={{
+            marginTop: '40px',
+            width: '100%',
+            overflow: 'visible', // Allows carousel to overflow its container if needed
+            position: 'relative', // Ensures absolute positioned elements inside work properly
+          }}
+        >
+          {' '}
+          <BlogCarousel />
+        </div>
       </Container>
     </div>
   );

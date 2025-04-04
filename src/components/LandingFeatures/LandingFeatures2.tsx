@@ -4,7 +4,15 @@ import {
   LIT_ACTIONS_LINK,
   LIT_WALLET_LINK,
 } from '@/utils/constants';
-import { Button, Card, Container, Tabs, Text, Title } from '@mantine/core';
+import {
+  Button,
+  Card,
+  Container,
+  Group,
+  Tabs,
+  Text,
+  Title,
+} from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconArrowRight, IconCircleCheck } from '@tabler/icons-react';
 import React, { useState } from 'react';
@@ -67,30 +75,47 @@ function ProductDesktop({ features }: ProductProps) {
   const currentFeature = features.find(f => f.tab === activeTab);
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      style={{ height: '500px', display: 'flex', justifyContent: 'space-between' }}
+    >
       {currentFeature && (
         <>
           <Title order={3} mb="xs">
             {currentFeature.heading}
           </Title>
           <Text mb="sm">{currentFeature.paragraph}</Text>
-          <ul style={{ paddingLeft: 16, marginBottom: 16 }}>
-            {currentFeature.features.map((item, idx) => (
-              <li key={idx}>
-                <IconCircleCheck />
-                <Text>{item}</Text>
-              </li>
-            ))}
-          </ul>
           <Button
             component="a"
             href={currentFeature.link}
             target="_blank"
             rightSection={<IconArrowRight size={16} />}
             variant="light"
+            style={{ width: '10rem' }}
           >
             Learn More
           </Button>
+          <Group
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '0',
+            }}
+          >
+            <Text>Features</Text>
+            <ul style={{ marginBottom: 16, display: 'flex', gap: '.75rem' }}>
+              {currentFeature.features.map((item, idx) => (
+                <li key={idx} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '.25rem' }}>
+                  <IconCircleCheck size={16} />
+                  <Text>{item}</Text>
+                </li>
+              ))}
+            </ul>
+          </Group>
         </>
       )}
 
@@ -117,8 +142,26 @@ const LandingProduct2 = () => {
 
   return (
     <div>
-      <Container>
-        <Title></Title>
+      <Container
+        style={{
+          padding: '8rem 0',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8rem',
+        }}
+      >
+        <Text
+          style={{
+            fontSize: '1.35rem',
+            fontWeight: 'bold',
+            marginLeft: '4rem',
+          }}
+        >
+          Lit Protocol fills a vital gap in the decentralized application stack,
+          enabling developers to securely manage secrets, digital assets, and
+          other sensitive data with programmable, decentralized signing and
+          encryption.{' '}
+        </Text>
         {mobile ? (
           <ProductMobile features={features} />
         ) : (
