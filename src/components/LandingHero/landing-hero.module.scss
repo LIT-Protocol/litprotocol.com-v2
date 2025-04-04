@@ -48,25 +48,21 @@
 .title {
   color: var(--lit-white);
   line-height: 1.05;
+  font-size: 2.5rem;
   max-width: 500px;
-  font-size: 48px;
-
-  @include sm {
-    font-size: 3rem;
-  }
 
   @include md {
-    font-size: 4rem;
-    max-width: 100%;
+    font-size: 3rem;
     line-height: 1.15;
   }
 
   @include lg {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 
   @include xl {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
+    max-width: 600px;
   }
 }
 
@@ -74,10 +70,6 @@
   color: var(--mantine-color-white);
   opacity: 0.75;
   max-width: 500px;
-
-  @include md {
-    max-width: 100%;
-  }
 }
 
 .control {

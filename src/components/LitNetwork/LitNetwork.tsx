@@ -1,12 +1,22 @@
 'use client';
-import { Card, Container, Group, Image, Text, ThemeIcon } from '@mantine/core';
+import {
+  Card,
+  Container,
+  Group,
+  Image,
+  Text,
+  ThemeIcon,
+  Title,
+} from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 import styles from './lit-network.module.scss';
 import {
   IconCurrencyRipple,
   IconPackages,
+  IconPhoto,
   IconShieldHalf,
 } from '@tabler/icons-react';
+import { useMediaQuery } from '@mantine/hooks';
 
 interface NetworkCardProps {
   icon: React.FC<any>;
@@ -16,7 +26,23 @@ interface NetworkCardProps {
   onClick: () => void;
 }
 
-function NetworkCard({ icon: Icon, title, detail, isSelected, onClick }: NetworkCardProps) {
+function NetworkCardMobile({
+  icon: Icon,
+  title,
+  detail,
+  isSelected,
+  onClick,
+}: NetworkCardProps) {
+  return <div></div>;
+}
+
+function NetworkCardDesktop({
+  icon: Icon,
+  title,
+  detail,
+  isSelected,
+  onClick,
+}: NetworkCardProps) {
   const [wasSelected, setWasSelected] = useState(isSelected);
 
   useEffect(() => {
@@ -30,8 +56,8 @@ function NetworkCard({ icon: Icon, title, detail, isSelected, onClick }: Network
   } ${!isSelected && wasSelected ? styles.fadeOut : ''}`;
 
   return (
-    <Card 
-      radius="md" 
+    <Card
+      radius="md"
       className={cardClass}
       onClick={onClick}
       style={{ cursor: 'pointer' }}
@@ -62,29 +88,31 @@ function NetworkCard({ icon: Icon, title, detail, isSelected, onClick }: Network
 }
 
 const data = [
-  { 
-    icon: IconShieldHalf, 
-    title: 'Defense in Depth', 
+  {
+    icon: IconShieldHalf,
+    title: 'Defense in Depth',
     detail: 'Lorem ipsum',
-    image: '/images/defense.jpg'
+    image: '/images/defense.jpg',
   },
-  { 
-    icon: IconPackages, 
-    title: 'Scalability', 
+  {
+    icon: IconPackages,
+    title: 'Scalability',
     detail: 'Lorem ipsum',
-    image: '/images/scalability.jpg'
+    image: '/images/scalability.jpg',
   },
-  { 
-    icon: IconCurrencyRipple, 
-    title: 'Decentralized keys, orchestrated onchain', 
+  {
+    icon: IconCurrencyRipple,
+    title: 'Decentralized keys, orchestrated onchain',
     detail: 'Lorem ipsum',
-    image: '/images/decentralized.jpg'
+    image: '/images/decentralized.jpg',
   },
 ];
 
 const LitNetwork = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const handleCardClick = (index: number) => {
     if (index !== selectedIndex && !isAnimating) {
@@ -98,37 +126,64 @@ const LitNetwork = () => {
     const interval = setInterval(() => {
       if (!isAnimating) {
         setIsAnimating(true);
-        setSelectedIndex((prevIndex) => (prevIndex + 1) % data.length);
+        setSelectedIndex(prevIndex => (prevIndex + 1) % data.length);
         setTimeout(() => setIsAnimating(false), 300);
       }
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, [isAnimating]);
 
   return (
     <div className={styles.root}>
-      <Container className={styles.container}>
+      <Container size="lg" className={styles.container}>
         <Group className={styles.cardGroup}>
-          <Text className={styles.cardGroup__heading}>The Lit Network</Text>
+          <Title order={3} className={styles.cardGroup__heading}>
+            The Lit Network
+          </Title>
           <Group className={styles.cardGroup__cards}>
-            {data.map((card, index) => (
-              <NetworkCard 
-                key={index}
-                {...card} 
-                isSelected={index === selectedIndex}
-                onClick={() => handleCardClick(index)}
-              />
-            ))}
+            {data.map((card, index) =>
+              isMobile ? (
+                <NetworkCardMobile
+                  key={index}
+                  {...card}
+                  isSelected={index === selectedIndex}
+                  onClick={() => handleCardClick(index)}
+                />
+              ) : (
+                <NetworkCardDesktop
+                  key={index}
+                  {...card}
+                  isSelected={index === selectedIndex}
+                  onClick={() => handleCardClick(index)}
+                />
+              )
+            )}
           </Group>
         </Group>
-        <div className={styles.imageContainer}>
-          <Image 
-            src={data[selectedIndex].image} 
-            alt={data[selectedIndex].title} 
-            className={styles.fullImage} 
-          />
-        </div>
+        {data.image ? (
+          <div className={styles.imageContainer}>
+            <Image
+              src={data[selectedIndex].image}
+              alt={data[selectedIndex].title}
+              className={styles.fullImage}
+            />
+          </div>
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '600px',
+              backgroundColor: '#f1f3f5',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <IconPhoto size={48} color="#adb5bd" />
+          </div>
+        )}
       </Container>
     </div>
   );

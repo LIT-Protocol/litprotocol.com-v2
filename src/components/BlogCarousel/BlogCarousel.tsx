@@ -1,6 +1,6 @@
 import { Carousel } from '@mantine/carousel';
-import { Group, Image, Card, Text, Button } from '@mantine/core';
-import classes from './blog-carousel.module.css';
+import { Group, Image, Card, Text, Button, Title } from '@mantine/core';
+import classes from './blog-carousel.module.scss';
 import SignDecryptImg from './assets/signAndDecrypt.png';
 import BtcImg from './assets/btc.png';
 import DatilImg from './assets/datil.png';
@@ -14,9 +14,7 @@ import {
   IconChevronLeft,
   IconChevronRight,
 } from '@tabler/icons-react';
-
-// You can add these if you have them
-// import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
+import { useMediaQuery } from '@mantine/hooks';
 
 type ImageProp = string | StaticImageData;
 interface ArticleProps {
@@ -27,19 +25,20 @@ interface ArticleProps {
 }
 
 function Article({ image, title, slug, alt }: ArticleProps) {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <Card className={classes.card}>
       <Group wrap="nowrap" gap={0} style={{ width: '100%', height: '100%' }}>
-        <Image
-          src={image}
-          alt={alt}
-          height={160}
-          style={{ maxWidth: '40%', objectFit: 'cover', flexShrink: 0 }}
-        />
+        {!isMobile && (
+          <div style={{ display: 'block', maxWidth: '25rem' }}>
+            <Image src={image} alt={alt} height={160} />
+          </div>
+        )}
         <div className={classes.body}>
-          <Text className={classes.carouselTitle} mt="xs" mb="md">
+          <Title order={3} className={classes.carouselTitle} mt="xs" mb="md">
             {title}
-          </Text>
+          </Title>
           <Button
             component="a"
             href={`${SPARK_LINK}/${slug}`}
@@ -104,18 +103,16 @@ export function BlogCarousel() {
       slideGap="sm"
       align="center"
       slidesToScroll={1}
-      controlsOffset="xs"
-      // classNames={{
-      //   slide: classes.slide,
-      // }}
-      withControls={true} // Make sure this is true to show arrows
-      // For custom arrows (if needed):
+      controlsOffset="xl"
+      withControls={true}
       nextControlIcon={<IconChevronRight size={48} />}
       previousControlIcon={<IconChevronLeft size={48} />}
-      style={{
-        slide: { width: '300px' },
-        indicators: { color: '#fff' },
-        controls: { width: '200%' },
+      classNames={{
+        root: classes.carouselRoot,
+        controls: classes.carouselControls,
+        control: classes.carouselControl,
+        indicators: classes.carouselIndicators,
+        indicator: classes.carouselIndicator,
       }}
     >
       {posts.map(post => (

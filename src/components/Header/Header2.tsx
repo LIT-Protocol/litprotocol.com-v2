@@ -107,7 +107,7 @@ export function HeaderMenu({
 
   return (
     <header className={styles.header}>
-      <Container size="md">
+      <Container size="lg">
         <div className={styles.inner}>
           <Group gap={4}>
             <Burger

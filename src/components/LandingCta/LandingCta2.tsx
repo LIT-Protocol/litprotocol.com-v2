@@ -1,5 +1,5 @@
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
-import { Button, Card, Container, Group, Text, TextInput } from '@mantine/core';
+import { Button, Card, Container, Group, Text, TextInput, Title } from '@mantine/core';
 import {
   IconArrowNarrowRight,
   IconBrandDiscord,
@@ -94,11 +94,11 @@ const LandingCta2 = () => {
 
   return (
     <div className={styles.root}>
-      <Container>
+      <Container size="lg">
         <Group className={styles.ctaText}>
-          <Text className={styles.ctaText__title}>
+          <Title order={3}>
             Learn, connect, & collaborate.
-          </Text>
+          </Title>
           <Text>
             Lorem ipsum enim elementum nibh elementum augue sit neque est lacus.
           </Text>

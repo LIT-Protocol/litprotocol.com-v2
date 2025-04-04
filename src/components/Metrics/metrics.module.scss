@@ -1,7 +1,8 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
   padding: 6rem 0;
   background-color: var(--lit-black);
-  width: 100%;
   color: var(--lit-white);
   max-width: none;
 }
@@ -20,11 +21,15 @@
 
 .groupedMetrics {
   display: flex;
-  flex-direction: column;
   text-align: left;
   align-items: flex-start;
   justify-content: center;
   gap: 4rem;
+  padding: 1rem;
+
+  @include sm {
+    flex-direction: column;
+  }
 }
 
 .groupedMetrics > *:nth-child(1) .metric {

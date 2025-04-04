@@ -19,7 +19,7 @@ import { Container } from '@mantine/core';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Container>
+      <Container size="lg">
         <LandingCta2 />
         <div className={styles.footer__divider}></div>
         <nav className={styles.footer__nav}>

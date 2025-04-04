@@ -250,7 +250,7 @@ const LandingProduct2 = () => {
     <div>
       <Container
         style={{
-          padding: '8rem 0',
+          padding: '8rem .5rem',
           display: 'flex',
           flexDirection: 'column',
           gap: '8rem',

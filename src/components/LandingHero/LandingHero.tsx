@@ -10,7 +10,7 @@ import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 const LandingHero = () => {
   return (
     <div className={styles.hero}>
-      <Container>
+      <Container size="lg">
         <div className={styles.inner}>
           <div className={styles.content}>
             <Title className={styles.title}>
@@ -35,8 +35,7 @@ const LandingHero = () => {
             </Title>
 
             <Text className={styles.description} mt={30}>
-              Lit Protocol’s decentralized signing & encryption network powers
-              interoperability, data sovereignty & autonomous systems.
+            Join the builders using Lit Protocol’s decentralized signing and encryption to power AI agents, blockchain interoperability, crypto wallets, and user-owned data.
             </Text>
 
             <Group>
@@ -50,7 +49,7 @@ const LandingHero = () => {
                 target="_blank"
                 rightSection={<IconArrowNarrowRight stroke={2} />}
               >
-                Start building
+                Read the Docs
               </Button>
               <Button
                 variant="outline"
@@ -69,10 +68,10 @@ const LandingHero = () => {
         <LandingPartners />
         <div
           style={{
-            marginTop: '40px',
-            width: '100%',
-            overflow: 'visible', // Allows carousel to overflow its container if needed
-            position: 'relative', // Ensures absolute positioned elements inside work properly
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem 0'
           }}
         >
           {' '}

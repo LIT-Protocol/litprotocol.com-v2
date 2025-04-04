@@ -8,7 +8,7 @@ import LitNetwork from '../LitNetwork/LitNetwork';
 const LandingPage = () => {
   return (
     <>
-      <LandingHero />
+      <LandingHero /> {/* Includes partners and blog */}
       <Metrics />
       <LandingFeatures2/>
       <LitNetwork />
