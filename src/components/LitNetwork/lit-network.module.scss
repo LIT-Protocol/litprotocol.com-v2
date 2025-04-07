@@ -26,6 +26,7 @@
 
   &__cards {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
   }
 }
@@ -156,13 +157,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 600px; // Adjust based on layout needs
+  max-width: 600px;
+}
+
+.imageContainer,
+.placeholder {
+  width: 100%; // Full width of the parent
+  margin-top: 24px;
 }
 
 .fullImage {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 12px;
   transition: opacity 0.3s ease-in-out;
+}
+
+.tabsRoot {
+  width: 100%;
+}
+
+.tabsList {
+  &::before {
+    display: none !important;
+  }
+  
+  /* Force scrollable behavior */
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  
+  /* Hide scrollbar in webkit browsers */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
