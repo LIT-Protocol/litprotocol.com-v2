@@ -164,7 +164,17 @@ const LitNetwork = () => {
             />
           </div>
         ) : (
-          <div className={styles.placeholder}>
+          <div
+            style={{
+              width: '100%',
+              height: '600px',
+              backgroundColor: '#f1f3f5',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <IconPhoto size={48} color="#adb5bd" />
           </div>
         )}
