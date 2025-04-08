@@ -28,7 +28,8 @@ const ctas = [
   {
     icon: IconCodeCircle,
     name: 'Docs',
-    context: 'Start building',
+    context:
+      'Go from 0 to 1 with our developer docs and ready-to-use examples.',
     link: DOCS_LINK,
   },
   {
@@ -40,7 +41,7 @@ const ctas = [
   {
     icon: IconBrandDiscord,
     name: 'Discord',
-    context: 'Connect with our community',
+    context: 'Connect with other builders, and help shape the future of Lit.',
     link: DISCORD_LINK,
   },
 ];
@@ -63,10 +64,10 @@ function Newsletter() {
       <Text className={styles.newsletter__cta}>Be the first to know</Text>
       <Group className={styles.newsletter__group}>
         <Text className={styles.newsletter__text}>
-          Lorem ipsum enim elementum nibh elementum augue sit neque est lacus.
+          Sign up for our newsletter for updates on all things Lit.
         </Text>
         <Group className={styles.signup}>
-          <Group>
+          <Group gap="xs">
             <TextInput
               classNames={{
                 root: styles.inputRoot,
@@ -104,9 +105,9 @@ const LandingCta2 = () => {
     <div className={styles.root}>
       <Container size="lg">
         <Group className={styles.ctaText}>
-          <Title order={3}>Learn, connect, & collaborate.</Title>
+          <Title order={2} className={styles.ctaText__title}>Learn, connect, & collaborate.</Title>
           <Text>
-            Lorem ipsum enim elementum nibh elementum augue sit neque est lacus.
+          Lit and ecosystem partners are building the next generation of identity and machine intelligence protocols and applications, all running on the open web.
           </Text>
         </Group>
         <Group className={styles.linksGroup}>{ctaLinks}</Group>

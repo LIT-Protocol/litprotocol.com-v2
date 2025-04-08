@@ -11,6 +11,7 @@ interface ProductProps {
       features: string[];
       link: string;
       image?: string;
+      cta: string;
     }[];
   }
   
@@ -63,9 +64,9 @@ interface ProductProps {
                     target="_blank"
                     rightSection={<IconArrowRight size={16} />}
                     variant="light"
-                    style={{ width: '10rem' }}
+                    style={{ minWidth: '10rem' }}
                   >
-                    Learn More
+                    {currentFeature.cta}
                   </Button>
                 </div>
   

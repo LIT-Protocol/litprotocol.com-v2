@@ -9,7 +9,7 @@ import {
   SPARK_LINK,
   WHITEPAPER_LINK,
 } from '@/utils/constants';
-import LitLogo from '../LitLogo/LitLogo';
+import { HeaderMenu } from '../Header/Header2';
 
 const NavMenu = ({
   menuOpen,
@@ -23,69 +23,10 @@ const NavMenu = ({
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content className={styles.modal}>
-          <header className={styles.header}>
-            <div className={styles.header__wrapper}>
-              <a href="/">
-                <LitLogo className={styles.header__logo} />
-              </a>
-              <div className={styles.header__btns}>
-                <button onClick={toggleMenu} className={styles['menu-btn']}>
-                  {menuOpen ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M18 6L6 18"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M6 6L18 18"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M3 12H21"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 6H21"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 18H21"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </button>
-              </div>
-            </div>
-          </header>
+          <HeaderMenu toggleMenu={toggleMenu} menuOpen={menuOpen} />
           <nav className={styles.nav}>
             <div className={styles.nav__wrapper}>
-            <div className={styles.nav__links}>
+              <div className={styles.nav__links}>
                 <h6 className={styles.nav__category}>Vincent</h6>
                 Coming soon!!
               </div>
@@ -115,7 +56,6 @@ const NavMenu = ({
                 >
                   Whitepaper
                 </a>
-
               </div>
               <div className={styles.nav__links}>
                 <h6 className={styles.nav__category}>Community</h6>

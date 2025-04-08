@@ -1,6 +1,5 @@
-import { IconArrowNarrowRight, IconChevronDown } from '@tabler/icons-react';
+import { IconArrowNarrowRight, IconArrowUpRight, IconChevronDown } from '@tabler/icons-react';
 import { Burger, Button, Center, Container, Group, Menu } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import styles from './header.module.scss';
 import LitLogo from '../LitLogo/LitLogo';
@@ -50,14 +49,12 @@ const links: LinkItem[] = [
 ];
 
 export function HeaderMenu({
-    menuOpen,
-    toggleMenu,
-  }: {
-    menuOpen: boolean;
-    toggleMenu: () => void;
-  }) {
-  const [opened, { toggle }] = useDisclosure(false);
-
+  menuOpen,
+  toggleMenu,
+}: {
+  menuOpen: boolean;
+  toggleMenu: () => void;
+}) {
   const items = links.map(link => {
     const menuItems = link.links?.map(item =>
       item.external ? (
@@ -67,6 +64,7 @@ export function HeaderMenu({
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
+          rightSection={<IconArrowUpRight size={16}/>}
         >
           {item.label}
         </Menu.Item>
@@ -84,6 +82,8 @@ export function HeaderMenu({
           trigger="hover"
           transitionProps={{ exitDuration: 0 }}
           withinPortal
+          withArrow
+          offset={16}
         >
           <Menu.Target>
             <a href={link.link} className={styles.link}>
@@ -118,24 +118,22 @@ export function HeaderMenu({
             />
             <LitLogo className={styles.header__logo} />
           </Group>
-          <Group gap={5} visibleFrom="sm">
+          <Group gap={28} visibleFrom="sm">
             {items}
           </Group>
-          <Button
-            component="a"
-            href={DOCS_LINK}
-            target="_blank"
-            rightSection={<IconArrowNarrowRight stroke={2} />}
-          >
-            Get Started
-          </Button>
+          {menuOpen ? (
+            <Button style={{ display: 'none' }} />
+          ) : (
+            <Button
+              component="a"
+              href={DOCS_LINK}
+              target="_blank"
+              rightSection={<IconArrowNarrowRight stroke={2} />}
+            >
+              Get Started
+            </Button>
+          )}
         </div>
-
-        {menuOpen && (
-          <div className={styles['menu-btn']}>
-            {items}
-          </div>
-        )}
       </Container>
     </header>
   );

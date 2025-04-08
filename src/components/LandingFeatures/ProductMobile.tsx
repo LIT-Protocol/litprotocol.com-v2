@@ -16,6 +16,7 @@ interface ProductProps {
     features: string[];
     link: string;
     image?: string;
+    cta: string;
   }[];
 }
 function ProductMobile({ features }: ProductProps) {
@@ -82,37 +83,39 @@ function ProductMobile({ features }: ProductProps) {
                 target="_blank"
                 rightSection={<IconArrowRight size={16} />}
                 variant="light"
-                style={{ width: '10rem' }}
+                style={{ minWidth: '10rem' }}
               >
-                Learn More
+                {feature.cta}
               </Button>
             </div>
-            <Text mb="xs">Features</Text>
-            <ul
-              style={{
-                marginBottom: 16,
-                display: 'flex',
-                gap: '.75rem',
-                padding: 0,
-                listStyle: 'none',
-              }}
-            >
-              {feature.features.map((item, index) => (
-                <li
-                  key={index}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: '.25rem',
-                    textWrap: 'nowrap',
-                  }}
-                >
-                  <IconCircleCheck size={16} />
-                  <Text size="xs">{item}</Text>
-                </li>
-              ))}
-            </ul>
+            <Group gap="xs">
+              <Text mb="xs">Features</Text>
+              <ul
+                style={{
+                  marginBottom: 16,
+                  display: 'flex',
+                  gap: '.75rem',
+                  padding: 0,
+                  listStyle: 'none',
+                }}
+              >
+                {feature.features.map((item, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: '.25rem',
+                      textWrap: 'nowrap',
+                    }}
+                  >
+                    <IconCircleCheck size={16} />
+                    <Text size="xs">{item}</Text>
+                  </li>
+                ))}
+              </ul>
+            </Group>
           </Group>
           <div
             style={{

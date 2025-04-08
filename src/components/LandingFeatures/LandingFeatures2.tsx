@@ -9,18 +9,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
 import ProductMobile from './ProductMobile';
 import ProductDesktop from './ProductDesktop';
-
-interface ProductProps {
-  features: {
-    value: string;
-    tab: string;
-    heading: string;
-    paragraph: string;
-    features: string[];
-    link: string;
-    image?: string;
-  }[];
-}
+import styles from './landing-features-2.module.scss';
 
 const features = [
   {
@@ -35,6 +24,7 @@ const features = [
       'Claimable Wallets',
     ],
     link: LIT_WALLET_LINK,
+    cta: 'Build with Lit wallets',
   },
   {
     value: 'second',
@@ -48,6 +38,7 @@ const features = [
       'Bridge Web2 and Web3',
     ],
     link: ENCRYPTION_LINK,
+    cta: 'Build with encryption'
   },
   {
     value: 'third',
@@ -61,6 +52,7 @@ const features = [
       'Build with Ease',
     ],
     link: LIT_ACTIONS_LINK,
+    cta: 'Dive into Lit Actions'
   },
 ];
 
@@ -70,8 +62,9 @@ const LandingProduct2 = () => {
   return (
     <div>
       <Container
+        size="lg"
         style={{
-          padding: '8rem .5rem',
+          padding: '8rem 1rem',
           display: 'flex',
           flexDirection: 'column',
           gap: '8rem',
@@ -82,11 +75,12 @@ const LandingProduct2 = () => {
           style={{
             marginLeft: '4rem',
           }}
+          className={styles.features__title}
         >
           Lit Protocol fills a vital gap in the decentralized application stack,
           enabling developers to securely manage secrets, digital assets, and
           other sensitive data with programmable, decentralized signing and
-          encryption.{' '}
+          encryption.
         </Title>
         {mobile ? (
           <ProductMobile features={features} />

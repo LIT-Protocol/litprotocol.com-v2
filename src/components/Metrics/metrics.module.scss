@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 
 .wrapper {
-  padding: 6rem 0;
+  padding: 6rem 0.5rem;
   background-color: var(--lit-black);
   color: var(--lit-white);
   max-width: none;
@@ -10,8 +10,12 @@
 .container {
   display: flex;
   justify-content: center;
-  gap: 6rem;
+  gap: 3rem;
   width: 100%;
+
+  @include sm {
+    gap: 6rem;
+  }
 }
 
 .metric {
@@ -43,7 +47,7 @@
 }
 
 .groupedMetrics > *:nth-child(2) .metric {
-    background: linear-gradient(
+  background: linear-gradient(
     to right,
     var(--lit-yellow),
     var(--lit-yellow-dark)
@@ -53,7 +57,7 @@
 }
 
 .groupedMetrics > *:nth-child(3) .metric {
-    background: linear-gradient(
+  background: linear-gradient(
     to right,
     var(--lit-light-blue),
     var(--lit-light-blue-dark)
