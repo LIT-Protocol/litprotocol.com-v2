@@ -9,6 +9,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 
   @include sm {
     flex-direction: row;
@@ -21,7 +22,16 @@
   align-items: flex-start;
 
   &__heading {
-    margin-bottom: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    @include sm {
+      font-size: 1.5rem;
+      margin-bottom: 4rem;
+      justify-content: flex-start;
+    }
   }
 
   &__cards {
@@ -176,19 +186,33 @@
 
 .tabsRoot {
   width: 100%;
+  overflow: hidden; /* Contain everything */
+}
+
+.tabsWrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 1rem 0;
+  scrollbar-width: none; /* Firefox */
+
+  /* Add these to ensure the scrolling works */
+  display: flex;
 }
 
 .tabsList {
   &::before {
-    display: none !important;
-  }
-  
-  /* Force scrollable behavior */
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  
-  /* Hide scrollbar in webkit browsers */
-  &::-webkit-scrollbar {
     display: none;
   }
+
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: max-content;
+  min-width: 100%;
+  padding: 0;
+  margin: 0;
+  min-width: 120%;
 }
