@@ -9,7 +9,7 @@ import {
   SPARK_LINK,
   WHITEPAPER_LINK,
 } from '@/utils/constants';
-import { HeaderMenu } from '../Header/Header2';
+import { HeaderMenu } from '../Header/Header';
 
 const NavMenu = ({
   menuOpen,

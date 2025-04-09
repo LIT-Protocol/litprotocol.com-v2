@@ -1,3 +1,4 @@
+import './globals.css';
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import Script from 'next/script';

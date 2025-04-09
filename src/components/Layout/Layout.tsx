@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './layout.module.scss';
-import { HeaderMenu } from '../Header/Header2';
+import { HeaderMenu } from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NavMenu from '../NavMenu/NavMenu';
 import { useState } from 'react';
