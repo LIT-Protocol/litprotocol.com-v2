@@ -70,7 +70,9 @@ function ProductDesktop({ features }: ProductProps) {
 
               {/* Bottom features with spacing */}
               <div style={{ marginTop: '2rem' }}>
-                <Text mb="xs">Features</Text>
+                <Text mb="xs" tt="uppercase" fw={700}>
+                  Features
+                </Text>
                 <ul
                   style={{
                     marginBottom: 16,

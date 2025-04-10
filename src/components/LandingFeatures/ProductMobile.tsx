@@ -94,7 +94,7 @@ function ProductMobile({ features }: ProductProps) {
               </Button>
             </div>
             <Group gap="xs" className="w-full">
-              <Text mb="xs">Features</Text>
+              <Text mb="xs" tt="uppercase" fw={700}>Features</Text>
               <div
                 className="w-full overflow-x-scroll"
                 style={{

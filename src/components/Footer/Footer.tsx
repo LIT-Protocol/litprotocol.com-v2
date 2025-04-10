@@ -18,7 +18,7 @@ import { Container } from '@mantine/core';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-tl from-blue-950 to-coal-950">
       <Container size="lg">
         <LandingCta2 />
         <div className={styles.footer__divider}></div>
@@ -44,8 +44,8 @@ const Footer = () => {
               Lit Protocol
             </a>
           </div>
-          <div className={styles.footer__grid}>
-            <div className={styles.footer__grid__item}>
+          <div className="flex-1 grid gap-[3rem_1.5rem] text-white grid-cols-[repeat(auto-fill,_minmax(8rem,_1fr))]">
+            <div className="flex flex-col gap-[0.75rem]">
               <h6 className={styles.footer__category}>Resources</h6>
               <a
                 href={DOCS_LINK}
@@ -96,7 +96,7 @@ const Footer = () => {
                 Contact
               </a>
             </div>
-            <div className={styles.footer__grid__item}>
+            <div className="flex flex-col gap-[0.75rem]">
               <h6 className={styles.footer__category}>Social</h6>
               <a
                 href={TWITTER_LINK}
@@ -131,7 +131,7 @@ const Footer = () => {
                 LinkedIn
               </a>
             </div>
-            <div className={styles.footer__grid__item}>
+            <div className="flex flex-col gap-[0.75rem]">
               <h6 className={styles.footer__category}>Company</h6>
               <a
                 href={CAREERS_LINK}
@@ -150,7 +150,7 @@ const Footer = () => {
                 Brand Kit
               </a>
             </div>
-            <div className={styles.footer__grid__item}>
+            <div className="flex flex-col gap-[0.75rem]">
               <h6 className={styles.footer__category}>Legal</h6>
               <a href="/legal/privacy-policy" className={styles.footer__link}>
                 Privacy Policy
@@ -161,7 +161,7 @@ const Footer = () => {
             </div>
           </div>
         </nav>
-        <div className={styles.footer__copyright}>
+        <div className='font-[0.75rem] text-left pt-[3rem] pb-[2rem] md:text-center lg:pt-[4rem] text-pearl-500'>
           <p>Lit Association. Copyright © {new Date().getFullYear()}.</p>
         </div>
       </Container>

@@ -1,4 +1,4 @@
-import { Box, Tabs } from "@mantine/core";
+import { Box, Tabs } from '@mantine/core';
 
 interface NetworkCardMobileProps {
   title: string;
@@ -29,6 +29,7 @@ function NetworkCardMobile({
       onClick={() => setActiveTab(value)}
     >
       <Tabs.Tab
+        className="!uppercase !font-bold"
         value={value}
         style={{
           textAlign: 'center',
@@ -41,10 +42,10 @@ function NetworkCardMobile({
       </Tabs.Tab>
 
       <Box
+        className="bg-pearl-500"
         style={{
           height: '4px',
           width: '100%',
-          backgroundColor: '#e0e0e0',
           position: 'relative',
           borderRadius: '2px',
           overflow: 'hidden',
@@ -52,13 +53,13 @@ function NetworkCardMobile({
       >
         {value === activeTab && (
           <Box
+            className="bg-periwinkle-500"
             style={{
               position: 'absolute',
               left: 0,
               top: 0,
               height: '100%',
               width: `${progress}%`,
-              backgroundColor: 'var(--mantine-color-blue-6)',
               transition: 'width 0.1s ease-out',
             }}
           />

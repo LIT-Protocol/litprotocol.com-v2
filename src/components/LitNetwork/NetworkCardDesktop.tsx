@@ -1,6 +1,5 @@
-import { Card, Group, Text, ThemeIcon } from '@mantine/core';
+import { Card, Group, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import styles from './lit-network.module.scss';
 
 interface NetworkCardProps {
   value: string;

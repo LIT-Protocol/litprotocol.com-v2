@@ -1,7 +1,6 @@
 'use client';
 import { Box, Container, Group, Image, Tabs, Title } from '@mantine/core';
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './lit-network.module.scss';
 import {
   IconCurrencyRipple,
   IconPackages,
@@ -103,15 +102,20 @@ const LitNetwork = () => {
                   value={activeTab}
                   onChange={val => val && setActiveTab(val)}
                   classNames={{
-                    list: 'inline-flex flex-nowrap gap-[12px] w-max-content min-w-full p-0 m-0 min-w-[120%] before:!hidden',
+                    list: 'inline-flex !flex-nowrap !gap-3 !w-max min-w-full p-0 m-1 !min-w-[132%] before:!hidden',
                     root: 'w-full overflow-hidden',
+                    tab: '!text-pearl-500 data-[active]:!text-periwinkle-500 hover:!bg-pewter-gray-500/50 !rounded-none',
                   }}
                 >
                   <div
-                    className={styles.tabsWrapper}
-                    style={{ maxWidth: '100%' }}
+                    className="w-full overflow-x-auto overflow-y-hidden m-0 py-[1rem] px-0"
+                    style={{
+                      maxWidth: '100%',
+                      WebkitOverflowScrolling: 'touch',
+                      scrollbarWidth: 'none',
+                    }}
                   >
-                    <Tabs.List className={styles.tabsList}>
+                    <Tabs.List className="inline-flex flex-nowrap gap-[12px] w-max-content p-0 m-0 min-w-[120%]">
                       {data.map(tab => (
                         <NetworkCardMobile
                           key={tab.value}
@@ -162,11 +166,11 @@ const LitNetwork = () => {
         </Group>
 
         {data[selectedIndex]?.image ? (
-          <div className={styles.imageContainer}>
+          <div className="flex-1 flex justify-center items-center max-w-[600px]">
             <Image
               src={data[selectedIndex].image}
               alt={data[selectedIndex].title}
-              className={styles.fullImage}
+              className="w-full h-auto rounded-md object-cover"
             />
           </div>
         ) : (
