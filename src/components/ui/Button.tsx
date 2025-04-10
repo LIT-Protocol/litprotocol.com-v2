@@ -4,7 +4,6 @@ import { ReactNode } from 'react';
 // Extend the props type to include anchor-specific properties
 type CustomButtonProps = ButtonProps & {
   variant?: 'primary' | 'outline';
-  leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   href?: string;
   target?: string;
@@ -14,7 +13,6 @@ type CustomButtonProps = ButtonProps & {
 export function Button({
   variant = 'primary',
   className,
-  leftIcon,
   rightIcon,
   href,
   target,
@@ -28,8 +26,7 @@ export function Button({
       section: 'text-white',
     },
     outline: {
-      root:
-        'outline-1 outline-white outline-solid bg-transparent !py-2 px-3',
+      root: 'outline-1 outline-white outline-solid bg-transparent !py-2 px-3',
       label: 'text-white',
       section: 'text-white',
     },
@@ -54,27 +51,18 @@ export function Button({
       {...buttonProps}
       {...props}
     >
-      <span className="flex items-center justify-center gap-[0.15rem] w-full h-full">
-        {leftIcon && (
-          <span
-            className={`inline-flex items-center ${variantClasses[variant].section}`}
-          >
-            {leftIcon}
-          </span>
-        )}
-        <span
-          className={`inline-block leading-none ${variantClasses[variant].label}`}
-        >
+      <div className="flex items-center justify-center">
+        <span className={`leading-normal ${variantClasses[variant].label}`}>
           {props.children}
         </span>
         {rightIcon && (
           <span
-            className={`inline-flex items-center icon-right-animate transition-transform duration-300 group-hover:translate-x-1 ${variantClasses[variant].section}`}
+            className={`ml-2 flex items-center icon-right-animate transition-transform duration-300 group-hover:translate-x-1 ${variantClasses[variant].section}`}
           >
             {rightIcon}
           </span>
         )}
-      </span>
+      </div>
     </MantineButton>
   );
 }

@@ -100,4 +100,26 @@
   .group:hover .icon-right-animate {
     transform: translateX(1px);
   }
+
+  .metric-1 {
+    @apply bg-gradient-to-r from-lit-orange to-lit-orange-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  .metric-2 {
+    @apply bg-gradient-to-r from-gold-500 to-gold-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  .metric-3 {
+    @apply bg-gradient-to-r from-periwinkle-500 to-periwinkle-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
 }

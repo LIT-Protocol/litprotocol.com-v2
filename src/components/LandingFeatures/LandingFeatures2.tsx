@@ -9,7 +9,6 @@ import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
 import ProductMobile from './ProductMobile';
 import ProductDesktop from './ProductDesktop';
-import styles from './landing-features-2.module.scss';
 
 const features = [
   {
@@ -60,7 +59,7 @@ const LandingProduct2 = () => {
   const mobile = useMediaQuery(`(max-width: 48em)`);
 
   return (
-    <div>
+    <div className='bg-pearl-500'>
       <Container
         size="lg"
         style={{
@@ -75,7 +74,7 @@ const LandingProduct2 = () => {
           style={{
             marginLeft: '4rem',
           }}
-          className={styles.features__title}
+          className='w-[90%] py-0 px-[5.rem]'
         >
           Lit Protocol fills a vital gap in the decentralized application stack,
           enabling developers to securely manage secrets, digital assets, and

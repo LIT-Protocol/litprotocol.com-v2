@@ -1,4 +1,4 @@
-import { Box, Button, Group, Tabs, Text, Title } from '@mantine/core';
+import { Box, Group, Tabs, Text, Title } from '@mantine/core';
 import {
   IconArrowRight,
   IconCircleCheck,
@@ -6,6 +6,7 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import classes from './landing-features-2.module.scss';
+import { Button } from '../ui/Button';
 
 interface ProductProps {
   features: {
@@ -78,12 +79,10 @@ function ProductMobile({ features }: ProductProps) {
               </Title>
               <Text mb="sm">{feature.paragraph}</Text>
               <Button
-                component="a"
+                style={{ display: 'flex', maxWidth: 'max-content' }}
                 href={feature.link}
                 target="_blank"
-                rightSection={<IconArrowRight size={16} />}
-                variant="light"
-                style={{ minWidth: '10rem' }}
+                rightIcon={<IconArrowRight size={16} />}
               >
                 {feature.cta}
               </Button>
@@ -110,7 +109,7 @@ function ProductMobile({ features }: ProductProps) {
                       textWrap: 'nowrap',
                     }}
                   >
-                    <IconCircleCheck size={16} />
+                    <IconCircleCheck size={16} className="text-periwinkle-500" />
                     <Text size="xs">{item}</Text>
                   </li>
                 ))}
