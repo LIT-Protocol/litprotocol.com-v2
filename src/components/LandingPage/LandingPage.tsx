@@ -1,4 +1,4 @@
-import LandingFeatures2 from '../LandingFeatures/LandingFeatures2';
+import LandingFeatures2 from '../LandingFeatures/LandingFeatures';
 // import LandingPartners from '../LandingPartners/LandingPartners';
 import LandingHero from '../LandingHero/LandingHero';
 // import LandingBlog from '../LandingBlog/LandingBlog';

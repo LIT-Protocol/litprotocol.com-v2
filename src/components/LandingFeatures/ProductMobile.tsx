@@ -5,7 +5,6 @@ import {
   IconPhoto,
 } from '@tabler/icons-react';
 import { useState } from 'react';
-import classes from './landing-features-2.module.scss';
 import { Button } from '../ui/Button';
 
 interface ProductProps {
@@ -35,12 +34,19 @@ function ProductMobile({ features }: ProductProps) {
       onChange={handleTabChange}
       inverted
       classNames={{
-        tab: classes.tab,
-        list: classes.tabsList,
-        panel: classes.tabsPanel,
+        tab: 'z-1 data-[active]:!text-white data-[active]:!font-bold data-[active]:!bg-gradient-to-b  from-periwinkle-700 to-transparent data-[active]:!border-t-4 border-solid !rounded-none data-[active]:!border-periwinkle-500 hover:!bg-pewter-gray-500/50 !border-pewter-gray-500',
+        list: 'inline-flex !flex-nowrap gap-8 w-max-content min-w-full p-0 m-0 min-w-[120%]',
+        panel: 'h-full',
       }}
     >
-      <div className={classes.tabsWrapper} style={{ maxWidth: '100%' }}>
+      <div
+        className="w-full overflow-x-auto overflow-y-hidden m-0 py-[1rem] px-0 flex"
+        style={{
+          maxWidth: '100%',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+        }}
+      >
         <Tabs.List>
           {features.map(feature => (
             <Box
@@ -77,7 +83,7 @@ function ProductMobile({ features }: ProductProps) {
               <Title order={2} mb="lg" style={{ width: '70%' }}>
                 {feature.heading}
               </Title>
-              <Text mb="sm">{feature.paragraph}</Text>
+              <Text mb="lg">{feature.paragraph}</Text>
               <Button
                 style={{ display: 'flex', maxWidth: 'max-content' }}
                 href={feature.link}
@@ -109,7 +115,10 @@ function ProductMobile({ features }: ProductProps) {
                       textWrap: 'nowrap',
                     }}
                   >
-                    <IconCircleCheck size={16} className="text-periwinkle-500" />
+                    <IconCircleCheck
+                      size={16}
+                      className="text-periwinkle-500"
+                    />
                     <Text size="xs">{item}</Text>
                   </li>
                 ))}

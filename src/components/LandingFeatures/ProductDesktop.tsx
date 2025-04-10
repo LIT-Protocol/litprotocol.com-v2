@@ -29,7 +29,6 @@ function ProductDesktop({ features }: ProductProps) {
     <Card
       shadow="sm"
       radius="md"
-      withBorder
       className="bg-gradient-to-b from-blue-950 to-coal-950 h-[650px] flex flex-col overflow-hidden !p-0 !text-white"
     >
       {/* Content area with padding */}

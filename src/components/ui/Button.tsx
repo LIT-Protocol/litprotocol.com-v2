@@ -26,7 +26,7 @@ export function Button({
       section: 'text-white',
     },
     outline: {
-      root: 'outline-1 outline-white outline-solid bg-transparent !py-2 px-3',
+      root: 'outline-1 outline-white outline-solid bg-transparent !py-1 px-3',
       label: 'text-white',
       section: 'text-white',
     },

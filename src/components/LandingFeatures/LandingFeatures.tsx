@@ -1,96 +1,92 @@
-import {WHITEPAPER_LINK } from '@/utils/constants';
-import {AUDIT_LINK } from '@/utils/constants';
-import styles from './landing-features.module.scss';
-import { ComponentType } from 'react';
-import Enclave from './features/Enclave';
-import Interoperability from './features/Interoperability';
-import Threshold from './features/Threshold';
+'use client';
+import {
+  ENCRYPTION_LINK,
+  LIT_ACTIONS_LINK,
+  LIT_WALLET_LINK,
+} from '@/utils/constants';
+import { Container, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import React from 'react';
+import ProductMobile from './ProductMobile';
+import ProductDesktop from './ProductDesktop';
 
 const features = [
   {
-    title: 'Distributed Trust',
-    description:
-      'Harnessing multi-party computation (MPC) and threshold signature schemes (TSS), Lit distributes encrypted key shares across the Lit network. Neither you nor your users need to store any private key material.',
-    highlight: 'Keys never exist in their entirety.',
-    Icon: Threshold,
+    value: 'first',
+    tab: 'Universal Accounts',
+    heading: 'Universal Wallets for People and Agents',
+    paragraph:
+      'Let users, agents, and smart devices access wallets across chains, secured by familiar authentication methods like social logins, passkeys, or any custom integrations.',
+    features: [
+      'Sessions for Automation',
+      'Chain Abstraction',
+      'Claimable Wallets',
+    ],
+    link: LIT_WALLET_LINK,
+    cta: 'Build with Lit wallets',
   },
   {
-    title: 'Embedded Security',
-    description:
-      'Lit leverages sealed trusted execution environments (TEEs) to ensure that node operators never have access to key shares or data processed within each node.',
-    highlight: 'Your keys and data remain private and untouched.',
-    Icon: Enclave,
+    value: 'second',
+    tab: 'Encryption and Access Control',
+    heading: 'Flexible Encryption for Private Data Management',
+    paragraph:
+      'Set custom conditions to control access and perform blind compute over private data, no matter where it’s stored. The Lit network verifies your conditions, enabling decryption only when they are met—never exposing the data itself.',
+    features: [
+      'Universal Access Control',
+      'Compute Over Secrets',
+      'Bridge Web2 and Web3',
+    ],
+    link: ENCRYPTION_LINK,
+    cta: 'Build with encryption',
   },
   {
-    title: 'Native Interoperability',
-    description:
-      'The keys managed on Lit can read and write data across blockchains, storage networks, and state machines—bridging previously disconnected ecosystems.',
-    highlight: 'Build experiences that span the entire internet.',
-    Icon: Interoperability,
+    value: 'third',
+    tab: 'Serverless Compute',
+    heading: 'Orchestrate Anything with Lit Actions',
+    paragraph:
+      'Deploy private agents, evolve DeFi, and make private data functional across every part of the web. With Lit Actions, you can build scalable, interoperable products designed for the future of the internet.',
+    features: [
+      'Autonomous Agents',
+      'Cross-Network Composability',
+      'Build with Ease',
+    ],
+    link: LIT_ACTIONS_LINK,
+    cta: 'Dive into Lit Actions',
   },
 ];
 
-const LandingFeatures = () => {
-  return (
-    <section className={styles.section}>
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>The Lit Network</h2>
-          <p className={styles.subtitle}>
-            Lit is a decentralized key management and compute network that leverages cutting-edge cryptography, sealed confidential hardware, and peer-to-peer networking to securely generate and manage keys and execute private and immutable programs.
-          </p>
-          <div></div>
-          <a
-            href={WHITEPAPER_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['cta-btn']}
-          >
-            Learn More
-          </a>
-          <a
-            href={AUDIT_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['cta-btn']}
-          >
-            Audit Reports
-          </a>
-        </div>
-        <div className={styles.grid}>
-          {features.map(feature => (
-            <Feature
-              key={feature.title}
-              title={feature.title}
-              description={feature.description}
-              highlight={feature.highlight}
-              Icon={feature.Icon}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+const LandingProduct2 = () => {
+  const mobile = useMediaQuery(`(max-width: 48em)`);
 
-interface FeatureProps {
-  title: string;
-  description: string;
-  highlight: string;
-  Icon: ComponentType;
-}
-
-const Feature = ({ title, description, highlight, Icon }: FeatureProps) => {
   return (
-    <div className={styles.feature}>
-      <Icon />
-      <h3 className={styles.feature__title}>{title}</h3>
-      <p className={styles.feature__copy}>
-        {description}{' '}
-        <span className={styles.feature__highlight}>{highlight}</span>
-      </p>
+    <div className="bg-pearl-500">
+      <Container
+        size="lg"
+        style={{
+          padding: '8rem 1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8rem',
+        }}
+      >
+        <Title
+          order={3}
+          textWrap="balance"
+          className="ml-0 md:!ml-[4rem] w-[90%] py-0 px-[5.rem]"
+        >
+          Lit Protocol fills a vital gap in the decentralized application stack,
+          enabling developers to securely manage secrets, digital assets, and
+          other sensitive data with programmable, decentralized signing and
+          encryption.
+        </Title>
+        {mobile ? (
+          <ProductMobile features={features} />
+        ) : (
+          <ProductDesktop features={features} />
+        )}
+      </Container>
     </div>
   );
 };
 
-export default LandingFeatures;
+export default LandingProduct2;
