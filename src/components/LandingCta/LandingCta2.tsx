@@ -1,13 +1,5 @@
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
-import {
-  Button,
-  Card,
-  Container,
-  Group,
-  Text,
-  TextInput,
-  Title,
-} from '@mantine/core';
+import { Card, Container, Group, Text, TextInput, Title } from '@mantine/core';
 import {
   IconArrowNarrowRight,
   IconBrandDiscord,
@@ -16,6 +8,7 @@ import {
 } from '@tabler/icons-react';
 import React from 'react';
 import styles from './landing-cta-2.module.scss';
+import { Button } from '../ui/Button';
 
 interface CtaLinkProps {
   icon: React.FC<any>;
@@ -49,24 +42,32 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
   return (
     <Card
       onClick={onClick}
-      style={{ cursor: 'pointer' }}
-      className={styles.ctas}
+      style={{ cursor: 'pointer', color: 'white' }}
+      className="btn-hover-effect flex justify-between w-full !bg-slate-blue-500/75 h-[7.5rem] p-[1rem] items-start !gap-[.25rem] md:w-[calc(100%/3)]"
     >
-      <Icon size={25} stroke={1} className={styles.ctas__icon} />
-      <Text className={styles.ctas__name}>{name}</Text>
-      <Text className={styles.ctas__context}>{context}</Text>
+      <Icon size={25} stroke={1} />
+      <Text fw={700}>{name}</Text>
+      <Text size="sm">{context}</Text>
     </Card>
   );
 }
 function Newsletter() {
   return (
-    <Card className={styles.newsletter}>
-      <Text className={styles.newsletter__cta}>Be the first to know</Text>
-      <Group className={styles.newsletter__group}>
-        <Text className={styles.newsletter__text}>
+    <Card
+      style={{ color: 'white', width: '100%', padding: '0' }}
+      className="!bg-slate-blue-500/75 flex w-full p-0"
+    >
+      <Text
+        size="2rem"
+        className="text-center w-full relative !p-[1rem] !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
+      >
+        Be the first to know
+      </Text>
+      <Group className="!flex !flex-wrap !gap-0">
+        <Text className="!py-[1rem] !px-[4rem] text-center">
           Sign up for our newsletter for updates on all things Lit.
         </Text>
-        <Group className={styles.signup}>
+        <Group className='border-l border-pewter-gray-500/50 w-[50%] flex flex-col items-center justify-center relative py-[1.75rem] px-[1.5rem] gap-[0.25rem]'>
           <Group gap="xs">
             <TextInput
               classNames={{
@@ -77,10 +78,7 @@ function Newsletter() {
               }}
               placeholder="Enter your email"
             />
-            <Button
-              type="submit"
-              rightSection={<IconArrowNarrowRight stroke={2} />}
-            >
+            <Button rightIcon={<IconArrowNarrowRight stroke={2} />}>
               Sign Up
             </Button>
           </Group>
@@ -105,12 +103,18 @@ const LandingCta2 = () => {
     <div className={styles.root}>
       <Container size="lg">
         <Group className={styles.ctaText}>
-          <Title order={2} className={styles.ctaText__title}>Learn, connect, & collaborate.</Title>
+          <Title order={2} className={styles.ctaText__title}>
+            Learn, connect, & collaborate.
+          </Title>
           <Text>
-          Lit and ecosystem partners are building the next generation of identity and machine intelligence protocols and applications, all running on the open web.
+            Lit and ecosystem partners are building the next generation of
+            identity and machine intelligence protocols and applications, all
+            running on the open web.
           </Text>
         </Group>
-        <Group className={styles.linksGroup}>{ctaLinks}</Group>
+        <Group className="flex flex-wrap !gap-[0.5rem] mb-[0.75rem] md:!flex-nowrap">
+          {ctaLinks}
+        </Group>
         <Newsletter />
       </Container>
     </div>
