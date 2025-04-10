@@ -83,10 +83,16 @@ const LitNetwork = () => {
   }, [selectedIndex]);
 
   return (
-    <div className={styles.root}>
-      <Container size="lg" className={styles.container}>
-        <Group className={styles.cardGroup}>
-          <Title order={2} className={styles.cardGroup__heading}>
+    <div className="bg-coal-950 text-white py-[6rem] px-1">
+      <Container
+        size="lg"
+        className="flex flex-col overflow-x-hidden md:flex-row"
+      >
+        <Group className="flex-col !items-start justify-center mb-[2rem]">
+          <Title
+            order={2}
+            className="w-full flex justify-center mb-[2rem] md:mb-[4rem] md:justify-start"
+          >
             The Lit Network
           </Title>
           <Group>
@@ -97,8 +103,8 @@ const LitNetwork = () => {
                   value={activeTab}
                   onChange={val => val && setActiveTab(val)}
                   classNames={{
-                    list: styles.tabsList,
-                    root: styles.tabsRoot,
+                    list: 'inline-flex flex-nowrap gap-[12px] w-max-content min-w-full p-0 m-0 min-w-[120%] before:!hidden',
+                    root: 'w-full overflow-hidden',
                   }}
                 >
                   <div
