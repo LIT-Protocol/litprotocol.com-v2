@@ -93,36 +93,33 @@ function ProductMobile({ features }: ProductProps) {
                 {feature.cta}
               </Button>
             </div>
-            <Group gap="xs">
+            <Group gap="xs" className="w-full">
               <Text mb="xs">Features</Text>
-              <ul
+              <div
+                className="w-full overflow-x-scroll"
                 style={{
-                  marginBottom: 16,
-                  display: 'flex',
-                  gap: '.75rem',
-                  padding: 0,
-                  listStyle: 'none',
+                  maxWidth: '100%',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none'
                 }}
               >
-                {feature.features.map((item, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: '.25rem',
-                      textWrap: 'nowrap',
-                    }}
-                  >
-                    <IconCircleCheck
-                      size={16}
-                      className="text-periwinkle-500"
-                    />
-                    <Text size="xs">{item}</Text>
-                  </li>
-                ))}
-              </ul>
+                <div className="flex flex-nowrap gap-3 pb-2">
+                  {feature.features.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex-none flex items-center gap-1"
+                    >
+                      <IconCircleCheck
+                        size={16}
+                        className="text-periwinkle-500"
+                      />
+                      <Text size="xs" className="whitespace-nowrap">
+                        {item}
+                      </Text>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Group>
           </Group>
           <div
