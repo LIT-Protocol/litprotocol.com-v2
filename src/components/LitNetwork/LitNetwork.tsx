@@ -165,7 +165,7 @@ const LitNetwork = () => {
           </Group>
         </Group>
 
-        {data[selectedIndex]?.image ? (
+        {/* {data[selectedIndex]?.image ? (
           <div className="flex-1 flex justify-center items-center max-w-[600px]">
             <Image
               src={data[selectedIndex].image}
@@ -173,7 +173,7 @@ const LitNetwork = () => {
               className="w-full h-auto rounded-md object-cover"
             />
           </div>
-        ) : (
+        ) : ( */}
           <div
             style={{
               width: '100%',
@@ -187,7 +187,7 @@ const LitNetwork = () => {
           >
             <IconPhoto size={48} color="#adb5bd" />
           </div>
-        )}
+        {/* )} */}
       </Container>
     </div>
   );

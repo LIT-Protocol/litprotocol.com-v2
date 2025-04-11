@@ -63,12 +63,12 @@ function Newsletter() {
       >
         Be the first to know
       </Text>
-      <Group className="!flex !flex-wrap !gap-0">
+      <Group className="!flex !flex-wrap !gap-0 w-full items-center !justify-center md:!justify-start">
         <Text className="!py-[1rem] !px-[4rem] text-center">
           Sign up for our newsletter for updates on all things Lit.
         </Text>
-        <Group className='border-l border-pewter-gray-500/50 w-[50%] flex flex-col items-center justify-center relative py-[1.75rem] px-[1.5rem] gap-[0.25rem]'>
-          <Group gap="xs">
+        <Group className="!border-l !border-pewter-gray-500/50 w-[50%] flex flex-col items-center !justify-center relative py-[1.75rem] px-[1.5rem] gap-[0.25rem]">
+          <div className='flex gap-2 items-center justify-center'>
             <TextInput
               classNames={{
                 root: styles.inputRoot,
@@ -78,11 +78,15 @@ function Newsletter() {
               }}
               placeholder="Enter your email"
             />
-            <Button rightIcon={<IconArrowNarrowRight stroke={2} />}>
+            <Button
+              type="submit"
+              className="text-nowrap"
+              rightIcon={<IconArrowNarrowRight stroke={2} />}
+            >
               Sign Up
             </Button>
-          </Group>
-          <Text className={styles.signup__disclaimer}>
+          </div>
+          <Text size="sm">
             By subscribing you agree to our <a>Privacy Policy</a>
           </Text>
         </Group>
