@@ -1,14 +1,16 @@
-import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
-import { Card, Container, Group, Text, TextInput, Title } from '@mantine/core';
 import {
-  IconArrowNarrowRight,
+  DISCORD_LINK,
+  DOCS_LINK,
+  SPARK_LINK,
+} from '@/utils/constants';
+import { Card, Container, Group, Text, Title } from '@mantine/core';
+import {
   IconBrandDiscord,
   IconCodeCircle,
   IconNotebook,
 } from '@tabler/icons-react';
 import React from 'react';
-import styles from './landing-cta-2.module.scss';
-import { Button } from '../ui/Button';
+import Newsletter from '../Newsletter/Newsletter';
 
 interface CtaLinkProps {
   icon: React.FC<any>;
@@ -51,49 +53,6 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
     </Card>
   );
 }
-function Newsletter() {
-  return (
-    <Card
-      style={{ color: 'white', width: '100%', padding: '0' }}
-      className="!bg-slate-blue-500/75 flex w-full p-0"
-    >
-      <Text
-        size="2rem"
-        className="text-center w-full relative !p-[1rem] !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
-      >
-        Be the first to know
-      </Text>
-      <Group className="!flex !flex-wrap !gap-0 w-full items-center !justify-center md:!justify-start">
-        <Text className="!py-[1rem] !px-[4rem] text-center">
-          Sign up for our newsletter for updates on all things Lit.
-        </Text>
-        <Group className="!border-l !border-pewter-gray-500/50 w-[50%] flex flex-col items-center !justify-center relative py-[1.75rem] px-[1.5rem] gap-[0.25rem]">
-          <div className='flex gap-2 items-center justify-center'>
-            <TextInput
-              classNames={{
-                root: styles.inputRoot,
-                wrapper: styles.inputWrapper,
-                input: styles.input,
-                label: styles.label,
-              }}
-              placeholder="Enter your email"
-            />
-            <Button
-              type="submit"
-              className="text-nowrap"
-              rightIcon={<IconArrowNarrowRight stroke={2} />}
-            >
-              Sign Up
-            </Button>
-          </div>
-          <Text size="sm">
-            By subscribing you agree to our <a>Privacy Policy</a>
-          </Text>
-        </Group>
-      </Group>
-    </Card>
-  );
-}
 
 const LandingCta2 = () => {
   const handleClick = (url: string) => {
@@ -104,10 +63,10 @@ const LandingCta2 = () => {
   ));
 
   return (
-    <div className={styles.root}>
+    <div className="pt-[4rem] pb-[10rem]">
       <Container size="lg">
-        <Group className={styles.ctaText}>
-          <Title order={2} className={styles.ctaText__title}>
+        <Group className="text-white flex flex-col text-left items-start mb-[2rem] w-[80%] md:w-[60%]">
+          <Title order={2} className="w-[70%] md:w-full">
             Learn, connect, & collaborate.
           </Title>
           <Text>

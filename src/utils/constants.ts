@@ -31,3 +31,7 @@ export const LINKEDIN_LINK = 'https://www.linkedin.com/company/lit-protocol';
 // Company
 export const CAREERS_LINK = 'https://jobs.litprotocol.com';
 export const BRAND_LINK = 'https://github.com/LIT-Protocol/Brand-Kit';
+
+// Legal
+export const PRIVACY_POLICY_LINK =
+  'https://www.litprotocol.com/legal/privacy-policy';

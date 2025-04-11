@@ -1,7 +1,5 @@
 import LandingFeatures2 from '../LandingFeatures/LandingFeatures';
-// import LandingPartners from '../LandingPartners/LandingPartners';
 import LandingHero from '../LandingHero/LandingHero';
-// import LandingBlog from '../LandingBlog/LandingBlog';
 import Metrics from '../Metrics/Metrics';
 import LitNetwork from '../LitNetwork/LitNetwork';
 

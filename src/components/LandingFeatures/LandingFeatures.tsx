@@ -59,7 +59,7 @@ const LandingProduct2 = () => {
   const mobile = useMediaQuery(`(max-width: 48em)`);
 
   return (
-    <div className="bg-pearl-500">
+    <div className="bg-pearl-500 text-coal-950">
       <Container
         size="lg"
         style={{
