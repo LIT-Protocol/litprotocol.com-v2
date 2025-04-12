@@ -114,7 +114,7 @@ export function BlogCarousel() {
         controls:
           'absolute w-full md:w-[120%] md:transform md:-translate-x-[8.25%] -translate-y-2/3 flex justify-between z-10 pointer-events-none',
         control:
-          '!text-slate-gray-500 hover:!text-off-white pointer-events-auto !bg-transparent !shadow-none flex',
+          '!text-slate-gray-500 hover:!text-off-white pointer-events-auto !bg-transparent !shadow-none !border-none flex',
         indicators: 'flex justify-center !gap-6',
         indicator:
           '!w-[0.35rem] !h-[0.35rem] !bg-pewter-gray-500 transition-colors hover:!bg-off-white data-[active]:!bg-off-white block',

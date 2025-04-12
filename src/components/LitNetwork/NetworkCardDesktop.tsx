@@ -32,7 +32,7 @@ function NetworkCardDesktop({
   return (
     <Card
       radius="md"
-      className={`${cardClass} w-[500px] h-[6rem] !text-pearl-500 duration-300 ease-in-out`}
+      className={`${cardClass} w-[500px] h-full !text-pearl-500 duration-300 ease-in-out`}
       onClick={onClick}
       style={{
         cursor: 'pointer',
@@ -45,14 +45,14 @@ function NetworkCardDesktop({
       {isSelected ? (
         <>
           <Group className="uppercase">
-            <Text fw={700}>{title}</Text>
+            <Text mb="sm" fw={700}>{title}</Text>
           </Group>
           <Text size="sm">{detail}</Text>
         </>
       ) : (
         <>
           <Group className="uppercase">
-            <Text fw={700}>{title}</Text>
+            <Text mb="sm" fw={700}>{title}</Text>
           </Group>
           <Text size="sm">{detail}</Text>
         </>

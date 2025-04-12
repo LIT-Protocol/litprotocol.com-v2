@@ -42,7 +42,7 @@ const Metrics = () => {
             order={2}
             style={{ display: 'flex', alignItems: 'flex-start' }}
           >
-            Securing the Decentralized World:
+            Securing the Decentralized World
           </Title>
           <Group className="p-[1rem] flex !text-left items-start justify-center gap-[4rem] !flex-col">
             <NumberItem

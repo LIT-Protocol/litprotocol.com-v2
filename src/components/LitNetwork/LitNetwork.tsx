@@ -16,21 +16,24 @@ const data = [
     value: 'first',
     icon: IconShieldHalf,
     title: 'Defense in Depth',
-    detail: 'Lorem ipsum',
+    detail:
+      'Lit Protocol combines Threshold Multi-Party Computation (MPC) and Trusted Execution Environments (TEE) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
     // image: '/images/defense.jpg',
   },
   {
     value: 'second',
     icon: IconPackages,
     title: 'Scalability',
-    detail: 'Dolor set',
+    detail:
+      'Deploy applications confidently on a globally distributed network. Lit Protocol\’s infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.',
     // image: '/images/scalability.jpg',
   },
   {
     value: 'third',
     icon: IconCurrencyRipple,
-    title: 'Decentralized keys, orchestrated onchain',
-    detail: 'Blah blah blah',
+    title: 'Orchestrate Any Secret',
+    detail:
+      'Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol\’s programmable signing and encryption let you securely automate interactions across every environment.',
     // image: '/images/decentralized.jpg',
   },
 ];
@@ -97,60 +100,57 @@ const LitNetwork = () => {
           <Group>
             {!isDesktop ? (
               // Mobile view (default)
-              <div style={{ width: '100%' }}>
-                <Tabs
-                  value={activeTab}
-                  onChange={val => val && setActiveTab(val)}
-                  classNames={{
-                    list: 'inline-flex !flex-nowrap !gap-3 !w-max min-w-full p-0 m-1 !min-w-[132%] before:!hidden',
-                    root: 'w-full overflow-hidden',
-                    tab: '!text-pearl-500 data-[active]:!text-periwinkle-500 hover:!bg-pewter-gray-500/50 !rounded-none',
-                  }}
-                >
-                  <div
-                    className="w-full overflow-x-auto overflow-y-hidden m-0 py-[1rem] px-0"
-                    style={{
-                      maxWidth: '100%',
-                      WebkitOverflowScrolling: 'touch',
-                      scrollbarWidth: 'none',
-                    }}
-                  >
-                    <Tabs.List className="inline-flex flex-nowrap gap-[12px] w-max-content p-0 m-0 min-w-[120%]">
-                      {data.map(tab => (
-                        <NetworkCardMobile
-                          key={tab.value}
-                          {...tab}
-                          activeTab={activeTab}
-                          setActiveTab={val => {
-                            setActiveTab(val);
-                            const index = data.findIndex(
-                              item => item.value === val
-                            );
-                            if (index !== -1) {
-                              setSelectedIndex(index);
-                            }
-                            setProgress(0);
-                          }}
-                          progress={activeTab === tab.value ? progress : 0}
-                          tabsRef={tabsRef}
-                        />
-                      ))}
-                    </Tabs.List>
-                  </div>
-
-                  {data.map(tab => (
-                    <Tabs.Panel key={tab.value} value={tab.value}>
-                      <Box
-                        style={{
-                          minHeight: '200px',
+              <Tabs
+                value={activeTab}
+                onChange={val => val && setActiveTab(val)}
+                classNames={{
+                  list: 'flex w-full p-0 m-1 before:!hidden',
+                  root: 'w-full overflow-visible', // Changed from overflow-hidden to ensure text can wrap
+                  tab: '!text-pearl-500 data-[active]:!text-periwinkle-500 hover:!bg-pewter-gray-500/50 !rounded-none',
+                }}
+              >
+                <Tabs.List className="flex w-full p-0 m-0">
+                  {data.map((tab, index) => (
+                    <div
+                      key={tab.value}
+                      className="flex-1"
+                      style={{
+                        width: `${100 / data.length}%`,
+                        maxWidth: `${100 / data.length}%`, // Added max-width to prevent expansion
+                        padding: '0 4px', // Added horizontal padding to separate tabs slightly
+                      }}
+                    >
+                      <NetworkCardMobile
+                        {...tab}
+                        activeTab={activeTab}
+                        setActiveTab={val => {
+                          setActiveTab(val);
+                          const index = data.findIndex(
+                            item => item.value === val
+                          );
+                          if (index !== -1) {
+                            setSelectedIndex(index);
+                          }
+                          setProgress(0);
                         }}
-                      >
-                        {tab.detail}
-                      </Box>
-                    </Tabs.Panel>
+                        progress={activeTab === tab.value ? progress : 0}
+                        tabsRef={tabsRef}
+                      />
+                    </div>
                   ))}
-                </Tabs>
-              </div>
+                </Tabs.List>
+                {data.map(tab => (
+                  <Tabs.Panel key={tab.value} value={tab.value}>
+                    <Box
+                      style={{
+                        minHeight: '200px',
+                      }}
+                    >
+                      {tab.detail}
+                    </Box>
+                  </Tabs.Panel>
+                ))}
+              </Tabs>
             ) : (
               // Desktop view (only for larger screens)
               data.map((card, index) => (
@@ -174,19 +174,19 @@ const LitNetwork = () => {
             />
           </div>
         ) : ( */}
-          <div
-            style={{
-              width: '100%',
-              height: '600px',
-              backgroundColor: '#f1f3f5',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <IconPhoto size={48} color="#adb5bd" />
-          </div>
+        <div
+          style={{
+            width: '100%',
+            height: '600px',
+            backgroundColor: '#f1f3f5',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <IconPhoto size={48} color="#adb5bd" />
+        </div>
         {/* )} */}
       </Container>
     </div>

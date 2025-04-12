@@ -20,11 +20,14 @@ function NetworkCardMobile({
   return (
     <Box
       style={{
-        minWidth: '120px',
-        flexShrink: 0, // don't collapse
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        whiteSpace: 'normal', // Ensures text wrapping
+        wordWrap: 'break-word',
+        overflowWrap: 'break-word',
+        width: '100%',
+        textAlign: 'center',
+        lineHeight: '1.5',
+        display: 'block', // Ensures block-level rendering
+        overflow: 'visible', // Ensures text doesn't get cut off
       }}
       onClick={() => setActiveTab(value)}
     >
@@ -36,11 +39,16 @@ function NetworkCardMobile({
           borderBottom: 'none',
           width: '100%',
           paddingBottom: '8px',
+          textWrap: 'wrap',
+          fontSize: '0.8rem', // Slightly smaller font size to help fit
+          hyphens: 'auto', // Enables hyphenation
+          overflow: 'visible', // Ensures text isn't cut off
+          height: 'auto', // Allows height to expand with content
+          minHeight: '48px', // Gives some minimum height for consistency
         }}
       >
         {title}
       </Tabs.Tab>
-
       <Box
         className="bg-pearl-500"
         style={{

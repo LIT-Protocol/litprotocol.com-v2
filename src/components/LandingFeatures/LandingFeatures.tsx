@@ -13,45 +13,45 @@ import ProductDesktop from './ProductDesktop';
 const features = [
   {
     value: 'first',
-    tab: 'Universal Accounts',
-    heading: 'Universal Wallets for People and Agents',
+    tab: 'Agent Wallets',
+    heading: 'Universal Accounts For User Controlled Automation',
     paragraph:
-      'Let users, agents, and smart devices access wallets across chains, secured by familiar authentication methods like social logins, passkeys, or any custom integrations.',
+      'Unlock true agent autonomy without sacrificing user control. Lit Protocol enables Agent Wallets using decentralized Programmable Key Pairs (PKPs), giving your agents secure signing capabilities. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions. This creates universal accounts designed for robust, user-controlled automation across multiple chains and platforms.',
     features: [
       'Sessions for Automation',
       'Chain Abstraction',
       'Claimable Wallets',
     ],
     link: LIT_WALLET_LINK,
-    cta: 'Build with Lit wallets',
+    cta: 'Create Agent Wallets',
   },
   {
     value: 'second',
-    tab: 'Encryption and Access Control',
-    heading: 'Flexible Encryption for Private Data Management',
+    tab: 'Interoperability',
+    heading: 'Program Private Keys',
     paragraph:
-      'Set custom conditions to control access and perform blind compute over private data, no matter where it’s stored. The Lit network verifies your conditions, enabling decryption only when they are met—never exposing the data itself.',
+      'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps. Automate cross-chain liquidity strategies, create universal signers for diverse protocols, or build secure, programmable vaults that manage assets across ecosystems based on verifiable rules. Unify disparate Web3 and Web2 systems under a single, cryptographic control layer powered by Lit Actions.',
     features: [
       'Universal Access Control',
       'Compute Over Secrets',
       'Bridge Web2 and Web3',
     ],
     link: ENCRYPTION_LINK,
-    cta: 'Build with encryption',
+    cta: 'Build with Lit Actions',
   },
   {
     value: 'third',
-    tab: 'Serverless Compute',
-    heading: 'Orchestrate Anything with Lit Actions',
+    tab: 'User Owned Data',
+    heading: 'Private Data On The Open Web',
     paragraph:
-      'Deploy private agents, evolve DeFi, and make private data functional across every part of the web. With Lit Actions, you can build scalable, interoperable products designed for the future of the internet.',
+      'Bring privacy to public infrastructure. With Lit Protocol\'s threshold encryption, build applications where private data lives on the open web but remains verifiably under user control. Define exactly who can decrypt sensitive information based on dynamic conditions like blockchain state, token ownership, or even custom logic run by Lit Actions. Users, not centralized platforms, have the authority over their encrypted data, regardless of where it\'s stored.',
     features: [
       'Autonomous Agents',
       'Cross-Network Composability',
       'Build with Ease',
     ],
     link: LIT_ACTIONS_LINK,
-    cta: 'Dive into Lit Actions',
+    cta: 'Build with Encryption',
   },
 ];
 
@@ -59,7 +59,7 @@ const LandingProduct2 = () => {
   const mobile = useMediaQuery(`(max-width: 48em)`);
 
   return (
-    <div className="bg-pearl-500 text-coal-950">
+    <div className="bg-coal-950 text-off-white">
       <Container
         size="lg"
         style={{
@@ -69,16 +69,6 @@ const LandingProduct2 = () => {
           gap: '8rem',
         }}
       >
-        <Title
-          order={3}
-          textWrap="balance"
-          className="ml-0 md:!ml-[4rem] w-[90%] py-0 px-[5.rem]"
-        >
-          Lit Protocol fills a vital gap in the decentralized application stack,
-          enabling developers to securely manage secrets, digital assets, and
-          other sensitive data with programmable, decentralized signing and
-          encryption.
-        </Title>
         {mobile ? (
           <ProductMobile features={features} />
         ) : (

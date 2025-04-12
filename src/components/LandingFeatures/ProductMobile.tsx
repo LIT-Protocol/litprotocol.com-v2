@@ -34,46 +34,44 @@ function ProductMobile({ features }: ProductProps) {
       onChange={handleTabChange}
       inverted
       classNames={{
-        tab: 'z-1 data-[active]:!text-white data-[active]:!font-bold data-[active]:!bg-gradient-to-b  from-periwinkle-700 to-transparent data-[active]:!border-t-4 border-solid !rounded-none data-[active]:!border-periwinkle-500 hover:!bg-pewter-gray-500/50 !border-pewter-gray-500',
-        list: 'inline-flex !flex-nowrap gap-8 w-max-content min-w-full p-0 m-0 min-w-[120%]',
+        tab: 'z-1 data-[active]:!text-white data-[active]:!font-bold data-[active]:!bg-gradient-to-b from-periwinkle-700 to-transparent data-[active]:!border-t-4 border-solid !rounded-none data-[active]:!border-periwinkle-500 hover:!bg-pewter-gray-500/50 !border-pewter-gray-500',
+        list: 'inline-flex !flex-nowrap w-full p-0 m-0',
         panel: 'h-full',
       }}
     >
-      <div
-        className="w-full overflow-x-auto overflow-y-hidden m-0 py-[1rem] px-0 flex"
-        style={{
-          maxWidth: '100%',
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-        }}
-      >
-        <Tabs.List>
-          {features.map(feature => (
-            <Box
-              key={feature.value}
+      <Tabs.List className="flex w-full">
+        {features.map(feature => (
+          <Box
+            key={feature.value}
+            style={{
+              flex: '1 1 0',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              width: '33.333%', // For exactly 3 tabs
+            }}
+          >
+            <Tabs.Tab
+              value={feature.value}
               style={{
-                minWidth: '120px',
-                flexShrink: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                textAlign: 'center',
+                borderBottom: 'none',
+                width: '100%',
+                paddingBottom: '8px',
+                whiteSpace: 'normal',
+                overflowWrap: 'break-word',
+                wordWrap: 'break-word',
+                hyphens: 'auto',
+                lineHeight: '1.5', // Increased line height for better readability
+                letterSpacing: '0.01em', // Improved kerning/letter spacing
+                padding: '8px 4px', // Added horizontal padding to give text more breathing room
               }}
             >
-              <Tabs.Tab
-                value={feature.value}
-                style={{
-                  textAlign: 'center',
-                  borderBottom: 'none',
-                  width: '100%',
-                  paddingBottom: '8px',
-                }}
-              >
-                {feature.tab}
-              </Tabs.Tab>
-            </Box>
-          ))}
-        </Tabs.List>
-      </div>
+              {feature.tab}
+            </Tabs.Tab>
+          </Box>
+        ))}
+      </Tabs.List>
 
       {/* Tab panels */}
       {features.map(feature => (
@@ -94,31 +92,36 @@ function ProductMobile({ features }: ProductProps) {
               </Button>
             </div>
             <Group gap="xs" className="w-full">
-              <Text mb="xs" tt="uppercase" fw={700}>Features</Text>
-              <div
-                className="w-full overflow-x-scroll"
-                style={{
-                  maxWidth: '100%',
-                  WebkitOverflowScrolling: 'touch',
-                  scrollbarWidth: 'none'
-                }}
-              >
-                <div className="flex flex-nowrap gap-3 pb-2">
-                  {feature.features.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex-none flex items-center gap-1"
+              <Text mb="xs" tt="uppercase" fw={700}>
+                Features
+              </Text>
+
+              <div className="flex w-full pb-2">
+                {feature.features.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-1 gap-1"
+                    style={{
+                      width: `${100 / feature.features.length}%`, // Equal width based on number of items
+                    }}
+                  >
+                    <IconCircleCheck
+                      size={16}
+                      className="text-periwinkle-500 flex-shrink-0 mt-1" // Added mt-1 to align with top of text
+                    />
+                    <Text
+                      size="xs"
+                      className="text-wrap"
+                      style={{
+                        lineHeight: '1.5',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word',
+                      }}
                     >
-                      <IconCircleCheck
-                        size={16}
-                        className="text-periwinkle-500"
-                      />
-                      <Text size="xs" className="whitespace-nowrap">
-                        {item}
-                      </Text>
-                    </div>
-                  ))}
-                </div>
+                      {item}
+                    </Text>
+                  </div>
+                ))}
               </div>
             </Group>
           </Group>

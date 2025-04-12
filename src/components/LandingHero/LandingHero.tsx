@@ -6,41 +6,93 @@ import { IconArrowNarrowRight } from '@tabler/icons-react';
 import LandingPartners from '../LandingPartners/LandingPartners';
 import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 import { Button } from '../ui/Button';
+import { useEffect, useState } from 'react';
 
 const LandingHero = () => {
-  return (
-    <div className="py-[5rem] bg-gradient-to-bl from-blue-950 to-coal-950">
-      <Container size="md">
-        <div className="flex justify-between md:flex-col">
-          <div className="p-[.5rem] md:p-0 md:mr-0">
-            <Title className="text-white max-w-[500px] md:!text-[2.5rem]">
-              <Text
-                component="span"
-                inherit
-                variant="gradient"
-                gradient={{ from: '#7C83DB', to: '#50E3C2' }}
-              >
-                Universal Accounts
-              </Text>{' '}
-              and{' '}
-              <Text
-                component="span"
-                inherit
-                variant="gradient"
-                gradient={{ from: '#7C83DB', to: '#50E3C2' }}
-              >
-                Access Control Network
-              </Text>{' '}
-              for the Autonomous Web
-            </Title>
+  const heroList = ['Wallets.', 'User Data.', 'Agents.', 'Bridges.', 'Vaults.'];
 
-            <Text className="!text-off-white max-w-[500px]" mt={30}>
-              Join the builders using Lit Protocol’s decentralized signing and
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(
+    (currentIndex + 1) % heroList.length
+  );
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Start animation
+      setIsAnimating(true);
+
+      // Calculate next index
+      const next = (currentIndex + 1) % heroList.length;
+      setNextIndex(next);
+
+      // After animation completes, update current index and reset animation state
+      setTimeout(() => {
+        setCurrentIndex(next);
+        setIsAnimating(false);
+        setNextIndex((next + 1) % heroList.length);
+      }, 500); // Match animation duration
+    }, 3000); // Change item every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  return (
+    <div className="py-[5rem] bg-gradient-to-b from-blue-950 to-coal-950">
+      <Container size="md">
+        <div className="flex justify-center items-center">
+          <div className="flex flex-col items-center text-center p-4 md:p-0">
+            <div className="text-center">
+              <Text className="!text-white md:!text-[4.5rem]">
+                Unlock Autonomy for{' '}
+              </Text>
+
+              {/* Animated Text Container */}
+              <div
+                className="inline-block relative overflow-hidden md:h-28 h-24 align-bottom mx-2"
+                style={{
+                  minWidth: '320px',
+                  verticalAlign: 'bottom',
+                }}
+              >
+                {/* Current Item */}
+                <Text
+                  component="div"
+                  className="absolute top-0 left-0 right-0 !text-white md:!text-[4.5rem]"
+                  style={{
+                    transition: 'transform 0.5s ease-out',
+                    transform: isAnimating
+                      ? 'translateY(-100%)'
+                      : 'translateY(0)',
+                  }}
+                >
+                  {heroList[currentIndex]}
+                </Text>
+
+                {/* Next Item */}
+                <Text
+                  component="div"
+                  className="absolute left-0 right-0 !text-white md:!text-[4.5rem]"
+                  style={{
+                    transition: 'transform 0.5s ease-out',
+                    transform: isAnimating
+                      ? 'translateY(-200%)'
+                      : 'translateY(0)',
+                    top: '100%',
+                  }}
+                >
+                  {heroList[nextIndex]}
+                </Text>
+              </div>
+            </div>
+            <Text className="!text-off-white max-w-[600px] text-center" mt={30}>
+              Lit Protocol is the decentralized network for managing keys and
+              secrets. Join the builders using programmable signing and
               encryption to power AI agents, blockchain interoperability, crypto
               wallets, and user-owned data.
             </Text>
 
-            <Group className="mt-8">
+            <Group className="mt-8 justify-center">
               <Button
                 href={DOCS_LINK}
                 target="_blank"
@@ -49,7 +101,7 @@ const LandingHero = () => {
                 Read the Docs
               </Button>
               <Button variant="outline" href={CONTACT_FORM} target="_blank">
-                Contact Us
+                Get In Touch
               </Button>
             </Group>
           </div>

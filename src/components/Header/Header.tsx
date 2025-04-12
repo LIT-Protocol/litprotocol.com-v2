@@ -110,7 +110,7 @@ export function HeaderMenu({
   });
 
   return (
-    <header className="sticky z-20 top-0 left-0 h-[56px] bg-coal-950">
+    <header className="top-0 left-0 h-[56px] bg-coal-950">
       <Container size="lg">
         <div className="flex h-[56px] justify-between items-center">
           <Group gap={4}>

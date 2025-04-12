@@ -18,7 +18,7 @@ import { Container } from '@mantine/core';
 
 const Footer = () => {
   return (
-    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-tl from-blue-950 to-coal-950">
+    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950">
       <Container size="lg">
         <LandingCta2 />
         <div className={styles.footer__divider}></div>
