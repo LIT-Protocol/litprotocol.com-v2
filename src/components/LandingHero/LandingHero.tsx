@@ -70,7 +70,7 @@ const LandingHero = () => {
                 </Text>
 
                 {/* Next Item */}
-                <Text
+                {/* <Text
                   component="div"
                   className="absolute left-0 right-0 !text-white md:!text-[4.5rem]"
                   style={{
@@ -82,7 +82,7 @@ const LandingHero = () => {
                   }}
                 >
                   {heroList[nextIndex]}
-                </Text>
+                </Text> */}
               </div>
             </div>
             <Text className="!text-off-white max-w-[600px] text-center" mt={30}>
