@@ -1,6 +1,6 @@
 // Resources
 export const DOCS_LINK = 'https://developer.litprotocol.com';
-export const BANNER_LINK = 'https://x.com/LitProtocol';
+export const BANNER_LINK = 'https://x.com/LitProtocol/status/1911850883845149065';
 export const MANIFESTO_LINK =
   'https://spark.litprotocol.com/mass-adoption-of-digital-ownership-and-progressive-self-custody/';
 export const USE_CASES_LINK =
