@@ -7,9 +7,9 @@ const Banner = () => {
   return (
     <div className={styles.banner}>
       <p>
-        Lit v1 is coming soon. {' '}
+        Vincent is now live. {' '}
         <a href={BANNER_LINK} className={styles.banner__link}>
-           Keep updated.
+           Learn more.
         </a>
       </p>
     </div>
