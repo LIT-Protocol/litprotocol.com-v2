@@ -6,6 +6,7 @@ import {
   DOCS_LINK,
   MANIFESTO_LINK,
   SPARK_LINK,
+  VINCENT_LINK,
 } from '@/utils/constants';
 import LitLogo from '../LitLogo/LitLogo';
 
@@ -66,6 +67,14 @@ const Header = ({
             >
               Our Mission
             </a> */}
+            <a
+              href={VINCENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.header__link}
+            >
+              Vincent
+            </a>
             <a
               href={DOCS_LINK}
               target="_blank"
