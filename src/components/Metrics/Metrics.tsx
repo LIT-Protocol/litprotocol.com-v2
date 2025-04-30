@@ -1,7 +1,6 @@
+'use client';
 import { Container, Group, Text, Title } from '@mantine/core';
-import React from 'react';
-
-// need to connect to data dynamically
+import React, { useEffect, useState } from 'react';
 
 interface NumbersProps {
   number: string;
@@ -9,11 +8,25 @@ interface NumbersProps {
   className?: string;
 }
 
-const data = [
-  { number: '$50M+', subtext: 'Total Value Managed by Lit Protocol' },
-  { number: '$154M+', subtext: 'Total Volume Processed by Lit Protocol' },
-  { number: '1M+', subtext: 'Data Points Decrypted by Lit Protocol' },
+// Default data (will be replaced with API data)
+const defaultData = [
+  {
+    id: 'totalValue',
+    number: '$0M+',
+    subtext: 'Total Value Managed by Lit Protocol',
+  },
+  {
+    id: 'totalVolume',
+    number: '$0M+',
+    subtext: 'Total Volume Processed by Lit Protocol',
+  },
+  {
+    id: 'totalDataPoints',
+    number: '0M+',
+    subtext: 'Data Points Decrypted by Lit Protocol',
+  },
 ];
+
 function NumberItem({ number, subtext, className }: NumbersProps) {
   return (
     <Group
@@ -34,6 +47,48 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
 }
 
 const Metrics = () => {
+  const [data, setData] = useState(defaultData);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMetrics = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/dune-data');
+
+        if (response.ok) {
+          const metrics = await response.json();
+
+          // Update data with fetched values
+          setData([
+            {
+              id: 'totalValue',
+              number: metrics.totalValue || '$0M+',
+              subtext: 'Total Value Managed by Lit Protocol',
+            },
+            {
+              id: 'totalVolume',
+              number: metrics.totalVolume || '$0M+',
+              subtext: 'Total Volume Processed by Lit Protocol',
+            },
+            {
+              id: 'totalDataPoints',
+              number: metrics.totalDataPoints || '0M+',
+              subtext: 'Data Points Decrypted by Lit Protocol',
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch metrics:', error);
+        // Keep using default data on error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMetrics();
+  }, []);
+
   return (
     <div className="py-[8rem] bg-coal-950 text-white">
       <Container size="lg">
@@ -45,21 +100,14 @@ const Metrics = () => {
             Securing the Decentralized World
           </Title>
           <Group className="p-[1rem] flex !text-left items-start justify-center gap-[4rem] !flex-col">
-            <NumberItem
-              className="metric-1"
-              number={data[0].number}
-              subtext={data[0].subtext}
-            />
-            <NumberItem
-              className="metric-2"
-              number={data[1].number}
-              subtext={data[1].subtext}
-            />
-            <NumberItem
-              className="metric-3"
-              number={data[2].number}
-              subtext={data[2].subtext}
-            />
+            {data.map((item, index) => (
+              <NumberItem
+                key={item.id}
+                className={`metric-${index + 1}`}
+                number={loading ? '...' : item.number}
+                subtext={item.subtext}
+              />
+            ))}
           </Group>
         </Group>
       </Container>

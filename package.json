@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@duneanalytics/client-sdk": "^0.2.5",
     "@mantine/carousel": "^7.17.3",
     "@mantine/core": "^7.17.3",
     "@mantine/form": "^7.17.4",
