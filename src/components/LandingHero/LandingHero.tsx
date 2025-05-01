@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Group, Text, Title } from '@mantine/core';
+import { Container, Group, Text } from '@mantine/core';
 import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import LandingPartners from '../LandingPartners/LandingPartners';
