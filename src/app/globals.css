@@ -47,6 +47,9 @@
   --color-mint-200: oklch(87.65% 0.071 169.72);
   --color-mint-500: oklch(82.91% 0.133 174.96);
   --color-off-white: oklch(97.02% 0 0);
+  --color-electric-blue-500: oklch(60.48% 0.217 257.21);
+  --color-electric-blue-700: oklch(41.98% 0.144 256.16);
+  --color-cool-gray-500: oklch(73.16% 0.000 0);
 
   /* breakpoints */
   --breakpoint-xs: 36em;
@@ -62,7 +65,7 @@
   .animate-fade-in {
     animation: fadeIn 3s ease-in-out;
   }
-  
+
   .animate-fade-out {
     animation: fadeOut 3s ease-in-out;
   }
@@ -138,7 +141,7 @@
     text-fill-color: transparent;
   }
   .metric-3 {
-    @apply bg-gradient-to-r from-periwinkle-500 to-periwinkle-700;
+    @apply bg-gradient-to-r from-electric-blue-500 to-electric-blue-700;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

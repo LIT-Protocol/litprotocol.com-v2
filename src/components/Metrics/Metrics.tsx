@@ -38,8 +38,12 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
         width: '100%',
       }}
     >
-      <Text className={`!text-[3rem] ${className}`}>{number}</Text>
-      <Text size="sm" style={{ textTransform: 'uppercase' }}>
+      <Text className={`!text-[6rem]/[4.4rem] h-[6.5rem] mb-[.5rem] 
+ ${className}`}>{number}</Text>
+      <Text
+        className="!text-cool-gray-500 !mb-[1rem]"
+        style={{ textTransform: 'uppercase' }}
+      >
         {subtext}
       </Text>
     </Group>
@@ -90,16 +94,18 @@ const Metrics = () => {
   }, []);
 
   return (
-    <div className="py-[8rem] bg-coal-950 text-white">
+    <div className="pt-[7.5rem] pb-[5rem] bg-coal-950 text-white">
       <Container size="lg">
-        <Group className="flex !justify-start md:!justify-center !gap-[3rem] w-full md:!gap[6rem]">
+        <Group className="flex !items-start !justify-start md:!justify-between w-full md:!gap[6rem]">
           <Title
-            order={2}
-            style={{ display: 'flex', alignItems: 'flex-start' }}
+            style={{
+              fontSize: '2rem',
+              width: '22.8rem',
+            }}
           >
             Securing the Decentralized World
           </Title>
-          <Group className="p-[1rem] flex !text-left items-start justify-center gap-[4rem] !flex-col">
+          <Group className="flex !text-left items-start justify-center w-1/2 !gap-[4rem] !flex-col">
             {data.map((item, index) => (
               <NumberItem
                 key={item.id}
