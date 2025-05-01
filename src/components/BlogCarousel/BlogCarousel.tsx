@@ -71,7 +71,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="w-full my-auto h-full md:h-[22rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] rounded-md"
+      className="w-full my-auto h-full md:h-[24.5rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] rounded-md"
     >
       <Group wrap="nowrap" gap={0} className="w-full h-full">
         {!isMobile && (
@@ -158,7 +158,7 @@ export function BlogCarousel() {
   return (
     <Carousel
       withIndicators
-      height={360}
+      height={390}
       dragFree
       loop
       slideSize="100%"
@@ -169,7 +169,7 @@ export function BlogCarousel() {
       nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
       previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
       classNames={{
-        root: 'relative w-[90%] pb-12 md:pb-8',
+        root: 'relative w-[90%] pb-12 !md:pb-[5.6rem] mb-[4rem]',
         controls:
           'absolute w-full md:w-[118%] md:transform md:-translate-x-[7.6%] -translate-y-2/3 flex justify-between z-10 pointer-events-none',
         control:

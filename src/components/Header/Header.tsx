@@ -91,9 +91,9 @@ export function HeaderMenu({
         >
           <Menu.Target>
             <a href={link.link}>
-              <Center className="text-off-white font-medium">
+              <Center className="text-off-white font-medium px-[.75rem] py-[.375rem]">
                 <span className="mr-[5px]">{link.label}</span>
-                <IconChevronDown size={14} stroke={1.5} />
+                <IconChevronDown size={16} stroke={1.5} />
               </Center>
             </a>
           </Menu.Target>
@@ -110,9 +110,9 @@ export function HeaderMenu({
   });
 
   return (
-    <header className="top-0 left-0 h-[56px] bg-coal-950">
-      <Container size="lg">
-        <div className="flex h-[56px] justify-between items-center">
+    <header className="top-0 left-0 h-[4.5rem] bg-coal-950">
+      <Container size="md">
+        <div className="flex h-[4.5rem] justify-between items-center">
           <Group gap={4}>
             <Burger
               opened={menuOpen}
@@ -123,7 +123,7 @@ export function HeaderMenu({
             />
             <LitLogo className="h-[1.5rem] text-lit-orange" />
           </Group>
-          <Group gap={28} visibleFrom="sm">
+          <Group gap={"1.25rem"} visibleFrom="sm">
             {items}
           </Group>
           {menuOpen ? (

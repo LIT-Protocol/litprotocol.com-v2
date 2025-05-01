@@ -36,7 +36,7 @@ export function Button({
 
   // Use inline styles for the gradient as a fallback
   const inlineStyles = variant === 'primary' 
-    ? { background: 'linear-gradient(to right, var(--lit-orange, #FF6B00), var(--burgundy-500, #800020))', padding: '.4rem .875rem' }
+    ? { background: 'linear-gradient(to right, var(--lit-orange, #FF6B00), var(--burgundy-500, #800020))', padding: '.3rem .875rem' }
     : { border: '1px solid white', background: 'transparent' };
 
   return (

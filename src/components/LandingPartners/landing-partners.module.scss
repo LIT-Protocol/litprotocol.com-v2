@@ -1,15 +1,5 @@
 @import '../../styles/mixins.scss';
 
-.section {
-  position: relative;
-  padding: 3rem 1rem;
-  background-color: transparent;
-
-  @include md {
-    padding: 4rem 1rem;
-  }
-}
-
 .title {
   font-size: 0.875rem;
   line-height: 1.25rem;

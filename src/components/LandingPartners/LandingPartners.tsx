@@ -67,7 +67,7 @@ const logos = [
 
 const LandingPartners = () => {
   return (
-    <Container size="lg" className={styles.section}>
+    <Container size="lg" className='relative bg-transparent py-[5rem] mt-[1.25rem]'>
       <Text
       size="md"
         style={{
