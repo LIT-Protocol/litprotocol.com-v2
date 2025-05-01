@@ -1,5 +1,5 @@
-import { Card, Group, Text } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { Card, Flex, Group, Text } from '@mantine/core';
+import { useEffect, useState, useRef } from 'react';
 
 interface NetworkCardProps {
   value: string;
@@ -18,6 +18,7 @@ function NetworkCardDesktop({
   onClick,
 }: NetworkCardProps) {
   const [wasSelected, setWasSelected] = useState(isSelected);
+  const detailRef = useRef(null);
 
   useEffect(() => {
     if (isSelected !== wasSelected) {
@@ -25,38 +26,56 @@ function NetworkCardDesktop({
     }
   }, [isSelected]);
 
-  const cardClass = `${isSelected && !wasSelected ? 'animate-fade-in' : ''} ${
-    !isSelected && wasSelected ? 'animate-fade-out' : ''
-  }`;
+  console.log('Icon prop:', Icon);
 
   return (
     <Card
       radius="md"
-      className={`${cardClass} w-[500px] h-full !text-pearl-500 duration-300 ease-in-out`}
+      className="w-[500px] h-full !text-pearl-500 transition-all duration-700 ease-in-out"
       onClick={onClick}
       style={{
         cursor: 'pointer',
-        background: isSelected
-          ? 'linear-gradient(to right, rgba(124, 131, 219, 0.25), #0A0F19)'
-          : 'rgba(107, 114, 128, 0.2)',
-        border: isSelected ? '1px solid #7C83DB' : 'none',
+        background: isSelected ? '#131A26' : 'transparent',
+        padding: isSelected ? '2.5rem' : '1.25rem 2.5rem',
+        transform: isSelected ? 'scale(1.02)' : 'scale(1)',
+        boxShadow: isSelected ? '0 4px 12px rgba(0, 0, 0, 0.1)' : 'none',
       }}
     >
-      {isSelected ? (
-        <>
-          <Group className="uppercase">
-            <Text mb="sm" fw={700}>{title}</Text>
-          </Group>
-          <Text size="sm">{detail}</Text>
-        </>
-      ) : (
-        <>
-          <Group className="uppercase">
-            <Text mb="sm" fw={700}>{title}</Text>
-          </Group>
-          <Text size="sm">{detail}</Text>
-        </>
-      )}
+      <Flex className="gap-[2.5rem]">
+        <Icon
+          className={`h-[2.25rem] w-[2.25rem] transition-transform duration-300 flex-none ${
+            isSelected ? '!fill-electric-blue-500' : '!fill-white'
+          }`}
+        />
+
+        {/* Text section */}
+        <Flex className="flex-col gap-[.75rem]">
+          <Text
+            size="xl"
+            fw={700}
+            tt="capitalize"
+            className="transition-all duration-700 ease-in-out"
+            style={{
+              transform: isSelected ? 'translateY(-2px)' : 'translateY(0)',
+            }}
+          >
+            {title}
+          </Text>
+          <div
+            ref={detailRef}
+            className="transition-all duration-700 ease-in-out overflow-hidden"
+            style={{
+              maxHeight: isSelected ? '200px' : '0',
+              opacity: isSelected ? 1 : 0,
+              transitionProperty: 'max-height, opacity',
+            }}
+          >
+            <Text size="lg" style={{ lineHeight: '1.68rem' }}>
+              {detail}
+            </Text>
+          </div>
+        </Flex>
+      </Flex>
     </Card>
   );
 }

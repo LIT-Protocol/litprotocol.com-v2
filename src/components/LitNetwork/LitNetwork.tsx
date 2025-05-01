@@ -1,40 +1,39 @@
 'use client';
-import { Box, Container, Group, Image, Tabs, Title } from '@mantine/core';
+import { Box, Container, Group, Title, Tabs } from '@mantine/core';
+import Image from 'next/image'; // Changed to Next.js Image
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  IconCurrencyRipple,
-  IconPackages,
-  IconPhoto,
-  IconShieldHalf,
-} from '@tabler/icons-react';
+import { IconPhoto } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import NetworkCardMobile from './NetworkCardMobile';
 import NetworkCardDesktop from './NetworkCardDesktop';
+import ShieldIcon from './assets/ShieldIcon';
+import BuildIcon from './assets/BuildIcon';
+import HandKeyIcon from './assets/HandKeyIcon';
 
 const data = [
   {
     value: 'first',
-    icon: IconShieldHalf,
+    icon: ShieldIcon,
     title: 'Defense in Depth',
     detail:
       'Lit Protocol combines Threshold Multi-Party Computation (MPC) and Trusted Execution Environments (TEE) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
-    // image: '/images/defense.jpg',
+    image: '/images/litnetwork1.png',
   },
   {
     value: 'second',
-    icon: IconPackages,
+    icon: BuildIcon,
     title: 'Scalability',
     detail:
-      'Deploy applications confidently on a globally distributed network. Lit Protocol\’s infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.',
-    // image: '/images/scalability.jpg',
+      'Deploy applications confidently on a globally distributed network. Lit Protocol\'s infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.',
+    image: '/images/litnetwork2.png',
   },
   {
     value: 'third',
-    icon: IconCurrencyRipple,
+    icon: HandKeyIcon,
     title: 'Orchestrate Any Secret',
     detail:
-      'Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol\’s programmable signing and encryption let you securely automate interactions across every environment.',
-    // image: '/images/decentralized.jpg',
+      'Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol\'s programmable signing and encryption let you securely automate interactions across every environment.',
+    image: '/images/litnetwork3.png',
   },
 ];
 
@@ -42,15 +41,17 @@ const LitNetwork = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [activeTab, setActiveTab] = useState(data[0].value);
   const [progress, setProgress] = useState(0);
+  const [imageError, setImageError] = useState(false);
   // Reversed the media query to check for desktop instead of mobile
   const isDesktop = useMediaQuery('(min-width: 769px)');
   const tabsRef = useRef(null);
 
-  const handleCardClick = (index: number) => {
+  const handleCardClick = (index) => {
     if (index !== selectedIndex) {
       setSelectedIndex(index);
       setActiveTab(data[index].value);
       setProgress(0); // Reset progress on tab switch
+      setImageError(false); // Reset error state when switching tabs
     }
   };
 
@@ -76,7 +77,8 @@ const LitNetwork = () => {
       setSelectedIndex(nextIndex);
       setActiveTab(data[nextIndex].value);
       setProgress(0); // Reset progress on auto switch
-    }, 5000);
+      setImageError(false); // Reset error state when auto-switching
+    }, 7000);
 
     return () => {
       clearInterval(progressInterval);
@@ -85,15 +87,15 @@ const LitNetwork = () => {
   }, [selectedIndex]);
 
   return (
-    <div className="bg-coal-950 text-white py-[6rem] px-1">
+    <div className="bg-coal-950 text-white py-24 px-1">
       <Container
         size="lg"
-        className="flex flex-col overflow-x-hidden md:flex-row"
+        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem]"
       >
-        <Group className="flex-col !items-start justify-center mb-[2rem]">
+        <Group className="flex-col !items-start !gap-24 justify-center mb-8">
           <Title
-            order={2}
-            className="w-full flex justify-center mb-[2rem] md:mb-[4rem] md:justify-start"
+            style={{ fontSize: '2rem' }}
+            className="w-full flex justify-center mb-8 md:justify-start"
           >
             The Lit Network
           </Title>
@@ -105,7 +107,7 @@ const LitNetwork = () => {
                 onChange={val => val && setActiveTab(val)}
                 classNames={{
                   list: 'flex w-full p-0 m-1 before:!hidden',
-                  root: 'w-full overflow-visible', // Changed from overflow-hidden to ensure text can wrap
+                  root: 'w-full overflow-visible',
                   tab: '!text-pearl-500 data-[active]:!text-periwinkle-500 hover:!bg-pewter-gray-500/50 !rounded-none',
                 }}
               >
@@ -116,8 +118,8 @@ const LitNetwork = () => {
                       className="flex-1"
                       style={{
                         width: `${100 / data.length}%`,
-                        maxWidth: `${100 / data.length}%`, // Added max-width to prevent expansion
-                        padding: '0 4px', // Added horizontal padding to separate tabs slightly
+                        maxWidth: `${100 / data.length}%`,
+                        padding: '0 4px',
                       }}
                     >
                       <NetworkCardMobile
@@ -132,6 +134,7 @@ const LitNetwork = () => {
                             setSelectedIndex(index);
                           }
                           setProgress(0);
+                          setImageError(false);
                         }}
                         progress={activeTab === tab.value ? progress : 0}
                         tabsRef={tabsRef}
@@ -164,30 +167,29 @@ const LitNetwork = () => {
             )}
           </Group>
         </Group>
-
-        {/* {data[selectedIndex]?.image ? (
-          <div className="flex-1 flex justify-center items-center max-w-[600px]">
-            <Image
-              src={data[selectedIndex].image}
-              alt={data[selectedIndex].title}
-              className="w-full h-auto rounded-md object-cover"
-            />
+        {data[selectedIndex]?.image && !imageError ? (
+          <div className="flex-1 flex justify-center items-center max-w-[600px] py-[6.25rem]">
+            <div className="relative w-[550px] h-[550px]">
+              <Image
+                src={data[selectedIndex].image}
+                alt={data[selectedIndex].title}
+                fill
+                className="rounded-md object-contain"
+                priority
+                onError={() => setImageError(true)}
+              />
+            </div>
           </div>
-        ) : ( */}
-        <div
-          style={{
-            width: '100%',
-            height: '600px',
-            backgroundColor: '#f1f3f5',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <IconPhoto size={48} color="#adb5bd" />
-        </div>
-        {/* )} */}
+        ) : (
+          <div
+            className="flex-1 flex justify-center items-center rounded-md bg-gray-200 w-full max-w-[600px] h-[600px]"
+          >
+            <IconPhoto size={48} color="#adb5bd" />
+            {imageError && (
+              <p className="text-gray-500 absolute">Failed to load image</p>
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );
