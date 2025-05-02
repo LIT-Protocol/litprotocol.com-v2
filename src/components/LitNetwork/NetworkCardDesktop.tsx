@@ -70,7 +70,7 @@ function NetworkCardDesktop({
               transitionProperty: 'max-height, opacity',
             }}
           >
-            <Text size="lg" style={{ lineHeight: '1.68rem' }}>
+            <Text style={{ lineHeight: '1.68rem' }}>
               {detail}
             </Text>
           </div>

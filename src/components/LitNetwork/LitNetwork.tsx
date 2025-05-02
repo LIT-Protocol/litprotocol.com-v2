@@ -46,7 +46,7 @@ const LitNetwork = () => {
   const isDesktop = useMediaQuery('(min-width: 769px)');
   const tabsRef = useRef(null);
 
-  const handleCardClick = (index) => {
+  const handleCardClick = (index: number) => {
     if (index !== selectedIndex) {
       setSelectedIndex(index);
       setActiveTab(data[index].value);
@@ -78,7 +78,7 @@ const LitNetwork = () => {
       setActiveTab(data[nextIndex].value);
       setProgress(0); // Reset progress on auto switch
       setImageError(false); // Reset error state when auto-switching
-    }, 7000);
+    }, 10000);
 
     return () => {
       clearInterval(progressInterval);
