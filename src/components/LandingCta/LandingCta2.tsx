@@ -1,8 +1,4 @@
-import {
-  DISCORD_LINK,
-  DOCS_LINK,
-  SPARK_LINK,
-} from '@/utils/constants';
+import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
 import { Card, Container, Group, Text, Title } from '@mantine/core';
 import {
   IconBrandDiscord,
@@ -30,7 +26,7 @@ const ctas = [
   {
     icon: IconNotebook,
     name: 'Blog',
-    context: 'Read the latest news',
+    context: 'Read the latest news.',
     link: SPARK_LINK,
   },
   {
@@ -44,11 +40,12 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
   return (
     <Card
       onClick={onClick}
-      style={{ cursor: 'pointer', color: 'white' }}
-      className="btn-hover-effect flex justify-between w-full !bg-slate-blue-500/75 h-[7.5rem] p-[1rem] items-start !gap-[.25rem] md:w-[calc(100%/3)]"
+      radius="md"
+      style={{ cursor: 'pointer', color: 'white', padding: '1.5rem' }}
+      className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
     >
       <Icon size={25} stroke={1} />
-      <Text fw={700}>{name}</Text>
+      <Text size="lg" fw={700}>{name}</Text>
       <Text size="sm">{context}</Text>
     </Card>
   );
@@ -65,8 +62,11 @@ const LandingCta2 = () => {
   return (
     <div className="pt-[4rem] pb-[10rem]">
       <Container size="lg">
-        <Group className="text-white flex flex-col text-left items-start mb-[2rem] w-[80%] md:w-[60%]">
-          <Title order={2} className="w-[70%] md:w-full">
+        <Group
+          style={{ gap: '1.5rem' }}
+          className="text-white flex flex-col text-left items-start mb-[2rem] w-[80%] md:w-[60%]"
+        >
+          <Title size="2rem" className="w-[70%] md:w-full">
             Learn, connect, & collaborate.
           </Title>
           <Text>
@@ -75,7 +75,10 @@ const LandingCta2 = () => {
             running on the open web.
           </Text>
         </Group>
-        <Group className="flex flex-wrap !gap-[0.5rem] mb-[0.75rem] md:!flex-nowrap">
+        <Group
+          style={{ gap: '1.5rem' }}
+          className="flex flex-wrap mb-[1.875rem] md:!flex-nowrap"
+        >
           {ctaLinks}
         </Group>
         <Newsletter />

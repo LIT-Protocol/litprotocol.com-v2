@@ -48,12 +48,13 @@ function Newsletter() {
 
   return (
     <Card
+    radius="md"
       style={{ color: 'white', width: '100%', padding: '0' }}
       className="!bg-slate-blue-500/75 flex w-full p-0"
     >
       <Text
-        size="2rem"
-        className="text-center w-full relative !p-4 !py-6 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
+        size="3.25rem"
+        className="text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
       >
         Be the first to know
       </Text>
@@ -65,7 +66,7 @@ function Newsletter() {
         </Text>
 
         {/* Input, Button, Text Group */}
-        <Group className="md:!border-l !border-pewter-gray-500/50 !border-t md:!border-t-0 md:w-1/2 flex flex-col items-center !justify-center relative !py-7 !px-4 lg:!px-8 !gap-1">
+        <Group style={{ padding: '2.375rem 2.5rem 1rem'}} className="md:!border-l !border-pewter-gray-500/50 !border-t md:!border-t-0 md:w-1/2 flex flex-col items-center !justify-center relative !pt-[2.375rem] !px-4 lg:!px-8 !gap-1">
           {message && message.length > 0 ? (
             <div className="">
               <p>{message}</p>
