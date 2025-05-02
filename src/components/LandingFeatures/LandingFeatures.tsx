@@ -4,7 +4,7 @@ import {
   LIT_ACTIONS_LINK,
   LIT_WALLET_LINK,
 } from '@/utils/constants';
-import { Container, Title } from '@mantine/core';
+import { Container } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
 import ProductMobile from './ProductMobile';
@@ -17,6 +17,9 @@ import BuildIcon from '../icons/BuildIcon';
 import LockIcon from './assets/LockIcon';
 import VaultIcon from './assets/VaultIcon';
 import HandKeyIcon from '../icons/HandKeyIcon';
+import UniversalIcon from './assets/UniversalIcon';
+
+// need to add images
 
 const features = [
   {
@@ -26,12 +29,13 @@ const features = [
     paragraph:
       'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions.',
     features: [
-      {icon: GearIcon, slug: 'universal accounts for every chain and platform'},
+      {icon: UniversalIcon, slug: 'universal accounts for every chain and platform'},
       {icon:ApproveIcon, slug: 'user authorization'},
       {icon: ToolsIcon, slug: 'On-chain, open source tools'},
     ],
     link: LIT_WALLET_LINK,
     cta: 'Create Agent Wallets',
+    imageRight: true,
   },
   {
     value: 'second',
@@ -46,6 +50,7 @@ const features = [
     ],
     link: ENCRYPTION_LINK,
     cta: 'Build with Lit Actions',
+    imageRight: false,
   },
   {
     value: 'third',
@@ -60,6 +65,7 @@ const features = [
     ],
     link: LIT_ACTIONS_LINK,
     cta: 'Build with Encryption',
+    imageRight: true,
   },
 ];
 
@@ -71,10 +77,8 @@ const LandingProduct2 = () => {
       <Container
         size="lg"
         style={{
-          padding: '8rem 1rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '8rem',
         }}
       >
         {mobile ? (

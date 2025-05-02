@@ -1,11 +1,12 @@
-const VaultIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const VaultIcon = (props: SVGProps<SVGSVGElement>) => {
     return (
         <svg 
         width={32} 
         height={32} 
         viewBox="0 0 32 32.25" 
         xmlns="http://www.w3.org/2000/svg"
-        className={className}
+        {...props}
       >
         <g>
           {/* Circular device body */}

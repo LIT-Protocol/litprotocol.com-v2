@@ -1,10 +1,5 @@
-import { Card, Text, Title } from '@mantine/core';
-import {
-  IconArrowRight,
-  IconCircleCheck,
-  IconPhoto,
-} from '@tabler/icons-react';
-import { useState } from 'react';
+import { Card, Group, Text, Title } from '@mantine/core';
+import { IconArrowRight, IconPhoto } from '@tabler/icons-react';
 import { Button } from '../ui/Button';
 
 interface FeatureItem {
@@ -18,10 +13,11 @@ interface ProductProps {
     title: string;
     heading: string;
     paragraph: string;
-    features: FeatureItem[]; // Changed from string[] to FeatureItem[]
+    features: FeatureItem[];
     link: string;
     image?: string;
     cta: string;
+    imageRight: boolean;
   }[];
 }
 
@@ -30,52 +26,77 @@ function ProductDesktop({ features }: ProductProps) {
     <>
       {features.map(feature => (
         <Card
+          key={feature.value}
           shadow="sm"
           radius="md"
-          style={{ background: 'transparent' }}
-          className="h-[650px] flex flex-row overflow-hidden !p-0 !text-white"
+          style={{
+            background: 'transparent',
+            height: '37.875rem',
+            margin: '5rem 0',
+            justifyContent: 'center',
+          }}
+          className="h-[650px] w-full flex overflow-hidden !p-0 !text-white"
         >
-          <div key={feature.value} className="p-6 flex flex-col">
-            <Text className="text-sm font-medium text-blue-400">
-              {feature.title}
-            </Text>
-            <Title className="text-xl font-bold mt-2">{feature.heading}</Title>
-            <Text className="mt-3 text-gray-300">{feature.paragraph}</Text>
+          {/* Use flex order to control image position */}
+          <div className="flex h-full gap-[5.5rem] w-full">
+            {/* Image container - always 50% width regardless of position */}
+            <div
+              className={`w-1/2 h-full flex items-center justify-center ${
+                feature.imageRight ? 'order-last' : 'order-first'
+              }`}
+              style={{
+                backgroundColor: '#f1f3f5',
+                borderRadius: '8px',
+              }}
+            >
+              {feature.image ? (
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <IconPhoto size={48} color="#adb5bd" />
+              )}
+            </div>
 
-            {/* Feature items list */}
-            <ul className="mt-6 space-y-4">
-              {feature.features.map(featureItem => (
-                <li key={featureItem.slug} className="flex items-start gap-3">
-                  {/* Render the icon component */}
-                  <featureItem.icon className="h-5 w-5 text-blue-400 flex-shrink-0" />
+            {/* Content container - always 50% width */}
+            <div className="w-1/2 py-[1.75rem] gap-[2.5rem] max-w-[28.75rem] flex flex-col">
+              <Group
+                style={{
+                  gap: '1.5rem',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Text style={{padding: '.28rem .5rem'}} className='bg-lit-orange rounded-sm'>{feature.title}</Text>
+                <Title size="2rem">{feature.heading}</Title>
+              </Group>
+              <Text size="lg" className="mt-3 text-gray-300">{feature.paragraph}</Text>
 
-                  {/* Display the feature slug text */}
-                  <span className="text-sm capitalize">{featureItem.slug}</span>
-                </li>
-              ))}
-            </ul>
+              {/* Feature items list */}
+              <ul className="mt-6 space-y-6">
+                {feature.features.map(featureItem => (
+                  <li key={featureItem.slug} className="flex items-start gap-3">
+                    <featureItem.icon className="h-8 w-8 text-blue-400 flex-shrink-0" />
+                    <span className="text-lg capitalize">
+                      {featureItem.slug}
+                    </span>
+                  </li>
+                ))}
+              </ul>
 
-            <Button
-              style={{ display: 'flex', maxWidth: 'max-content' }}
-              target="_blank"
-              rightIcon={<IconArrowRight stroke={2} />}
-              variant="outline"
-              href={feature.link}
-              className="flex"
-            >{feature.cta}</Button>
-          </div>
-          <div
-            style={{
-              width: '50%',
-              height: '100%',
-              backgroundColor: '#f1f3f5',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <IconPhoto size={48} color="#adb5bd" />
+              <Button
+                style={{ display: 'flex', maxWidth: 'max-content' }}
+                target="_blank"
+                rightIcon={<IconArrowRight stroke={2} />}
+                variant="outline"
+                href={feature.link}
+                className="mt-auto"
+              >
+                {feature.cta}
+              </Button>
+            </div>
           </div>
         </Card>
       ))}

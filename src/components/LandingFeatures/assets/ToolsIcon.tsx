@@ -1,6 +1,7 @@
-const ToolsIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const ToolsIcon = (props: SVGProps<SVGSVGElement>) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className={className}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" {...props}>
         <g id="icon_group">
           <path 
             fill="currentColor"

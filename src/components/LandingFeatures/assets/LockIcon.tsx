@@ -1,10 +1,11 @@
-const LockIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const LockIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
       fill="currentColor"
-      className={className}
+      {...props}
     >
       <path
         stroke="currentColor"

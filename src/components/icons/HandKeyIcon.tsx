@@ -1,9 +1,10 @@
-const HandKeyIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const HandKeyIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      className={className}
+      {...props}
       fill="currentColor"
     >
       <path d="M6.45 17.92h0l2.66 5.7h0l-2.66-5.7z" />

@@ -1,10 +1,11 @@
-const BuildIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const BuildIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      className={className}
       fill="currentColor"
+      {...props}
     >
       <rect x="15.71" y="11.78" width="0.58" height="4.25" />
       <path d="M23.2,15.74h-14.41c-.97,0-1.75.79-1.75,1.75v2.77h.58v-2.77c0-.65.53-1.17,1.17-1.17h14.41c.64,0,1.17.52,1.17,1.17v2.77h.58v-2.77c0-.97-.79-1.75-1.75-1.75Z" />

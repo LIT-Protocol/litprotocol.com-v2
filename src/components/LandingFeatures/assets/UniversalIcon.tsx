@@ -1,4 +1,5 @@
-const UniversalIcon = ({ className }: { className: string }) => {
+import { SVGProps } from "react";
+const UniversalIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +7,7 @@ const UniversalIcon = ({ className }: { className: string }) => {
       fill="currentColor"
       stroke="currentColor"
       stroke-miterlimit="10"
+      {...props}
     >
       <path
         stroke-width=".45"
