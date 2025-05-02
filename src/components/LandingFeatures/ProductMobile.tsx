@@ -7,13 +7,18 @@ import {
 import { useState } from 'react';
 import { Button } from '../ui/Button';
 
+interface FeatureItem {
+  slug: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+}
+
 interface ProductProps {
   features: {
     value: string;
-    tab: string;
+    title: string;
     heading: string;
     paragraph: string;
-    features: string[];
+    features: FeatureItem[]; // Changed from string[] to FeatureItem[]
     link: string;
     image?: string;
     cta: string;

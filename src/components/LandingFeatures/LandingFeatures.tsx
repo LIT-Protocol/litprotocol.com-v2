@@ -9,46 +9,54 @@ import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
 import ProductMobile from './ProductMobile';
 import ProductDesktop from './ProductDesktop';
+import GearIcon from './assets/GearIcon';
+import ToolsIcon from './assets/ToolsIcon';
+import ApproveIcon from './assets/ApproveIcon';
+import UnifyIcon from './assets/UnifyIcon';
+import BuildIcon from '../icons/BuildIcon';
+import LockIcon from './assets/LockIcon';
+import VaultIcon from './assets/VaultIcon';
+import HandKeyIcon from '../icons/HandKeyIcon';
 
 const features = [
   {
     value: 'first',
-    tab: 'Agent Wallets',
-    heading: 'Universal Accounts For User Controlled Automation',
+    title: 'Agent Wallets',
+    heading: 'Universal Accounts For User Controlled Automation ',
     paragraph:
-      'Unlock true agent autonomy without sacrificing user control. Lit Protocol enables Agent Wallets using decentralized Programmable Key Pairs (PKPs), giving your agents secure signing capabilities. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions. This creates universal accounts designed for robust, user-controlled automation across multiple chains and platforms.',
+      'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions.',
     features: [
-      'Sessions for Automation',
-      'Chain Abstraction',
-      'Claimable Wallets',
+      {icon: GearIcon, slug: 'universal accounts for every chain and platform'},
+      {icon:ApproveIcon, slug: 'user authorization'},
+      {icon: ToolsIcon, slug: 'On-chain, open source tools'},
     ],
     link: LIT_WALLET_LINK,
     cta: 'Create Agent Wallets',
   },
   {
     value: 'second',
-    tab: 'Interoperability',
+    title: 'Interoperability',
     heading: 'Program Private Keys',
     paragraph:
-      'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps. Automate cross-chain liquidity strategies, create universal signers for diverse protocols, or build secure, programmable vaults that manage assets across ecosystems based on verifiable rules. Unify disparate Web3 and Web2 systems under a single, cryptographic control layer powered by Lit Actions.',
+      'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps.',
     features: [
-      'Universal Access Control',
-      'Compute Over Secrets',
-      'Bridge Web2 and Web3',
+      {icon: GearIcon, slug: 'Automate cross-chain liquidity'},
+      {icon: VaultIcon, slug: 'Build secure, programmable vaults'},
+      {icon: UnifyIcon, slug:'Unify disparate Web3 and Web2 systems under a single, cryptographic control layer'},
     ],
     link: ENCRYPTION_LINK,
     cta: 'Build with Lit Actions',
   },
   {
     value: 'third',
-    tab: 'User Owned Data',
+    title: 'User Owned Data',
     heading: 'Private Data On The Open Web',
     paragraph:
-      'Bring privacy to public infrastructure. With Lit Protocol\'s threshold encryption, build applications where private data lives on the open web but remains verifiably under user control. Define exactly who can decrypt sensitive information based on dynamic conditions like blockchain state, token ownership, or even custom logic run by Lit Actions. Users, not centralized platforms, have the authority over their encrypted data, regardless of where it\'s stored.',
+      'Build applications where private data lives on the open web but remains verifiably under user control.',
     features: [
-      'Autonomous Agents',
-      'Cross-Network Composability',
-      'Build with Ease',
+      {icon: LockIcon, slug:'Define exactly who can decrypt based on dynamic conditions'},
+      {icon: BuildIcon, slug:'Build user owned data and data marketplaces'},
+      {icon: HandKeyIcon, slug:'Put users in control'},
     ],
     link: LIT_ACTIONS_LINK,
     cta: 'Build with Encryption',

@@ -7,8 +7,8 @@ import { useMediaQuery } from '@mantine/hooks';
 import NetworkCardMobile from './NetworkCardMobile';
 import NetworkCardDesktop from './NetworkCardDesktop';
 import ShieldIcon from './assets/ShieldIcon';
-import BuildIcon from './assets/BuildIcon';
-import HandKeyIcon from './assets/HandKeyIcon';
+import BuildIcon from '../icons/BuildIcon';
+import HandKeyIcon from '../icons/HandKeyIcon';
 
 const data = [
   {
