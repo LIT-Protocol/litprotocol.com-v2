@@ -38,8 +38,12 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
         width: '100%',
       }}
     >
-      <Text className={`!text-[6rem]/[4.4rem] h-[6.5rem] mb-[.5rem] 
- ${className}`}>{number}</Text>
+      <Text
+        className={`!text-[6rem]/[4.4rem] h-[6.5rem] mb-[.5rem] 
+ ${className}`}
+      >
+        {number}
+      </Text>
       <Text
         className="!text-cool-gray-500 !mb-[1rem]"
         style={{ textTransform: 'uppercase' }}
@@ -51,7 +55,7 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
 }
 
 const Metrics = () => {
-  const [data, setData] = useState(defaultData);
+  const [metrics, setMetrics] = useState(defaultData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -64,20 +68,20 @@ const Metrics = () => {
           const metrics = await response.json();
 
           // Update data with fetched values
-          setData([
+          setMetrics([
             {
               id: 'totalValue',
-              number: metrics.totalValue || '$0M+',
+              number: metrics.totalValue ?? '$0M+',
               subtext: 'Total Value Managed by Lit Protocol',
             },
             {
               id: 'totalVolume',
-              number: metrics.totalVolume || '$0M+',
+              number: metrics.totalVolume ?? '$0M+',
               subtext: 'Total Volume Processed by Lit Protocol',
             },
             {
               id: 'totalDataPoints',
-              number: metrics.totalDataPoints || '0M+',
+              number: metrics.totalDataPoints ?? '0M+',
               subtext: 'Data Points Decrypted by Lit Protocol',
             },
           ]);
@@ -106,11 +110,11 @@ const Metrics = () => {
             Securing the Decentralized World
           </Title>
           <Group className="flex !text-left items-start justify-center w-1/2 !gap-[4rem] !flex-col">
-            {data.map((item, index) => (
+            {(loading ? defaultData : metrics).map((item, index) => (
               <NumberItem
                 key={item.id}
                 className={`metric-${index + 1}`}
-                number={loading ? '...' : item.number}
+                number={item.number}
                 subtext={item.subtext}
               />
             ))}

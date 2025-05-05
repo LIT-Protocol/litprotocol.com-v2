@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Carousel } from '@mantine/carousel';
+import { useEffect, useRef, useState } from 'react';
+import { Carousel, Embla } from '@mantine/carousel';
 import { Group, Image, Card, Title, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { Button } from '../ui/Button';
@@ -14,7 +14,7 @@ import BtcImg from './assets/btc.png';
 import DatilImg from './assets/datil.png';
 import GlobalImg from './assets/globalComp.png';
 import IndexImg from './assets/index.png';
-import AIImg from './assets/ai.png';
+import Autoplay from 'embla-carousel-autoplay';
 
 type ImageProp = string;
 interface ArticleProps {
@@ -45,7 +45,7 @@ const fallbackPosts: ArticleProps[] = [
     slug: 'the-global-computer-and-evolution-of-key-management',
     image: GlobalImg.src,
     subtext:
-      'For thousands of years in free societies, it’s been understood that our world is molded by the infrastructure we create. The resulting conversations have largely centered around the policy decisions and acts of authorities.',
+      'For thousands of years in free societies, it\'s been understood that our world is molded by the infrastructure we create. The resulting conversations have largely centered around the policy decisions and acts of authorities.',
     alt: 'Futuristic',
   },
   {
@@ -71,26 +71,33 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="w-full my-auto h-full md:h-[24.5rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] rounded-md"
+      className="w-full my-auto h-full md:h-[22rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] rounded-md"
     >
-      <Group wrap="nowrap" gap={0} className="w-full h-full">
+      <Group
+        wrap="nowrap"
+        justify="space-between"
+        gap="1.5rem"
+        className="w-full h-full"
+      >
         {!isMobile && (
-          <div className="max-w-[25rem] h-full block !border-[.05rem] !border-gold-500 overflow-hidden">
+          <div className="max-w-[24rem] h-[14rem] block !border-[.05rem] !border-gold-500 overflow-hidden">
             <Image
               src={image}
               alt={alt}
               fit="cover"
               w="100%"
               h="100%"
-              className="object-cover w-full h-full object-[20%_center]"
+              className="object-cover w-full h-full"
             />
           </div>
         )}
-        <div className="flex flex-1 flex-col text-center text-white justify-center w-[25rem] h-full items-center md:w-full px-4 py-6">
-          <Title order={3} className="w-full mt-[2rem]">
+        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] h-[13.5rem] items-center !md:w-full py-1">
+          <Title lineClamp={2} order={3} size="1.25rem" m="sm">
             {title}
           </Title>
-          <Text className="w-full mb-[2rem]">{subtext}</Text>
+          <Text lineClamp={3} mb="md">
+            {subtext}
+          </Text>
           <Button
             href={`${SPARK_LINK}/${slug}`}
             target="_blank"
@@ -106,49 +113,19 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
 
 export function BlogCarousel() {
   const [posts, setPosts] = useState<ArticleProps[]>(fallbackPosts);
+  const autoplayPlugin = Autoplay({ delay: 2000, stopOnInteraction: false }) as any;
 
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const res = await fetch('https://spark.litprotocol.com/');
-        const html = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const articles = Array.from(doc.querySelectorAll('article')).slice(
-          0,
-          5
-        );
-
-        const dynamicPosts: ArticleProps[] = articles.map(article => {
-          const titleEl = article.querySelector('h2, h3, h1');
-          const linkEl = article.querySelector('a[href]');
-          const imageDiv = article.querySelector(
-            '.post-card-image'
-          ) as HTMLElement;
-          const subtextEl = article.querySelector('.post-card-excerpt');
-
-          // Extract the background-image URL from the style attribute
-          let imageUrl = '/fallback.jpg';
-          if (imageDiv && imageDiv.style.backgroundImage) {
-            const match = imageDiv.style.backgroundImage.match(
-              /url\(["']?(.*?)["']?\)/
-            );
-            if (match && match[1]) {
-              imageUrl = match[1];
-            }
-          }
-
-          return {
-            title: titleEl?.textContent?.trim() ?? 'Untitled',
-            slug: linkEl?.getAttribute('href')?.replace(/^\/+/, '') ?? '',
-            image: imageUrl,
-            alt: titleEl?.textContent?.trim() ?? 'Article image',
-            subtext: subtextEl?.textContent?.trim() ?? '',
-          };
-        });
+        const res = await fetch('/api/blog');
+        const data: ArticleProps[] = await res.json();
+        setPosts(data);
       } catch (error) {
-        console.error('Failed to fetch Spark articles, using fallback.', error);
+        console.error(
+          'Failed to fetch articles from /api/blog, using fallback.',
+          error
+        );
       }
     }
 
@@ -158,7 +135,7 @@ export function BlogCarousel() {
   return (
     <Carousel
       withIndicators
-      height={390}
+      height={360}
       dragFree
       loop
       slideSize="100%"
