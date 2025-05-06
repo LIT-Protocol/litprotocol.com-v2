@@ -12,17 +12,17 @@ interface NumbersProps {
 const defaultData = [
   {
     id: 'totalValue',
-    number: '$0M+',
+    number: '$50M+',
     subtext: 'Total Value Managed by Lit Protocol',
   },
   {
     id: 'totalVolume',
-    number: '$0M+',
+    number: '$154M+',
     subtext: 'Total Volume Processed by Lit Protocol',
   },
   {
     id: 'totalDataPoints',
-    number: '0M+',
+    number: '1M+',
     subtext: 'Data Points Decrypted by Lit Protocol',
   },
 ];

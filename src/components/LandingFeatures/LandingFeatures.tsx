@@ -7,7 +7,6 @@ import {
 import { Container } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
-import ProductMobile from './ProductMobile';
 import ProductDesktop from './ProductDesktop';
 import GearIcon from './assets/GearIcon';
 import ToolsIcon from './assets/ToolsIcon';
@@ -18,6 +17,9 @@ import LockIcon from './assets/LockIcon';
 import VaultIcon from './assets/VaultIcon';
 import HandKeyIcon from '../icons/HandKeyIcon';
 import UniversalIcon from './assets/UniversalIcon';
+// import agentWalletAnim from '@/public/lottie/agent-wallet.json';
+import interoperabilityAnim from '@/animations/interoperability.json'
+// import userDataAnim from '@/public/lottie/user-data.json';
 
 // need to add images
 
@@ -29,9 +31,12 @@ const features = [
     paragraph:
       'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions.',
     features: [
-      {icon: UniversalIcon, slug: 'universal accounts for every chain and platform'},
-      {icon:ApproveIcon, slug: 'user authorization'},
-      {icon: ToolsIcon, slug: 'On-chain, open source tools'},
+      {
+        icon: UniversalIcon,
+        slug: 'universal accounts for every chain and platform',
+      },
+      { icon: ApproveIcon, slug: 'user authorization' },
+      { icon: ToolsIcon, slug: 'On-chain, open source tools' },
     ],
     link: LIT_WALLET_LINK,
     cta: 'Create Agent Wallets',
@@ -44,10 +49,14 @@ const features = [
     paragraph:
       'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps.',
     features: [
-      {icon: GearIcon, slug: 'Automate cross-chain liquidity'},
-      {icon: VaultIcon, slug: 'Build secure, programmable vaults'},
-      {icon: UnifyIcon, slug:'Unify disparate Web3 and Web2 systems under a single, cryptographic control layer'},
+      { icon: GearIcon, slug: 'Automate cross-chain liquidity' },
+      { icon: VaultIcon, slug: 'Build secure, programmable vaults' },
+      {
+        icon: UnifyIcon,
+        slug: 'Unify disparate Web3 and Web2 systems under a single, cryptographic control layer',
+      },
     ],
+    image: interoperabilityAnim,
     link: ENCRYPTION_LINK,
     cta: 'Build with Lit Actions',
     imageRight: false,
@@ -59,9 +68,12 @@ const features = [
     paragraph:
       'Build applications where private data lives on the open web but remains verifiably under user control.',
     features: [
-      {icon: LockIcon, slug:'Define exactly who can decrypt based on dynamic conditions'},
-      {icon: BuildIcon, slug:'Build user owned data and data marketplaces'},
-      {icon: HandKeyIcon, slug:'Put users in control'},
+      {
+        icon: LockIcon,
+        slug: 'Define exactly who can decrypt based on dynamic conditions',
+      },
+      { icon: BuildIcon, slug: 'Build user owned data and data marketplaces' },
+      { icon: HandKeyIcon, slug: 'Put users in control' },
     ],
     link: LIT_ACTIONS_LINK,
     cta: 'Build with Encryption',
@@ -81,11 +93,7 @@ const LandingProduct2 = () => {
           flexDirection: 'column',
         }}
       >
-        {mobile ? (
-          <ProductMobile features={features} />
-        ) : (
-          <ProductDesktop features={features} />
-        )}
+        <ProductDesktop features={features} />
       </Container>
     </div>
   );

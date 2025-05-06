@@ -24,7 +24,7 @@ const data = [
     icon: BuildIcon,
     title: 'Scalability',
     detail:
-      'Deploy applications confidently on a globally distributed network. Lit Protocol\'s infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.',
+      "Deploy applications confidently on a globally distributed network. Lit Protocol's infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.",
     image: '/images/litnetwork2.png',
   },
   {
@@ -32,7 +32,7 @@ const data = [
     icon: HandKeyIcon,
     title: 'Orchestrate Any Secret',
     detail:
-      'Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol\'s programmable signing and encryption let you securely automate interactions across every environment.',
+      "Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol's programmable signing and encryption let you securely automate interactions across every environment.",
     image: '/images/litnetwork3.png',
   },
 ];
@@ -90,7 +90,7 @@ const LitNetwork = () => {
     <div className="bg-coal-950 text-white py-24 px-1">
       <Container
         size="lg"
-        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem]"
+        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem] max-h-[76.8rem] md:max-h-none overflow-y-auto"
       >
         <Group className="flex-col !items-start !gap-24 justify-center mb-8">
           <Title
@@ -100,75 +100,18 @@ const LitNetwork = () => {
             The Lit Network
           </Title>
           <Group>
-            {!isDesktop ? (
-              // Mobile view (default)
-              <Tabs
-                value={activeTab}
-                onChange={val => val && setActiveTab(val)}
-                classNames={{
-                  list: 'flex w-full p-0 m-1 before:!hidden',
-                  root: 'w-full overflow-visible',
-                  tab: '!text-pearl-500 data-[active]:!text-periwinkle-500 hover:!bg-pewter-gray-500/50 !rounded-none',
-                }}
-              >
-                <Tabs.List className="flex w-full p-0 m-0">
-                  {data.map((tab, index) => (
-                    <div
-                      key={tab.value}
-                      className="flex-1"
-                      style={{
-                        width: `${100 / data.length}%`,
-                        maxWidth: `${100 / data.length}%`,
-                        padding: '0 4px',
-                      }}
-                    >
-                      <NetworkCardMobile
-                        {...tab}
-                        activeTab={activeTab}
-                        setActiveTab={val => {
-                          setActiveTab(val);
-                          const index = data.findIndex(
-                            item => item.value === val
-                          );
-                          if (index !== -1) {
-                            setSelectedIndex(index);
-                          }
-                          setProgress(0);
-                          setImageError(false);
-                        }}
-                        progress={activeTab === tab.value ? progress : 0}
-                        tabsRef={tabsRef}
-                      />
-                    </div>
-                  ))}
-                </Tabs.List>
-                {data.map(tab => (
-                  <Tabs.Panel key={tab.value} value={tab.value}>
-                    <Box
-                      style={{
-                        minHeight: '200px',
-                      }}
-                    >
-                      {tab.detail}
-                    </Box>
-                  </Tabs.Panel>
-                ))}
-              </Tabs>
-            ) : (
-              // Desktop view (only for larger screens)
-              data.map((card, index) => (
-                <NetworkCardDesktop
-                  key={card.value}
-                  {...card}
-                  isSelected={index === selectedIndex}
-                  onClick={() => handleCardClick(index)}
-                />
-              ))
-            )}
+            {data.map((card, index) => (
+              <NetworkCardDesktop
+                key={card.value}
+                {...card}
+                isSelected={index === selectedIndex}
+                onClick={() => handleCardClick(index)}
+              />
+            ))}
           </Group>
         </Group>
         {data[selectedIndex]?.image && !imageError ? (
-          <div className="flex-1 flex justify-center items-center max-w-[600px] py-[6.25rem]">
+          <div className="flex-1 flex justify-center items-center max-w-[600px] md:py-[6.25rem]">
             <div className="relative w-[550px] h-[550px]">
               <Image
                 src={data[selectedIndex].image}
@@ -181,9 +124,7 @@ const LitNetwork = () => {
             </div>
           </div>
         ) : (
-          <div
-            className="flex-1 flex justify-center items-center rounded-md bg-gray-200 w-full max-w-[600px] h-[600px]"
-          >
+          <div className="flex-1 flex justify-center items-center rounded-md bg-gray-200 w-full max-w-[600px] h-[600px]">
             <IconPhoto size={48} color="#adb5bd" />
             {imageError && (
               <p className="text-gray-500 absolute">Failed to load image</p>

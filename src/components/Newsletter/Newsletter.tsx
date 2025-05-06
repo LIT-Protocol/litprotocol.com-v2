@@ -53,15 +53,14 @@ function Newsletter() {
       className="!bg-slate-blue-500/75 flex w-full p-0"
     >
       <Text
-        size="3.25rem"
-        className="text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
+        className="!text-[2.25rem] md:!text-[3.25rem] text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
       >
         Be the first to know
       </Text>
 
       <Group className="!flex !flex-col md:!flex-row !gap-0 w-full items-center !justify-center">
         {/* Text Section */}
-        <Text className="!py-6 !px-8 text-center md:text-left md:w-1/2 flex items-center justify-center">
+        <Text className="!py-6 !px-[5rem] md:!px-6 text-center md:text-left md:w-1/2 flex items-center justify-center">
           Sign up for our newsletter for updates on all things Lit.
         </Text>
 

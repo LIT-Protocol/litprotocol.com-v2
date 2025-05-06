@@ -1,6 +1,7 @@
 import { Card, Group, Text, Title } from '@mantine/core';
 import { IconArrowRight, IconPhoto } from '@tabler/icons-react';
 import { Button } from '../ui/Button';
+import Lottie from 'lottie-react';
 
 interface FeatureItem {
   slug: string;
@@ -15,7 +16,7 @@ interface ProductProps {
     paragraph: string;
     features: FeatureItem[];
     link: string;
-    image?: string;
+    image?: object;
     cta: string;
     imageRight: boolean;
   }[];
@@ -41,20 +42,16 @@ function ProductDesktop({ features }: ProductProps) {
           <div className="flex h-full gap-[5.5rem] w-full">
             {/* Image container - always 50% width regardless of position */}
             <div
-              className={`w-1/2 h-full flex items-center justify-center ${
+              className={`w-auto h-full flex items-center justify-center ${
                 feature.imageRight ? 'order-last' : 'order-first'
               }`}
               style={{
                 backgroundColor: '#f1f3f5',
-                borderRadius: '8px',
+                borderRadius: '10px',
               }}
             >
               {feature.image ? (
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover"
-                />
+                <Lottie animationData={feature.image} loop={true} />
               ) : (
                 <IconPhoto size={48} color="#adb5bd" />
               )}
@@ -69,10 +66,17 @@ function ProductDesktop({ features }: ProductProps) {
                   alignItems: 'flex-start',
                 }}
               >
-                <Text style={{padding: '.28rem .5rem'}} className='bg-lit-orange rounded-sm'>{feature.title}</Text>
+                <Text
+                  style={{ padding: '.28rem .5rem' }}
+                  className="bg-lit-orange rounded-sm"
+                >
+                  {feature.title}
+                </Text>
                 <Title size="2rem">{feature.heading}</Title>
               </Group>
-              <Text size="lg" className="mt-3 text-gray-300">{feature.paragraph}</Text>
+              <Text size="lg" className="mt-3 text-gray-300">
+                {feature.paragraph}
+              </Text>
 
               {/* Feature items list */}
               <ul className="mt-6 space-y-6">
