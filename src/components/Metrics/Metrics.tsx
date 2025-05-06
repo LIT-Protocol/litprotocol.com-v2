@@ -109,7 +109,7 @@ const Metrics = () => {
           >
             Securing the Decentralized World
           </Title>
-          <Group className="flex !text-left items-start justify-center w-1/2 !gap-[4rem] !flex-col">
+          <Group className="flex !text-left mt-16 items-start justify-center md:w-1/2 !gap-[4rem] !flex-col">
             {(loading ? defaultData : metrics).map((item, index) => (
               <NumberItem
                 key={item.id}

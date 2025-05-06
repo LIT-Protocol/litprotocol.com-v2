@@ -32,33 +32,17 @@ function ProductDesktop({ features }: ProductProps) {
           radius="md"
           style={{
             background: 'transparent',
-            height: '37.875rem',
             margin: '5rem 0',
             justifyContent: 'center',
           }}
-          className="h-[650px] w-full flex overflow-hidden !p-0 !text-white"
+          className="w-full flex overflow-hidden !p-0 !text-white md:h-[650px]"
         >
-          {/* Use flex order to control image position */}
-          <div className="flex h-full gap-[5.5rem] w-full">
-            {/* Image container - always 50% width regardless of position */}
-            <div
-              className={`w-auto h-full flex items-center justify-center ${
-                feature.imageRight ? 'order-last' : 'order-first'
-              }`}
-              style={{
-                backgroundColor: '#f1f3f5',
-                borderRadius: '10px',
-              }}
-            >
-              {feature.image ? (
-                <Lottie animationData={feature.image} loop={true} />
-              ) : (
-                <IconPhoto size={48} color="#adb5bd" />
-              )}
-            </div>
-
-            {/* Content container - always 50% width */}
-            <div className="w-1/2 py-[1.75rem] gap-[2.5rem] max-w-[28.75rem] flex flex-col">
+          {/* Main container with responsive flex direction */}
+          <div className={`flex w-full flex-col md:flex-row md:gap-[5.5rem] ${
+            feature.imageRight ? '' : 'md:flex-row-reverse'
+          }`}>
+            {/* Content container - always first on mobile */}
+            <div className="w-full py-4 md:py-[1.75rem] md:w-1/2 gap-4 md:gap-[2.5rem] flex flex-col md:max-w-[28.75rem] order-first">
               <Group
                 style={{
                   gap: '1.5rem',
@@ -79,11 +63,11 @@ function ProductDesktop({ features }: ProductProps) {
               </Text>
 
               {/* Feature items list */}
-              <ul className="mt-6 space-y-6">
+              <ul className="mt-4 md:mt-6 space-y-4 md:space-y-6">
                 {feature.features.map(featureItem => (
                   <li key={featureItem.slug} className="flex items-start gap-3">
-                    <featureItem.icon className="h-8 w-8 text-blue-400 flex-shrink-0" />
-                    <span className="text-lg capitalize">
+                    <featureItem.icon className="h-6 w-6 md:h-8 md:w-8 text-blue-400 flex-shrink-0" />
+                    <span className="text-base md:text-lg capitalize">
                       {featureItem.slug}
                     </span>
                   </li>
@@ -96,10 +80,20 @@ function ProductDesktop({ features }: ProductProps) {
                 rightIcon={<IconArrowRight stroke={2} />}
                 variant="outline"
                 href={feature.link}
-                className="mt-auto"
+                className="mt-4 md:mt-auto"
               >
                 {feature.cta}
               </Button>
+            </div>
+
+            {/* Image container - always below on mobile */}
+            <div className="w-full min-h-[31.125rem] md:max-h-[37.875] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last"
+            >
+              {feature.image ? (
+                <Lottie animationData={feature.image} loop={true} />
+              ) : (
+                <IconPhoto size={48} color="#adb5bd" />
+              )}
             </div>
           </div>
         </Card>

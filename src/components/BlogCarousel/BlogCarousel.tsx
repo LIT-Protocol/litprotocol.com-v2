@@ -45,7 +45,7 @@ const fallbackPosts: ArticleProps[] = [
     slug: 'the-global-computer-and-evolution-of-key-management',
     image: GlobalImg.src,
     subtext:
-      'For thousands of years in free societies, it\'s been understood that our world is molded by the infrastructure we create. The resulting conversations have largely centered around the policy decisions and acts of authorities.',
+      "For thousands of years in free societies, it's been understood that our world is molded by the infrastructure we create. The resulting conversations have largely centered around the policy decisions and acts of authorities.",
     alt: 'Futuristic',
   },
   {
@@ -71,7 +71,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="w-full my-auto h-full md:h-[22rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] rounded-md"
+      className="w-full my-auto h-full md:h-[22rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
     >
       <Group
         wrap="nowrap"
@@ -91,8 +91,13 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
             />
           </div>
         )}
-        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] h-[13.5rem] items-center !md:w-full py-1">
-          <Title lineClamp={2} order={3} size="1.25rem" m="sm">
+        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] md:h-[13.5rem] h-[14rem] items-center !md:w-full py-1 px-12">
+          <Title
+            lineClamp={2}
+            order={3}
+            className="!text-[1.5rem] md:!text-[1.25rem]"
+            m="sm"
+          >
             {title}
           </Title>
           <Text lineClamp={3} mb="md">
@@ -113,7 +118,10 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
 
 export function BlogCarousel() {
   const [posts, setPosts] = useState<ArticleProps[]>(fallbackPosts);
-  const autoplayPlugin = Autoplay({ delay: 2000, stopOnInteraction: false }) as any;
+  const autoplayPlugin = Autoplay({
+    delay: 2000,
+    stopOnInteraction: false,
+  }) as any;
 
   useEffect(() => {
     async function fetchArticles() {

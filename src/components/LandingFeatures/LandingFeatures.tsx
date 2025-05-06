@@ -17,8 +17,8 @@ import LockIcon from './assets/LockIcon';
 import VaultIcon from './assets/VaultIcon';
 import HandKeyIcon from '../icons/HandKeyIcon';
 import UniversalIcon from './assets/UniversalIcon';
-// import agentWalletAnim from '@/public/lottie/agent-wallet.json';
-import interoperabilityAnim from '@/animations/interoperability.json'
+import agentWalletAnim from '@/animations/agent-wallet.json';
+import interoperabilityAnim from '@/animations/interoperability.json';
 // import userDataAnim from '@/public/lottie/user-data.json';
 
 // need to add images
@@ -38,6 +38,7 @@ const features = [
       { icon: ApproveIcon, slug: 'user authorization' },
       { icon: ToolsIcon, slug: 'On-chain, open source tools' },
     ],
+    image: agentWalletAnim,
     link: LIT_WALLET_LINK,
     cta: 'Create Agent Wallets',
     imageRight: true,
