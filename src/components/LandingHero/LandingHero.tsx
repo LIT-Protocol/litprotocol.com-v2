@@ -271,7 +271,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
               </Text>
             </div>
             <Text
-              className="!text-off-white max-w-[800px] !text-[1.15rem] text-center"
+              className="!text-off-white w-[80%] md:w-full max-w-[800px] !text-[1.15rem] text-center"
               mb={32}
             >
               Lit Protocol is the decentralized network for managing keys and

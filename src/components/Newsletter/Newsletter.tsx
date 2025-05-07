@@ -6,11 +6,7 @@ import { useForm } from '@mantine/form';
 import { useState } from 'react';
 
 function Newsletter() {
-  const form = useForm({ mode: 'uncontrolled' });
-
-  // const handleSubscribe = (values: typeof form.values) => {
-  //   console.log(values);
-  // };
+  // const form = useForm({ mode: 'uncontrolled' });
 
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,13 +44,11 @@ function Newsletter() {
 
   return (
     <Card
-    radius="md"
+      radius="md"
       style={{ color: 'white', width: '100%', padding: '0' }}
       className="!bg-slate-blue-500/75 flex w-full p-0"
     >
-      <Text
-        className="!text-[2.25rem] md:!text-[3.25rem] text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent"
-      >
+      <Text className="!text-[2.25rem] md:!text-[3.25rem] text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent">
         Be the first to know
       </Text>
 
@@ -65,7 +59,10 @@ function Newsletter() {
         </Text>
 
         {/* Input, Button, Text Group */}
-        <Group style={{ padding: '2.375rem 2.5rem 1rem'}} className="md:!border-l !border-pewter-gray-500/50 !border-t md:!border-t-0 md:w-1/2 flex flex-col items-center !justify-center relative !pt-[2.375rem] !px-4 lg:!px-8 !gap-1">
+        <Group
+          style={{ padding: '2.375rem 2.5rem 1.5rem' }}
+          className="md:!border-l !border-pewter-gray-500/50 !border-t md:!border-t-0 md:w-1/2 flex flex-col items-center !justify-center relative !pt-[2rem] md:!pt-[2.375rem] md:!pb-[1rem] !px-4 lg:!px-8 !gap-1"
+        >
           {message && message.length > 0 ? (
             <div className="">
               <p>{message}</p>

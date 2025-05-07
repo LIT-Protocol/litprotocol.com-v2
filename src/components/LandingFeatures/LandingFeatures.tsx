@@ -19,7 +19,7 @@ import HandKeyIcon from '../icons/HandKeyIcon';
 import UniversalIcon from './assets/UniversalIcon';
 import agentWalletAnim from '@/animations/agent-wallet.json';
 import interoperabilityAnim from '@/animations/interoperability.json';
-// import userDataAnim from '@/public/lottie/user-data.json';
+import userDataAnim from '@/animations/user-data.json';
 
 // need to add images
 
@@ -76,6 +76,7 @@ const features = [
       { icon: BuildIcon, slug: 'Build user owned data and data marketplaces' },
       { icon: HandKeyIcon, slug: 'Put users in control' },
     ],
+    image: userDataAnim,
     link: LIT_ACTIONS_LINK,
     cta: 'Build with Encryption',
     imageRight: true,
