@@ -87,7 +87,7 @@ function ProductDesktop({ features }: ProductProps) {
             </div>
 
             {/* Image container - always below on mobile */}
-            <div className="w-full min-h-[31.125rem] md:max-h-[37.875] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last"
+            <div className="w-full min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last m-0"
             >
               {feature.image ? (
                 <Lottie animationData={feature.image} loop={true} />

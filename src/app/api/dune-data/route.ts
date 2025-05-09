@@ -41,9 +41,9 @@ export async function GET(request: Request) {
     // Check if result or result.result is undefined
     if (!result || !result.result || !result.result.rows) {
       return NextResponse.json({ 
-        totalValue: "$0M+", 
-        totalVolume: "$0M+", 
-        totalDataPoints: "0M+" 
+        totalValue: "$50M+", 
+        totalVolume: "$154M+", 
+        totalDataPoints: "1M+" 
       });
     }
     
@@ -52,14 +52,16 @@ export async function GET(request: Request) {
     
     if (!rows || rows.length === 0) {
       return NextResponse.json({ 
-        totalValue: "$0M+", 
-        totalVolume: "$0M+", 
-        totalDataPoints: "0M+" 
+        totalValue: "$50M+", 
+        totalVolume: "$154M+", 
+        totalDataPoints: "1M+" 
       });
     }
     
     // Since we know we have a single row with multiple columns, get the first row
     const row = rows[0];
+
+    console.log(row, rows)
     
     // Initialize our response object with the mapped fields
     const rawMetrics: Record<string, number | null> = {};
