@@ -13,7 +13,7 @@ import {
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
-import LandingCta2 from '../LandingCta/LandingCta2';
+import LandingCta2 from '../LandingCta/LandingCta';
 import { Container } from '@mantine/core';
 
 const Footer = () => {

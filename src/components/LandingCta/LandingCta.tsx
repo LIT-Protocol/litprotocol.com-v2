@@ -1,125 +1,92 @@
-import { DISCORD_LINK, DOCS_LINK, WHITEPAPER_LINK } from '@/utils/constants';
-import styles from './landing-cta.module.scss';
-import SubscribeForm from '../SubscribeForm/SubscribeForm';
-import DocsImg from './assets/docs.png';
-import CommunityImg from './assets/community.png';
-import Dots from './assets/dots.svg';
-import Image from 'next/image';
+import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
+import { Card, Container, Group, Text, Title } from '@mantine/core';
+import React from 'react';
+import Newsletter from '../Newsletter/Newsletter';
+import DocsIcon from './assets/DocsIcon';
+import BlogIcon from './assets/BlogIcon';
+import DiscordIcon from '../icons/DiscordIcon';
 
-const LandingCta = () => {
+interface CtaLinkProps {
+  icon: React.FC<any>;
+  name: React.ReactNode;
+  context: React.ReactNode;
+  onClick: () => void;
+}
+
+const ctas = [
+  {
+    icon: DocsIcon,
+    name: 'Docs',
+    context:
+      'Go from 0 to 1 with our developer docs and ready-to-use examples.',
+    link: DOCS_LINK,
+  },
+  {
+    icon: BlogIcon,
+    name: 'Blog',
+    context: 'Read the latest news.',
+    link: SPARK_LINK,
+  },
+  {
+    icon: DiscordIcon,
+    name: 'Discord',
+    context: 'Connect with other builders, and help shape the future of Lit.',
+    link: DISCORD_LINK,
+  },
+];
+function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
   return (
-    <section className={styles.section}>
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <h3 className={styles.title}>
-            Let&rsquo;s Build the <span className={styles.emphasis}>User-Owned</span>{' '}
-            Web, Together
-          </h3>
-          <p className={styles.subtitle}>
-            Lit and ecosystem partners are building the next generation of identity and machine intelligence protocols and applications, all running on the open web.
-          </p>
-          <a
-            href={DOCS_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['cta-btn']}
-          >
-            Get started
-          </a>
-        </div>
-        <div className={styles.grid}>
-          <div className={`${styles.card} ${styles['card--dark']}`}>
-            <Image
-              src={DocsImg}
-              alt="Claim wallet component on a grid background"
-              className={styles.card__img}
-            />
-            <div className={styles.card__content}>
-              <h4 className={styles.card__title}>Dive into our resources</h4>
-              <p className={styles.card__description}>
-                Go from 0 to 1 with our developer docs and ready-to-use
-                examples.
-              </p>
-              <a
-                href={DOCS_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.card__link}
-              >
-                Start building{' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className={styles['card__link__icon']}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-          <div className={`${styles.card} ${styles['card--light']}`}>
-            <Image
-              src={CommunityImg}
-              alt="Avatars on a globe background"
-              className={styles.card__img}
-            />
-            <div className={styles.card__content}>
-              <h4 className={styles.card__title}>Join the ecosystem</h4>
-              <p className={styles.card__description}>
-                Connect with other builders, and help shape the future of Lit.
-              </p>
-              <a
-                href={DISCORD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.card__link}
-              >
-                Join our Discord{' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className={styles['card__link__icon']}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-          <div
-            id="subscribe"
-            className={`${styles.card} ${styles['card--full']} ${styles['card--primary']}`}
-            style={{
-              backgroundImage: `url(${Dots.src})`,
-              backgroundRepeat: 'repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-          >
-            <div className={styles.card__content}>
-              <h4 className={styles.card__title}>
-                Sign up for our newsletter for updates on all things Lit
-              </h4>
-              <SubscribeForm />
-            </div>
-          </div>
-        </div>
+    <Card
+      onClick={onClick}
+      radius="md"
+      style={{ cursor: 'pointer', color: 'white', padding: '1.5rem' }}
+      className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
+    >
+      <div className="h-[2rem] flex items-center justify-center">
+        <Icon className="!h-full max-w-[2rem] w-full" stroke={2} />
       </div>
-    </section>
+      <Text size="lg" fw={700}>
+        {name}
+      </Text>
+      <Text size="sm">{context}</Text>
+    </Card>
+  );
+}
+
+const LandingCta2 = () => {
+  const handleClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+  const ctaLinks = ctas.map((cta, index) => (
+    <CtaLink key={index} {...cta} onClick={() => handleClick(cta.link)} />
+  ));
+
+  return (
+    <div className="pt-[4rem] pb-[10rem]">
+      <Container size="lg">
+        <Group
+          style={{ gap: '1.5rem' }}
+          className="text-white flex flex-col text-left items-start mb-[2rem] w-[80%] md:w-[60%]"
+        >
+          <Title size="2rem" className="w-[70%] md:w-full">
+            Learn, connect, & collaborate.
+          </Title>
+          <Text>
+            Lit and ecosystem partners are building the next generation of
+            identity and machine intelligence protocols and applications, all
+            running on the open web.
+          </Text>
+        </Group>
+        <Group
+          style={{ gap: '1.5rem' }}
+          className="flex flex-wrap mb-[1.875rem] md:!flex-nowrap"
+        >
+          {ctaLinks}
+        </Group>
+        <Newsletter />
+      </Container>
+    </div>
   );
 };
 
-export default LandingCta;
+export default LandingCta2;

@@ -154,7 +154,7 @@ export function BlogCarousel() {
       nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
       previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
       classNames={{
-        root: 'relative w-[90%] pb-12 !md:pb-[5.6rem] mb-[4rem]',
+        root: 'relative w-[90%] mx-auto pb-12 !md:pb-[5.6rem] mb-[4rem]',
         controls:
           'absolute w-full md:w-[118%] md:transform md:-translate-x-[7.6%] -translate-y-2/3 flex justify-between z-10 pointer-events-none',
         control:

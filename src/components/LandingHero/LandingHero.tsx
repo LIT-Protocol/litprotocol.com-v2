@@ -66,6 +66,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       window.removeEventListener('resize', updateContainerWidth);
     };
   }, []);
+
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -74,21 +75,33 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
     const itemElements: ItemElement[] = Array.from(
       scrollContainer.children
     ) as ItemElement[];
-    const itemHeight: number = itemElements[0].offsetHeight;
+    
+    // Skip the duplicate item at the end when calculating
+    const actualItems = itemElements.slice(0, heroList.length);
+    
+    const itemHeight: number = actualItems[0].offsetHeight;
     const totalItems: number = heroList.length;
 
+    // Calculate responsive margin based on viewport width
+    // Using percentage of item height instead of fixed pixels
+    const marginPercentage = containerWidth < 768 ? 0.2 : 0.25; // 20% for mobile, 25% for desktop
+    const marginValue = `${Math.max(25, itemHeight * marginPercentage)}px`;
+
     // Add margin to each item for better spacing
-    itemElements.forEach((item: ItemElement) => {
-      item.style.marginBottom = '45px'; // Adjust spacing between items
-      // Set initial style - ensuring it's dull white instead of black
-      item.style.color = 'rgba(255, 255, 255, 0.3)'; // Dull white color
-      // Match the same easing used in the background glow animation
+    actualItems.forEach((item: ItemElement) => {
+      item.style.marginBottom = marginValue;
+      // Set initial style to ensure first item is visible on load
+      item.style.color = 'rgba(255, 255, 255, 0.3)'; // Default dull white
       item.style.transition =
         'color 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease-out';
     });
 
-    // Recalculate total height with spacing
-    const itemTotalHeight: number = itemHeight + 45; // Height + margin
+    // Make first item active immediately
+    actualItems[0].style.color = 'rgba(255, 255, 255, 1)';
+    actualItems[0].style.opacity = '1';
+
+    // Recalculate total height with dynamic spacing
+    const itemTotalHeight: number = itemHeight + parseFloat(marginValue);
     const viewportHeight: number = scrollContainer.parentElement!.offsetHeight;
 
     // Animation state variables
@@ -144,7 +157,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       transitionProgress: number,
       currentItemIndex: number
     ): void => {
-      itemElements.forEach((item: ItemElement, index: number) => {
+      actualItems.forEach((item: ItemElement, index: number) => {
         const itemPos = index * settings.itemTotalHeight;
         const relativePos = itemPos - currentPos;
 
@@ -192,80 +205,86 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       });
     };
 
-    // Setting up the animation with pause and bounce effect
-    const animateScroll = (timestamp: number): void => {
-      if (!startTime) startTime = timestamp;
-      let elapsed = (timestamp - startTime) % settings.fullCycleDuration;
+    // Add a small delay before starting animation to ensure first item is visible
+    setTimeout(() => {
+      // Setting up the animation with pause and bounce effect
+      const animateScroll = (timestamp: number): void => {
+        if (!startTime) startTime = timestamp;
+        let elapsed = (timestamp - startTime) % settings.fullCycleDuration;
 
-      // Determine which item we should be showing and how far through transition
-      const cyclePosition =
-        elapsed / (settings.pauseDuration + settings.transitionDuration);
-      const currentItemIndex = Math.floor(cyclePosition) % totalItems;
+        // Determine which item we should be showing and how far through transition
+        const cyclePosition =
+          elapsed / (settings.pauseDuration + settings.transitionDuration);
+        const currentItemIndex = Math.floor(cyclePosition) % totalItems;
 
-      // Calculate how far into the current cycle we are (0 to 1)
-      const cycleProgress =
-        (elapsed % (settings.pauseDuration + settings.transitionDuration)) /
-        (settings.pauseDuration + settings.transitionDuration);
+        // Calculate how far into the current cycle we are (0 to 1)
+        const cycleProgress =
+          (elapsed % (settings.pauseDuration + settings.transitionDuration)) /
+          (settings.pauseDuration + settings.transitionDuration);
 
-      // Calculate transition progress only during transition phase
-      const transitionProgress = Math.max(
-        0,
-        Math.min(
-          1,
-          (cycleProgress *
-            (settings.pauseDuration + settings.transitionDuration) -
-            settings.pauseDuration) /
-            settings.transitionDuration
-        )
-      );
+        // Calculate transition progress only during transition phase
+        const transitionProgress = Math.max(
+          0,
+          Math.min(
+            1,
+            (cycleProgress *
+              (settings.pauseDuration + settings.transitionDuration) -
+              settings.pauseDuration) /
+              settings.transitionDuration
+          )
+        );
 
-      // Position without bounce (base position during pause)
-      let basePosition = currentItemIndex * settings.itemTotalHeight;
+        // Position without bounce (base position during pause)
+        let basePosition = currentItemIndex * settings.itemTotalHeight;
 
-      // Apply transition with bounce effect
-      if (transitionProgress > 0) {
-        // Use predominantly the single bounce with a touch of easeOutBack
-        const easeValue =
-          0.8 * singleBounceOut(transitionProgress) +
-          0.2 * easeOutBack(transitionProgress);
+        // Apply transition with bounce effect
+        if (transitionProgress > 0) {
+          // Use predominantly the single bounce with a touch of easeOutBack
+          const easeValue =
+            0.8 * singleBounceOut(transitionProgress) +
+            0.2 * easeOutBack(transitionProgress);
 
-        // Calculate position with enhanced bounce
-        const additionalOffset = easeValue * settings.itemTotalHeight;
-        basePosition += additionalOffset;
-      }
+          // Calculate position with enhanced bounce
+          const additionalOffset = easeValue * settings.itemTotalHeight;
+          basePosition += additionalOffset;
+        }
 
-      // Special handling for loop transition (when last item transitions to first)
-      if (currentItemIndex === totalItems - 1 && transitionProgress > 0) {
-        // Apply smoother loop transition by pre-positioning first item
-        itemElements[0].style.transform = `translateY(${
-          settings.itemTotalHeight * totalItems
-        }px)`;
-      } else {
-        // Reset first item position when not in loop transition
-        itemElements[0].style.transform = '';
-      }
+        // Special handling for loop transition (when last item transitions to first)
+        if (currentItemIndex === totalItems - 1 && transitionProgress > 0) {
+          // Apply smoother loop transition by pre-positioning first item
+          itemElements[0].style.transform = `translateY(${
+            settings.itemTotalHeight * totalItems
+          }px)`;
+        } else {
+          // Reset first item position when not in loop transition
+          itemElements[0].style.transform = '';
+        }
 
-      // Apply the transform
-      scrollContainer.style.transform = `translateY(-${basePosition}px)`;
+        // Apply the transform
+        scrollContainer.style.transform = `translateY(-${basePosition}px)`;
 
-      // Update opacity and color of each item
-      updateItemOpacity(basePosition, transitionProgress, currentItemIndex);
+        // Update opacity and color of each item
+        updateItemOpacity(basePosition, transitionProgress, currentItemIndex);
+
+        animationFrame = requestAnimationFrame(animateScroll);
+      };
 
       animationFrame = requestAnimationFrame(animateScroll);
-    };
-
-    animationFrame = requestAnimationFrame(animateScroll);
+    }, 100); // Small delay to ensure first item is visible
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
       // Reset styles when unmounting
-      itemElements.forEach((item: ItemElement) => {
+      actualItems.forEach((item: ItemElement) => {
         item.style.transform = '';
         item.style.opacity = '1';
         item.style.color = '';
+        item.style.marginBottom = '';
       });
     };
-  }, [heroList.length]);
+  }, [heroList.length, containerWidth]); // Add containerWidth dependency
 
   // Calculate dynamic width for the scrolling text container based on viewport
   const getScrollContainerWidth = () => {
@@ -277,6 +296,11 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
 
     // Return responsive width
     return containerWidth > 768 ? desktopWidth : mobileWidth;
+  };
+
+  // Calculate responsive margin for scroll items
+  const getScrollItemMargin = () => {
+    return containerWidth < 768 ? '1rem' : '1.5rem';
   };
 
   return (
@@ -318,6 +342,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                     style={{
                       willChange: 'transform', // Optimize for animations
                       height: 'auto', // Ensure content height is respected
+                      transform: 'translateY(0)', // Start at first item
                     }}
                   >
                     {/* Original items with responsive text sizing */}
@@ -327,6 +352,10 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                         className="block !text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
                         style={{
                           willChange: 'opacity, transform, color',
+                          marginBottom: getScrollItemMargin(),
+                          // Make the first item visible immediately
+                          opacity: index === 0 ? 1 : 0.3,
+                          color: index === 0 ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.3)',
                         }}
                       >
                         {item}
@@ -335,7 +364,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                     {/* Duplicate first item to help with seamless looping */}
                     <span
                       key="item-duplicate-first"
-                      className="block !text-[3.5rem] md:!text-[5.875rem]/[6.46rem]"
+                      className="block !text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
                       style={{
                         willChange: 'opacity, transform, color',
                         position: 'absolute',
@@ -343,6 +372,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                         left: 0,
                         width: '100%',
                         color: 'rgba(255, 255, 255, 0.3)',
+                        opacity: 0, // Hide initially
                       }}
                     >
                       {heroList[0]}
