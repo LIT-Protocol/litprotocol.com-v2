@@ -6,7 +6,8 @@ import { IconArrowNarrowRight } from '@tabler/icons-react';
 import LandingPartners from '../LandingPartners/LandingPartners';
 import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 import { Button } from '../ui/Button';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import HeroBackgroundGlow from './HeroBackgroundGlow';
 
 // Type definitions
 type HeroItem = string;
@@ -36,7 +37,35 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
     'Vaults.',
   ];
   const scrollRef: ScrollContainerRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const [contentVisible, setContentVisible] = useState(false);
+  // Add state to track container width for responsive adjustments
+  const [containerWidth, setContainerWidth] = useState(0);
 
+  // Effect to handle the immediate opacity animation for all elements
+  useEffect(() => {
+    // Set content visible immediately on mount
+    setContentVisible(true);
+  }, []);
+
+  // Add effect to update container width on resize
+  useEffect(() => {
+    const updateContainerWidth = () => {
+      if (heroContentRef.current) {
+        setContainerWidth(heroContentRef.current.offsetWidth);
+      }
+    };
+
+    // Initial width measurement
+    updateContainerWidth();
+
+    // Add resize listener
+    window.addEventListener('resize', updateContainerWidth);
+
+    return () => {
+      window.removeEventListener('resize', updateContainerWidth);
+    };
+  }, []);
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -51,6 +80,11 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
     // Add margin to each item for better spacing
     itemElements.forEach((item: ItemElement) => {
       item.style.marginBottom = '45px'; // Adjust spacing between items
+      // Set initial style - ensuring it's dull white instead of black
+      item.style.color = 'rgba(255, 255, 255, 0.3)'; // Dull white color
+      // Match the same easing used in the background glow animation
+      item.style.transition =
+        'color 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease-out';
     });
 
     // Recalculate total height with spacing
@@ -91,6 +125,19 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       }
     };
 
+    // Function to update the active item's color without glow
+    const updateActiveItemColor = (
+      itemElement: ItemElement,
+      isActive: boolean
+    ): void => {
+      // Only apply full color to the active item
+      if (isActive) {
+        itemElement.style.color = 'rgba(255, 255, 255, 1)'; // Full white for active item
+      } else {
+        itemElement.style.color = 'rgba(255, 255, 255, 0.3)'; // Dull white for inactive items
+      }
+    };
+
     // Function to update opacity based on position
     const updateItemOpacity = (
       currentPos: number,
@@ -101,9 +148,10 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
         const itemPos = index * settings.itemTotalHeight;
         const relativePos = itemPos - currentPos;
 
-        // For the current active item, always maintain full opacity
+        // For the current active item, maintain full opacity and apply active styling
         if (index === currentItemIndex) {
           item.style.opacity = '1';
+          updateActiveItemColor(item, true);
           return;
         }
 
@@ -113,6 +161,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
           transitionProgress > 0
         ) {
           item.style.opacity = Math.min(1, transitionProgress).toString();
+          updateActiveItemColor(item, false);
           return;
         }
 
@@ -139,6 +188,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
         }
 
         item.style.opacity = Math.max(0, Math.min(1, opacity)).toString();
+        updateActiveItemColor(item, false);
       });
     };
 
@@ -198,7 +248,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       // Apply the transform
       scrollContainer.style.transform = `translateY(-${basePosition}px)`;
 
-      // Update opacity of each item
+      // Update opacity and color of each item
       updateItemOpacity(basePosition, transitionProgress, currentItemIndex);
 
       animationFrame = requestAnimationFrame(animateScroll);
@@ -212,67 +262,102 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       itemElements.forEach((item: ItemElement) => {
         item.style.transform = '';
         item.style.opacity = '1';
+        item.style.color = '';
       });
     };
   }, [heroList.length]);
 
+  // Calculate dynamic width for the scrolling text container based on viewport
+  const getScrollContainerWidth = () => {
+    // Default width for mobile
+    const mobileWidth = Math.min(containerWidth * 0.9, 320);
+
+    // Width for larger screens
+    const desktopWidth = Math.min(containerWidth * 0.8, 520);
+
+    // Return responsive width
+    return containerWidth > 768 ? desktopWidth : mobileWidth;
+  };
+
   return (
     <div className="bg-gradient-to-b from-blue-950 to-coal-950">
+      <HeroBackgroundGlow />
       <Container size="md">
         <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center text-center p-4 md:p-0">
-            <div className="text-center mt-[7.8rem] mb-[1.25rem]">
-              <Text className="!text-white !text-[3.5rem] md:!text-[5.875rem]/[6.46rem]">
-                Unlock Autonomy for {/* Scrolling Text Container */}
-                <div
-                  className="inline-block relative overflow-hidden md:h-28 h-24 align-bottom mx-2"
+          <div
+            ref={heroContentRef}
+            className="flex flex-col items-start md:items-center text-center p-4 md:p-0"
+            style={{
+              opacity: contentVisible ? 1 : 0.3,
+              transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+            }}
+          >
+            <div className="z-1 text-left md:text-center mt-[2rem] md:mt-[7.8rem] mb-[1.25rem]">
+              <Text
+                className="!text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
+                style={{
+                  color: contentVisible
+                    ? 'rgba(255, 255, 255, 1)'
+                    : 'rgba(255, 255, 255, 0.3)',
+                  transition: 'color 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              >
+                <span className="inline">Unlock Autonomy for</span>{' '}
+                {/* Scrolling Text Container */}
+                <span
+                  className="inline-block relative overflow-hidden h-16 sm:h-20 md:h-24 lg:h-28 align-bottom mx-0"
                   style={{
-                    width: '520px',
+                    width: getScrollContainerWidth(),
+                    maxWidth: '100%',
                     verticalAlign: 'bottom',
                   }}
                 >
-                  <div
+                  <span
                     ref={scrollRef}
-                    className="absolute top-0 left-0 right-0"
+                    className="absolute top-0 left-0 w-full"
                     style={{
                       willChange: 'transform', // Optimize for animations
+                      height: 'auto', // Ensure content height is respected
                     }}
                   >
-                    {/* Original items with additional duplicate of first item for smooth looping */}
+                    {/* Original items with responsive text sizing */}
                     {heroList.map((item, index) => (
-                      <Text
-                        component="div"
+                      <span
                         key={`item-${index}`}
-                        className="!text-white !text-[3.5rem] md:!text-[5.875rem]/[6.46rem]"
+                        className="block !text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
                         style={{
-                          transition: 'opacity 0.15s ease-out',
-                          willChange: 'opacity, transform',
+                          willChange: 'opacity, transform, color',
                         }}
                       >
                         {item}
-                      </Text>
+                      </span>
                     ))}
                     {/* Duplicate first item to help with seamless looping */}
-                    <Text
+                    <span
                       key="item-duplicate-first"
-                      component="div"
-                      className="!text-white md:!text-[5.875rem]/[6.46rem]"
+                      className="block !text-[3.5rem] md:!text-[5.875rem]/[6.46rem]"
                       style={{
-                        transition: 'opacity 0.3s ease-out',
-                        willChange: 'opacity, transform',
+                        willChange: 'opacity, transform, color',
                         position: 'absolute',
+                        top: 0,
+                        left: 0,
                         width: '100%',
+                        color: 'rgba(255, 255, 255, 0.3)',
                       }}
                     >
                       {heroList[0]}
-                    </Text>
-                  </div>
-                </div>
+                    </span>
+                  </span>
+                </span>
               </Text>
             </div>
             <Text
-              className="!text-off-white w-[80%] md:w-full max-w-[800px] !text-[1.15rem] text-center"
+              className="!text-off-white w-full z-1 md:w-full max-w-[800px] !text-[1.15rem] text-left md:text-center"
               mb={32}
+              style={{
+                opacity: contentVisible ? 1 : 0.3,
+                transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+              }}
             >
               Lit Protocol is the decentralized network for managing keys and
               secrets. Join the builders using programmable signing and
@@ -285,21 +370,46 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                 href={DOCS_LINK}
                 target="_blank"
                 rightIcon={<IconArrowNarrowRight stroke={2} />}
+                style={{
+                  opacity: contentVisible ? 1 : 0.3,
+                  transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
               >
                 Read the Docs
               </Button>
-              <Button variant="outline" href={CONTACT_FORM} target="_blank">
+              <Button
+                variant="outline"
+                href={CONTACT_FORM}
+                target="_blank"
+                style={{
+                  opacity: contentVisible ? 1 : 0.3,
+                  transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              >
                 Get In Touch
               </Button>
             </Group>
           </div>
         </div>
-        <LandingPartners />
+
+        {/* Wrap LandingPartners in a div to control its opacity */}
+        <div
+          style={{
+            opacity: contentVisible ? 1 : 0.3,
+            transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
+          <LandingPartners />
+        </div>
+
+        {/* Wrap BlogCarousel in a div to control its opacity */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            opacity: contentVisible ? 1 : 0.3,
+            transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
           <BlogCarousel />

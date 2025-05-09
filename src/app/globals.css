@@ -49,7 +49,12 @@
   --color-off-white: oklch(97.02% 0 0);
   --color-electric-blue-500: oklch(60.48% 0.217 257.21);
   --color-electric-blue-700: oklch(41.98% 0.144 256.16);
-  --color-cool-gray-500: oklch(73.16% 0.000 0);
+  --color-cool-gray-500: oklch(73.16% 0 0);
+  --color-light-bar-blue: oklch(0.67 0.1768 252.83);
+
+  --glow-color-1: #0f172a; /* blue-950 */
+  --glow-color-2: #1e3a8a66; /* blue-900 with 0.4 alpha */
+  --glow-color-3: #0f172a; /* blue-950 */
 
   /* breakpoints */
   --breakpoint-xs: 36em;
@@ -146,5 +151,14 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
+  }
+
+  .hero-glow-gradient {
+    background: radial-gradient(
+      circle at center,
+      var(--glow-color-1),
+      var(--glow-color-2),
+      var(--glow-color-3)
+    );
   }
 }

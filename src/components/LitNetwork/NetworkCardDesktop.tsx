@@ -10,7 +10,7 @@ interface NetworkCardProps {
   onClick: () => void;
 }
 
-function NetworkCardDesktop({
+function NetworkCard({
   icon: Icon,
   title,
   detail,
@@ -29,7 +29,7 @@ function NetworkCardDesktop({
   return (
     <Card
       radius="md"
-      className="w-[500px] relative transition-all duration-300 ease-in-out"
+      className="w-full md:w-[500px] h-full relative transition-all duration-300 ease-in-out"
       onClick={onClick}
       style={{
         cursor: 'pointer',
@@ -37,27 +37,27 @@ function NetworkCardDesktop({
         boxShadow: isSelected ? '0 4px 12px rgba(0, 0, 0, 0.1)' : 'none',
       }}
     >
-      {/* Card content wrapper with fixed padding to prevent jumping */}
-      <div className="px-10 py-5">
-        <Flex className="gap-10 items-start">
+      {/* Card content wrapper with responsive padding */}
+      <div className="px-6 py-4 lg:px-10 lg:py-5">
+        <Flex className="gap-4 md:gap-10 items-start">
           <div className="flex-none transition-transform duration-300 ease-in-out"
             style={{
               transform: isSelected ? 'scale(1.05)' : 'scale(1)',
             }}>
             <Icon
-              className={`h-9 w-9 transition-all duration-300 ${
+              className={`h-8 w-8 md:h-9 md:w-9 transition-all duration-300 ${
                 isSelected ? '!fill-electric-blue-500' : '!fill-white'
               }`}
             />
           </div>
 
-          {/* Text section with fixed positioning */}
-          <Flex className="flex-col gap-3 flex-1 text-pearl-500">
+          {/* Text section */}
+          <Flex className="flex-col gap-2 md:gap-3 flex-1 text-pearl-500">
             <Text
-              size="xl"
+              size="lg"
               fw={700}
               tt="capitalize"
-              className="transition-all duration-300 ease-in-out"
+              className="transition-all duration-300 ease-in-out md:text-xl"
               style={{
                 transform: isSelected ? 'translateY(-2px)' : 'translateY(0)',
               }}
@@ -65,17 +65,17 @@ function NetworkCardDesktop({
               {title}
             </Text>
             
-            {/* Always render the detail, but control its visibility */}
+            {/* Detail text with responsive sizing */}
             <div
               ref={detailRef}
-              className="transition-all duration-300 ease-in-out overflow-hidden"
+              className="transition-all duration-300 ease-in-out overflow-hidden text-sm md:text-base"
               style={{
                 maxHeight: isSelected ? '200px' : '0',
                 opacity: isSelected ? 1 : 0,
                 marginTop: isSelected ? '0.75rem' : '0',
               }}
             >
-              <Text style={{ lineHeight: '1.68rem' }}>
+              <Text style={{ lineHeight: '1.5rem' }} className="md:leading-[1.68rem]">
                 {detail}
               </Text>
             </div>
@@ -83,7 +83,7 @@ function NetworkCardDesktop({
         </Flex>
       </div>
       
-      {/* Scaling overlay that doesn't affect layout */}
+      {/* Scaling overlay */}
       <div
         className="absolute inset-0 pointer-events-none transition-transform duration-300 ease-in-out"
         style={{
@@ -96,4 +96,4 @@ function NetworkCardDesktop({
   );
 }
 
-export default NetworkCardDesktop;
+export default NetworkCard;

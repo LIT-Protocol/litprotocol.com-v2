@@ -7,7 +7,7 @@ import {
 import { Container } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
-import ProductDesktop from './ProductDesktop';
+import ProductDesktop from './Product';
 import GearIcon from './assets/GearIcon';
 import ToolsIcon from './assets/ToolsIcon';
 import ApproveIcon from './assets/ApproveIcon';

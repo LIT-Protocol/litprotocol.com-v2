@@ -110,7 +110,7 @@ export function HeaderMenu({
   });
 
   return (
-    <header className="top-0 left-0 h-[4.5rem] bg-coal-950">
+    <header className="relative top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
       <Container size="md">
         <div className="flex h-[4.5rem] justify-between items-center">
           <Group gap={4}>

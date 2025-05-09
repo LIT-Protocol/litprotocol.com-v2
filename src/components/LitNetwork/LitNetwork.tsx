@@ -90,12 +90,12 @@ const LitNetwork = () => {
     <div className="bg-coal-950 text-white py-24 px-1">
       <Container
         size="lg"
-        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem] max-h-[76.8rem] md:max-h-none overflow-y-auto"
+        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem] max-h-[82rem] md:max-h-none overflow-y-auto"
       >
         <Group className="flex-col !items-start !gap-24 justify-center mb-8">
           <Title
             style={{ fontSize: '2rem' }}
-            className="w-full flex justify-center mb-8 md:justify-start"
+            className="w-full flex justify-start mb-8"
           >
             The Lit Network
           </Title>
