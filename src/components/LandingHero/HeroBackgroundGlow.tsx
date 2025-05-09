@@ -3,35 +3,21 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 const glowAnimation = {
-    initial: {
-      '--glow-color-1': '#00000000',
-      '--glow-color-2': '#00000000',
-      '--glow-color-3': '#00000000',
-      opacity: 0,
-    } as any,
-    animate: {
-      '--glow-color-1': '#3b82f6',
-      '--glow-color-2': '#1e3a8a66',
-      '--glow-color-3': '#0f172a',
-      opacity: 1,
-      transition: {
-        duration: 1.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    } as any,
-  };
-  
-
-  const barAnimation = {
-    initial: { scaleY: 0 },
-    animate: {
-      scaleY: 1,
-      transition: {
-        duration: 1.2,
-        ease: [0.22, 1, 0.36, 1],
-      },
+  initial: {
+    '--glow-color-1': '#3b82f6',
+    '--glow-color-2': '#1e3a8a66',
+    '--glow-color-3': '#0f172a',
+    opacity: 1,
+  } as any,
+  animate: {
+    opacity: [1, 0.5, 1], // fade out and in
+    transition: {
+      duration: 5,
+      ease: 'easeInOut',
+      repeat: Infinity,
     },
-  };
+  } as any,
+};
 
 export default function HeroBackgroundGlow({
   className,
@@ -40,9 +26,9 @@ export default function HeroBackgroundGlow({
 }) {
   return (
     <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 0, duration: .5 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0, duration: 0.5 }}
       className={cn(
         'absolute -top-[8rem] md:-top-[3.5rem] left-1/2 -translate-x-1/2 w-full h-[78.625rem]',
         'origin-left pointer-events-none z-0',
@@ -55,8 +41,8 @@ export default function HeroBackgroundGlow({
         initial="initial"
         animate="animate"
         transition={{
-          duration: .5,
-          ease: [0.22, .2, 0.36, .1],
+          duration: 0.5,
+          ease: [0.22, 0.2, 0.36, 0.1],
         }}
         className="absolute inset-0 blur-1xl mix-blend-soft-light hero-glow-gradient"
       />

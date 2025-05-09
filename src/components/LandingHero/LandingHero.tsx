@@ -38,21 +38,17 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
   ];
   const scrollRef: ScrollContainerRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
-  const [contentVisible, setContentVisible] = useState(false);
-  // Add state to track container width for responsive adjustments
   const [containerWidth, setContainerWidth] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const animationRef = useRef<AnimationFrameID | null>(null);
 
-  // Effect to handle the immediate opacity animation for all elements
-  useEffect(() => {
-    // Set content visible immediately on mount
-    setContentVisible(true);
-  }, []);
-
-  // Add effect to update container width on resize
+  // Effect to update container width on resize
   useEffect(() => {
     const updateContainerWidth = () => {
       if (heroContentRef.current) {
         setContainerWidth(heroContentRef.current.offsetWidth);
+        // Mark as initialized when we have a valid width
+        setIsInitialized(true);
       }
     };
 
@@ -67,23 +63,27 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
     };
   }, []);
 
+  // Animation effect - only runs once container is initialized
   useEffect(() => {
+    if (!isInitialized) return;
+    
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
-    // Get all item elements
     const itemElements: ItemElement[] = Array.from(
       scrollContainer.children
     ) as ItemElement[];
-    
+
+    // Prevent issues if items aren't rendered yet
+    if (!itemElements.length || itemElements[0].offsetHeight === 0) return;
+
     // Skip the duplicate item at the end when calculating
     const actualItems = itemElements.slice(0, heroList.length);
-    
+
     const itemHeight: number = actualItems[0].offsetHeight;
     const totalItems: number = heroList.length;
 
     // Calculate responsive margin based on viewport width
-    // Using percentage of item height instead of fixed pixels
     const marginPercentage = containerWidth < 768 ? 0.2 : 0.25; // 20% for mobile, 25% for desktop
     const marginValue = `${Math.max(25, itemHeight * marginPercentage)}px`;
 
@@ -102,10 +102,10 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
 
     // Recalculate total height with dynamic spacing
     const itemTotalHeight: number = itemHeight + parseFloat(marginValue);
-    const viewportHeight: number = scrollContainer.parentElement!.offsetHeight;
+    const viewportHeight: number =
+      scrollContainer.parentElement!.offsetHeight;
 
     // Animation state variables
-    let animationFrame: AnimationFrameID;
     let startTime: number | null = null;
 
     // Duration settings (in ms)
@@ -195,7 +195,10 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
             opacity = normalizedPos / -settings.fadeZoneSize;
           }
           // Fade out at bottom of viewport
-          else if (normalizedPos > 0 && normalizedPos < settings.fadeZoneSize) {
+          else if (
+            normalizedPos > 0 &&
+            normalizedPos < settings.fadeZoneSize
+          ) {
             opacity = 1 - normalizedPos / settings.fadeZoneSize;
           }
         }
@@ -205,76 +208,75 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
       });
     };
 
-    // Add a small delay before starting animation to ensure first item is visible
-    setTimeout(() => {
-      // Setting up the animation with pause and bounce effect
-      const animateScroll = (timestamp: number): void => {
-        if (!startTime) startTime = timestamp;
-        let elapsed = (timestamp - startTime) % settings.fullCycleDuration;
+    // Setting up the animation with pause and bounce effect
+    const animateScroll = (timestamp: number): void => {
+      if (!startTime) startTime = timestamp;
+      let elapsed = (timestamp - startTime) % settings.fullCycleDuration;
 
-        // Determine which item we should be showing and how far through transition
-        const cyclePosition =
-          elapsed / (settings.pauseDuration + settings.transitionDuration);
-        const currentItemIndex = Math.floor(cyclePosition) % totalItems;
+      // Determine which item we should be showing and how far through transition
+      const cyclePosition =
+        elapsed / (settings.pauseDuration + settings.transitionDuration);
+      const currentItemIndex = Math.floor(cyclePosition) % totalItems;
 
-        // Calculate how far into the current cycle we are (0 to 1)
-        const cycleProgress =
-          (elapsed % (settings.pauseDuration + settings.transitionDuration)) /
-          (settings.pauseDuration + settings.transitionDuration);
+      // Calculate how far into the current cycle we are (0 to 1)
+      const cycleProgress =
+        (elapsed % (settings.pauseDuration + settings.transitionDuration)) /
+        (settings.pauseDuration + settings.transitionDuration);
 
-        // Calculate transition progress only during transition phase
-        const transitionProgress = Math.max(
-          0,
-          Math.min(
-            1,
-            (cycleProgress *
-              (settings.pauseDuration + settings.transitionDuration) -
-              settings.pauseDuration) /
-              settings.transitionDuration
-          )
-        );
+      // Calculate transition progress only during transition phase
+      const transitionProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          (cycleProgress *
+            (settings.pauseDuration + settings.transitionDuration) -
+            settings.pauseDuration) /
+            settings.transitionDuration
+        )
+      );
 
-        // Position without bounce (base position during pause)
-        let basePosition = currentItemIndex * settings.itemTotalHeight;
+      // Position without bounce (base position during pause)
+      let basePosition = currentItemIndex * settings.itemTotalHeight;
 
-        // Apply transition with bounce effect
-        if (transitionProgress > 0) {
-          // Use predominantly the single bounce with a touch of easeOutBack
-          const easeValue =
-            0.8 * singleBounceOut(transitionProgress) +
-            0.2 * easeOutBack(transitionProgress);
+      // Apply transition with bounce effect
+      if (transitionProgress > 0) {
+        // Use predominantly the single bounce with a touch of easeOutBack
+        const easeValue =
+          0.8 * singleBounceOut(transitionProgress) +
+          0.2 * easeOutBack(transitionProgress);
 
-          // Calculate position with enhanced bounce
-          const additionalOffset = easeValue * settings.itemTotalHeight;
-          basePosition += additionalOffset;
-        }
+        // Calculate position with enhanced bounce
+        const additionalOffset = easeValue * settings.itemTotalHeight;
+        basePosition += additionalOffset;
+      }
 
-        // Special handling for loop transition (when last item transitions to first)
-        if (currentItemIndex === totalItems - 1 && transitionProgress > 0) {
-          // Apply smoother loop transition by pre-positioning first item
-          itemElements[0].style.transform = `translateY(${
-            settings.itemTotalHeight * totalItems
-          }px)`;
-        } else {
-          // Reset first item position when not in loop transition
-          itemElements[0].style.transform = '';
-        }
+      // Special handling for loop transition (when last item transitions to first)
+      if (currentItemIndex === totalItems - 1 && transitionProgress > 0) {
+        // Apply smoother loop transition by pre-positioning first item
+        itemElements[0].style.transform = `translateY(${
+          settings.itemTotalHeight * totalItems
+        }px)`;
+      } else {
+        // Reset first item position when not in loop transition
+        itemElements[0].style.transform = '';
+      }
 
-        // Apply the transform
-        scrollContainer.style.transform = `translateY(-${basePosition}px)`;
+      // Apply the transform
+      scrollContainer.style.transform = `translateY(-${basePosition}px)`;
 
-        // Update opacity and color of each item
-        updateItemOpacity(basePosition, transitionProgress, currentItemIndex);
+      // Update opacity and color of each item
+      updateItemOpacity(basePosition, transitionProgress, currentItemIndex);
 
-        animationFrame = requestAnimationFrame(animateScroll);
-      };
+      animationRef.current = requestAnimationFrame(animateScroll);
+    };
 
-      animationFrame = requestAnimationFrame(animateScroll);
-    }, 100); // Small delay to ensure first item is visible
+    // Start animation immediately
+    animationRef.current = requestAnimationFrame(animateScroll);
 
     return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
       // Reset styles when unmounting
       actualItems.forEach((item: ItemElement) => {
@@ -284,7 +286,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
         item.style.marginBottom = '';
       });
     };
-  }, [heroList.length, containerWidth]); // Add containerWidth dependency
+  }, [heroList.length, containerWidth, isInitialized]);
 
   // Calculate dynamic width for the scrolling text container based on viewport
   const getScrollContainerWidth = () => {
@@ -311,19 +313,12 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
           <div
             ref={heroContentRef}
             className="flex flex-col items-start md:items-center text-center p-4 md:p-0"
-            style={{
-              opacity: contentVisible ? 1 : 0.3,
-              transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
-            }}
           >
             <div className="z-1 text-left md:text-center mt-[2rem] md:mt-[7.8rem] mb-[1.25rem]">
               <Text
                 className="!text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
                 style={{
-                  color: contentVisible
-                    ? 'rgba(255, 255, 255, 1)'
-                    : 'rgba(255, 255, 255, 0.3)',
-                  transition: 'color 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+                  color: 'rgba(255, 255, 255, 1)',
                 }}
               >
                 <span className="inline">Unlock Autonomy for</span>{' '}
@@ -353,15 +348,18 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                         style={{
                           willChange: 'opacity, transform, color',
                           marginBottom: getScrollItemMargin(),
-                          // Make the first item visible immediately
                           opacity: index === 0 ? 1 : 0.3,
-                          color: index === 0 ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.3)',
+                          color:
+                            index === 0
+                              ? 'rgba(255, 255, 255, 1)'
+                              : 'rgba(255, 255, 255, 0.3)',
                         }}
                       >
                         {item}
                       </span>
                     ))}
-                    {/* Duplicate first item to help with seamless looping */}
+
+                    {/* Duplicate first item for seamless looping */}
                     <span
                       key="item-duplicate-first"
                       className="block !text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
@@ -372,7 +370,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                         left: 0,
                         width: '100%',
                         color: 'rgba(255, 255, 255, 0.3)',
-                        opacity: 0, // Hide initially
+                        opacity: 0,
                       }}
                     >
                       {heroList[0]}
@@ -384,10 +382,6 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
             <Text
               className="!text-off-white w-full z-1 md:w-full max-w-[800px] !text-[1.15rem] text-left md:text-center"
               mb={32}
-              style={{
-                opacity: contentVisible ? 1 : 0.3,
-                transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
-              }}
             >
               Lit Protocol is the decentralized network for managing keys and
               secrets. Join the builders using programmable signing and
@@ -400,10 +394,6 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                 href={DOCS_LINK}
                 target="_blank"
                 rightIcon={<IconArrowNarrowRight stroke={2} />}
-                style={{
-                  opacity: contentVisible ? 1 : 0.3,
-                  transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
-                }}
               >
                 Read the Docs
               </Button>
@@ -411,10 +401,6 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                 variant="outline"
                 href={CONTACT_FORM}
                 target="_blank"
-                style={{
-                  opacity: contentVisible ? 1 : 0.3,
-                  transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
-                }}
               >
                 Get In Touch
               </Button>
@@ -422,24 +408,13 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
           </div>
         </div>
 
-        {/* Wrap LandingPartners in a div to control its opacity */}
-        <div
-          style={{
-            opacity: contentVisible ? 1 : 0.3,
-            transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
-          }}
-        >
-          <LandingPartners />
-        </div>
+        <LandingPartners />
 
-        {/* Wrap BlogCarousel in a div to control its opacity */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: contentVisible ? 1 : 0.3,
-            transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
           <BlogCarousel />
