@@ -64,6 +64,8 @@ const Metrics = () => {
         setLoading(true);
         const response = await fetch('/api/dune-data');
 
+        console.log(response); 
+        
         if (response.ok) {
           const metrics = await response.json();
 

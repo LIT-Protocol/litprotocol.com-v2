@@ -1,4 +1,4 @@
-import { DuneClient } from "@duneanalytics/client-sdk";
+import { DuneClient } from '@duneanalytics/client-sdk';
 import { NextResponse } from 'next/server';
 
 const dune = new DuneClient(process.env.DUNE_API_KEY!);
@@ -9,13 +9,13 @@ type DuneRow = {
   datil_tv: number | string;
 };
 // Single query ID
-const QUERY_ID = 4185193; // Replace with your actual query ID
+const QUERY_ID = 4185193;
 
 // Define the mapping from Dune column names to your desired variable names
 const fieldMapping = {
-  'total_addresses': 'totalDataPoints',
-  'datil_tv_floor_price': 'totalVolume',
-  'datil_tv': 'totalValue'
+  total_addresses: 'totalDataPoints',
+  datil_tv_floor_price: 'totalVolume',
+  datil_tv: 'totalValue',
 };
 
 // Function to format numbers to millions with M+ suffix
@@ -34,54 +34,58 @@ export async function GET(request: Request) {
     // Check for debug parameter
     const url = new URL(request.url);
     const debug = url.searchParams.get('debug') === 'true';
-    
+
     // Get the latest result from the query
     const result = await dune.getLatestResult({ queryId: QUERY_ID });
-    
+
     // Check if result or result.result is undefined
     if (!result || !result.result || !result.result.rows) {
-      return NextResponse.json({ 
-        totalValue: "$50M+", 
-        totalVolume: "$154M+", 
-        totalDataPoints: "1M+" 
+      console.warn('Dune result was empty or malformed:', result);
+
+      return NextResponse.json({
+        totalValue: '$50M+',
+        totalVolume: '$154M+',
+        totalDataPoints: '1M+',
+        status: 'fallback',
       });
     }
-    
+
     // Extract the rows from the result
     const rows = result.result?.rows as DuneRow[] | undefined;
-    
+
     if (!rows || rows.length === 0) {
-      return NextResponse.json({ 
-        totalValue: "$50M+", 
-        totalVolume: "$154M+", 
-        totalDataPoints: "1M+" 
+      console.warn('Dune result was empty or malformed:', result);
+
+      return NextResponse.json({
+        totalValue: '$50M+',
+        totalVolume: '$154M+',
+        totalDataPoints: '1M+',
+        status: 'fallback',
       });
     }
-    
+
     // Since we know we have a single row with multiple columns, get the first row
     const row = rows[0];
 
-    console.log(row, rows)
-    
     // Initialize our response object with the mapped fields
     const rawMetrics: Record<string, number | null> = {};
     const formattedMetrics: Record<string, string> = {};
-    
+
     // Map each field according to our mapping
     Object.entries(fieldMapping).forEach(([duneField, targetField]) => {
       let value = null;
-      
+
       if (duneField in row) {
         const rawValue = row[duneField as keyof DuneRow];
-        if (typeof rawValue === "number") {
+        if (typeof rawValue === 'number') {
           value = rawValue;
-        } else if (typeof rawValue === "string" && !isNaN(Number(rawValue))) {
+        } else if (typeof rawValue === 'string' && !isNaN(Number(rawValue))) {
           value = Number(rawValue);
         }
       }
-      
+
       rawMetrics[targetField] = value;
-      
+
       // Format the value for display with M+ suffix
       if (value !== null) {
         // Add $ prefix for value and volume fields
@@ -92,28 +96,29 @@ export async function GET(request: Request) {
         }
       } else {
         // Default values if null
-        formattedMetrics[targetField] = targetField === 'totalDataPoints' ? '0M+' : '$0M+';
+        formattedMetrics[targetField] =
+          targetField === 'totalDataPoints' ? '0M+' : '$0M+';
       }
     });
-    
+
     // Add debug information if requested
     if (debug) {
       return NextResponse.json({
         formatted: formattedMetrics,
         raw: rawMetrics,
-        originalRow: row
+        originalRow: row,
       });
     }
-    
+
     // Return the formatted metrics for display
     return NextResponse.json(formattedMetrics);
   } catch (err) {
-    console.error("Dune API error:", err);
+    console.error('Dune API error:', err);
     // Return default values in case of error
-    return NextResponse.json({ 
-      totalValue: "$0M+", 
-      totalVolume: "$0M+", 
-      totalDataPoints: "0M+" 
+    return NextResponse.json({
+      totalValue: '$50M+',
+      totalVolume: '$154M+',
+      totalDataPoints: '1M+',
     });
   }
 }
