@@ -280,7 +280,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-950 to-coal-950">
+    <div className="bg-gradient-to-b from-blue-950 to-coal-950 overflow-hidden">
       <HeroBackgroundGlow />
       <Container size="md">
         <div className="flex justify-center items-center">

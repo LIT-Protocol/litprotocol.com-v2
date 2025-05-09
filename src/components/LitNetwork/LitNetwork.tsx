@@ -90,7 +90,7 @@ const LitNetwork = () => {
     <div className="bg-coal-950 text-white py-24 px-1">
       <Container
         size="lg"
-        className="flex flex-col overflow-x-hidden md:flex-row !px-[2rem] gap-[3rem] max-h-[82rem] md:max-h-none overflow-y-auto"
+        className="flex flex-wrap gap-[3rem] !px-[2rem] [@media(min-width:1150px)]:flex-nowrap overflow-x-hidden max-h-[82rem] md:max-h-none overflow-y-auto"
       >
         <Group className="flex-col !items-start !gap-24 justify-center mb-8">
           <Title
@@ -99,7 +99,7 @@ const LitNetwork = () => {
           >
             The Lit Network
           </Title>
-          <Group>
+          <div className="flex flex-wrap gap-6 min-w-[300px] max-w-full">
             {data.map((card, index) => (
               <NetworkCardDesktop
                 key={card.value}
@@ -108,10 +108,10 @@ const LitNetwork = () => {
                 onClick={() => handleCardClick(index)}
               />
             ))}
-          </Group>
+          </div>
         </Group>
         {data[selectedIndex]?.image && !imageError ? (
-          <div className="flex-1 flex justify-center items-center max-w-[600px] md:py-[6.25rem]">
+          <div className="w-full flex justify-center items-center [@media(min-width:1150px)]:w-auto [@media(min-width:1150px)]:flex-1 [@media(min-width:1150px)]:py-[6.25rem]">
             <div className="relative w-[550px] h-[550px]">
               <Image
                 src={data[selectedIndex].image}

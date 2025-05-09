@@ -66,7 +66,7 @@ function ProductDesktop({ features }: ProductProps) {
               <ul className="mt-4 md:mt-6 space-y-4 md:space-y-6">
                 {feature.features.map(featureItem => (
                   <li key={featureItem.slug} className="flex items-start gap-3">
-                    <featureItem.icon className="h-6 w-6 md:h-8 md:w-8 text-blue-400 flex-shrink-0" />
+                    <featureItem.icon className="h-6 w-6 md:h-8 md:w-8 text-blue-400 fill-blue-400 flex-shrink-0" />
                     <span className="text-base md:text-lg capitalize">
                       {featureItem.slug}
                     </span>

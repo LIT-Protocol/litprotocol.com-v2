@@ -161,4 +161,16 @@
       var(--glow-color-3)
     );
   }
+
+  .network-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 1150px) {
+    .network-card-wrapper {
+      flex-wrap: no-wrap;
+    }
+  }
 }

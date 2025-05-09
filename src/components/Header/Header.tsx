@@ -17,6 +17,7 @@ import {
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
+import SparkleIcon from './assets/SparkleIcon';
 
 interface LinkItem {
   link: string;
@@ -93,7 +94,11 @@ export function HeaderMenu({
             <a href={link.link}>
               <Center className="text-off-white font-medium px-[.75rem] py-[.375rem]">
                 <span className="mr-[5px]">{link.label}</span>
-                <IconChevronDown size={16} stroke={1.5} />
+                {link.label === 'Vincent' ? (
+                  <SparkleIcon size={16} />
+                ) : (
+                  <IconChevronDown size={16} stroke={1.5} />
+                )}
               </Center>
             </a>
           </Menu.Target>
@@ -123,7 +128,7 @@ export function HeaderMenu({
             />
             <LitLogo className="h-[1.5rem] text-lit-orange" />
           </Group>
-          <Group gap={"1.25rem"} visibleFrom="sm">
+          <Group gap={'1.25rem'} visibleFrom="sm">
             {items}
           </Group>
           {menuOpen ? (

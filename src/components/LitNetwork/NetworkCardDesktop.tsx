@@ -29,7 +29,7 @@ function NetworkCard({
   return (
     <Card
       radius="md"
-      className="w-full md:w-[500px] h-full relative transition-all duration-300 ease-in-out"
+      className="w-full [@media(min-width:1150px)]:w-[500px] h-full relative transition-all duration-300 ease-in-out"
       onClick={onClick}
       style={{
         cursor: 'pointer',
