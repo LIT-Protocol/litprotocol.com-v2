@@ -17,7 +17,7 @@ const data = [
     title: 'Defense in Depth',
     detail:
       'Lit Protocol combines Threshold Multi-Party Computation (MPC) and Trusted Execution Environments (TEE) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
-    image: '/images/litnetwork1.png',
+    image: '/images/network1.svg',
   },
   {
     value: 'second',
@@ -25,7 +25,7 @@ const data = [
     title: 'Scalability',
     detail:
       "Deploy applications confidently on a globally distributed network. Lit Protocol's infrastructure scales horizontally, automatically meeting demand spikes without sacrificing security or performance.",
-    image: '/images/litnetwork2.png',
+    image: '/images/network2.svg',
   },
   {
     value: 'third',
@@ -33,7 +33,7 @@ const data = [
     title: 'Orchestrate Any Secret',
     detail:
       "Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol's programmable signing and encryption let you securely automate interactions across every environment.",
-    image: '/images/litnetwork3.png',
+    image: '/images/network3.svg',
   },
 ];
 

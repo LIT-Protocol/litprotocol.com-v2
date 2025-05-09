@@ -71,7 +71,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="w-full m-auto h-full md:h-[22rem] !bg-slate-blue-500 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
+      className="w-full m-auto h-full md:h-[22rem] !bg-slate-blue-500/50 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
     >
       <Group
         wrap="nowrap"
@@ -80,10 +80,11 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
         className="w-full h-full"
       >
         {!isMobile && (
-          <div className="max-w-[24rem] h-[14rem] block !border-[.05rem] !border-gold-500 overflow-hidden">
+          <div className="max-w-[24rem] h-[14rem] block !border-[.05rem] overflow-hidden">
             <Image
               src={image}
               alt={alt}
+              radius="sm"
               fit="cover"
               w="100%"
               h="100%"
@@ -91,11 +92,11 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
             />
           </div>
         )}
-        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] md:h-[13.5rem] h-[14rem] items-center !md:w-full py-1 px-12">
+        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] md:h-[13.5rem] h-[14rem] items-center !md:w-full py-1 px-12 md:px-2">
           <Title
             lineClamp={2}
             order={3}
-            className="!text-[1.5rem] md:!text-[1.25rem]"
+            className="!text-[1.5rem] md:!text-[1.25rem] w-full"
             m="sm"
           >
             {title}
