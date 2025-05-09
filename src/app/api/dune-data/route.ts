@@ -3,6 +3,11 @@ import { NextResponse } from 'next/server';
 
 const dune = new DuneClient(process.env.DUNE_API_KEY!);
 
+type DuneRow = {
+  total_addresses: number | string;
+  datil_tv_floor_price: number | string;
+  datil_tv: number | string;
+};
 // Single query ID
 const QUERY_ID = 4185193; // Replace with your actual query ID
 
@@ -43,9 +48,9 @@ export async function GET(request: Request) {
     }
     
     // Extract the rows from the result
-    const rows = result.result.rows;
+    const rows = result.result?.rows as DuneRow[] | undefined;
     
-    if (rows.length === 0) {
+    if (!rows || rows.length === 0) {
       return NextResponse.json({ 
         totalValue: "$0M+", 
         totalVolume: "$0M+", 
@@ -65,11 +70,11 @@ export async function GET(request: Request) {
       let value = null;
       
       if (duneField in row) {
-        // Handle different data types - convert to number if possible
-        if (typeof row[duneField] === "number") {
-          value = row[duneField];
-        } else if (typeof row[duneField] === "string" && !isNaN(Number(row[duneField]))) {
-          value = Number(row[duneField]);
+        const rawValue = row[duneField as keyof DuneRow];
+        if (typeof rawValue === "number") {
+          value = rawValue;
+        } else if (typeof rawValue === "string" && !isNaN(Number(rawValue))) {
+          value = Number(rawValue);
         }
       }
       
