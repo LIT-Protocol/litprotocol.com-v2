@@ -64,8 +64,8 @@ const Metrics = () => {
         setLoading(true);
         const response = await fetch('/api/dune-data');
 
-        console.log(response); 
-        
+        console.log(response);
+
         if (response.ok) {
           const metrics = await response.json();
 
@@ -100,8 +100,11 @@ const Metrics = () => {
   }, []);
 
   return (
-    <div className="pt-[7.5rem] pb-[5rem] bg-coal-950 text-white">
-      <Container size="lg">
+    <div className="pt-[7.5rem] pb-[5rem] bg-coal-950 text-white relative overflow-hidden">
+      <div className="absolute -left-[2rem] -top-[4rem] z-0 pointer-events-none w-[115%] overflow-x-hidden">
+        <img src="/textures/metrics.png" alt="" className="w-full h-auto" />
+      </div>
+      <Container size="lg" style={{ zIndex: 10, position: 'relative', height: '100%' }}>
         <Group className="flex !items-start !justify-start md:!justify-between w-full md:!gap[6rem]">
           <Title
             style={{

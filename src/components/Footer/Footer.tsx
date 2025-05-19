@@ -18,10 +18,12 @@ import { Container } from '@mantine/core';
 
 const Footer = () => {
   return (
-    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950">
-      <Container size="lg">
+    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950 relative">
+      <div className="absolute left-0 bottom-0 z-0 pointer-events-none w-full overflow-x-hidden">
+        <img src="/textures/footer.png" alt="" className="w-full h-auto" />
+      </div>
+      <Container style={{ position: 'relative', zIndex: 10 }} size="lg">
         <LandingCta2 />
-        <div className={styles.footer__divider}></div>
         <nav className={styles.footer__nav}>
           <div className={styles.footer__company}>
             <svg
@@ -161,7 +163,7 @@ const Footer = () => {
             </div>
           </div>
         </nav>
-        <div className='font-[0.75rem] text-left pt-[3rem] pb-[2rem] md:text-center lg:pt-[4rem] text-pearl-500'>
+        <div className="font-[0.75rem] text-left pt-[3rem] pb-[2rem] md:text-center lg:pt-[4rem] text-pearl-500">
           <p>Lit Association. Copyright © {new Date().getFullYear()}.</p>
         </div>
       </Container>

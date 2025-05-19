@@ -87,12 +87,17 @@ const LandingProduct2 = () => {
   const mobile = useMediaQuery(`(max-width: 48em)`);
 
   return (
-    <div className="bg-coal-950 text-off-white">
+    <div className="bg-coal-950 text-off-white relative overflow-x-hidden">
+      <div className="absolute -left-[2rem] top-[15rem] z-0 pointer-events-none w-[115%]">
+        <img src="/textures/product.png" alt="" className="w-full h-auto" />
+      </div>
       <Container
         size="lg"
         style={{
           display: 'flex',
           flexDirection: 'column',
+          position: 'relative',
+          zIndex: 10,
         }}
       >
         <ProductDesktop features={features} />

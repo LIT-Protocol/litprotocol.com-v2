@@ -8,6 +8,7 @@ import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 import { Button } from '../ui/Button';
 import { useEffect, useRef, useState } from 'react';
 import HeroBackgroundGlow from './HeroBackgroundGlow';
+import Image from 'next/image';
 
 // Type definitions
 type HeroItem = string;
@@ -66,7 +67,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
   // Animation effect - only runs once container is initialized
   useEffect(() => {
     if (!isInitialized) return;
-    
+
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
@@ -102,8 +103,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
 
     // Recalculate total height with dynamic spacing
     const itemTotalHeight: number = itemHeight + parseFloat(marginValue);
-    const viewportHeight: number =
-      scrollContainer.parentElement!.offsetHeight;
+    const viewportHeight: number = scrollContainer.parentElement!.offsetHeight;
 
     // Animation state variables
     let startTime: number | null = null;
@@ -195,10 +195,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
             opacity = normalizedPos / -settings.fadeZoneSize;
           }
           // Fade out at bottom of viewport
-          else if (
-            normalizedPos > 0 &&
-            normalizedPos < settings.fadeZoneSize
-          ) {
+          else if (normalizedPos > 0 && normalizedPos < settings.fadeZoneSize) {
             opacity = 1 - normalizedPos / settings.fadeZoneSize;
           }
         }
@@ -306,10 +303,26 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-950 to-coal-950 overflow-hidden">
+    <div className="bg-gradient-to-b from-blue-950 to-coal-950 relative overflow-x-hidden">
       <HeroBackgroundGlow />
+      <div className="absolute -left-[16rem] -top-[4rem] z-0 pointer-events-none w-[35rem]">
+        <img
+          src="/textures/hero-left.png"
+          alt=""
+          className="w-full h-auto"
+          sizes="(max-width: 768px) 50vw, 25vw"
+        />
+      </div>
+      <div className="absolute -right-[16rem] -top-[2rem] z-0 pointer-events-none w-[40rem]">
+        <img
+          src="/textures/hero-right.png"
+          alt=""
+          className="w-full h-auto"
+          sizes="(max-width: 768px) 50vw, 25vw"
+        />
+      </div>
       <Container size="md">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center relative">
           <div
             ref={heroContentRef}
             className="flex flex-col items-start md:items-center text-center p-4 md:p-0"
@@ -397,11 +410,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
               >
                 Read the Docs
               </Button>
-              <Button
-                variant="outline"
-                href={CONTACT_FORM}
-                target="_blank"
-              >
+              <Button variant="outline" href={CONTACT_FORM} target="_blank">
                 Get In Touch
               </Button>
             </Group>

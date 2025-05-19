@@ -87,9 +87,10 @@ const LitNetwork = () => {
   }, [selectedIndex]);
 
   return (
-    <div className="bg-coal-950 text-white py-24 px-1">
+    <div className="bg-coal-950 text-white py-24 px-1 relative overflow-x-hidden">
       <Container
         size="lg"
+        style={{ zIndex: 10, position: 'relative' }}
         className="flex flex-wrap gap-[3rem] !px-[2rem] [@media(min-width:1150px)]:flex-nowrap overflow-x-hidden max-h-[82rem] md:max-h-none overflow-y-auto"
       >
         <Group className="flex-col !items-start !gap-24 justify-center mb-8">
