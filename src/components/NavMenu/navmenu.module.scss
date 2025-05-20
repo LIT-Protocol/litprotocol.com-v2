@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 
 .overlay {
-  background-color: var(--lit-white);
+  background-color: oklch(24.69% 0.075 260.78); //blue-950
   position: fixed;
   inset: 0;
   animation: fadeIn 150ms ease-in-out;
@@ -9,7 +9,7 @@
 
 .modal {
   z-index: 50;
-  background-color: var(--lit-white);
+  background-color: oklch(73.16% 0 0); //blue-950
   position: fixed;
   top: 0;
   left: 0;
@@ -68,6 +68,7 @@
 
   &__wrapper {
     overflow-y: auto;
+    color: #000;
   }
 
   &__links {
@@ -79,15 +80,15 @@
 
   &__category {
     font-weight: normal;
-    color: var(--lit-gray-500);
+    color: oklch(43.99% 0.16 32.25); //orange-700
   }
 
   &__link {
     transition: color 0.2s ease;
-    color: var(--lit-gray-900);
+    color: #000;
 
     &:hover {
-      color: var(--lit-orange);
+      color: oklch(53.51% 0.163 39.51); //orange-500
     }
   }
 
@@ -103,9 +104,9 @@
     display: inline-flex;
     justify-content: center;
     padding: 0.625rem 1rem 0.5rem;
-    background-color: var(--lit-orange);
-    color: var(--lit-white);
-    border: 1px solid var(--lit-orange);
+    background-color: oklch(53.51% 0.163 39.51); //orange-500
+    color: #fff;
+    border: 1px solid oklch(43.99% 0.16 32.25); //orange-700
     border-radius: 999px;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -114,8 +115,7 @@
 
     &--primary {
       &:hover {
-        border-color: var(--lit-orange-dark);
-        background-color: var(--lit-orange-dark);
+        background-color: oklch(43.99% 0.16 32.25); //orange-700
       }
     }
 
