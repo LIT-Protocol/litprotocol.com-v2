@@ -18,8 +18,8 @@ import { Container } from '@mantine/core';
 
 const Footer = () => {
   return (
-    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950 relative">
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none min-w-[150%] md:w-full overflow-x-hidden">
+    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950 relative overflow-x-hidden">
+      <div className="absolute left-0 bottom-0 z-0 pointer-events-none min-w-[150%] md:w-full">
         <img src="/textures/footer.png" alt="" className="w-full h-auto" />
       </div>
       <Container style={{ position: 'relative', zIndex: 10 }} size="lg">

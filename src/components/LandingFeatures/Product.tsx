@@ -32,10 +32,9 @@ function ProductDesktop({ features }: ProductProps) {
           radius="md"
           style={{
             background: 'transparent',
-            margin: '5rem 0',
             justifyContent: 'center',
           }}
-          className="w-full !h-full flex overflow-x-hidden !p-0 !text-white md:h-[650px]"
+          className="w-full !h-full flex overflow-x-hidden !m-[4rem_0] md:!m-[5rem_0] !p-0 !text-white md:h-[650px]"
         >
           {/* Main container with responsive flex direction */}
           <div

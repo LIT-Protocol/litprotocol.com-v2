@@ -7,6 +7,7 @@ import {
   DOCS_LINK,
   GITHUB_LINK,
   SPARK_LINK,
+  VINCENT_LINK,
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import { HeaderMenu } from '../Header/Header';
@@ -28,8 +29,14 @@ const NavMenu = ({
             <div className={styles.nav__wrapper}>
               <div className={styles.nav__links}>
                 <h6 className={styles.nav__category}>Vincent</h6>
-                Coming soon!!
-              </div>
+                <a
+                  href={VINCENT_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.nav__link}
+                >
+                  
+                </a>              </div>
               <div className={styles.nav__links}>
                 <h6 className={styles.nav__category}>Developers</h6>
                 <a

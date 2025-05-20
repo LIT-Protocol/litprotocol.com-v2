@@ -13,6 +13,7 @@ export const WHITEPAPER_LINK = 'https://github.com/LIT-Protocol/whitepaper';
 export const AUDIT_LINK =
   'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
 export const COMMUNITY_LINK = 'https://developer.litprotocol.com/support/intro';
+export const VINCENT_LINK = 'https://www.heyvincent.ai/';
 
 // Product
 export const LIT_WALLET_LINK =

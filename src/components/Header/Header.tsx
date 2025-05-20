@@ -14,6 +14,7 @@ import {
   DOCS_LINK,
   GITHUB_LINK,
   SPARK_LINK,
+  VINCENT_LINK,
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
@@ -27,9 +28,13 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  { link: '/', label: 'Vincent', links: [{ link: '', label: 'Coming soon!' }] },
   {
     link: '#1',
+    label: 'Vincent',
+    links: [{ link: VINCENT_LINK, label: 'Explore Vincent', external: true }],
+  },
+  {
+    link: '#2',
     label: 'Developers',
     links: [
       { link: DOCS_LINK, label: 'Documentation', external: true },
@@ -38,12 +43,12 @@ const links: LinkItem[] = [
     ],
   },
   {
-    link: '#2',
+    link: '#3',
     label: 'Community',
     links: [{ link: COMMUNITY_LINK, label: 'Resources' }],
   },
   {
-    link: '#3',
+    link: '#4',
     label: 'Company',
     links: [
       { link: SPARK_LINK, label: 'Blog', external: true },
@@ -115,7 +120,7 @@ export function HeaderMenu({
   });
 
   return (
-    <header className="relative top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
+    <header className="relative w-full top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
       <Container size="md">
         <div className="flex h-[4.5rem] justify-between items-center">
           <Group gap={4}>
