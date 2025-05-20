@@ -126,7 +126,7 @@ export const NavMenu2 = ({
           style={{ justifyContent: 'center', marginBottom: '1.25rem' }}
         >
           <Button
-            className="w-1/3 flex items-center justify-center"
+            className="w-[12rem] flex items-center justify-center"
             target="_blank"
             href={DOCS_LINK}
             rightIcon={<IconArrowNarrowRight stroke={2} />}
@@ -135,7 +135,7 @@ export const NavMenu2 = ({
           </Button>
 
           <Button
-            className="w-1/3 flex items-center justify-center hover:bg-pearl-500"
+            className="w-[12rem] flex items-center justify-center hover:bg-pearl-500"
             style={{
               background: 'white',
               boxShadow: 'inset 0 0 0 1px black',

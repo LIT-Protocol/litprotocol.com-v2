@@ -39,7 +39,7 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
       }}
     >
       <Text
-        className={`!text-[6rem]/[5.8rem] h-[6.5rem] mb-[.5rem] 
+        className={`!text-[4rem]/[3.2rem] md:!text-[6rem]/[5.8rem] h-[4.5rem] md:h-[6.5rem] mb-[.5rem] 
  ${className}`}
       >
         {number}
