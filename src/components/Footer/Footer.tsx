@@ -19,7 +19,7 @@ import { Container } from '@mantine/core';
 const Footer = () => {
   return (
     <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950 relative">
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none w-full overflow-x-hidden">
+      <div className="absolute left-0 bottom-0 z-0 pointer-events-none min-w-[150%] md:w-full overflow-x-hidden">
         <img src="/textures/footer.png" alt="" className="w-full h-auto" />
       </div>
       <Container style={{ position: 'relative', zIndex: 10 }} size="lg">
@@ -46,7 +46,7 @@ const Footer = () => {
               Lit Protocol
             </a>
           </div>
-          <div className="flex-1 grid gap-[3rem_1.5rem] text-white grid-cols-[repeat(auto-fill,_minmax(8rem,_1fr))]">
+          <div className="flex-1 grid sm:gap-[3rem_1.5rem] md:gap-[5rem_1.5rem] text-white grid-cols-[repeat(auto-fill,_minmax(8rem,_1fr))]">
             <div className="flex flex-col gap-[0.75rem]">
               <h6 className={styles.footer__category}>Resources</h6>
               <a

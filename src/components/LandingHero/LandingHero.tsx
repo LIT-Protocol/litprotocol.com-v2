@@ -285,27 +285,22 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
     };
   }, [heroList.length, containerWidth, isInitialized]);
 
-  // Calculate dynamic width for the scrolling text container based on viewport
   const getScrollContainerWidth = () => {
-    // Default width for mobile
-    const mobileWidth = Math.min(containerWidth * 0.9, 320);
-
-    // Width for larger screens
+    // Reduce width for mobile to better match parent width
+    const mobileWidth = Math.min(containerWidth * 0.75, 280); // Smaller width for mobile
     const desktopWidth = Math.min(containerWidth * 0.8, 520);
-
-    // Return responsive width
     return containerWidth > 768 ? desktopWidth : mobileWidth;
   };
 
   // Calculate responsive margin for scroll items
   const getScrollItemMargin = () => {
-    return containerWidth < 768 ? '1rem' : '1.5rem';
+    return containerWidth < 768 ? '.15rem' : '1.5rem';
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-950 to-coal-950 relative overflow-x-hidden">
+    <div className="bg-gradient-to-b from-blue-950 to-coal-950 relative overflow-hidden">
       <HeroBackgroundGlow />
-      <div className="absolute -left-[16rem] -top-[4rem] z-0 pointer-events-none w-[35rem]">
+      <div className="absolute -left-[12rem] -top-[4rem] z-0 hidden md:block pointer-events-none w-[35rem] opacity-70">
         <img
           src="/textures/hero-left.png"
           alt=""
@@ -313,7 +308,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
           sizes="(max-width: 768px) 50vw, 25vw"
         />
       </div>
-      <div className="absolute -right-[16rem] -top-[2rem] z-0 pointer-events-none w-[40rem]">
+      <div className="absolute -right-[10rem] md:-right-[16rem] -top-[8rem] -rotate-40 md:rotate-0 md:-top-[2rem] z-0 pointer-events-none w-[30rem] md:w-[40rem] opacity-70">
         <img
           src="/textures/hero-right.png"
           alt=""
@@ -332,16 +327,22 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
                 className="!text-[2.5rem] md:!text-[5.875rem]/[6.46rem]"
                 style={{
                   color: 'rgba(255, 255, 255, 1)',
+                  // Add line height control for mobile specifically
+                  lineHeight: containerWidth > 768 ? '6.46rem' : '3rem',
                 }}
               >
                 <span className="inline">Unlock Autonomy for</span>{' '}
                 {/* Scrolling Text Container */}
                 <span
-                  className="inline-block relative overflow-hidden h-16 sm:h-20 md:h-24 lg:h-28 align-bottom mx-0"
+                  className="inline-block relative overflow-hidden h-16 sm:h-20 lg:h-28 mx-0"
                   style={{
                     width: getScrollContainerWidth(),
                     maxWidth: '100%',
-                    verticalAlign: 'bottom',
+                    // Change vertical alignment approach for mobile
+                    verticalAlign: containerWidth > 768 ? 'bottom' : 'top',
+                    // Add some negative margin to adjust position on mobile
+                    marginBottom: containerWidth > 768 ? '0' : '-0.5rem',
+                    textAlign: containerWidth > 768 ? 'center' : 'left',
                   }}
                 >
                   <span

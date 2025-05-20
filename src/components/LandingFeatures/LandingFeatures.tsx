@@ -88,7 +88,7 @@ const LandingProduct2 = () => {
 
   return (
     <div className="bg-coal-950 text-off-white relative overflow-x-hidden">
-      <div className="absolute -left-[2rem] top-[15rem] z-0 pointer-events-none w-[115%]">
+      <div className="absolute -left-[2rem] top-[50rem] md:top-[15rem] z-0 pointer-events-none w-[220%] md:w-[115%] opacity-70">
         <img src="/textures/product.png" alt="" className="w-full h-auto" />
       </div>
       <Container

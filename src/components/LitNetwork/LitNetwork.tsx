@@ -87,7 +87,7 @@ const LitNetwork = () => {
   }, [selectedIndex]);
 
   return (
-    <div className="bg-coal-950 text-white py-24 px-1 relative overflow-x-hidden">
+    <div className="bg-coal-950 text-white py-24 px-1 relative overflow-x-hidden h-full">
       <Container
         size="lg"
         style={{ zIndex: 10, position: 'relative' }}

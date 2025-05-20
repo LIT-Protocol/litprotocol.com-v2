@@ -40,7 +40,7 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
       onClick={onClick}
       radius="md"
       style={{ cursor: 'pointer', color: 'white', padding: '1.5rem' }}
-      className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
+      className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 xs:h-full md:h-[11.6rem] lg:h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
     >
       <div className="h-[2rem] flex items-center justify-center">
         <Icon className="!h-full max-w-[2rem] w-full" stroke={2} />

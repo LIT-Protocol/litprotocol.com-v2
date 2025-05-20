@@ -35,12 +35,14 @@ function ProductDesktop({ features }: ProductProps) {
             margin: '5rem 0',
             justifyContent: 'center',
           }}
-          className="w-full flex overflow-hidden !p-0 !text-white md:h-[650px]"
+          className="w-full !h-full flex overflow-x-hidden !p-0 !text-white md:h-[650px]"
         >
           {/* Main container with responsive flex direction */}
-          <div className={`flex w-full flex-col md:flex-row md:gap-[5.5rem] ${
-            feature.imageRight ? '' : 'md:flex-row-reverse'
-          }`}>
+          <div
+            className={`flex w-full flex-col md:flex-row md:gap-[5.5rem] ${
+              feature.imageRight ? '' : 'md:flex-row-reverse'
+            }`}
+          >
             {/* Content container - always first on mobile */}
             <div className="w-full py-4 md:py-[1.75rem] md:w-1/2 gap-4 md:gap-[2.5rem] flex flex-col md:max-w-[28.75rem] order-first">
               <Group
@@ -87,8 +89,7 @@ function ProductDesktop({ features }: ProductProps) {
             </div>
 
             {/* Image container - always below on mobile */}
-            <div className="w-full min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last m-0"
-            >
+            <div className="w-full min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last m-0">
               {feature.image ? (
                 <Lottie animationData={feature.image} loop={true} />
               ) : (
