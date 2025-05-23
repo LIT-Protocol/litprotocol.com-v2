@@ -12,17 +12,17 @@ interface NumbersProps {
 const defaultData = [
   {
     id: 'totalValue',
-    number: '$50M+',
+    number: '$150M+',
     subtext: 'Total Value Managed by Lit Protocol',
   },
   {
     id: 'totalVolume',
-    number: '$154M+',
-    subtext: 'Total Volume Processed by Lit Protocol',
+    number: '$1.4M+',
+    subtext: 'Total Wallets Managed by Lit Protocol',
   },
   {
     id: 'totalDataPoints',
-    number: '1M+',
+    number: '30M+',
     subtext: 'Data Points Decrypted by Lit Protocol',
   },
 ];
@@ -110,7 +110,7 @@ const Metrics = () => {
             Securing the Decentralized World
           </Title>
           <Group className="flex !text-left !mt-8 sm:!mt-0 items-start justify-center md:w-1/2 !gap-[4rem] !flex-col">
-            {(loading ? defaultData : metrics).map((item, index) => (
+            {(defaultData).map((item, index) => (
               <NumberItem
                 key={item.id}
                 className={`metric-${index + 1}`}

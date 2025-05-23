@@ -90,7 +90,7 @@ function Product({ features }: ProductProps) {
             </div>
 
             {/* Image container - always below on mobile */}
-            <div className="w-[80%] m-auto h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last md:m-0">
+            <div className="w-[80%] m-auto md:min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last md:m-0">
               {feature.image ? (
                 <Lottie animationData={feature.image} loop={true} />
               ) : (

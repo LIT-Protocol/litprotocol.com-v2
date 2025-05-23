@@ -71,7 +71,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="!w-[25rem] md:!w-full m-auto h-full md:h-[22rem] !bg-slate-blue-500/50 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
+      className="!w-full !max-w-[25rem] md:!max-w-none mx-auto h-full md:h-[22rem] !bg-slate-blue-500/50 !py-[3rem] !px-[3rem] !rounded-md"
     >
       <Group
         wrap="nowrap"
@@ -80,7 +80,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
         className="w-full h-full"
       >
         {!isMobile && (
-          <div className="max-w-[24rem] h-[14rem] block !border-[.05rem] overflow-hidden">
+          <div className="max-w-[20.937rem] h-[11rem] block !border-[.05rem] overflow-hidden flex-shrink-0">
             <Image
               src={image}
               alt={alt}
@@ -92,7 +92,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
             />
           </div>
         )}
-        <div className="flex flex-1 flex-col text-center text-white !justify-between w-[25rem] md:h-[13.5rem] h-[14rem] items-center !md:w-full py-1 px-12 md:px-2">
+        <div className="flex flex-1 flex-col text-center text-white !justify-between w-full md:h-[13.5rem] h-[14rem] items-center py-1 px-4 md:px-2">
           <Title
             lineClamp={2}
             order={3}
@@ -101,13 +101,14 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
           >
             {title}
           </Title>
-          <Text lineClamp={3} mb="md">
+          <Text lineClamp={3} mb="md" className="flex-1 flex items-center">
             {subtext}
           </Text>
           <Button
             href={`${SPARK_LINK}/${slug}`}
             target="_blank"
             rightIcon={<IconArrowNarrowRight stroke={2} />}
+            className="mt-auto"
           >
             Read More
           </Button>
@@ -119,56 +120,90 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
 
 export function BlogCarousel() {
   const [posts, setPosts] = useState<ArticleProps[]>(fallbackPosts);
+  const [loading, setLoading] = useState(false);
+  const [hasAttemptedFetch, setHasAttemptedFetch] = useState(false);
+  
   const autoplayPlugin = Autoplay({
-    delay: 2000,
-    stopOnInteraction: false,
+    delay: 4000, // Increased delay to give users more time to read
+    stopOnInteraction: true, // Stop autoplay when user interacts
   }) as any;
 
   useEffect(() => {
     async function fetchArticles() {
+      if (hasAttemptedFetch) return; // Prevent multiple fetch attempts
+      
+      setLoading(true);
+      setHasAttemptedFetch(true);
+      
       try {
         const res = await fetch('/api/blog');
-        const data: ArticleProps[] = await res.json();
-        setPosts(data);
+        if (res.ok) {
+          const data: ArticleProps[] = await res.json();
+          if (data && data.length > 0) {
+            setPosts(data);
+          }
+        }
       } catch (error) {
         console.error(
           'Failed to fetch articles from /api/blog, using fallback.',
           error
         );
+        // Keep using fallback posts
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchArticles();
-  }, []);
+  }, [hasAttemptedFetch]);
 
   return (
-    <Carousel
-      withIndicators
-      height={360}
-      dragFree
-      loop
-      slideSize="100%"
-      align="center"
-      slidesToScroll={1}
-      withControls
-      nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
-      previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
-      classNames={{
-        root: 'relative w-[90%] mx-auto pb-12 !md:pb-[5.6rem] mb-[4rem]',
-        controls:
-          'absolute w-full md:w-[118%] md:transform md:-translate-x-[7.6%] -translate-y-2/3 flex justify-between z-10 pointer-events-none',
-        control:
-          '!text-slate-gray-500 hover:!text-off-white pointer-events-auto !bg-transparent !shadow-none !border-none flex',
-        indicators: 'flex justify-center !gap-6',
-        indicator:
-          '!w-[0.35rem] !h-[0.35rem] !bg-pewter-gray-500 transition-colors hover:!bg-off-white data-[active]:!bg-off-white block',
-      }}
-    >
-      {posts.map(post => (
-        <Carousel.Slide key={post.slug}>
-          <Article {...post} />
-        </Carousel.Slide>
-      ))}
-    </Carousel>
+    <div className="w-full">
+      <Carousel
+        withIndicators
+        height="auto" // Changed from fixed height
+        dragFree
+        loop
+        slideSize="100%"
+        align="center"
+        slidesToScroll={1}
+        withControls
+        plugins={[autoplayPlugin]}
+        nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
+        previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
+        classNames={{
+          root: 'relative w-[90%] mx-auto pb-12 md:pb-[5.6rem] mb-[4rem]',
+          viewport: 'overflow-hidden',
+          container: 'flex',
+          slide: 'flex-[0_0_100%] min-w-0', // Ensure slides take full width and don't shrink
+          controls:
+            'absolute w-full md:w-[118%] md:transform md:-translate-x-[7.6%] top-1/2 -translate-y-1/2 flex justify-between z-10 pointer-events-none',
+          control:
+            '!text-slate-gray-500 hover:!text-off-white pointer-events-auto !bg-transparent !shadow-none !border-none flex',
+          indicators: 'flex justify-center !gap-6 mt-4',
+          indicator:
+            '!w-[0.35rem] !h-[0.35rem] !bg-pewter-gray-500 transition-colors hover:!bg-off-white data-[active]:!bg-off-white block',
+        }}
+        styles={{
+          slide: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'stretch',
+          },
+        }}
+      >
+        {posts.map((post, index) => (
+          <Carousel.Slide key={`${post.slug}-${index}`}>
+            <Article {...post} />
+          </Carousel.Slide>
+        ))}
+      </Carousel>
+      
+      {loading && (
+        <div className="text-center text-white mt-4">
+          Loading articles...
+        </div>
+      )}
+    </div>
   );
 }
