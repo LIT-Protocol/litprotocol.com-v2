@@ -18,7 +18,7 @@
   width: var(--marquee-size);
   display: flex;
   justify-content: center;
-  max-height: 2rem;
+  max-height: 2.5rem;
 }
 
 .logo img,
@@ -29,10 +29,11 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  vertical-align: middle; // Add this
 }
 
 .marquee {
-  min-height: 2rem;
+  min-height: 2.5rem;
   display: flex;
   overflow: hidden;
   user-select: none;
@@ -57,7 +58,6 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
   gap: var(--marquee-gap);
   min-width: 100%;
   animation: scroll-x var(--marquee-duration) linear infinite;
