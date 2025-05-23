@@ -34,7 +34,7 @@ function Product({ features }: ProductProps) {
             background: 'transparent',
             justifyContent: 'center',
           }}
-          className="w-full !h-full flex overflow-x-hidden !m-[4rem_0] md:!m-[5rem_0] !p-0 !text-white md:h-[650px]"
+          className="w-full !h-full flex overflow-x-hidden !m-[1rem_0] md:!m-[5rem_0] !p-0 !text-white md:h-[650px]"
         >
           {/* Main container with responsive flex direction */}
           <div
@@ -90,7 +90,7 @@ function Product({ features }: ProductProps) {
             </div>
 
             {/* Image container - always below on mobile */}
-            <div className="w-[90%] m-auto min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last md:m-0">
+            <div className="w-[80%] m-auto h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last md:m-0">
               {feature.image ? (
                 <Lottie animationData={feature.image} loop={true} />
               ) : (

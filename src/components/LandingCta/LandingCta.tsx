@@ -62,7 +62,7 @@ const LandingCta2 = () => {
   ));
 
   return (
-    <div className="pt-[4rem] pb-[10rem]">
+    <div className="pt-[4rem] mb-[6rem] md:pb-[10rem]">
       <Container size="lg">
         <Group
           style={{ gap: '1.5rem' }}

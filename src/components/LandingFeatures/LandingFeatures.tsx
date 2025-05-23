@@ -99,6 +99,7 @@ const LandingProduct2 = () => {
           position: 'relative',
           zIndex: 10,
         }}
+        className='!my-[4rem] md:!my-0'
       >
         <Product features={features} />
       </Container>

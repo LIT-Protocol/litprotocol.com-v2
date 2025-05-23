@@ -71,7 +71,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
   return (
     <Card
       radius="md"
-      className="w-full m-auto h-full md:h-[22rem] !bg-slate-blue-500/50 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
+      className="!w-[25rem] md:!w-full m-auto h-full md:h-[22rem] !bg-slate-blue-500/50 flex-1 !py-[3rem] !px-[3rem] !rounded-md"
     >
       <Group
         wrap="nowrap"
