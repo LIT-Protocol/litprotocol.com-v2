@@ -1,10 +1,9 @@
 'use client';
-import { Box, Container, Group, Title, Tabs } from '@mantine/core';
+import { Container, Group, Title } from '@mantine/core';
 import Image from 'next/image'; // Changed to Next.js Image
 import React, { useState, useEffect, useRef } from 'react';
 import { IconPhoto } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
-import NetworkCardMobile from './NetworkCardMobile';
 import NetworkCardDesktop from './NetworkCardDesktop';
 import ShieldIcon from './assets/ShieldIcon';
 import BuildIcon from '../icons/BuildIcon';
@@ -42,9 +41,15 @@ const LitNetwork = () => {
   const [activeTab, setActiveTab] = useState(data[0].value);
   const [progress, setProgress] = useState(0);
   const [imageError, setImageError] = useState(false);
-  // Reversed the media query to check for desktop instead of mobile
-  const isDesktop = useMediaQuery('(min-width: 769px)');
-  const tabsRef = useRef(null);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  useEffect(() => {
+    // Trigger fade-in animation when image changes
+    setFadeIn(false);
+    const timeout = setTimeout(() => setFadeIn(true), 50); // brief delay to re-trigger animation
+
+    return () => clearTimeout(timeout);
+  }, [selectedIndex]);
 
   const handleCardClick = (index: number) => {
     if (index !== selectedIndex) {
@@ -87,17 +92,14 @@ const LitNetwork = () => {
   }, [selectedIndex]);
 
   return (
-    <div className="bg-coal-950 text-white py-24 px-1 relative overflow-x-hidden h-full">
+    <div className="bg-coal-950 text-white py-10 md:py-24 px-1 relative overflow-x-hidden h-full">
       <Container
         size="lg"
         style={{ zIndex: 10, position: 'relative' }}
-        className="flex flex-wrap gap-[3rem] !px-[2rem] [@media(min-width:1150px)]:flex-nowrap overflow-x-hidden max-h-[82rem] md:max-h-none overflow-y-auto"
+        className="flex flex-wrap md:!gap-[3rem] md:!px-[2rem] [@media(min-width:1150px)]:flex-nowrap overflow-x-hidden md:max-h-none overflow-y-auto"
       >
-        <Group className="flex-col !items-start !gap-24 justify-center mb-8">
-          <Title
-            style={{ fontSize: '2rem' }}
-            className="w-full flex justify-start mb-8"
-          >
+        <Group className="flex-col !items-start !gap-12 md:!gap-24 justify-center mb-8">
+          <Title className="!text-[1.25rem] md:!text-[2rem] w-full flex justify-start mb-8">
             The Lit Network
           </Title>
           <div className="flex flex-wrap gap-6 min-w-[300px] max-w-full">
@@ -118,7 +120,7 @@ const LitNetwork = () => {
                 src={data[selectedIndex].image}
                 alt={data[selectedIndex].title}
                 fill
-                className="rounded-md object-contain"
+                className={`rounded-md object-contain`}
                 priority
                 onError={() => setImageError(true)}
               />

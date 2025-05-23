@@ -46,8 +46,9 @@ const Footer = () => {
               Lit Protocol
             </a>
           </div>
-          <div className="flex-1 grid sm:gap-[3rem_1.5rem] md:gap-[5rem_1.5rem] text-white grid-cols-[repeat(auto-fill,_minmax(8rem,_1fr))]">
-            <div className="flex flex-col gap-[0.75rem]">
+          {/* Improved responsive grid layout */}
+          <div className="flex-1 grid gap-6 text-white grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:gap-8">
+            <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Resources</h6>
               <a
                 href={DOCS_LINK}
@@ -98,7 +99,7 @@ const Footer = () => {
                 Contact
               </a>
             </div>
-            <div className="flex flex-col gap-[0.75rem]">
+            <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Social</h6>
               <a
                 href={TWITTER_LINK}
@@ -133,7 +134,7 @@ const Footer = () => {
                 LinkedIn
               </a>
             </div>
-            <div className="flex flex-col gap-[0.75rem]">
+            <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Company</h6>
               <a
                 href={CAREERS_LINK}
@@ -152,7 +153,7 @@ const Footer = () => {
                 Brand Kit
               </a>
             </div>
-            <div className="flex flex-col gap-[0.75rem]">
+            <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Legal</h6>
               <a href="/legal/privacy-policy" className={styles.footer__link}>
                 Privacy Policy
@@ -163,7 +164,7 @@ const Footer = () => {
             </div>
           </div>
         </nav>
-        <div className="font-[0.75rem] text-left pt-[3rem] pb-[2rem] md:text-center lg:pt-[4rem] text-pearl-500">
+        <div className="text-xs text-left pt-12 pb-8 md:text-center lg:pt-16 text-pearl-500">
           <p>Lit Association. Copyright © {new Date().getFullYear()}.</p>
         </div>
       </Container>

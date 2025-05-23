@@ -22,7 +22,7 @@ interface ProductProps {
   }[];
 }
 
-function ProductDesktop({ features }: ProductProps) {
+function Product({ features }: ProductProps) {
   return (
     <>
       {features.map(feature => (
@@ -57,9 +57,11 @@ function ProductDesktop({ features }: ProductProps) {
                 >
                   {feature.title}
                 </Text>
-                <Title size="2rem">{feature.heading}</Title>
+                <Title className="!text-[1.25rem] md:!text-[2rem]">
+                  {feature.heading}
+                </Title>
               </Group>
-              <Text size="lg" className="mt-3 text-gray-300">
+              <Text className="md:!text-[1.15rem] mt-3 text-gray-300">
                 {feature.paragraph}
               </Text>
 
@@ -88,7 +90,7 @@ function ProductDesktop({ features }: ProductProps) {
             </div>
 
             {/* Image container - always below on mobile */}
-            <div className="w-full min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last m-0">
+            <div className="w-[90%] m-auto min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-4 md:mt-0 md:w-auto order-last md:m-0">
               {feature.image ? (
                 <Lottie animationData={feature.image} loop={true} />
               ) : (
@@ -102,4 +104,4 @@ function ProductDesktop({ features }: ProductProps) {
   );
 }
 
-export default ProductDesktop;
+export default Product;

@@ -68,7 +68,7 @@ const LandingCta2 = () => {
           style={{ gap: '1.5rem' }}
           className="text-white flex flex-col text-left items-start mb-[2rem] w-[80%] md:w-[60%]"
         >
-          <Title size="2rem" className="w-[70%] md:w-full">
+          <Title className="!text-[1.25rem] md:!text-[2rem] w-full md:w-full">
             Learn, connect, & collaborate.
           </Title>
           <Text>

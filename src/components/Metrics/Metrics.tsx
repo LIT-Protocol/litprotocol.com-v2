@@ -39,7 +39,7 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
       }}
     >
       <Text
-        className={`!text-[4rem]/[3.2rem] md:!text-[6rem]/[5.8rem] h-[4.5rem] md:h-[6.5rem] mb-[.5rem] 
+        className={`!text-[4rem]/[3.5rem] md:!text-[6rem]/[5.8rem] h-[4.5rem] md:h-[6.5rem] md:mb-[.5rem] 
  ${className}`}
       >
         {number}
@@ -100,18 +100,16 @@ const Metrics = () => {
   }, []);
 
   return (
-    <div className="pt-[7.5rem] pb-[5rem] bg-coal-950 text-white relative overflow-hidden">
-      <Container size="lg" style={{ zIndex: 10, position: 'relative', height: '100%' }}>
+    <div className="md:pt-[7.5rem] md:pb-[5rem] bg-coal-950 text-white relative overflow-hidden">
+      <Container
+        size="lg"
+        style={{ zIndex: 10, position: 'relative', height: '100%' }}
+      >
         <Group className="flex !items-start !justify-start md:!justify-between w-full md:!gap[6rem]">
-          <Title
-            style={{
-              fontSize: '2rem',
-              width: '22.8rem',
-            }}
-          >
+          <Title className="!text-[1.25rem] sm:!text-[1.5rem] md:!text-[2rem] md:!w-[22.8rem]">
             Securing the Decentralized World
           </Title>
-          <Group className="flex !text-left mt-16 items-start justify-center md:w-1/2 !gap-[4rem] !flex-col">
+          <Group className="flex !text-left !mt-8 sm:!mt-0 items-start justify-center md:w-1/2 !gap-[4rem] !flex-col">
             {(loading ? defaultData : metrics).map((item, index) => (
               <NumberItem
                 key={item.id}

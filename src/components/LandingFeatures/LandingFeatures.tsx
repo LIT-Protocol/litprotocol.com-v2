@@ -7,7 +7,7 @@ import {
 import { Container } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
-import ProductDesktop from './Product';
+import Product from './Product';
 import GearIcon from './assets/GearIcon';
 import ToolsIcon from './assets/ToolsIcon';
 import ApproveIcon from './assets/ApproveIcon';
@@ -100,7 +100,7 @@ const LandingProduct2 = () => {
           zIndex: 10,
         }}
       >
-        <ProductDesktop features={features} />
+        <Product features={features} />
       </Container>
     </div>
   );
