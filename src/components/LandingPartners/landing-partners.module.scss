@@ -4,7 +4,7 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-align: center;
-  color: var(--lit-white);
+  color: white;
   margin-bottom: 1.5rem;
 
   @include lg {
@@ -18,10 +18,21 @@
   width: var(--marquee-size);
   display: flex;
   justify-content: center;
+  max-height: 2rem;
+}
+
+.logo img,
+.logo svg {
+  filter: brightness(0) invert(1);
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .marquee {
-  height: 2rem;
+  min-height: 2rem;
   display: flex;
   overflow: hidden;
   user-select: none;

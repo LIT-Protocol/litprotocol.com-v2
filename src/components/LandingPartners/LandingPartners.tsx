@@ -1,43 +1,43 @@
 import styles from './landing-partners.module.scss';
-import burnt from './assets/burnt.svg';
-import collabland from './assets/collabland.svg';
-import consensys from './assets/consensys.svg';
-import dimo from './assets/dimo.svg';
-import edgenode from './assets/edgenode.svg';
-import ethglobal from './assets/ethglobal.svg';
 import gitcoin from './assets/gitcoin.svg';
 import indexnetwork from './assets/indexnetwork.svg';
-import krebit from './assets/krebit.svg';
 import lens from './assets/lens.svg';
-import livepeer from './assets/livepeer.svg';
+import terminal3 from './assets/terminal3.svg';
+import creativelabs from './assets/creativelabs.png';
+import emblem from './assets/emblem.png';
+import humanity from './assets/humanity.png';
+import eco from './assets/eco.png';
+import genius from './assets/genius.svg';
 import streamr from './assets/streamr.svg';
+import tria from './assets/tria.svg';
+
 import Image from 'next/image';
-import { Container, Text, Title } from '@mantine/core';
+import { Container, Text } from '@mantine/core';
 
 const logos = [
   {
-    src: burnt,
-    alt: 'Burnt',
+    src: tria,
+    alt: 'Tria',
   },
   {
-    src: collabland,
-    alt: 'Collabland',
+    src: terminal3,
+    alt: 'Terminal3',
   },
   {
-    src: consensys,
-    alt: 'Consensys',
+    src: creativelabs,
+    alt: 'Blockchain Creative Labs',
   },
   {
-    src: dimo,
-    alt: 'Dimo',
+    src: genius,
+    alt: 'Genius',
   },
   {
-    src: edgenode,
-    alt: 'Edge and Node',
+    src: emblem,
+    alt: 'Emblem Vault',
   },
   {
-    src: ethglobal,
-    alt: 'EthGlobal',
+    src: humanity,
+    alt: 'Humanity Protocol',
   },
   {
     src: gitcoin,
@@ -48,16 +48,12 @@ const logos = [
     alt: 'Index Network',
   },
   {
-    src: krebit,
-    alt: 'Krebit',
+    src: eco,
+    alt: 'Eco',
   },
   {
     src: lens,
     alt: 'Lens Protocol',
-  },
-  {
-    src: livepeer,
-    alt: 'Livepeer',
   },
   {
     src: streamr,
@@ -67,16 +63,19 @@ const logos = [
 
 const LandingPartners = () => {
   return (
-    <Container size="lg" className='relative bg-transparent py-[5rem] mt-[1.25rem]'>
+    <Container
+      size="lg"
+      className="relative bg-transparent py-[5rem] mt-[1.25rem]"
+    >
       <Text
-      size="md"
+        size="md"
         style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           marginBottom: '2.5rem',
           textTransform: 'uppercase',
-          color: '#f5f5f5'
+          color: '#f5f5f5',
         }}
       >
         Integrated with
