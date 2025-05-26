@@ -98,7 +98,7 @@ const LitNetwork = () => {
         style={{ zIndex: 10, position: 'relative' }}
         className="flex flex-wrap md:!gap-[3rem] md:!px-[2rem] [@media(min-width:1150px)]:flex-nowrap overflow-x-hidden md:max-h-none overflow-y-auto"
       >
-        <Group className="flex-col !items-start !gap-12 md:!gap-24 justify-center mb-8">
+        <Group className="flex-col !items-start !gap-12 md:!gap-24 justify-center">
           <Title className="!text-[1.25rem] md:!text-[2rem] w-full flex justify-start mb-8">
             The Lit Network
           </Title>

@@ -39,13 +39,13 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
       }}
     >
       <Text
-        className={`!text-[4rem]/[3.8rem] md:!text-[6rem]/[5.8rem] h-[4.5rem] md:h-[6.5rem] md:mb-[.5rem] 
+        className={`!text-[4rem]/[3.9rem] md:!text-[6rem]/[5.8rem] h-[4.5rem] md:h-[6.5rem] md:mb-[.5rem] 
  ${className}`}
       >
         {number}
       </Text>
       <Text
-        className="!text-cool-gray-500 !mb-[1rem]"
+        className="!text-cool-gray-500 md:!mb-[1rem]"
         style={{ textTransform: 'uppercase' }}
       >
         {subtext}

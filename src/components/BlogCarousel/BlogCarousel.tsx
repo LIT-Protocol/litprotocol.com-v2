@@ -89,11 +89,11 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="flex flex-col text-center text-white h-full md:h-[13.5rem] w-full items-center justify-between gap-1 px-4 py-10 md:py-1 md:px-2">
+        <div className="flex flex-col text-center text-white h-full md:h-[13.5rem] w-full items-center justify-between gap-1 px-2 py-8 md:py-1 md:px-2">
           <Title
             order={3}
             m={0}
-            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-[95%] md:w-[90%]"
+            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-full md:w-[90%]"
           >
             {title}
           </Title>
@@ -174,7 +174,7 @@ export function BlogCarousel() {
         nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
         previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
         classNames={{
-          root: 'relative w-[90%] mx-auto pb-12 mb-[4rem]',
+          root: 'relative w-full mx-auto pb-12 mb-[4rem]',
           viewport: 'overflow-hidden',
           container: 'flex',
           slide: 'flex-[0_0_100%] min-w-0', // Ensure slides take full width and don't shrink
