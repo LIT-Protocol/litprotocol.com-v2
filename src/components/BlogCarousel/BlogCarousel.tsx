@@ -76,9 +76,10 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
         gap="1.5rem"
         align="center"
         justify="center"
-        className="h-full"
+        className="h-full w-full"
       >
-        <div className="hidden md:block max-w-[20.937rem] h-[11rem] !border-[.05rem] overflow-hidden flex-shrink-0">
+        {/* Image (Desktop only) */}
+        <div className="hidden md:block h-full flex-[1.4] overflow-hidden rounded-md">
           <Image
             src={image}
             alt={alt}
@@ -89,19 +90,20 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="flex flex-col text-center text-white h-full md:h-[13.5rem] w-full items-center justify-between gap-1 px-2 py-8 md:py-1 md:px-2">
+
+        {/* Text Group */}
+        <div className="flex flex-col text-center text-white h-full flex-[1] items-center justify-between gap-1 px-2 py-8 md:py-4 md:px-2">
           <Title
             order={3}
             m={0}
-            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-full md:w-[90%]"
+            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-full"
           >
             {title}
           </Title>
           <Text
-            className="w-[90%]"
             style={{
               display: '-webkit-box',
-              WebkitLineClamp: 3, // number of visible lines
+              WebkitLineClamp: 3,
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
             }}

@@ -3,8 +3,7 @@ import { Container, Group, Title } from '@mantine/core';
 import Image from 'next/image'; // Changed to Next.js Image
 import React, { useState, useEffect, useRef } from 'react';
 import { IconPhoto } from '@tabler/icons-react';
-import { useMediaQuery } from '@mantine/hooks';
-import NetworkCardDesktop from './NetworkCardDesktop';
+import NetworkCard from './NetworkCard';
 import ShieldIcon from './assets/ShieldIcon';
 import BuildIcon from '../icons/BuildIcon';
 import HandKeyIcon from '../icons/HandKeyIcon';
@@ -104,7 +103,7 @@ const LitNetwork = () => {
           </Title>
           <div className="flex flex-wrap gap-6 min-w-[300px] max-w-full">
             {data.map((card, index) => (
-              <NetworkCardDesktop
+              <NetworkCard
                 key={card.value}
                 {...card}
                 isSelected={index === selectedIndex}

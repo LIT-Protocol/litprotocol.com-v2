@@ -13,7 +13,7 @@ import {
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
-import LandingCta2 from '../LandingCta/LandingCta';
+import LandingCta from '../LandingCta/LandingCta';
 import { Container } from '@mantine/core';
 
 const Footer = () => {
@@ -23,7 +23,7 @@ const Footer = () => {
         <img src="/textures/footer.png" alt="" className="w-full h-auto" />
       </div>
       <Container style={{ position: 'relative', zIndex: 10 }} size="lg">
-        <LandingCta2 />
+        <LandingCta />
         <nav className={styles.footer__nav}>
           <div className={styles.footer__company}>
             <svg

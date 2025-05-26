@@ -53,7 +53,7 @@ function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
   );
 }
 
-const LandingCta2 = () => {
+const LandingCta = () => {
   const handleClick = (url: string) => {
     window.open(url, '_blank');
   };
@@ -62,7 +62,7 @@ const LandingCta2 = () => {
   ));
 
   return (
-    <div className="pt-[4rem] mb-[6rem] md:pb-[10rem]">
+    <div className="pt-[1rem] md:pt-[4rem] mb-[6rem] md:pb-[10rem]">
       <Container size="lg">
         <Group
           style={{ gap: '1.5rem' }}
@@ -89,4 +89,4 @@ const LandingCta2 = () => {
   );
 };
 
-export default LandingCta2;
+export default LandingCta;

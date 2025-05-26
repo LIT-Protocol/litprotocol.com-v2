@@ -48,7 +48,7 @@ function Newsletter() {
       style={{ color: 'white', width: '100%', padding: '0' }}
       className="!bg-slate-blue-500/75 flex w-full p-0"
     >
-      <Text className="!text-[2.25rem] md:!text-[3.25rem] text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent">
+      <Text className="!text-[2rem] md:!text-[3.25rem] text-center w-full relative !p-4 !py-7 !border-b !border-pewter-gray-500 bg-gradient-to-t from-coal-950/50 to-transparent">
         Be the first to know
       </Text>
 
