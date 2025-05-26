@@ -73,8 +73,6 @@ export async function GET() {
       order: 'published_at DESC', // Get most recent posts
     });
 
-    console.log(`Successfully fetched ${posts.length} posts from Ghost`);
-
     if (!posts || posts.length === 0) {
       console.warn('No posts returned from Ghost API');
       return NextResponse.json([]);
@@ -100,11 +98,6 @@ export async function GET() {
         subtext: subtext,
       };
     });
-
-    console.log(
-      'Formatted posts:',
-      formattedPosts.map(p => ({ title: p.title, slug: p.slug }))
-    );
 
     return NextResponse.json(formattedPosts);
   } catch (error: any) {
