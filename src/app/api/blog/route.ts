@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import GhostContentAPI from '@tryghost/content-api';
 
-// Initialize API with error handling
-let api: GhostContentAPI | null = null;
+let api: InstanceType<typeof GhostContentAPI> | null = null;
 
 try {
   if (process.env.GHOST_CONTENT_API_KEY) {
@@ -16,7 +15,6 @@ try {
   console.error('Failed to initialize Ghost API:', error);
 }
 
-// Define the Ghost API post type
 interface GhostPost {
   title: string;
   slug: string;
@@ -28,7 +26,6 @@ interface GhostPost {
   tags?: Array<any>;
 }
 
-// Define the type for your formatted posts
 interface FormattedPost {
   title: string;
   slug: string;
@@ -37,19 +34,14 @@ interface FormattedPost {
   subtext: string;
 }
 
-// Helper function to extract text from HTML (fallback for excerpt)
 function extractTextFromHtml(html: string, maxLength: number = 200): string {
   const text = html.replace(/<[^>]*>/g, '').trim();
   return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
 }
 
-// Named export for GET method
 export async function GET() {
-  // Check if API is initialized and environment variable exists
   if (!api) {
-    console.error(
-      'Ghost API not initialized - check GHOST_CONTENT_API_KEY environment variable'
-    );
+    console.error('Ghost API not initialized - check GHOST_CONTENT_API_KEY');
     return NextResponse.json(
       { error: 'Ghost API not configured' },
       { status: 500 }
@@ -60,28 +52,15 @@ export async function GET() {
     console.log('Fetching posts from Ghost API...');
 
     const posts = await api.posts.browse({
-      limit: 5,
+      limit: 20, // fetch more to reduce need for client-side fetching
       include: ['authors', 'tags'],
-      fields: [
-        'title',
-        'slug',
-        'feature_image',
-        'excerpt',
-        'custom_excerpt',
-        'html',
-      ],
-      order: 'published_at DESC', // Get most recent posts
+      fields: ['title', 'slug', 'feature_image', 'excerpt', 'custom_excerpt', 'html'],
+      order: 'published_at DESC',
     });
 
-    console.log(`Successfully fetched ${posts.length} posts from Ghost`);
-
-    if (!posts || posts.length === 0) {
-      console.warn('No posts returned from Ghost API');
-      return NextResponse.json([]);
-    }
+    console.log(`Fetched ${posts.length} posts from Ghost`);
 
     const formattedPosts: FormattedPost[] = posts.map((post: GhostPost) => {
-      // Use custom_excerpt first, then excerpt, then extract from HTML, finally fallback
       let subtext = post.custom_excerpt || post.excerpt;
 
       if (!subtext && post.html) {
@@ -95,27 +74,27 @@ export async function GET() {
       return {
         title: post.title || 'Untitled',
         slug: post.slug,
-        image: post.feature_image || '/api/placeholder/400/300', // Better placeholder
+        image: post.feature_image || '/api/placeholder/400/300',
         alt: post.title || 'Blog post image',
-        subtext: subtext,
+        subtext,
       };
     });
 
-    console.log(
-      'Formatted posts:',
-      formattedPosts.map(p => ({ title: p.title, slug: p.slug }))
-    );
-
-    return NextResponse.json(formattedPosts);
+    return new NextResponse(JSON.stringify(formattedPosts), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+      },
+    });
   } catch (error: any) {
-    console.error('Ghost API error details:', {
+    console.error('Ghost API error:', {
       message: error.message,
       code: error.code,
       type: error.type,
       stack: error.stack,
     });
 
-    // Return more specific error information in development
     const isDevelopment = process.env.NODE_ENV === 'development';
 
     return NextResponse.json(
@@ -131,7 +110,6 @@ export async function GET() {
   }
 }
 
-// Optional: Add a health check endpoint
 export async function HEAD() {
   if (!api) {
     return new NextResponse(null, { status: 503 });
@@ -140,7 +118,7 @@ export async function HEAD() {
   try {
     await api.posts.browse({ limit: 1 });
     return new NextResponse(null, { status: 200 });
-  } catch (error) {
+  } catch {
     return new NextResponse(null, { status: 503 });
   }
 }

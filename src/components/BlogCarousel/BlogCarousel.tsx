@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { Carousel, Embla } from '@mantine/carousel';
+import { useEffect, useState } from 'react';
+import { Carousel } from '@mantine/carousel';
 import { Group, Image, Card, Title, Text } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
 import { Button } from '../ui/Button';
 import {
   IconArrowNarrowRight,
@@ -67,48 +66,53 @@ const fallbackPosts: ArticleProps[] = [
 ];
 
 function Article({ image, title, slug, alt, subtext }: ArticleProps) {
-  const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <Card
       radius="md"
-      className="!w-full !max-w-[25rem] md:!max-w-none mx-auto h-full md:h-[22rem] !bg-slate-blue-500/50 !py-[3rem] !px-[3rem] !rounded-md"
+      className="!w-full justify-center !max-w-[30rem] md:!max-w-none mx-auto h-[22rem] md:max-h-[25rem] !bg-slate-blue-500/50 sm:!py-[3rem] sm:!px-[3rem] !rounded-md"
     >
       <Group
         wrap="nowrap"
-        justify="space-between"
         gap="1.5rem"
-        className="w-full h-full"
+        align="center"
+        justify="center"
+        className="h-full"
       >
-        {!isMobile && (
-          <div className="max-w-[20.937rem] h-[11rem] block !border-[.05rem] overflow-hidden flex-shrink-0">
-            <Image
-              src={image}
-              alt={alt}
-              radius="sm"
-              fit="cover"
-              w="100%"
-              h="100%"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        )}
-        <div className="flex flex-1 flex-col text-center text-white !justify-between w-full md:h-[13.5rem] h-[14rem] items-center py-1 px-4 md:px-2">
+        <div className="hidden md:block max-w-[20.937rem] h-[11rem] !border-[.05rem] overflow-hidden flex-shrink-0">
+          <Image
+            src={image}
+            alt={alt}
+            radius="sm"
+            fit="cover"
+            w="100%"
+            h="100%"
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="flex flex-col text-center text-white h-full md:h-[13.5rem] w-full items-center justify-between gap-1 px-4 py-10 md:py-1 md:px-2">
           <Title
-            lineClamp={2}
             order={3}
-            className="!text-[1.5rem] md:!text-[1.25rem] w-full"
-            m="sm"
+            m={0}
+            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-[95%] md:w-[90%]"
           >
             {title}
           </Title>
-          <Text lineClamp={3} mb="md" className="flex-1 flex items-center">
+          <Text
+            className="w-[90%]"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 3, // number of visible lines
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
             {subtext}
           </Text>
           <Button
             href={`${SPARK_LINK}/${slug}`}
             target="_blank"
             rightIcon={<IconArrowNarrowRight stroke={2} />}
-            className="mt-auto"
+            className="mt-2"
           >
             Read More
           </Button>
@@ -122,7 +126,7 @@ export function BlogCarousel() {
   const [posts, setPosts] = useState<ArticleProps[]>(fallbackPosts);
   const [loading, setLoading] = useState(false);
   const [hasAttemptedFetch, setHasAttemptedFetch] = useState(false);
-  
+
   const autoplayPlugin = Autoplay({
     delay: 4000, // Increased delay to give users more time to read
     stopOnInteraction: true, // Stop autoplay when user interacts
@@ -131,10 +135,10 @@ export function BlogCarousel() {
   useEffect(() => {
     async function fetchArticles() {
       if (hasAttemptedFetch) return; // Prevent multiple fetch attempts
-      
+
       setLoading(true);
       setHasAttemptedFetch(true);
-      
+
       try {
         const res = await fetch('/api/blog');
         if (res.ok) {
@@ -162,17 +166,15 @@ export function BlogCarousel() {
       <Carousel
         withIndicators
         height="auto" // Changed from fixed height
-        dragFree
         loop
         slideSize="100%"
         align="center"
         slidesToScroll={1}
         withControls
-        plugins={[autoplayPlugin]}
         nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
         previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
         classNames={{
-          root: 'relative w-[90%] mx-auto pb-12 md:pb-[5.6rem] mb-[4rem]',
+          root: 'relative w-[90%] mx-auto pb-12 mb-[4rem]',
           viewport: 'overflow-hidden',
           container: 'flex',
           slide: 'flex-[0_0_100%] min-w-0', // Ensure slides take full width and don't shrink
@@ -198,11 +200,9 @@ export function BlogCarousel() {
           </Carousel.Slide>
         ))}
       </Carousel>
-      
+
       {loading && (
-        <div className="text-center text-white mt-4">
-          Loading articles...
-        </div>
+        <div className="text-center text-white mt-4">Loading articles...</div>
       )}
     </div>
   );
