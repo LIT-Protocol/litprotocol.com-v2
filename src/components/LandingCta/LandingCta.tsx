@@ -1,4 +1,3 @@
-'use client';
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
 import { Card, Container, Group, Text, Title } from '@mantine/core';
 import React from 'react';
@@ -8,14 +7,9 @@ import DiscordIcon from '../icons/DiscordIcon';
 
 import dynamic from 'next/dynamic';
 
-const Newsletter = dynamic(() => import('../Newsletter/Newsletter'), { ssr: false });
-
-interface CtaLinkProps {
-  icon: React.FC<any>;
-  name: React.ReactNode;
-  context: React.ReactNode;
-  onClick: () => void;
-}
+const Newsletter = dynamic(() => import('../Newsletter/Newsletter'), {
+  ssr: false,
+});
 
 const ctas = [
   {
@@ -38,31 +32,48 @@ const ctas = [
     link: DISCORD_LINK,
   },
 ];
-function CtaLink({ icon: Icon, name, context, onClick }: CtaLinkProps) {
+interface CtaLinkProps {
+  icon: React.FC<any>;
+  name: React.ReactNode;
+  context: React.ReactNode;
+  href: string;
+}
+
+function CtaLink({ icon: Icon, name, context, href }: CtaLinkProps) {
   return (
-    <Card
-      onClick={onClick}
-      radius="md"
-      style={{ cursor: 'pointer', color: 'white', padding: '1.5rem' }}
-      className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 xs:h-full md:h-[11.6rem] lg:h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: 'none' }}
+      className="no-underline"
     >
-      <div className="h-[2rem] flex items-center justify-center">
-        <Icon className="!h-full max-w-[2rem] w-full" stroke={2} />
-      </div>
-      <Text size="lg" fw={700}>
-        {name}
-      </Text>
-      <Text size="sm">{context}</Text>
-    </Card>
+      <Card
+        radius="md"
+        style={{ cursor: 'pointer', color: 'white', padding: '1.5rem' }}
+        className="btn-hover-effect flex justify-start w-full !bg-slate-blue-500/75 xs:h-full md:h-[11.6rem] lg:h-[9.68rem] items-start !gap-[.5rem] md:w-[calc(100%/3)]"
+      >
+        <div className="h-[2rem] flex items-center justify-center">
+          <Icon className="!h-full max-w-[2rem] w-full" stroke={2} />
+        </div>
+        <Text size="lg" fw={700}>
+          {name}
+        </Text>
+        <Text size="sm">{context}</Text>
+      </Card>
+    </a>
   );
 }
 
 const LandingCta = () => {
   const handleClick = (url: string) => {
-    window.open(url, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank');
+    }
   };
+
   const ctaLinks = ctas.map((cta, index) => (
-    <CtaLink key={index} {...cta} onClick={() => handleClick(cta.link)} />
+    <CtaLink key={index} {...cta} href={cta.link} />
   ));
 
   return (

@@ -4,7 +4,6 @@ import { Card, Group, Text, TextInput } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { PRIVACY_POLICY_LINK } from '@/utils/constants';
-// import { useForm } from '@mantine/form';
 import { useState } from 'react';
 
 function Newsletter() {
