@@ -14,8 +14,15 @@ function Newsletter() {
 
   async function handleSubscribe(event: any) {
     event.preventDefault();
+    console.log('Email value before submit:', email); // Add this line
     setLoading(true);
     setMessage('');
+
+    if (!email || !email.includes('@')) {
+      setMessage('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
@@ -37,7 +44,7 @@ function Newsletter() {
       setMessage('An error has occurred. Please try again. ❌');
     }
     setLoading(false);
-    setInterval(() => {
+    setTimeout(() => {
       setMessage('');
     }, 3000);
   }
@@ -77,10 +84,12 @@ function Newsletter() {
                   wrapper:
                     'min-w-[10rem] sm:min-w-[12rem] md:min-w-[8rem] lg:min-w-[12rem] flex-grow max-w-full',
                   input:
-                    '!bg-slate-gray-500 text-white border-white border-1 focus:!border-periwinkle-500',
+                    '!bg-slate-gray-500 !text-white border-white border-1 focus:!border-periwinkle-500',
                 }}
                 placeholder="Enter your email"
                 className="!flex-grow"
+                value={email}
+                onChange={event => setEmail(event.target.value)}
               />
               <Button
                 type="submit"

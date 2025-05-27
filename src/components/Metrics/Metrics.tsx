@@ -12,12 +12,12 @@ interface NumbersProps {
 const defaultData = [
   {
     id: 'totalValue',
-    number: '$150M+',
+    number: '$154M+',
     subtext: 'Total Value Managed by Lit Protocol',
   },
   {
     id: 'totalVolume',
-    number: '$1.4M+',
+    number: '1.4M+',
     subtext: 'Total Wallets Managed by Lit Protocol',
   },
   {
@@ -78,7 +78,7 @@ const Metrics = () => {
             },
             {
               id: 'totalVolume',
-              number: metrics.totalVolume ?? '$0M+',
+              number: metrics.totalVolume ?? '0M+',
               subtext: 'Total Volume Processed by Lit Protocol',
             },
             {
