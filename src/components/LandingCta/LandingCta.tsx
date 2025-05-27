@@ -1,3 +1,4 @@
+'use client';
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
 import { Card, Container, Group, Text, Title } from '@mantine/core';
 import React from 'react';
