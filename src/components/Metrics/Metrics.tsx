@@ -1,6 +1,6 @@
 'use client';
 import { Container, Group, Text, Title } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 
 interface NumbersProps {
   number: string;
