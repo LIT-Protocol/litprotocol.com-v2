@@ -1,5 +1,5 @@
 import { DuneClient } from '@duneanalytics/client-sdk';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const dune = new DuneClient(process.env.DUNE_API_KEY!);
 
@@ -29,11 +29,10 @@ const formatToMillions = (value: number): string => {
   return value.toLocaleString();
 };
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const debug =
-      new URL(request.url, 'http://localhost').searchParams.get('debug') ===
-      'true';
+    // Use NextRequest's searchParams instead of parsing URL manually
+    const debug = request.nextUrl.searchParams.get('debug') === 'true';
 
     // Get the latest result from the query
     const result = await dune.getLatestResult({ queryId: QUERY_ID });
