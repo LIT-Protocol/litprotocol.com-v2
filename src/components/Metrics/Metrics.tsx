@@ -55,49 +55,49 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
 }
 
 const Metrics = () => {
-  const [metrics, setMetrics] = useState(defaultData);
-  const [loading, setLoading] = useState(true);
+  // const [metrics, setMetrics] = useState(defaultData);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMetrics = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/dune-data');
+  // useEffect(() => {
+  //   const fetchMetrics = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await fetch('/api/dune-data');
 
-        console.log(response);
+  //       console.log(response);
 
-        if (response.ok) {
-          const metrics = await response.json();
+  //       if (response.ok) {
+  //         const metrics = await response.json();
 
-          // Update data with fetched values
-          setMetrics([
-            {
-              id: 'totalValue',
-              number: metrics.totalValue ?? '$0M+',
-              subtext: 'Total Value Managed by Lit Protocol',
-            },
-            {
-              id: 'totalVolume',
-              number: metrics.totalVolume ?? '0M+',
-              subtext: 'Total Volume Processed by Lit Protocol',
-            },
-            {
-              id: 'totalDataPoints',
-              number: metrics.totalDataPoints ?? '0M+',
-              subtext: 'Data Points Decrypted by Lit Protocol',
-            },
-          ]);
-        }
-      } catch (error) {
-        console.error('Failed to fetch metrics:', error);
-        // Keep using default data on error
-      } finally {
-        setLoading(false);
-      }
-    };
+  //         // Update data with fetched values
+  //         setMetrics([
+  //           {
+  //             id: 'totalValue',
+  //             number: metrics.totalValue ?? '$0M+',
+  //             subtext: 'Total Value Managed by Lit Protocol',
+  //           },
+  //           {
+  //             id: 'totalVolume',
+  //             number: metrics.totalVolume ?? '0M+',
+  //             subtext: 'Total Volume Processed by Lit Protocol',
+  //           },
+  //           {
+  //             id: 'totalDataPoints',
+  //             number: metrics.totalDataPoints ?? '0M+',
+  //             subtext: 'Data Points Decrypted by Lit Protocol',
+  //           },
+  //         ]);
+  //       }
+  //     } catch (error) {
+  //       console.error('Failed to fetch metrics:', error);
+  //       // Keep using default data on error
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchMetrics();
-  }, []);
+  //   fetchMetrics();
+  // }, []);
 
   return (
     <div className="md:pt-[7.5rem] md:pb-[5rem] bg-coal-950 text-white relative overflow-hidden">

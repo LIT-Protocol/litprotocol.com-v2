@@ -4,18 +4,18 @@ import { NextResponse } from 'next/server';
 const dune = new DuneClient(process.env.DUNE_API_KEY!);
 
 type DuneRow = {
-  total_addresses: number | string;
   datil_tv_floor_price: number | string;
-  datil_tv: number | string;
+  total_addresses: number | string;
+  // need to add/calculate totalDataPoints
 };
 // Single query ID
 const QUERY_ID = 4185193;
 
 // Define the mapping from Dune column names to your desired variable names
 const fieldMapping = {
-  total_addresses: 'totalDataPoints',
-  datil_tv_floor_price: 'totalVolume',
-  datil_tv: 'totalValue',
+  datil_tv_floor_price: 'totalValue',
+  total_addresses: 'totalVolume',
+  // need to add/calculate totalDataPoints
 };
 
 // Function to format numbers to millions with M+ suffix
@@ -43,9 +43,9 @@ export async function GET(request: Request) {
       console.warn('Dune result was empty or malformed:', result);
 
       return NextResponse.json({
-        totalValue: '$50M+',
-        totalVolume: '$154M+',
-        totalDataPoints: '1M+',
+        totalValue: '$154M+',
+        totalVolume: '1.4M+',
+        totalDataPoints: '30M+',
         status: 'fallback',
       });
     }
@@ -57,9 +57,9 @@ export async function GET(request: Request) {
       console.warn('Dune result was empty or malformed:', result);
 
       return NextResponse.json({
-        totalValue: '$50M+',
-        totalVolume: '$154M+',
-        totalDataPoints: '1M+',
+        totalValue: '$154M+',
+        totalVolume: '1.4M+',
+        totalDataPoints: '30M+',
         status: 'fallback',
       });
     }
@@ -89,7 +89,7 @@ export async function GET(request: Request) {
       // Format the value for display with M+ suffix
       if (value !== null) {
         // Add $ prefix for value and volume fields
-        if (targetField === 'totalValue' || targetField === 'totalVolume') {
+        if (targetField === 'totalValue') {
           formattedMetrics[targetField] = '$' + formatToMillions(value);
         } else {
           formattedMetrics[targetField] = formatToMillions(value);
@@ -97,7 +97,7 @@ export async function GET(request: Request) {
       } else {
         // Default values if null
         formattedMetrics[targetField] =
-          targetField === 'totalDataPoints' ? '0M+' : '$0M+';
+          targetField === 'totalDataPoints' || 'totalVolume' ? '0M+' : '$0M+';
       }
     });
 
@@ -116,9 +116,9 @@ export async function GET(request: Request) {
     console.error('Dune API error:', err);
     // Return default values in case of error
     return NextResponse.json({
-      totalValue: '$50M+',
-      totalVolume: '$154M+',
-      totalDataPoints: '1M+',
+      totalValue: '$154M+',
+      totalVolume: '1.4M+',
+      totalDataPoints: '30M+',
     });
   }
 }
