@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
 
-const CodeBlockIcon = (props: SVGProps<SVGSVGElement>) => {
+const DocsIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="32"
@@ -18,4 +18,4 @@ const CodeBlockIcon = (props: SVGProps<SVGSVGElement>) => {
   );
 };
 
-export default CodeBlockIcon;
+export default DocsIcon;

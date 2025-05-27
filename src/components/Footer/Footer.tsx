@@ -13,8 +13,13 @@ import {
   WHITEPAPER_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
-import LandingCta from '../LandingCta/LandingCta';
 import { Container } from '@mantine/core';
+
+import dynamic from 'next/dynamic';
+
+const LandingCta = dynamic(() => import('../LandingCta/LandingCta'), {
+  ssr: false,
+});
 
 const Footer = () => {
   return (

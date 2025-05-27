@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Group, Text, TextInput } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
