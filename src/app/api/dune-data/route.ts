@@ -1,5 +1,5 @@
 import { DuneClient } from '@duneanalytics/client-sdk';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const dune = new DuneClient(process.env.DUNE_API_KEY!);
 
@@ -8,6 +8,7 @@ type DuneRow = {
   total_addresses: number | string;
   // need to add/calculate totalDataPoints
 };
+
 // Single query ID
 const QUERY_ID = 4185193;
 
@@ -29,11 +30,8 @@ const formatToMillions = (value: number): string => {
   return value.toLocaleString();
 };
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    // Use NextRequest's searchParams instead of parsing URL manually
-    const debug = request.nextUrl.searchParams.get('debug') === 'true';
-
     // Get the latest result from the query
     const result = await dune.getLatestResult({ queryId: QUERY_ID });
 
@@ -99,15 +97,6 @@ export async function GET(request: NextRequest) {
           targetField === 'totalDataPoints' || 'totalVolume' ? '0M+' : '$0M+';
       }
     });
-
-    // Add debug information if requested
-    if (debug) {
-      return NextResponse.json({
-        formatted: formattedMetrics,
-        raw: rawMetrics,
-        originalRow: row,
-      });
-    }
 
     // Return the formatted metrics for display
     return NextResponse.json(formattedMetrics);
