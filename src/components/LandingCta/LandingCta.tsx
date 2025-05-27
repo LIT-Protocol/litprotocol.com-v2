@@ -2,10 +2,13 @@
 import { DISCORD_LINK, DOCS_LINK, SPARK_LINK } from '@/utils/constants';
 import { Card, Container, Group, Text, Title } from '@mantine/core';
 import React from 'react';
-import Newsletter from '../Newsletter/Newsletter';
 import DocsIcon from './assets/DocsIcon';
 import BlogIcon from './assets/BlogIcon';
 import DiscordIcon from '../icons/DiscordIcon';
+
+import dynamic from 'next/dynamic';
+
+const Newsletter = dynamic(() => import('../Newsletter/Newsletter'), { ssr: false });
 
 interface CtaLinkProps {
   icon: React.FC<any>;
