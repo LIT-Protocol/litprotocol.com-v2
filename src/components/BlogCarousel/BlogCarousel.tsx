@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Carousel } from '@mantine/carousel';
-import { IconChevronLeft, IconChevronRight, IconArrowNarrowRight } from '@tabler/icons-react';
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconArrowNarrowRight,
+} from '@tabler/icons-react';
 import { Group, Image, Card, Title, Text } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { SPARK_LINK } from '@/utils/constants';
@@ -41,7 +45,11 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
         </div>
 
         <div className="flex flex-col text-center text-white h-full flex-[1] items-center justify-between gap-1 px-2 py-8 md:py-4 md:px-2">
-          <Title order={3} m={0} className="sm:!text-[1.15rem] md:!text-[1.25rem] w-full">
+          <Title
+            order={3}
+            m={0}
+            className="sm:!text-[1.15rem] md:!text-[1.25rem] w-full"
+          >
             {title}
           </Title>
           <Text
@@ -57,6 +65,7 @@ function Article({ image, title, slug, alt, subtext }: ArticleProps) {
           <Button
             href={`${SPARK_LINK}/${slug}`}
             target="_blank"
+            rel="noopener noreferrer"
             rightIcon={<IconArrowNarrowRight stroke={2} />}
             className="mt-2"
           >

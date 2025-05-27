@@ -39,7 +39,7 @@ const links: LinkItem[] = [
   {
     link: '#3',
     label: 'Community',
-    links: [{ link: COMMUNITY_LINK, label: 'Resources' }],
+    links: [{ link: COMMUNITY_LINK, label: 'Resources', external: true }],
   },
   {
     link: '#4',
@@ -64,18 +64,23 @@ export const NavMenu2 = ({
       <Accordion.Control>{item.label}</Accordion.Control>
       <Accordion.Panel>
         <ul>
-          {item.links?.map(sub => (
-            <li className="mb-[1rem]">
-              <a
-                key={sub.link}
-                href={sub.link}
-                target={sub.external ? '_blank' : '_self'}
-                rel={sub.external ? 'noopener noreferrer' : undefined}
-              >
-                {sub.label}
-              </a>
-            </li>
-          ))}
+          {item.links?.map(sub => {
+            const isExternal = sub.external === true;
+
+            return (
+              <li key={sub.link} className="mb-[1rem]">
+                <a
+                  href={sub.link}
+                  {...(isExternal && {
+                    target: '_blank',
+                    rel: 'noreferrer noopener',
+                  })}
+                >
+                  {sub.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </Accordion.Panel>
     </Accordion.Item>
@@ -128,6 +133,7 @@ export const NavMenu2 = ({
           <Button
             className="w-[12rem] flex items-center justify-center"
             target="_blank"
+            rel="noopener noreferrer"
             href={DOCS_LINK}
             rightIcon={<IconArrowNarrowRight stroke={2} />}
           >
@@ -144,6 +150,7 @@ export const NavMenu2 = ({
             variant="outline"
             href={CONTACT_FORM}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Get In Touch
           </Button>

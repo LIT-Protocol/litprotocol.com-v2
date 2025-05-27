@@ -407,11 +407,17 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
               <Button
                 href={DOCS_LINK}
                 target="_blank"
+                rel="noopener noreferrer"
                 rightIcon={<IconArrowNarrowRight stroke={2} />}
               >
                 Read the Docs
               </Button>
-              <Button variant="outline" href={CONTACT_FORM} target="_blank">
+              <Button
+                variant="outline"
+                href={CONTACT_FORM}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Get In Touch
               </Button>
             </Group>
