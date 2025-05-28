@@ -1,7 +1,11 @@
 import { Card, Group, Text, Title } from '@mantine/core';
 import { IconArrowRight, IconPhoto } from '@tabler/icons-react';
 import { Button } from '../ui/Button';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
+
+const LottieWrapper = dynamic(() => import('./LottieWrapper'), {
+  ssr: false,
+});
 
 interface FeatureItem {
   slug: string;
@@ -92,7 +96,7 @@ function Product({ features }: ProductProps) {
             {/* Image container - always below on mobile */}
             <div className="w-[80%] m-auto md:min-h-[31.125rem] md:max-h-[37.875rem] flex items-center justify-center mt-2 md:mt-0 md:w-auto order-last md:m-0">
               {feature.image ? (
-                <Lottie animationData={feature.image} loop={true} />
+                <LottieWrapper animationData={feature.image} />
               ) : (
                 <IconPhoto size={48} color="#adb5bd" />
               )}
