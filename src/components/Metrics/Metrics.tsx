@@ -13,17 +13,17 @@ const defaultData = [
   {
     id: 'totalValue',
     number: '$154M+',
-    subtext: 'Total Value Managed by Lit Protocol',
+    subtext: 'Total Value Managed',
   },
   {
     id: 'totalVolume',
     number: '1.4M+',
-    subtext: 'Total Wallets Managed by Lit Protocol',
+    subtext: 'Total Wallets Managed',
   },
   {
     id: 'totalDataPoints',
     number: '30M+',
-    subtext: 'Data Points Decrypted by Lit Protocol',
+    subtext: 'Data Points Decrypted',
   },
 ];
 
@@ -45,7 +45,7 @@ function NumberItem({ number, subtext, className }: NumbersProps) {
         {number}
       </Text>
       <Text
-        className="!text-cool-gray-500 md:!mb-[1rem]"
+        className="!text-cool-gray-500 md:!mb-[1rem] !text-[1rem] sm:!text-[1.25rem]"
         style={{ textTransform: 'uppercase' }}
       >
         {subtext}
