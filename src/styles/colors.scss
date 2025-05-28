@@ -1,6 +1,6 @@
 :root {
-  --lit-white: rgb(255, 255, 255);
-  --lit-black: rgb(11, 13, 15);
+  --lit-white: #f3efee;
+  --lit-black: #121619;
   --lit-gray-50: rgb(242, 244, 248);
   --lit-gray-100: rgb(221, 225, 230);
   --lit-gray-200: rgb(193, 199, 205);
@@ -11,9 +11,27 @@
   --lit-gray-700: rgb(52, 58, 63);
   --lit-gray-800: rgb(33, 39, 42);
   --lit-gray-900: rgb(18, 22, 25);
-  --lit-orange: rgb(255, 66, 5);
+  --lit-orange: #ff4205;
   --lit-orange-light: rgb(255, 132, 79);
-  --lit-orange-dark: rgb(230, 41, 0);
+  --lit-orange-dark: #992803;
   --lit-pink: rgb(170, 17, 85);
   --lit-pink-dark: rgb(117, 10, 65);
+  --lit-yellow: #ffbe3f;
+  --lit-yellow-dark: #997226;
+  --lit-light-blue: #a5b9cc;
+  --lit-light-blue-dark: #567799;
+  --lit-royal-blue: #003265;
+  --lit-blue-gray: #a5b9cc;
+  --lit-blue-accent: #8fc6ff;
+  --lit-blue-stroke: #a1d5ff;
+  --lit-brown: #5c1e0a;
+  --lit-deep-gray: #6C6C78;
+  --lit-features-bg: rgba(244, 224, 217, 0.7);
+  --network-gradient-color-1: rgba(245, 245, 245, 0.08);
+  --network-gradient-color-2: rgba(0, 50, 101, 0.4);
+  --network-gradient-color-3: rgba(161, 213, 255, 0.1);
+  --cta-gradient-white: rgba(245, 245, 245, 0.08);
+  --cta-gradient-orange: rgba(255, 66, 5, 0.2);
+  --cta-gradient-yellow: rgba(255, 190, 63, 0.4);
+  --lit-white-opacity: rgba(245, 245, 245, .25);
 }

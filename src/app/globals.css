@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: Favorit;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ABCFavorit-Regular.woff2') format('woff2'),
+    url('/fonts/ABCFavorit-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: Favorit;
+  font-style: light;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/ABCFavorit-Light.woff2') format('woff2'),
+    url('/fonts/ABCFavorit-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: Favorit;
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ABCFavorit-Bold.woff2') format('woff2'),
+    url('/fonts/ABCFavorit-Bold.woff') format('woff');
+}
+
+@theme {
+  --font-display: 'Favorit', 'sans-serif';
+
+  /* colors */
+  --color-lit-orange: oklch(53.51% 0.163 39.51);
+  --color-lit-orange-700: oklch(43.99% 0.16 32.25);
+  --color-burgundy-500: oklch(46.45% 0.148 30.24);
+  --color-gold-500: oklch(75.27% 0.158 76.77);
+  --color-gold-700: oklch(49.09% 0.102 78.07);
+  --color-slate-blue-500: oklch(34.4% 0.027 252.83);
+  --color-slate-gray-500: oklch(55.1% 0.023 264.36);
+  --color-pewter-gray-500: oklch(65.34% 0 0);
+  --color-pearl-500: oklch(81.16% 0.012 321.33);
+  --color-blue-950: oklch(24.69% 0.075 260.78);
+  --color-coal-950: oklch(16.86% 0.023 263.69);
+  --color-periwinkle-500: oklch(64.27% 0.131 278.58);
+  --color-periwinkle-700: oklch(41.3% 0.078 278.68);
+  --color-mint-200: oklch(87.65% 0.071 169.72);
+  --color-mint-500: oklch(82.91% 0.133 174.96);
+  --color-off-white: oklch(97.02% 0 0);
+  --color-electric-blue-500: oklch(60.48% 0.217 257.21);
+  --color-electric-blue-700: oklch(41.98% 0.144 256.16);
+  --color-cool-gray-500: oklch(73.16% 0 0);
+  --color-light-bar-blue: oklch(0.67 0.1768 252.83);
+
+  --glow-color-1: #0f172a; /* blue-950 */
+  --glow-color-2: #1e3a8a66; /* blue-900 with 0.4 alpha */
+  --glow-color-3: #0f172a; /* blue-950 */
+
+  /* breakpoints */
+  --breakpoint-xs: 36em;
+  --breakpoint-sm: 38em;
+  --breakpoint-md: 48em;
+  --breakpoint-lg: 62em;
+  --breakpoint-xl: 75em;
+  --breakpoint-2xl: 88em;
+  --breakpoint-3xl: 96em;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 3s ease-in-out;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 3s ease-in-out;
+  }
+
+  .animate-quick-fade-in {
+    animation: quickFadeIn 1s ease-in;
+  }
+
+    .animate-quick-fade-out {
+    animation: quickFadeOut 1s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes quickFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes quickFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@layer base {
+  html {
+    @apply h-full scroll-smooth;
+  }
+
+  body {
+    @apply font-display min-h-[100vh] relative bg-coal-950 text-white;
+  }
+}
+
+@layer components {
+  .btn-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .btn-hover-effect:hover::before {
+    opacity: 1;
+  }
+
+  .icon-right-animate {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .group:hover .icon-right-animate {
+    transform: translateX(1px);
+  }
+
+  .metric-1 {
+    @apply bg-gradient-to-r from-lit-orange to-lit-orange-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  .metric-2 {
+    @apply bg-gradient-to-r from-gold-500 to-gold-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  .metric-3 {
+    @apply bg-gradient-to-r from-electric-blue-500 to-electric-blue-700;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+
+  .hero-glow-gradient {
+    background: radial-gradient(
+      circle at center,
+      var(--glow-color-1),
+      var(--glow-color-2),
+      var(--glow-color-3)
+    );
+  }
+
+  .network-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 1150px) {
+    .network-card-wrapper {
+      flex-wrap: no-wrap;
+    }
+  }
+}

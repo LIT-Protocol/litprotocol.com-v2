@@ -1,10 +1,8 @@
 'use client';
 
-import styles from './layout.module.scss';
-import Header from '../Header/Header';
+import { HeaderMenu } from '../Header/Header';
 import Footer from '../Footer/Footer';
-import NavMenu from '../NavMenu/NavMenu';
-import Banner from '../Banner/Banner';
+import { NavMenu2 } from '../NavMenu/NavMenu2';
 import { useState } from 'react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -16,11 +14,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Banner />
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
-      <main className={styles.main}>{children}</main>
+      <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <main className="relative w-full h-full min-h-[100vh]">{children}</main>
       <Footer />
-      <NavMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} />
     </>
   );
 };

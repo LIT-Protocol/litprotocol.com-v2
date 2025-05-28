@@ -1,178 +1,154 @@
-import { useEffect, useRef } from 'react';
-import styles from './header.module.scss';
 import {
-  CONTACT_FORM,
-  DISCORD_LINK,
-  DOCS_LINK,
-  MANIFESTO_LINK,
-  SPARK_LINK,
-  VINCENT_LINK,
-} from '@/utils/constants';
+  IconArrowNarrowRight,
+  IconArrowUpRight,
+  IconChevronDown,
+} from '@tabler/icons-react';
+import { Burger, Center, Container, Group, Menu } from '@mantine/core';
+import Link from 'next/link';
 import LitLogo from '../LitLogo/LitLogo';
 
-const Header = ({
+import {
+  CAREERS_LINK,
+  COMMUNITY_LINK,
+  CONTACT_FORM,
+  DOCS_LINK,
+  GITHUB_LINK,
+  SPARK_LINK,
+  VINCENT_LINK,
+  WHITEPAPER_LINK,
+} from '@/utils/constants';
+import { Button } from '../ui/Button';
+import SparkleIcon from './assets/SparkleIcon';
+
+interface LinkItem {
+  link: string;
+  label: string;
+  external?: boolean;
+  links?: LinkItem[];
+}
+
+const links: LinkItem[] = [
+  {
+    link: '#1',
+    label: 'Vincent',
+    links: [{ link: VINCENT_LINK, label: 'Explore Vincent', external: true }],
+  },
+  {
+    link: '#2',
+    label: 'Developers',
+    links: [
+      { link: DOCS_LINK, label: 'Documentation', external: true },
+      { link: GITHUB_LINK, label: 'Github', external: true },
+      { link: WHITEPAPER_LINK, label: 'Whitepaper', external: true },
+    ],
+  },
+  {
+    link: '#3',
+    label: 'Community',
+    links: [{ link: COMMUNITY_LINK, label: 'Resources' }],
+  },
+  {
+    link: '#4',
+    label: 'Company',
+    links: [
+      { link: SPARK_LINK, label: 'Blog', external: true },
+      { link: CAREERS_LINK, label: 'Careers', external: true },
+      { link: CONTACT_FORM, label: 'Contact', external: true },
+    ],
+  },
+];
+
+export function HeaderMenu({
   menuOpen,
   toggleMenu,
 }: {
   menuOpen: boolean;
   toggleMenu: () => void;
-}) => {
-  const watcherRef = useRef<HTMLDivElement | null>(null);
-  const headerRef = useRef<HTMLHeadingElement | null>(null);
+}) {
+  const items = links.map(link => {
+    const menuItems = link.links?.map(item =>
+      item.external ? (
+        <Menu.Item
+          key={item.link}
+          component="a"
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          rightSection={<IconArrowUpRight size={16} />}
+        >
+          {item.label}
+        </Menu.Item>
+      ) : (
+        <Menu.Item key={item.link} component={Link} href={item.link}>
+          {item.label}
+        </Menu.Item>
+      )
+    );
 
-  useEffect(() => {
-    // Update header styling on scroll
-    if (watcherRef.current && headerRef.current) {
-      const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              headerRef.current!.setAttribute('data-scroll', 'false');
-            } else {
-              headerRef.current!.setAttribute('data-scroll', 'true');
-            }
-          });
-        },
-        {
-          root: null,
-          threshold: 0,
-        }
+    if (menuItems) {
+      return (
+        <Menu
+          key={link.label}
+          trigger="hover"
+          transitionProps={{ exitDuration: 0 }}
+          withinPortal
+          withArrow
+          offset={16}
+        >
+          <Menu.Target>
+            <a href={link.link}>
+              <Center className="text-off-white font-medium px-[.75rem] py-[.375rem]">
+                <span className="mr-[5px]">{link.label}</span>
+                {link.label === 'Vincent' ? (
+                  <SparkleIcon size={16} />
+                ) : (
+                  <IconChevronDown size={16} stroke={1.5} />
+                )}
+              </Center>
+            </a>
+          </Menu.Target>
+          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+        </Menu>
       );
-
-      observer.observe(watcherRef.current);
-
-      return () => {
-        if (watcherRef.current) {
-          observer.unobserve(watcherRef.current);
-        }
-      };
     }
-  }, []);
+
+    return (
+      <Link key={link.label} href={link.link}>
+        {link.label}
+      </Link>
+    );
+  });
 
   return (
-    <>
-      <div ref={watcherRef}></div>
-      <header className={styles.header} data-scroll="false" ref={headerRef}>
-        <div className={styles.header__background}></div>
-        <div className={styles.header__wrapper}>
-          <a href="/">
-            <LitLogo className={styles.header__logo} />
-          </a>
-          <nav className={styles.header__nav}>
-            {/* <a
-              href={MANIFESTO_LINK}
+    <header className="relative w-full top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
+      <Container size="md">
+        <div className="flex h-[4.5rem] justify-between items-center">
+          <Group gap={4}>
+            <Burger
+              opened={menuOpen}
+              onClick={toggleMenu}
+              size="sm"
+              hiddenFrom="sm"
+              color="white"
+            />
+            <LitLogo className="h-[1.5rem] text-lit-orange" />
+          </Group>
+          <Group gap={'1.25rem'} visibleFrom="sm">
+            {items}
+          </Group>
+          {menuOpen ? (
+            <Button className="hidden" />
+          ) : (
+            <Button
               target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Our Mission
-            </a> */}
-            <a
-              href={VINCENT_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Vincent
-            </a>
-            <a
               href={DOCS_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Docs
-            </a>
-            <a
-              href={DISCORD_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Community
-            </a>
-            <a
-              href={SPARK_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Blog
-            </a>
-            <a
-              href={CONTACT_FORM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__link}
-            >
-              Contact
-            </a>
-          </nav>
-          <div className={styles.header__btns}>
-            <a
-              href={DOCS_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.header__cta}
+              rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
               Get started
-            </a>
-            <button onClick={toggleMenu} className={styles['menu-btn']}>
-              {menuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M18 6L6 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M3 12H21"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M3 6H21"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M3 18H21"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
+            </Button>
+          )}
         </div>
-      </header>
-    </>
+      </Container>
+    </header>
   );
-};
-
-export default Header;
+}

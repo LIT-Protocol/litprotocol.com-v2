@@ -3,16 +3,16 @@
 .footer {
   width: 100%;
   margin: 0 auto;
-  padding: 4rem 1rem 0;
+  padding: 0 0 4rem 0;
   background-image: linear-gradient(
-    to bottom,
-    var(--lit-gray-900),
-    var(--lit-black)
+    18deg,
+    var(--lit-royal-blue) 0%,
+    var(--lit-black) 70%
   );
   color: var(--lit-gray-400);
 
   @include sm {
-    padding: 4rem 2rem 0;
+    padding: 0 2rem 4rem;
   }
 
   &__divider {

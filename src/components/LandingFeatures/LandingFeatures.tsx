@@ -1,96 +1,110 @@
-import {WHITEPAPER_LINK } from '@/utils/constants';
-import {AUDIT_LINK } from '@/utils/constants';
-import styles from './landing-features.module.scss';
-import { ComponentType } from 'react';
-import Enclave from './features/Enclave';
-import Interoperability from './features/Interoperability';
-import Threshold from './features/Threshold';
+'use client';
+import {
+  ENCRYPTION_LINK,
+  LIT_ACTIONS_LINK,
+  LIT_WALLET_LINK,
+} from '@/utils/constants';
+import { Container } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import React from 'react';
+import Product from './Product';
+import GearIcon from './assets/GearIcon';
+import ToolsIcon from './assets/ToolsIcon';
+import ApproveIcon from './assets/ApproveIcon';
+import UnifyIcon from './assets/UnifyIcon';
+import BuildIcon from '../icons/BuildIcon';
+import LockIcon from './assets/LockIcon';
+import VaultIcon from './assets/VaultIcon';
+import HandKeyIcon from '../icons/HandKeyIcon';
+import UniversalIcon from './assets/UniversalIcon';
+import agentWalletAnim from '@/animations/agent-wallet.json';
+import interoperabilityAnim from '@/animations/interoperability.json';
+import userDataAnim from '@/animations/user-data.json';
+
+// need to add images
 
 const features = [
   {
-    title: 'Distributed Trust',
-    description:
-      'Harnessing multi-party computation (MPC) and threshold signature schemes (TSS), Lit distributes encrypted key shares across the Lit network. Neither you nor your users need to store any private key material.',
-    highlight: 'Keys never exist in their entirety.',
-    Icon: Threshold,
+    value: 'first',
+    title: 'Agent Wallets',
+    heading: 'Universal Accounts For User Controlled Automation ',
+    paragraph:
+      'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions.',
+    features: [
+      {
+        icon: UniversalIcon,
+        slug: 'universal accounts for every chain and platform',
+      },
+      { icon: ApproveIcon, slug: 'user authorization' },
+      { icon: ToolsIcon, slug: 'On-chain, open source tools' },
+    ],
+    image: agentWalletAnim,
+    link: LIT_WALLET_LINK,
+    cta: 'Create Agent Wallets',
+    imageRight: true,
   },
   {
-    title: 'Embedded Security',
-    description:
-      'Lit leverages sealed trusted execution environments (TEEs) to ensure that node operators never have access to key shares or data processed within each node.',
-    highlight: 'Your keys and data remain private and untouched.',
-    Icon: Enclave,
+    value: 'second',
+    title: 'Interoperability',
+    heading: 'Program Private Keys',
+    paragraph:
+      'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps.',
+    features: [
+      { icon: GearIcon, slug: 'Automate cross-chain liquidity' },
+      { icon: VaultIcon, slug: 'Build secure, programmable vaults' },
+      {
+        icon: UnifyIcon,
+        slug: 'Unify disparate Web3 and Web2 systems under a single, cryptographic control layer',
+      },
+    ],
+    image: interoperabilityAnim,
+    link: LIT_ACTIONS_LINK,
+    cta: 'Build with Lit Actions',
+    imageRight: false,
   },
   {
-    title: 'Native Interoperability',
-    description:
-      'The keys managed on Lit can read and write data across blockchains, storage networks, and state machines—bridging previously disconnected ecosystems.',
-    highlight: 'Build experiences that span the entire internet.',
-    Icon: Interoperability,
+    value: 'third',
+    title: 'User Owned Data',
+    heading: 'Private Data On The Open Web',
+    paragraph:
+      'Build applications where private data lives on the open web but remains verifiably under user control.',
+    features: [
+      {
+        icon: LockIcon,
+        slug: 'Define exactly who can decrypt based on dynamic conditions',
+      },
+      { icon: BuildIcon, slug: 'Build user owned data and data marketplaces' },
+      { icon: HandKeyIcon, slug: 'Put users in control' },
+    ],
+    image: userDataAnim,
+    link: ENCRYPTION_LINK,
+    cta: 'Build with Encryption',
+    imageRight: true,
   },
 ];
 
-const LandingFeatures = () => {
+const LandingProduct2 = () => {
+  const mobile = useMediaQuery(`(max-width: 48em)`);
+
   return (
-    <section className={styles.section}>
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>The Lit Network</h2>
-          <p className={styles.subtitle}>
-            Lit is a decentralized key management and compute network that leverages cutting-edge cryptography, sealed confidential hardware, and peer-to-peer networking to securely generate and manage keys and execute private and immutable programs.
-          </p>
-          <div></div>
-          <a
-            href={WHITEPAPER_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['cta-btn']}
-          >
-            Learn More
-          </a>
-          <a
-            href={AUDIT_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['cta-btn']}
-          >
-            Audit Reports
-          </a>
-        </div>
-        <div className={styles.grid}>
-          {features.map(feature => (
-            <Feature
-              key={feature.title}
-              title={feature.title}
-              description={feature.description}
-              highlight={feature.highlight}
-              Icon={feature.Icon}
-            />
-          ))}
-        </div>
+    <div className="bg-coal-950 text-off-white relative overflow-x-hidden">
+      <div className="absolute -left-[2rem] top-[50rem] md:top-[15rem] z-0 pointer-events-none w-[220%] md:w-[115%] opacity-70">
+        <img src="/textures/product.png" alt="" className="w-full h-auto" />
       </div>
-    </section>
-  );
-};
-
-interface FeatureProps {
-  title: string;
-  description: string;
-  highlight: string;
-  Icon: ComponentType;
-}
-
-const Feature = ({ title, description, highlight, Icon }: FeatureProps) => {
-  return (
-    <div className={styles.feature}>
-      <Icon />
-      <h3 className={styles.feature__title}>{title}</h3>
-      <p className={styles.feature__copy}>
-        {description}{' '}
-        <span className={styles.feature__highlight}>{highlight}</span>
-      </p>
+      <Container
+        size="lg"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          zIndex: 10,
+        }}
+        className='!my-[4rem] md:!my-0'
+      >
+        <Product features={features} />
+      </Container>
     </div>
   );
 };
 
-export default LandingFeatures;
+export default LandingProduct2;

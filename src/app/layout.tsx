@@ -1,6 +1,15 @@
+import './globals.css';
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+
+import '@mantine/carousel/styles.css';
+import '@mantine/core/styles.css';
+import {
+  ColorSchemeScript,
+  MantineProvider,
+  mantineHtmlProps,
+} from '@mantine/core';
 
 export const metadata: Metadata = {
   title: 'Lit Protocol',
@@ -36,15 +45,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Script
-        defer
-        data-domain="litprotocol.com"
-        src="https://plausible.io/js/script.js"
-      ></Script>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </>
+    <html lang="en" {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript />
+        <Script
+          defer
+          data-domain="litprotocol.com"
+          src="https://plausible.io/js/script.js"
+        />
+      </head>
+      <body>
+        <MantineProvider>{children}</MantineProvider>
+      </body>
+    </html>
   );
 }
