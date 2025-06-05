@@ -1,3 +1,4 @@
+'use client';
 import {
   IconArrowNarrowRight,
   IconArrowUpRight,
@@ -19,6 +20,8 @@ import {
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
 import SparkleIcon from './assets/SparkleIcon';
+import { useState } from 'react';
+import SparkleIconFilled from './assets/SparkleIconFilled';
 
 interface LinkItem {
   link: string;
@@ -29,12 +32,12 @@ interface LinkItem {
 
 const links: LinkItem[] = [
   {
-    link: '#1',
+    link: VINCENT_LINK,
     label: 'Vincent',
-    links: [{ link: VINCENT_LINK, label: 'Explore Vincent', external: true }],
+    external: false,
   },
   {
-    link: '#2',
+    link: 'dev',
     label: 'Developers',
     links: [
       { link: DOCS_LINK, label: 'Documentation', external: true },
@@ -43,12 +46,12 @@ const links: LinkItem[] = [
     ],
   },
   {
-    link: '#3',
+    link: 'community',
     label: 'Community',
-    links: [{ link: COMMUNITY_LINK, label: 'Resources' }],
+    links: [{ link: COMMUNITY_LINK, label: 'Resources', external: true }],
   },
   {
-    link: '#4',
+    link: 'company',
     label: 'Company',
     links: [
       { link: SPARK_LINK, label: 'Blog', external: true },
@@ -58,15 +61,22 @@ const links: LinkItem[] = [
   },
 ];
 
-export function HeaderMenu({
-  menuOpen,
-  toggleMenu,
-}: {
-  menuOpen: boolean;
-  toggleMenu: () => void;
-}) {
-  const items = links.map(link => {
-    const menuItems = link.links?.map(item =>
+const VincentIcon = ({ hovered }: { hovered: boolean }) => {
+  return hovered ? (
+    <SparkleIconFilled size={16} className="transition-all fill-white" />
+  ) : (
+    <SparkleIcon size={16} className="transition-all" />
+  );
+};
+
+// Individual link component with its own hover state
+const NavLink = ({ link }: { link: LinkItem }) => {
+  const [hovered, setHovered] = useState(false);
+  const isExternal = link.external === true;
+  const hasSubLinks = !!link.links?.length;
+
+  if (hasSubLinks) {
+    const menuItems = (link.links ?? []).map(item =>
       item.external ? (
         <Menu.Item
           key={item.link}
@@ -85,39 +95,74 @@ export function HeaderMenu({
       )
     );
 
-    if (menuItems) {
-      return (
-        <Menu
-          key={link.label}
-          trigger="hover"
-          transitionProps={{ exitDuration: 0 }}
-          withinPortal
-          withArrow
-          offset={16}
-        >
-          <Menu.Target>
-            <a href={link.link}>
-              <Center className="text-off-white font-medium px-[.75rem] py-[.375rem]">
-                <span className="mr-[5px]">{link.label}</span>
-                {link.label === 'Vincent' ? (
-                  <SparkleIcon size={16} />
-                ) : (
-                  <IconChevronDown size={16} stroke={1.5} />
-                )}
-              </Center>
-            </a>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
-    }
-
     return (
-      <Link key={link.label} href={link.link}>
-        {link.label}
-      </Link>
+      <Menu
+        key={link.label}
+        trigger="hover"
+        transitionProps={{ exitDuration: 0 }}
+        withinPortal
+        withArrow
+        offset={16}
+      >
+        <Menu.Target>
+          <a href={link.link}>
+            <Center
+              className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <span className="mr-[5px]">{link.label}</span>
+              {link.label === 'Vincent' ? (
+                <VincentIcon hovered={hovered} />
+              ) : (
+                <IconChevronDown size={16} stroke={1.5} />
+              )}
+            </Center>
+          </a>
+        </Menu.Target>
+        <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+      </Menu>
     );
-  });
+  }
+
+  return isExternal ? (
+    <a
+      key={link.link}
+      href={link.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Center 
+        className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <span className="mr-[5px]">{link.label}</span>
+        {link.label === 'Vincent' && <VincentIcon hovered={hovered} />}
+      </Center>
+    </a>
+  ) : (
+    <Link key={link.link} href={link.link}>
+      <Center 
+        className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <span className="mr-[5px]">{link.label}</span>
+        {link.label === 'Vincent' && <VincentIcon hovered={hovered} />}
+      </Center>
+    </Link>
+  );
+};
+
+export function HeaderMenu({
+  menuOpen,
+  toggleMenu,
+}: {
+  menuOpen: boolean;
+  toggleMenu: () => void;
+}) {
+  const items = links.map(link => <NavLink key={link.label} link={link} />);
 
   return (
     <header className="relative w-full top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
@@ -140,7 +185,6 @@ export function HeaderMenu({
             <Button className="hidden" />
           ) : (
             <Button
-              target="_blank"
               href={DOCS_LINK}
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
