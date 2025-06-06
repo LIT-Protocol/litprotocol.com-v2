@@ -72,7 +72,7 @@ function Quote({ image, name, link, alt, quote }: QuoteProps) {
       radius="md"
       className={`w-full m-auto h-full ${
         isMobile ? 'min-h-[30rem]' : 'h-[22rem]'
-      } !bg-transparent !bg-gradient-to-bl !from-quote-gray-700 !via-quote-gray-500 !to-quote-gray-700 flex-1 !py-[2rem] !px-[2.5rem] !rounded-md`}
+      } !bg-transparent !bg-gradient-to-bl !from-quote-gray-700 !via-quote-gray-500 !to-quote-gray-700 flex-1 !py-[2rem] !px-[2.5rem] !rounded-md !z-10`}
     >
       <div className="flex flex-col justify-between h-full text-white">
         {/* Top: Logo + Quote */}
@@ -125,6 +125,7 @@ export function QuoteCarousel() {
       withControls
       nextControlIcon={<IconChevronRight size={48} stroke={1.5} />}
       previousControlIcon={<IconChevronLeft size={48} stroke={1.5} />}
+      style={{ zIndex: 10 }}
       classNames={{
         root: 'relative w-[90%] mx-auto pb-12 !md:pb-[5.6rem] mb-[4rem] bg-transparent',
         controls:
