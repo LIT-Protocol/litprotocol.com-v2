@@ -71,7 +71,7 @@ function Quote({ image, name, link, alt, quote }: QuoteProps) {
     <Card
       radius="md"
       className={`w-full m-auto ${
-        isMobile ? 'h-[30rem]' : 'h-[22rem]'
+        isMobile ? 'min-h-[30rem]' : 'h-[22rem]'
       } !bg-transparent !bg-gradient-to-bl !from-slate-blue-500/20 !via-slate-gray-500/40 !to-slate-blue-500/20 flex-1 !py-[2rem] !px-[2.5rem] !rounded-md`}
     >
       <div className="flex flex-col justify-between h-full text-white">
@@ -116,8 +116,8 @@ export function QuoteCarousel() {
   return (
     <Carousel
       withIndicators
-      height={isMobile ? 500 : 360} // Increased height for mobile
-      dragFree
+      height={isMobile ? 'auto' : 360}
+      dragFree={false}
       loop
       slideSize="100%"
       align="center"
