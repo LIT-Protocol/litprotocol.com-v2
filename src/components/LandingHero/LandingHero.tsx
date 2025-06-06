@@ -7,8 +7,8 @@ import LandingPartners from '../LandingPartners/LandingPartners';
 import { Button } from '../ui/Button';
 import { useEffect, useRef, useState } from 'react';
 import HeroBackgroundGlow from './HeroBackgroundGlow';
-// import { QuoteCarousel } from '../QuoteCarousel/QuoteCarousel';
-import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
+import { QuoteCarousel } from '../QuoteCarousel/QuoteCarousel';
+// import { BlogCarousel } from '../BlogCarousel/BlogCarousel';
 
 // Type definitions
 type HeroItem = string;
@@ -433,7 +433,7 @@ const LandingHero: React.FC<LandingHeroProps> = () => {
             justifyContent: 'center',
           }}
         >
-          <BlogCarousel />
+          <QuoteCarousel />
         </div>
       </Container>
     </div>
