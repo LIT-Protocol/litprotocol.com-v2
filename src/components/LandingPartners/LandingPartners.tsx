@@ -5,9 +5,11 @@ import lens from './assets/lens.svg';
 import terminal3 from './assets/terminal3.svg';
 import creativelabs from './assets/creativelabs.png';
 import emblem from './assets/emblem.png';
+console.log('emblem path:', emblem);
+
 import humanity from './assets/humanity.png';
 import eco from './assets/eco.png';
-import genius from './assets/genius.svg';
+import genius from './assets/genius.webp';
 import streamr from './assets/streamr.svg';
 import tria from './assets/tria.svg';
 
@@ -84,7 +86,7 @@ const LandingPartners = () => {
         <div className={styles.marquee__group}>
           {Object.values(logos).map((logo, i) => (
             <div className={styles.logo} key={`first_${i}`}>
-              <Image src={logo.src} alt={logo.alt} />
+              <Image src={logo.src} alt={logo.alt} width={150} height={50}/>
             </div>
           ))}
         </div>

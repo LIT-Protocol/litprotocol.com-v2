@@ -51,6 +51,8 @@
   --color-electric-blue-700: oklch(41.98% 0.144 256.16);
   --color-cool-gray-500: oklch(73.16% 0 0);
   --color-light-bar-blue: oklch(0.67 0.1768 252.83);
+  --color-quote-gray-500: oklch(0.3491 0.0744 267.33);
+  --color-quote-gray-700: oklch(0.2751 0.0642 265.14);
 
   --glow-color-1: #0f172a; /* blue-950 */
   --glow-color-2: #1e3a8a66; /* blue-900 with 0.4 alpha */
@@ -79,7 +81,7 @@
     animation: quickFadeIn 1s ease-in;
   }
 
-    .animate-quick-fade-out {
+  .animate-quick-fade-out {
     animation: quickFadeOut 1s ease-out;
   }
 }
@@ -193,7 +195,7 @@
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-  
+
   @media (min-width: 1150px) {
     .network-card-wrapper {
       flex-wrap: no-wrap;

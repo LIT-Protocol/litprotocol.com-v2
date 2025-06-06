@@ -23,12 +23,12 @@ interface LinkItem {
 
 const links: LinkItem[] = [
   {
-    link: '#1',
+    link: VINCENT_LINK,
     label: 'Vincent',
-    links: [{ link: VINCENT_LINK, label: 'Explore Vincent', external: true }],
+    external: true,
   },
   {
-    link: '#2',
+    link: '#dev',
     label: 'Developers',
     links: [
       { link: DOCS_LINK, label: 'Documentation', external: true },
@@ -37,12 +37,12 @@ const links: LinkItem[] = [
     ],
   },
   {
-    link: '#3',
+    link: '#community',
     label: 'Community',
     links: [{ link: COMMUNITY_LINK, label: 'Resources', external: true }],
   },
   {
-    link: '#4',
+    link: '#company',
     label: 'Company',
     links: [
       { link: SPARK_LINK, label: 'Blog', external: true },
@@ -59,32 +59,54 @@ export const NavMenu2 = ({
   menuOpen: boolean;
   toggleMenu: () => void;
 }) => {
-  const items = links.map(item => (
-    <Accordion.Item key={item.link} value={item.link}>
-      <Accordion.Control>{item.label}</Accordion.Control>
-      <Accordion.Panel>
-        <ul>
-          {item.links?.map(sub => {
-            const isExternal = sub.external === true;
+  const items = links.map(item => {
+    const isExternal = item.external === true;
 
-            return (
-              <li key={sub.link} className="mb-[1rem]">
-                <a
-                  href={sub.link}
-                  {...(isExternal && {
-                    target: '_blank',
-                    rel: 'noreferrer noopener',
-                  })}
-                >
-                  {sub.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </Accordion.Panel>
-    </Accordion.Item>
-  ));
+    // Direct link item
+    if (!item.links) {
+      return (
+        <div key={item.link} className="p-4 border-b border-gray-200 w-full">
+          <a
+            href={item.link}
+            {...(isExternal && {
+              target: '_blank',
+              rel: 'noreferrer noopener',
+            })}
+            className="text-[1.15rem] font-medium block"
+          >
+            {item.label}
+          </a>
+        </div>
+      );
+    }
+
+    // Accordion item with sub-links
+    return (
+      <Accordion.Item key={item.link} value={item.link}>
+        <Accordion.Control>{item.label}</Accordion.Control>
+        <Accordion.Panel>
+          <ul>
+            {item.links.map(sub => {
+              const isSubExternal = sub.external === true;
+              return (
+                <li key={sub.link} className="mb-[1rem]">
+                  <a
+                    href={sub.link}
+                    {...(isSubExternal && {
+                      target: '_blank',
+                      rel: 'noreferrer noopener',
+                    })}
+                  >
+                    {sub.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </Accordion.Panel>
+      </Accordion.Item>
+    );
+  });
 
   return (
     <>
@@ -132,7 +154,6 @@ export const NavMenu2 = ({
         >
           <Button
             className="w-[12rem] flex items-center justify-center"
-            target="_blank"
             rel="noopener noreferrer"
             href={DOCS_LINK}
             rightIcon={<IconArrowNarrowRight stroke={2} />}
