@@ -9,7 +9,7 @@ console.log('emblem path:', emblem);
 
 import humanity from './assets/humanity.png';
 import eco from './assets/eco.png';
-import genius from './assets/genius.svg';
+import genius from './assets/genius.webp';
 import streamr from './assets/streamr.svg';
 import tria from './assets/tria.svg';
 
