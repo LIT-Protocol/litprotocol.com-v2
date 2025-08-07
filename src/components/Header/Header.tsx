@@ -37,7 +37,7 @@ const links: LinkItem[] = [
     external: false,
   },
   {
-    link: 'dev',
+    link: DEVELOPER_CONSTANT_LINK,
     label: 'Developers',
     links: [
       { link: DOCS_LINK, label: 'Documentation', external: true },
@@ -46,12 +46,12 @@ const links: LinkItem[] = [
     ],
   },
   {
-    link: 'community',
+    link: COMMUNITY_CONSTANT_LINK,
     label: 'Community',
     links: [{ link: COMMUNITY_LINK, label: 'Resources', external: true }],
   },
   {
-    link: 'company',
+    link: COMPANY_CONSTANT_LINK,
     label: 'Company',
     links: [
       { link: SPARK_LINK, label: 'Blog', external: true },
