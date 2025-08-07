@@ -14,6 +14,9 @@ export const AUDIT_LINK =
   'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
 export const COMMUNITY_LINK = 'https://developer.litprotocol.com/support/intro';
 export const VINCENT_LINK = 'https://www.heyvincent.ai/';
+export const DEVELOPER_CONSTANT_LINK = 'https://developer.litprotocol.com';
+export const COMMUNITY_CONSTANT_LINK = 'https://discord.gg/yEJSBaznBX';
+export const COMPANY_CONSTANT_LINK = 'https://litprotocol.com';
 
 // Product
 export const LIT_WALLET_LINK =
