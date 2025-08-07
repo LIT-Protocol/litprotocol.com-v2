@@ -17,6 +17,9 @@ import {
   SPARK_LINK,
   VINCENT_LINK,
   WHITEPAPER_LINK,
+  DEVELOPER_CONSTANT_LINK,
+  COMMUNITY_CONSTANT_LINK,
+  COMPANY_CONSTANT_LINK,
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
 import SparkleIcon from './assets/SparkleIcon';
