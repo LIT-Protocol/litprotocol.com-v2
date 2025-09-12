@@ -17,6 +17,7 @@ export const VINCENT_LINK = 'https://www.heyvincent.ai/';
 export const DEVELOPER_CONSTANT_LINK = 'https://developer.litprotocol.com';
 export const COMMUNITY_CONSTANT_LINK = 'https://discord.gg/yEJSBaznBX';
 export const COMPANY_CONSTANT_LINK = 'https://litprotocol.com';
+export const GOVERNANCE_LINK = 'litprotocol.discourse.group';
 
 // Product
 export const LIT_WALLET_LINK =
@@ -31,6 +32,7 @@ export const TWITTER_LINK = 'https://twitter.com/litprotocol';
 export const DISCORD_LINK = 'https://getlit.dev/chat';
 export const TELEGRAM_LINK = 'https://t.me/+aa73FAF9Vp82ZjJh';
 export const LINKEDIN_LINK = 'https://www.linkedin.com/company/lit-protocol';
+export const GALXE_LINK = 'https://app.galxe.com/quest/LitProtocol';
 
 // Company
 export const CAREERS_LINK = 'https://jobs.litprotocol.com';
