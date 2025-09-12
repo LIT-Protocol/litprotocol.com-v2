@@ -11,6 +11,8 @@ import {
   SPARK_LINK,
   TWITTER_LINK,
   WHITEPAPER_LINK,
+  GALXE_LINK,
+  GOVERNANCE_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
 import { Container } from '@mantine/core';
@@ -103,6 +105,14 @@ const Footer = () => {
               >
                 Contact
               </a>
+              <a
+                href={GOVERNANCE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footer__link}
+              >
+                Governance
+              </a>
             </div>
             <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Social</h6>
@@ -137,6 +147,14 @@ const Footer = () => {
                 className={styles.footer__link}
               >
                 LinkedIn
+              </a>
+              <a
+                href={GALXE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footer__link}
+              >
+                Galxe
               </a>
             </div>
             <div className="flex flex-col gap-3">
