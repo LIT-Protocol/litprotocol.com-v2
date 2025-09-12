@@ -26,10 +26,10 @@ import userDataAnim from '@/animations/user-data.json';
 const features = [
   {
     value: 'first',
-    title: 'Agent Wallets',
+    title: 'User and Agent Wallets',
     heading: 'Universal Accounts For User Controlled Automation ',
     paragraph:
-      'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by Lit Actions.',
+      'Unlock true agent autonomy without sacrificing user control. Define exactly what agents can do through user-delegated permissions and policies enforced by the Lit Network.',
     features: [
       {
         icon: UniversalIcon,
@@ -48,7 +48,7 @@ const features = [
     title: 'Interoperability',
     heading: 'Program Private Keys',
     paragraph:
-      'Break down blockchain silos with programmable private keys for seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain apps.',
+      'Break down blockchain silos with programmable private keys to enable seamless interoperability. Lit Actions allow you to embed immutable signing logic and condition checks directly into on and off chain applications.',
     features: [
       { icon: GearIcon, slug: 'Automate cross-chain liquidity' },
       { icon: VaultIcon, slug: 'Build secure, programmable vaults' },
