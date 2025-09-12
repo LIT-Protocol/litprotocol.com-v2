@@ -14,7 +14,7 @@ const data = [
     icon: ShieldIcon,
     title: 'Defense in Depth',
     detail:
-      'Lit Protocol combines Threshold Multi-Party Computation (MPC) and Trusted Execution Environments (TEE) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
+      'Lit Protocol combines Threshold Multi-Party Computation (TSS MPC) and Trusted Execution Environments (TEEs) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
     image: '/images/network1.svg',
   },
   {
@@ -30,7 +30,7 @@ const data = [
     icon: HandKeyIcon,
     title: 'Orchestrate Any Secret',
     detail:
-      "Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol's programmable signing and encryption let you securely automate interactions across every environment.",
+      "Manage any private key, credential, or sensitive data across Web3, AI, cloud, and beyond. Lit Protocol's programmable signing and encryption capabilities let you securely automate interactions across any environment.",
     image: '/images/network3.svg',
   },
 ];
