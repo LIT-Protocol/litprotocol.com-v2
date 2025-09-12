@@ -14,7 +14,7 @@ const data = [
     icon: ShieldIcon,
     title: 'Defense in Depth',
     detail:
-      'Lit Protocol combines Threshold Multi-Party Computation (TSS MPC) and Trusted Execution Environments (TEEs) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
+      'Lit Protocol combines Threshold Multi-Party Computation (MPC TSS) and Trusted Execution Environments (TEEs) to secure keys with multiple layers of cryptographic protection. Secrets stay resilient—even if nodes or hardware are compromised.',
     image: '/images/network1.svg',
   },
   {
