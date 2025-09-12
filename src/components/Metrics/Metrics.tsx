@@ -12,18 +12,18 @@ interface NumbersProps {
 const defaultData = [
   {
     id: 'totalValue',
-    number: '$154M+',
+    number: '$250M+',
     subtext: 'Total Value Managed',
   },
   {
     id: 'totalVolume',
-    number: '1.4M+',
-    subtext: 'Total Wallets Managed',
+    number: '1.6M+',
+    subtext: 'Decentralized Wallets Created',
   },
   {
     id: 'totalDataPoints',
-    number: '30M+',
-    subtext: 'Data Points Decrypted',
+    number: '$135M+',
+    subtext: 'Total Trading Volume',
   },
 ];
 
