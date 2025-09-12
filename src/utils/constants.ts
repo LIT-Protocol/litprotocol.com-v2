@@ -17,7 +17,7 @@ export const VINCENT_LINK = 'https://www.heyvincent.ai/';
 export const DEVELOPER_CONSTANT_LINK = 'https://developer.litprotocol.com';
 export const COMMUNITY_CONSTANT_LINK = 'https://discord.gg/yEJSBaznBX';
 export const COMPANY_CONSTANT_LINK = 'https://litprotocol.com';
-export const GOVERNANCE_LINK = 'litprotocol.discourse.group';
+export const GOVERNANCE_LINK = 'https://litprotocol.discourse.group';
 
 // Product
 export const LIT_WALLET_LINK =
