@@ -13,6 +13,7 @@ import {
   WHITEPAPER_LINK,
   GALXE_LINK,
   GOVERNANCE_LINK,
+  MICA_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
 import { Container } from '@mantine/core';
@@ -183,6 +184,14 @@ const Footer = () => {
               </a>
               <a href="/legal/terms-of-service" className={styles.footer__link}>
                 Terms of Service
+              </a>
+              <a
+                href={MICA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footer__link}
+              >
+                MiCA Whitepaper
               </a>
             </div>
           </div>
