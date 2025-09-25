@@ -41,3 +41,4 @@ export const BRAND_LINK = 'https://github.com/LIT-Protocol/Brand-Kit';
 // Legal
 export const PRIVACY_POLICY_LINK =
   'https://www.litprotocol.com/legal/privacy-policy';
+export const MICA_LINK = 'https://drive.google.com/drive/folders/1yUXd426j2xaLMkxsdTBttUNMBYHZ6vC5?usp=drive_link';
