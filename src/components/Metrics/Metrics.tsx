@@ -12,7 +12,7 @@ interface NumbersProps {
 const defaultData = [
   {
     id: 'totalValue',
-    number: '$250M+',
+    number: '$400M+',
     subtext: 'Total Value Managed',
   },
   {
