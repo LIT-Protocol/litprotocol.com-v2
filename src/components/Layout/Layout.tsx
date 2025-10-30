@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <>
       {/* Banner */}
       <div className="w-full text-white font-semibold py-2 px-4 text-center text-sm"
-        style={{ backgroundColor: '#67410d' }}
+        style={{ backgroundColor: '#FF4205' }}
         >
         $LITKEY is live.{' '}
         <a
