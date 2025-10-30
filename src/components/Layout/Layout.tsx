@@ -15,7 +15,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {/* Banner */}
-      <div className="w-full bg-coal-950 text-white py-2 px-4 text-center text-sm font-medium">
+      <div className="w-full text-white font-semibold py-2 px-4 text-center text-sm"
+        style={{ backgroundColor: '#67410d' }}
+        >
         $LITKEY is live.{' '}
         <a
           href="https://spark.litprotocol.com/litkey-is-live/"
@@ -23,7 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           rel="noopener noreferrer"
           className="underline hover:opacity-80 transition"
         >
-          Learn more
+          Learn more.
         </a>
       </div>
 
