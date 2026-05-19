@@ -54,12 +54,10 @@ export default function Prototype1() {
             <br />
             Write to any chain or API.
           </h1>
-          <p className="mt-8 max-w-2xl mx-auto text-white/70 text-lg">
-            Lit is one programmable runtime that pulls data from any source,
-            runs your logic inside a chain-secured trusted execution
-            environment, and signs transactions or API calls on the other
-            side — atomically, verifiably, and without a backend you have to
-            trust.
+          <p className="mt-8 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
+            One programmable runtime. Pulls data from any source, runs your
+            logic inside a chain-secured TEE, signs on any chain or API — with
+            no backend to trust.
           </p>
           <div className="mt-10 flex gap-3 justify-center flex-wrap">
             <Button
