@@ -96,7 +96,7 @@ export default function Prototype3() {
         </div>
         <Container size="lg" className="relative z-10 !pt-24 !pb-20">
           <MonoBadge>Cross-chain · Cross-API · TEE-secured</MonoBadge>
-          <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] max-w-4xl">
+          <h1 className="mt-6 !text-[2.5rem] md:!text-[5.5rem]/[1.05] font-medium max-w-5xl">
             Connect <span className="text-mint-500">any chain</span> to{' '}
             <span className="text-lit-orange">any API</span> — with one
             programmable runtime.
@@ -127,7 +127,7 @@ export default function Prototype3() {
         <Container size="lg" className="!py-20">
           <div className="text-center mb-10">
             <MonoBadge>What people are shipping</MonoBadge>
-            <h2 className="mt-5 text-3xl md:text-5xl font-medium">
+            <h2 className="mt-5 !text-3xl md:!text-5xl font-medium">
               Pick a flow. See exactly how it runs.
             </h2>
           </div>
@@ -206,7 +206,7 @@ export default function Prototype3() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <MonoBadge>How it works</MonoBadge>
-              <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
+              <h2 className="mt-5 !text-4xl md:!text-5xl font-medium leading-tight">
                 A smart contract that <br />
                 <span className="text-mint-500">can call the internet</span>.
               </h2>
@@ -230,7 +230,7 @@ export default function Prototype3() {
       {/* CTA */}
       <section className="border-t border-white/5">
         <Container size="md" className="!py-24 text-center">
-          <h2 className="text-4xl md:text-6xl font-medium leading-tight">
+          <h2 className="!text-4xl md:!text-6xl font-medium leading-tight">
             Stop stitching backends. <br />
             <span className="text-mint-500">Start signing</span>{' '}
             <span className="text-lit-orange">anywhere</span>.
