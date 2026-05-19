@@ -27,7 +27,7 @@ export default function Prototype2() {
         </div>
         <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
           <MonoBadge>The chain-secured oracle</MonoBadge>
-          <h1 className="mt-8 text-5xl md:text-8xl font-medium leading-[0.95] tracking-tight max-w-5xl mx-auto">
+          <h1 className="mt-8 !text-[2.5rem] md:!text-[6rem]/[1] font-medium tracking-tight max-w-5xl mx-auto">
             The programmable oracle for{' '}
             <span className="text-lit-orange">everything off-chain</span>.
           </h1>
@@ -66,7 +66,7 @@ export default function Prototype2() {
         <Container size="lg" className="!py-28">
           <div className="max-w-3xl">
             <MonoBadge>What it is</MonoBadge>
-            <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
+            <h2 className="mt-6 !text-4xl md:!text-6xl font-medium leading-tight">
               A smart contract that can{' '}
               <span className="text-lit-orange">call the internet</span>.
             </h2>
@@ -91,7 +91,7 @@ export default function Prototype2() {
         <Container size="lg" className="!py-24">
           <div className="text-center mb-14">
             <MonoBadge>Versus what you&apos;ve tried</MonoBadge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+            <h2 className="mt-5 !text-4xl md:!text-5xl font-medium">
               Where existing infra falls short.
             </h2>
           </div>
@@ -139,7 +139,7 @@ export default function Prototype2() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <MonoBadge>Trust model</MonoBadge>
-              <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
+              <h2 className="mt-5 !text-4xl md:!text-5xl font-medium leading-tight">
                 Decentralized where it matters. <br />
                 <span className="text-lit-orange">Fast where it has to be.</span>
               </h2>
@@ -186,7 +186,7 @@ export default function Prototype2() {
       {/* CTA */}
       <section>
         <Container size="md" className="!py-28 text-center">
-          <h2 className="text-4xl md:text-6xl font-medium leading-tight">
+          <h2 className="!text-4xl md:!text-6xl font-medium leading-tight">
             One runtime between <br />
             <span className="text-lit-orange">your code and the world</span>.
           </h2>
