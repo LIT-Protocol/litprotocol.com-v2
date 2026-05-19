@@ -162,7 +162,7 @@ export default function Prototype1() {
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Key custody" v="No one holds them" />
+              <Stat k="Pricing" v="$0.01 per second" />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
