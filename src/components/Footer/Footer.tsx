@@ -10,7 +10,6 @@ import {
   LINKEDIN_LINK,
   SPARK_LINK,
   TWITTER_LINK,
-  WHITEPAPER_LINK,
   GALXE_LINK,
   GOVERNANCE_LINK,
   MICA_LINK,
@@ -65,14 +64,6 @@ const Footer = () => {
                 className={styles.footer__link}
               >
                 Docs
-              </a>
-              <a
-                href={WHITEPAPER_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.footer__link}
-              >
-                Whitepaper
               </a>
               <a
                 href={GITHUB_LINK}
