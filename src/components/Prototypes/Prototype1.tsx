@@ -48,7 +48,7 @@ export default function Prototype1() {
           <div className="grid md:grid-cols-12 gap-10 items-center">
             <div className="md:col-span-7">
               <MonoBadge>Lit Protocol · TEE-secured compute</MonoBadge>
-              <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-tight">
+              <h1 className="mt-6 !text-[2.5rem] md:!text-[5.5rem]/[1.05] font-medium tracking-tight">
                 Read anywhere.
                 <br />
                 <span className="text-mint-500">Compute</span> in a TEE.
@@ -140,7 +140,7 @@ export default function Prototype1() {
                     0{i + 1}
                   </span>
                 </div>
-                <h3 className="text-2xl font-medium mb-2">{b.title}</h3>
+                <h3 className="!text-2xl font-medium mb-2">{b.title}</h3>
                 <p className="text-white/60 text-sm leading-relaxed">{b.body}</p>
               </div>
             ))}
@@ -154,7 +154,7 @@ export default function Prototype1() {
           <div className="grid md:grid-cols-12 gap-12 items-start">
             <div className="md:col-span-5">
               <MonoBadge>Why TEE, not consensus</MonoBadge>
-              <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
+              <h2 className="mt-5 !text-4xl md:!text-5xl font-medium leading-tight">
                 Not a decentralized network. <br />
                 A <span className="text-mint-500">chain-secured enclave</span>.
               </h2>
@@ -209,7 +209,7 @@ export default function Prototype1() {
         <Container size="lg" className="!py-24">
           <div className="text-center mb-14">
             <MonoBadge>Patterns shipping today</MonoBadge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+            <h2 className="mt-5 !text-4xl md:!text-5xl font-medium">
               Things people are building right now.
             </h2>
           </div>
@@ -250,7 +250,7 @@ export default function Prototype1() {
       {/* CTA */}
       <section>
         <Container size="md" className="!py-24 text-center">
-          <h2 className="text-4xl md:text-5xl font-medium mb-4">
+          <h2 className="!text-4xl md:!text-5xl font-medium mb-4">
             Read. Compute. Write. <span className="text-mint-500">Anywhere.</span>
           </h2>
           <p className="text-white/60 max-w-xl mx-auto mb-8">
