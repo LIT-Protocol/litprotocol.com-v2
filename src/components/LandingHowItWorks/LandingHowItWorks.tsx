@@ -22,23 +22,25 @@ const Stat = ({ k, v }: { k: string; v: string }) => (
 );
 
 const codeSample = `// Inside a Lit Action — runs in a chain-secured TEE
+
+// Read off-chain
 const price = await fetch(
   "https://api.coinbase.com/v2/prices/ETH-USD/spot"
 ).then(r => r.json());
 
-const onChain = await Lit.Actions.callContract({
-  chain: "base",
-  to: vaultAddress,
-  abi: vaultAbi,
-  functionName: "currentRatio",
-});
+// Read on-chain (Base)
+const base = new ethers.providers.JsonRpcProvider(BASE_RPC);
+const vault = new ethers.Contract(vaultAddress, vaultAbi, base);
+const ratio = await vault.currentRatio();
 
-if (price.amount * onChain < threshold) {
-  await Lit.Actions.signAndSendTransaction({
-    chain: "arbitrum",
-    to: hookAddress,
-    data: rebalance.encode(),
-  });
+// Decide, then sign + broadcast on Arbitrum
+if (Number(price.data.amount) * Number(ratio) < threshold) {
+  const pk = await Lit.Actions.getLitActionPrivateKey();
+  const arb = new ethers.providers.JsonRpcProvider(ARB_RPC);
+  const wallet = new ethers.Wallet(pk, arb);
+  const hook = new ethers.Contract(hookAddress, hookAbi, wallet);
+  const tx = await hook.rebalance();
+  Lit.Actions.setResponse({ response: tx.hash });
 }`;
 
 const patterns = [
