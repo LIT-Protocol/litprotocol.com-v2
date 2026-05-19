@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Text } from '@mantine/core';
+import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { MonoBadge, PrototypeSwitcher } from './Shared';
@@ -33,172 +33,135 @@ export default function Prototype1() {
     <div className="bg-coal-950 text-off-white min-h-screen">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-white/5 bg-gradient-to-b from-blue-950 to-coal-950">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-blue-950)_0%,_transparent_60%)] pointer-events-none" />
-        <div className="absolute -left-[12rem] -top-[4rem] z-0 hidden md:block pointer-events-none w-[35rem] opacity-70">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,_var(--color-blue-950)_0%,_transparent_55%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,_oklch(82.91%_0.133_174.96/0.18)_0%,_transparent_55%)] pointer-events-none" />
+        <div className="absolute -left-[16rem] -top-[6rem] z-0 hidden md:block pointer-events-none w-[40rem] opacity-50">
           <img src="/textures/hero-left.png" alt="" className="w-full h-auto" />
         </div>
-        <div className="absolute -right-[10rem] md:-right-[16rem] -top-[8rem] -rotate-40 md:rotate-0 md:-top-[2rem] z-0 pointer-events-none w-[30rem] md:w-[40rem] opacity-60">
+        <div className="absolute -right-[14rem] -top-[4rem] z-0 hidden md:block pointer-events-none w-[42rem] opacity-60">
           <img
             src="/textures/hero-right.png"
             alt=""
             className="w-full h-auto"
           />
         </div>
-        <Container size="lg" className="relative z-10 !pt-24 !pb-28">
-          <div className="grid md:grid-cols-12 gap-10 items-center">
-            <div className="md:col-span-7">
-              <MonoBadge>Lit Protocol · TEE-secured compute</MonoBadge>
-              <h1 className="mt-6 !text-[2.5rem] md:!text-[5.5rem]/[1.05] font-medium tracking-tight">
-                Read anywhere.
-                <br />
-                <span className="text-mint-500">Compute</span> in a TEE.
-                <br />
-                Write to any chain or API.
-              </h1>
-              <p className="mt-6 max-w-xl text-white/70 text-lg">
-                Lit is one programmable runtime that pulls data from any source,
-                runs your logic inside a chain-secured trusted execution
-                environment, and signs transactions or API calls on the other
-                side — atomically, verifiably, and without a backend you have
-                to trust.
-              </p>
-              <div className="mt-8 flex gap-3 flex-wrap">
-                <Button
-                  href={DOCS}
-                  target="_blank"
-                  rightIcon={<IconArrowNarrowRight stroke={2} />}
-                >
-                  Start building
-                </Button>
-                <Button variant="outline" href={CONTACT_FORM} target="_blank">
-                  Talk to an engineer
-                </Button>
-              </div>
-              <div className="mt-10 flex gap-6 text-xs font-mono text-white/40 uppercase tracking-widest">
-                <span>EVM</span>
-                <span>Solana</span>
-                <span>Bitcoin</span>
-                <span>Cosmos</span>
-                <span>HTTPS</span>
-                <span>Webhooks</span>
-              </div>
-            </div>
+        <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
+          <MonoBadge>Lit Protocol · TEE-secured compute</MonoBadge>
+          <h1 className="mt-8 !text-[2.5rem] md:!text-[6rem]/[1] font-medium tracking-tight max-w-5xl mx-auto">
+            Read anywhere.{' '}
+            <span className="text-mint-500">Compute</span> in a TEE.{' '}
+            Write to any chain or API.
+          </h1>
+          <p className="mt-8 max-w-2xl mx-auto text-white/70 text-lg">
+            Lit is one programmable runtime that pulls data from any source,
+            runs your logic inside a chain-secured trusted execution
+            environment, and signs transactions or API calls on the other
+            side — atomically, verifiably, and without a backend you have to
+            trust.
+          </p>
+          <div className="mt-10 flex gap-3 justify-center flex-wrap">
+            <Button
+              href={DOCS}
+              target="_blank"
+              rightIcon={<IconArrowNarrowRight stroke={2} />}
+            >
+              Start building
+            </Button>
+            <Button variant="outline" href={CONTACT_FORM} target="_blank">
+              Talk to an engineer
+            </Button>
+          </div>
 
-            <div className="md:col-span-5">
-              <div className="rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
-                <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 bg-white/[0.02]">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
-                  <span className="ml-3 text-xs font-mono text-white/40">
-                    rebalance.action.ts
-                  </span>
-                </div>
-                <pre className="text-xs leading-relaxed font-mono p-5 text-white/85 overflow-x-auto">
-                  <code>{codeSample}</code>
-                </pre>
-              </div>
-              <p className="mt-3 text-xs font-mono text-white/40">
-                ↳ Deployed once. Runs across the network. Signs from a key no
-                one holds.
-              </p>
+          {/* READ → COMPUTE → WRITE PILLAR VISUAL */}
+          <div className="mt-20 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-2 md:gap-4">
+              <Pillar
+                label="READ"
+                sub="APIs · RPCs · feeds · webhooks"
+              />
+              <PillarCenter />
+              <Pillar
+                label="WRITE"
+                sub="EVM · SVM · BTC · Cosmos · HTTPS"
+              />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* PRIMITIVE STRIP */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-20">
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                step: 'READ',
-                title: 'Any source, attested',
-                body: 'HTTPS APIs, RPC endpoints, oracle feeds, off-chain databases. The TEE attests to exactly what was fetched.',
-              },
-              {
-                step: 'COMPUTE',
-                title: 'Your logic, your rules',
-                body: 'Arbitrary JavaScript runs inside the enclave. No external calls can tamper with the result before it signs.',
-              },
-              {
-                step: 'WRITE',
-                title: 'Any chain or API',
-                body: 'Threshold ECDSA, Ed25519, Schnorr. The same action signs an Ethereum tx and a Stripe call in one shot.',
-              },
-            ].map((b, i) => (
-              <div
-                key={b.step}
-                className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.04] transition"
-              >
-                <div className="flex items-baseline justify-between mb-4">
-                  <span className="font-mono text-xs text-mint-500 tracking-[0.2em]">
-                    {b.step}
-                  </span>
-                  <span className="font-mono text-xs text-white/30">
-                    0{i + 1}
-                  </span>
-                </div>
-                <h3 className="!text-2xl font-medium mb-2">{b.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{b.body}</p>
-              </div>
-            ))}
+      {/* WHAT IT LOOKS LIKE (code snippet) */}
+      <section className="border-b border-white/5 bg-gradient-to-b from-blue-950/30 to-transparent">
+        <Container size="lg" className="!py-28">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <MonoBadge>What it looks like</MonoBadge>
+            <h2 className="mt-6 !text-4xl md:!text-6xl font-medium leading-tight">
+              One file. Reads, computes, signs across chains.
+            </h2>
+            <p className="mt-6 text-white/70 text-lg">
+              A Lit Action is JavaScript that runs inside the network&apos;s TEE.
+              Deploy it once. The keys it signs with don&apos;t belong to anyone
+              — they&apos;re governed on-chain.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
+            <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 bg-white/[0.02]">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+              <span className="ml-3 text-xs font-mono text-white/40">
+                rebalance.action.ts
+              </span>
+            </div>
+            <pre className="text-xs md:text-sm leading-relaxed font-mono p-5 md:p-7 text-white/85 overflow-x-auto">
+              <code>{codeSample}</code>
+            </pre>
           </div>
         </Container>
       </section>
 
       {/* WHY TEE */}
       <section className="border-b border-white/5">
+        <Container size="lg" className="!py-28">
+          <div className="max-w-3xl">
+            <MonoBadge>Why TEE, not consensus</MonoBadge>
+            <h2 className="mt-6 !text-4xl md:!text-6xl font-medium leading-tight">
+              Not a decentralized network. A{' '}
+              <span className="text-mint-500">chain-secured enclave</span>.
+            </h2>
+            <p className="mt-8 text-white/70 text-lg leading-relaxed">
+              Most cross-chain infra forces a tradeoff: trust a multisig, or
+              wait for slow consensus on every read. Lit takes a different path.
+              Code runs inside a TEE — an enclave the hardware itself
+              cryptographically attests to. Keys never leave. Logs can&apos;t be
+              rewritten.
+            </p>
+            <p className="mt-4 text-white/70 text-lg leading-relaxed">
+              The TEE&apos;s identity, its allowed code, and its signing
+              authority are all governed by a chain. You get the speed and
+              expressiveness of a single trusted runtime, with the auditability
+              and ungovernability of a smart contract.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* STATS */}
+      <section className="border-b border-white/5">
         <Container size="lg" className="!py-24">
-          <div className="grid md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-5">
-              <MonoBadge>Why TEE, not consensus</MonoBadge>
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            <div>
+              <MonoBadge>The properties</MonoBadge>
               <h2 className="mt-5 !text-4xl md:!text-5xl font-medium leading-tight">
-                Not a decentralized network. <br />
-                A <span className="text-mint-500">chain-secured enclave</span>.
+                Decentralized where it matters. <br />
+                <span className="text-mint-500">Fast where it has to be.</span>
               </h2>
             </div>
-            <div className="md:col-span-7 space-y-6 text-white/70">
-              <p>
-                Most cross-chain infra forces a tradeoff: trust a multisig, or
-                wait for slow consensus on every read. Lit takes a different
-                path. Code runs inside a TEE — an enclave the hardware itself
-                cryptographically attests to. Keys never leave. Logs can't be
-                rewritten.
-              </p>
-              <p>
-                The TEE&apos;s identity, its allowed code, and its signing
-                authority are all governed on-chain. You get the speed and
-                expressiveness of a single trusted runtime, with the auditability
-                and ungovernability of a smart contract.
-              </p>
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="border-l-2 border-mint-500 pl-4">
-                  <div className="font-mono text-xs text-white/40 uppercase tracking-widest mb-1">
-                    Latency
-                  </div>
-                  <div className="text-lg">Sub-second signing</div>
-                </div>
-                <div className="border-l-2 border-mint-500 pl-4">
-                  <div className="font-mono text-xs text-white/40 uppercase tracking-widest mb-1">
-                    Auditability
-                  </div>
-                  <div className="text-lg">Code hash on-chain</div>
-                </div>
-                <div className="border-l-2 border-mint-500 pl-4">
-                  <div className="font-mono text-xs text-white/40 uppercase tracking-widest mb-1">
-                    Key custody
-                  </div>
-                  <div className="text-lg">No one holds them</div>
-                </div>
-                <div className="border-l-2 border-mint-500 pl-4">
-                  <div className="font-mono text-xs text-white/40 uppercase tracking-widest mb-1">
-                    Surface
-                  </div>
-                  <div className="text-lg">Any HTTP, any chain</div>
-                </div>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Stat k="Latency" v="Sub-second signing" />
+              <Stat k="Auditability" v="Code hash on-chain" />
+              <Stat k="Key custody" v="No one holds them" />
+              <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
         </Container>
@@ -206,14 +169,14 @@ export default function Prototype1() {
 
       {/* PATTERNS */}
       <section className="border-b border-white/5">
-        <Container size="lg" className="!py-24">
-          <div className="text-center mb-14">
+        <Container size="lg" className="!py-28">
+          <div className="text-center mb-14 max-w-3xl mx-auto">
             <MonoBadge>Patterns shipping today</MonoBadge>
             <h2 className="mt-5 !text-4xl md:!text-5xl font-medium">
               Things people are building right now.
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {[
               {
                 k: 'Custom price oracle',
@@ -234,7 +197,7 @@ export default function Prototype1() {
             ].map((p) => (
               <div
                 key={p.k}
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition"
+                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02]"
               >
                 <div className="font-mono text-mint-500 text-sm mt-1">→</div>
                 <div>
@@ -249,15 +212,16 @@ export default function Prototype1() {
 
       {/* CTA */}
       <section>
-        <Container size="md" className="!py-24 text-center">
-          <h2 className="!text-4xl md:!text-5xl font-medium mb-4">
-            Read. Compute. Write. <span className="text-mint-500">Anywhere.</span>
+        <Container size="md" className="!py-28 text-center">
+          <h2 className="!text-4xl md:!text-6xl font-medium leading-tight">
+            Read. Compute. Write. <br />
+            <span className="text-mint-500">Anywhere.</span>
           </h2>
-          <p className="text-white/60 max-w-xl mx-auto mb-8">
+          <p className="mt-6 text-white/60 max-w-xl mx-auto">
             One programmable runtime for everything that has to happen between
             an event and a signed action.
           </p>
-          <div className="flex gap-3 justify-center">
+          <div className="mt-10 flex gap-3 justify-center">
             <Button
               href={DOCS}
               target="_blank"
@@ -273,6 +237,42 @@ export default function Prototype1() {
       </section>
 
       <PrototypeSwitcher current={1} />
+    </div>
+  );
+}
+
+function Pillar({ label, sub }: { label: string; sub: string }) {
+  return (
+    <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
+      <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
+        {label}
+      </div>
+      <div className="mt-3 text-sm text-white/70">{sub}</div>
+    </div>
+  );
+}
+
+function PillarCenter() {
+  return (
+    <div className="border-2 border-mint-500 rounded-xl p-5 bg-mint-500/10 text-center relative">
+      <div className="font-mono text-xs uppercase tracking-[0.2em] text-mint-500">
+        COMPUTE
+      </div>
+      <div className="mt-3 text-sm text-white">In the Lit TEE</div>
+      <div className="mt-2 text-[10px] font-mono text-white/40">
+        chain-secured
+      </div>
+    </div>
+  );
+}
+
+function Stat({ k, v }: { k: string; v: string }) {
+  return (
+    <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+      <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+        {k}
+      </div>
+      <div className="mt-2 text-sm">{v}</div>
     </div>
   );
 }
