@@ -114,7 +114,7 @@ const LandingHowItWorks = () => {
             </p>
             <p className="mt-4 text-white/70 text-lg leading-relaxed">
               The TEE&apos;s identity, its allowed code, and its signing
-              authority are all governed by a chain. You get the speed and
+              authority are all governed on-chain. You get the speed and
               expressiveness of a single trusted runtime, with the
               auditability and on-chain governability of a smart contract.
             </p>
