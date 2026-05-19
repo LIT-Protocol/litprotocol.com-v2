@@ -128,7 +128,7 @@ export default function Prototype1() {
           <div className="max-w-3xl">
             <MonoBadge>Why TEE, not consensus</MonoBadge>
             <h2 className="mt-6 !text-4xl md:!text-6xl font-medium leading-tight">
-              Not a decentralized network. A{' '}
+              Speed of a backend, trust of a contract. A{' '}
               <span className="text-mint-500">chain-secured enclave</span>.
             </h2>
             <p className="mt-8 text-white/70 text-lg leading-relaxed">
