@@ -47,9 +47,11 @@ export default function Prototype1() {
         </div>
         <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
           <MonoBadge>Lit Protocol · TEE-secured compute</MonoBadge>
-          <h1 className="mt-8 !text-[2.5rem] md:!text-[6rem]/[1] font-medium tracking-tight max-w-5xl mx-auto">
-            Read anywhere.{' '}
-            <span className="text-mint-500">Compute</span> in a TEE.{' '}
+          <h1 className="mt-8 !text-[2.5rem] md:!text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto">
+            Read anywhere.
+            <br />
+            <span className="text-mint-500">Compute</span> in a TEE.
+            <br />
             Write to any chain or API.
           </h1>
           <p className="mt-8 max-w-2xl mx-auto text-white/70 text-lg">
