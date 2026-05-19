@@ -50,7 +50,7 @@ const patterns = [
   },
   {
     k: 'Cross-chain token',
-    v: 'Lit watches burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
+    v: 'Lit checks burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
   },
   {
     k: 'Prediction market resolver',
