@@ -142,7 +142,7 @@ export default function Prototype1() {
               The TEE&apos;s identity, its allowed code, and its signing
               authority are all governed by a chain. You get the speed and
               expressiveness of a single trusted runtime, with the auditability
-              and ungovernability of a smart contract.
+              and on-chain governability of a smart contract.
             </p>
           </div>
         </Container>
