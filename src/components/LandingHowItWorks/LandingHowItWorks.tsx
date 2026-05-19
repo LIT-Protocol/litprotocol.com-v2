@@ -49,8 +49,8 @@ const patterns = [
     v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
   },
   {
-    k: 'Cross-chain agent',
-    v: 'Read positions on Arbitrum, decide on Base, settle on Solana — one signed action.',
+    k: 'Cross-chain token',
+    v: 'Lit watches burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
   },
   {
     k: 'Prediction market resolver',
