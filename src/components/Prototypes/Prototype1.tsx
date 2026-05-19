@@ -77,7 +77,7 @@ export default function Prototype1() {
             <div className="grid grid-cols-3 gap-2 md:gap-4">
               <Pillar
                 label="READ"
-                sub="APIs · RPCs · feeds · webhooks"
+                sub="APIs · RPCs · feeds · prices"
               />
               <PillarCenter />
               <Pillar
@@ -258,10 +258,7 @@ function PillarCenter() {
       <div className="font-mono text-xs uppercase tracking-[0.2em] text-mint-500">
         COMPUTE
       </div>
-      <div className="mt-3 text-sm text-white">In the Lit TEE</div>
-      <div className="mt-2 text-[10px] font-mono text-white/40">
-        chain-secured
-      </div>
+      <div className="mt-3 text-sm text-white">Your JavaScript, in a TEE</div>
     </div>
   );
 }
