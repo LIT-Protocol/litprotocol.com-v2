@@ -6,7 +6,6 @@ import {
   GITHUB_LINK,
   SPARK_LINK,
   VINCENT_LINK,
-  WHITEPAPER_LINK,
 } from '@/utils/constants';
 import { HeaderMenu } from '../Header/Header';
 import { Group, Modal } from '@mantine/core';
@@ -33,7 +32,6 @@ const links: LinkItem[] = [
     links: [
       { link: DOCS_LINK, label: 'Documentation', external: true },
       { link: GITHUB_LINK, label: 'Github', external: true },
-      { link: WHITEPAPER_LINK, label: 'Whitepaper', external: true },
     ],
   },
   {
