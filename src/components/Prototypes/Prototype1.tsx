@@ -189,8 +189,8 @@ export default function Prototype1() {
                 v: 'Read positions on Arbitrum, decide on Base, settle on Solana — one signed action.',
               },
               {
-                k: 'Off-chain → on-chain bridge',
-                v: 'Webhook from Stripe or Plaid triggers an attested on-chain mint or transfer.',
+                k: 'Prediction market resolver',
+                v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain — no UMA, no dispute window.',
               },
               {
                 k: 'On-chain → API bridge',
