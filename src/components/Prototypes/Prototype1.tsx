@@ -47,14 +47,14 @@ export default function Prototype1() {
         </div>
         <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
           <MonoBadge>Lit Protocol · TEE-secured compute</MonoBadge>
-          <h1 className="mt-8 !text-[2.5rem] md:!text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto">
+          <h1 className="mt-8 !text-[2.5rem] md:!text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl !mx-auto">
             Read anywhere.
             <br />
             <span className="text-mint-500">Compute</span> in a TEE.
             <br />
             Write to any chain or API.
           </h1>
-          <p className="mt-8 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
+          <p className="mt-8 max-w-xl !mx-auto text-white/70 text-lg leading-relaxed">
             One programmable runtime. Pulls data from any source, runs your
             logic inside a chain-secured TEE, signs on any chain or API — with
             no backend to trust.
@@ -97,7 +97,7 @@ export default function Prototype1() {
             <h2 className="mt-6 !text-4xl md:!text-6xl font-medium leading-tight">
               One file. Reads, computes, signs across chains.
             </h2>
-            <p className="mt-6 text-white/70 text-lg">
+            <p className="mt-6 mx-auto text-white/70 text-lg">
               A Lit Action is JavaScript that runs inside the network&apos;s TEE.
               Deploy it once. The keys it signs with don&apos;t belong to anyone
               — they&apos;re governed on-chain.
@@ -217,7 +217,7 @@ export default function Prototype1() {
             Read. Compute. Write. <br />
             <span className="text-mint-500">Anywhere.</span>
           </h2>
-          <p className="mt-6 text-white/60 max-w-xl mx-auto">
+          <p className="mt-6 text-white/60 max-w-xl !mx-auto">
             One programmable runtime for everything that has to happen between
             an event and a signed action.
           </p>
