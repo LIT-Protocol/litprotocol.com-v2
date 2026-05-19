@@ -38,7 +38,7 @@ export default function PrototypesIndex() {
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
               Landing page prototypes · for review
             </span>
-            <h1 className="mt-4 text-4xl md:text-6xl font-medium leading-tight">
+            <h1 className="mt-4 !text-4xl md:!text-6xl font-medium leading-tight">
               Reorienting the site around{' '}
               <span className="text-mint-500">read · compute · write</span>.
             </h1>
