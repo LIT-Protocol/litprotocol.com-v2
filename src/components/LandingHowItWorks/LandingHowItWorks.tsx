@@ -57,8 +57,8 @@ const patterns = [
     v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain — no UMA, no dispute window.',
   },
   {
-    k: 'On-chain → API bridge',
-    v: 'Smart contract event triggers a verified call to Twilio, OpenAI, or your own API.',
+    k: 'Compliance-gated transfers',
+    v: 'Lit Action screens every recipient against a sanctions list before signing — flagged wallets simply can’t receive.',
   },
 ];
 
