@@ -5,13 +5,6 @@ import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
 
-const HeroBadge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/60 border border-white/15 rounded-full px-3 py-1">
-    <span className="w-1.5 h-1.5 rounded-full bg-mint-500" />
-    {children}
-  </span>
-);
-
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
     <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
@@ -42,8 +35,7 @@ const LandingHero = () => {
         <img src="/textures/hero-right.png" alt="" className="w-full h-auto" />
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
-        <HeroBadge>Lit Protocol · TEE-secured compute</HeroBadge>
-        <h1 className="mt-8 text-[2.5rem] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto">
+        <h1 className="text-[2.5rem] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto">
           Read anywhere.
           <br />
           <span className="text-mint-500">Compute</span> in a TEE.
