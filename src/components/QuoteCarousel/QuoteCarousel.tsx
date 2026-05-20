@@ -1,3 +1,5 @@
+'use client';
+
 import { Carousel } from '@mantine/carousel';
 import { Group, Image, Card, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
@@ -11,7 +13,6 @@ import Tria from './assets/tria.webp';
 import Emblem from './assets/emblem.webp';
 import Genius from './assets/genius.webp';
 import Beacon from './assets/beacon.webp';
-import Sentient from './assets/sentient.webp';
 
 type ImageProp = string;
 interface QuoteProps {
@@ -54,14 +55,6 @@ const quotes: QuoteProps[] = [
     quote:
       "Lit Protocol transformed our products through trustless multiparty compute. For Genius Bridge Protocol, Lit's encrypted runtime powers our universal solver - a decentralized agent using native DEX liquidity for faster, cheaper cross-VM intents without centralized relayers. With Genius Terminal, Lit's programmable encryption enables non-custodial multi-wallet management, DCAs, limit orders, and stop losses. Lit isn't just technology - it's the foundation for our next-gen DeFi solutions.",
     alt: 'Genius Logo',
-  },
-  {
-    name: 'Oleg, Product Manager',
-    link: 'https://sentient.foundation/',
-    image: Sentient.src,
-    quote:
-      "Lit Protocol's Vincent empowers the Sentient ecosystem to build verifiable AI systems where security meets sovereignty. By combining their decentralized key management with multi-party computation and TEEs, they’ve created the cryptographic foundation for AI agents that operate with transparent, verifiable integrity. This partnership isn't just about infrastructure—it's about pioneering trustless compute where developers can build permissioned AI while users maintain complete data ownership.",
-    alt: 'Sentient Logo',
   },
 ];
 

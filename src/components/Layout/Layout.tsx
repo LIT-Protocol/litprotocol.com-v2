@@ -14,21 +14,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {/* Banner */}
-      <div className="w-full text-white font-semibold py-2 px-4 text-center text-sm"
-        style={{ backgroundColor: '#FF4205' }}
-        >
-        $LITKEY is live.{' '}
-        <a
-          href="https://spark.litprotocol.com/litkey-is-live/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:opacity-80 transition"
-        >
-          Learn more.
-        </a>
-      </div>
-
       <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
       <main className="relative w-full h-full min-h-[100vh]">{children}</main>
       <Footer />

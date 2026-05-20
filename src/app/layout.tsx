@@ -11,30 +11,35 @@ import {
   mantineHtmlProps,
 } from '@mantine/core';
 
+const DESCRIPTION =
+  'Read anywhere. Compute in a TEE. Write to any chain or API. Lit is a programmable runtime that pulls data from any source, runs your logic in a chain-secured TEE, and signs on any chain or API.';
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://litprotocol.com'),
   title: 'Lit Protocol',
-  description:
-    'Lit is a key management network for decentralized signing and encryption. Create apps and wallets that use secrets without single points of failure.',
+  description: DESCRIPTION,
   openGraph: {
     title: 'Lit Protocol',
-    description:
-      'Lit is a key management network for decentralized signing and encryption. Create apps and wallets that use secrets without single points of failure.',
+    description: DESCRIPTION,
     url: 'https://litprotocol.com',
     siteName: 'Lit Protocol',
     images: {
-      url: '/og-image.png',
-      alt: 'Description of Lit Protocol over a blue and orange gradient background',
+      url: '/api/og',
+      width: 1200,
+      height: 630,
+      alt: 'Lit Protocol — Read anywhere. Compute in a TEE. Write to any chain or API.',
     },
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Lit Protocol',
-    description:
-      'Lit is a key management network for decentralized signing and encryption. Create apps and wallets that use secrets without single points of failure.',
+    description: DESCRIPTION,
     creator: '@LitProtocol',
     images: {
-      url: '/twitter-image.png',
-      alt: 'Description of Lit Protocol over a blue and orange gradient background',
+      url: '/api/og',
+      width: 1200,
+      height: 630,
+      alt: 'Lit Protocol — Read anywhere. Compute in a TEE. Write to any chain or API.',
     },
   },
 };
