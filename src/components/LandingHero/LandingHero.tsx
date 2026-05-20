@@ -35,11 +35,11 @@ const LandingHero = () => {
         <img src="/textures/hero-right.png" alt="" className="w-full h-auto" />
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
-        <h1 className="text-[2.5rem] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto">
-          Read anywhere.
-          <br />
-          <span className="text-mint-500">Compute</span> in a TEE.
-          <br />
+        <h1 className="text-[2.5rem]/[1.1] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto text-balance">
+          Read anywhere.{' '}
+          <br className="hidden md:inline" />
+          <span className="text-mint-500">Compute</span> in a TEE.{' '}
+          <br className="hidden md:inline" />
           Write to any chain or API.
         </h1>
         <p className="mt-8 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
@@ -67,7 +67,7 @@ const LandingHero = () => {
         </div>
 
         <div className="mt-20 max-w-4xl mx-auto">
-          <div className="grid grid-cols-3 gap-2 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-2 md:gap-4">
             <Pillar label="READ" sub="APIs · RPCs · feeds · prices" />
             <PillarCenter />
             <Pillar label="WRITE" sub="EVM · SVM · BTC · Cosmos · HTTPS" />
