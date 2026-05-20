@@ -101,8 +101,8 @@ export default function Prototype1() {
             </h2>
             <p className="mt-6 mx-auto text-white/70 text-lg">
               A Lit Action is JavaScript that runs inside the network&apos;s TEE.
-              Deploy it once. The keys it signs with don&apos;t belong to anyone
-              — they&apos;re governed on-chain.
+              Deploy it once. Sign with a wallet bound to the action code itself,
+              or with one you control through your own on-chain governance.
             </p>
           </div>
 

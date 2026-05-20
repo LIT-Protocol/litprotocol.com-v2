@@ -75,8 +75,9 @@ const LandingHowItWorks = () => {
             </h2>
             <p className="mt-6 text-white/70 text-lg">
               A Lit Action is JavaScript that runs inside the network&apos;s
-              TEE. Deploy it once. The keys it signs with don&apos;t belong to
-              anyone — they&apos;re governed on-chain.
+              TEE. Deploy it once. Sign with a wallet bound to the action code
+              itself, or with one you control through your own on-chain
+              governance.
             </p>
           </div>
 
