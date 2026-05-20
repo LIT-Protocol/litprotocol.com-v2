@@ -45,12 +45,12 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
 
 const patterns = [
   {
-    k: 'Custom price oracle',
-    v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
-  },
-  {
     k: 'Cross-chain token',
     v: 'Lit checks burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
+  },
+  {
+    k: 'Custom price oracle',
+    v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
   },
   {
     k: 'Prediction market resolver',
