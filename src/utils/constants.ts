@@ -11,12 +11,12 @@ export const CALENDAR_LINK = 'https://litgateway.com/calendar';
 export const GITHUB_LINK = 'https://github.com/LIT-Protocol';
 export const AUDIT_LINK =
   'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
-export const COMMUNITY_LINK = 'https://developer.litprotocol.com/support/intro';
+export const COMMUNITY_LINK = 'https://developer.litprotocol.com/';
 export const VINCENT_LINK = 'https://www.heyvincent.ai/';
 export const DEVELOPER_CONSTANT_LINK = 'https://developer.litprotocol.com';
 export const COMMUNITY_CONSTANT_LINK = 'https://discord.gg/yEJSBaznBX';
 export const COMPANY_CONSTANT_LINK = 'https://litprotocol.com';
-export const GOVERNANCE_LINK = 'https://litprotocol.discourse.group';
+export const GOVERNANCE_LINK = 'https://getlit.dev/chat';
 
 // Product
 export const LIT_WALLET_LINK =
@@ -34,7 +34,7 @@ export const LINKEDIN_LINK = 'https://www.linkedin.com/company/lit-protocol';
 export const GALXE_LINK = 'https://app.galxe.com/quest/LitProtocol';
 
 // Company
-export const CAREERS_LINK = 'https://jobs.litprotocol.com';
+export const CAREERS_LINK = '/careers';
 export const BRAND_LINK = 'https://github.com/LIT-Protocol/Brand-Kit';
 
 // Legal
