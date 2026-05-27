@@ -56,7 +56,7 @@ const links: LinkItem[] = [
     label: 'Company',
     links: [
       { link: SPARK_LINK, label: 'Blog', external: true },
-      { link: CAREERS_LINK, label: 'Careers', external: true },
+      { link: CAREERS_LINK, label: 'Careers', external: false },
       { link: CONTACT_FORM, label: 'Contact', external: true },
     ],
   },

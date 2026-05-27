@@ -151,12 +151,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Company</h6>
-              <a
-                href={CAREERS_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.footer__link}
-              >
+              <a href={CAREERS_LINK} className={styles.footer__link}>
                 Careers
               </a>
               <a

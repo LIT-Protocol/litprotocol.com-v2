@@ -76,12 +76,7 @@ const NavMenu = ({
                 >
                   Blog
                 </a>
-                <a
-                  href={CAREERS_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.nav__link}
-                >
+                <a href={CAREERS_LINK} className={styles.nav__link}>
                   Careers
                 </a>
                 <a
