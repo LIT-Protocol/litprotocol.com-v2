@@ -17,9 +17,11 @@ const Pillar = ({ label, sub }: { label: string; sub: string }) => (
 const PillarCenter = () => (
   <div className="border-2 border-mint-500 rounded-xl p-5 bg-mint-500/10 text-center relative">
     <div className="font-mono text-xs uppercase tracking-[0.2em] text-mint-500">
-      COMPUTE
+      DECIDE
     </div>
-    <div className="mt-3 text-sm text-white">Your JavaScript, in a TEE</div>
+    <div className="mt-3 text-sm text-white">
+      Policy logic in a chain-secured TEE
+    </div>
   </div>
 );
 
@@ -36,16 +38,17 @@ const LandingHero = () => {
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
         <h1 className="text-[2.5rem]/[1.1] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto text-balance">
-          Read anywhere.{' '}
+          Enforce policy{' '}
           <br className="hidden md:inline" />
-          <span className="text-mint-500">Compute</span> in a TEE.{' '}
+          <span className="text-mint-500">before every signature.</span>{' '}
           <br className="hidden md:inline" />
-          Write to any chain or API.
+          Act across any chain or API.
         </h1>
         <p className="mt-8 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
-          One programmable runtime. Pulls data from any source, runs your logic
-          inside a chain-secured TEE, signs on any chain or API. Open source,
-          no backend to trust.
+          Lit lets teams run authorization logic, compliance checks, and asset
+          controls inside a chain-secured TEE before any key signs. Build
+          cross-chain apps and agent workflows without trusting a backend,
+          custodian, or multisig.
         </p>
         <div className="mt-10 flex gap-3 justify-center flex-wrap">
           <Button
@@ -68,9 +71,15 @@ const LandingHero = () => {
 
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-2 md:gap-4">
-            <Pillar label="READ" sub="APIs · RPCs · feeds · prices" />
+            <Pillar
+              label="VERIFY"
+              sub="On-chain state · APIs · identities · risk data"
+            />
             <PillarCenter />
-            <Pillar label="WRITE" sub="EVM · SVM · BTC · Cosmos · HTTPS" />
+            <Pillar
+              label="AUTHORIZE"
+              sub="Signatures · decryptions · API actions"
+            />
           </div>
         </div>
       </Container>

@@ -21,26 +21,28 @@ const Stat = ({ k, v }: { k: string; v: string }) => (
   </div>
 );
 
-const codeSample = `// Inside a Lit Action — runs in a chain-secured TEE
+const codeSample = `// Inside a Lit Action — policy enforcement in a chain-secured TEE
 
-// Read off-chain
-const price = await fetch(
-  "https://api.coinbase.com/v2/prices/ETH-USD/spot"
-).then(r => r.json());
+// Verify off-chain risk and compliance signals
+const sanctions = await fetch(SANCTIONS_API + "/" + recipient).then(r => r.json());
+const risk = await fetch(RISK_API + "/" + recipient).then(r => r.json());
 
-// Read on-chain (Base)
-const base = new ethers.providers.JsonRpcProvider(BASE_RPC);
-const vault = new ethers.Contract(vaultAddress, vaultAbi, base);
-const ratio = await vault.currentRatio();
+// Verify on-chain state
+const provider = new ethers.providers.JsonRpcProvider(BASE_RPC);
+const vault = new ethers.Contract(vaultAddress, vaultAbi, provider);
+const role = await vault.roles(sender);
+const dailySpent = await vault.dailySpent(sender);
 
-// Decide, then sign + broadcast on Arbitrum
-if (Number(price.data.amount) * Number(ratio) < threshold) {
+// Decide, then sign only if policy passes
+if (!sanctions.blocked && risk.score < threshold && role.canTransfer) {
+  if (dailySpent.add(amount).gt(role.dailyLimit)) throw new Error("over limit");
+
   const pk = await Lit.Actions.getLitActionPrivateKey();
-  const arb = new ethers.providers.JsonRpcProvider(ARB_RPC);
-  const wallet = new ethers.Wallet(pk, arb);
-  const hook = new ethers.Contract(hookAddress, hookAbi, wallet);
-  const tx = await hook.rebalance();
+  const wallet = new ethers.Wallet(pk, provider);
+  const tx = await vault.connect(wallet).transfer(recipient, amount);
   Lit.Actions.setResponse({ response: tx.hash });
+} else {
+  Lit.Actions.setResponse({ response: "policy_denied" });
 }`;
 
 const EXAMPLES_BASE =
@@ -48,23 +50,28 @@ const EXAMPLES_BASE =
 
 const patterns = [
   {
-    k: 'Cross-chain token',
-    v: 'Lit checks burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
+    k: 'Solver vaults',
+    v: 'Keep inventory behind a policy-gated signer so bots can fill orders, but compromised boxes cannot drain funds.',
+    href: `${EXAMPLES_BASE}/lit-solver-vault`,
+  },
+  {
+    k: 'Policy-gated bridging',
+    v: 'Verify source-chain events, limits, and risk signals before signing destination-chain mints or releases.',
     href: `${EXAMPLES_BASE}/cross-chain-token`,
   },
   {
-    k: 'Custom price oracle',
-    v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
+    k: 'Tamper-resistant oracle policies',
+    v: 'Aggregate external and on-chain data inside a TEE, then sign only when freshness, quorum, and deviation rules pass.',
     href: `${EXAMPLES_BASE}/multi-source-price-oracle`,
   },
   {
-    k: 'Prediction market resolver',
-    v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain — no UMA, no dispute window.',
+    k: 'Verifiable AI decisioning',
+    v: 'Run model or resolver logic in a TEE, attest the code path, and sign outcomes according to transparent rules.',
     href: `${EXAMPLES_BASE}/prediction-market-oracle`,
   },
   {
     k: 'Compliance-gated transfers',
-    v: 'Lit Action screens every recipient against a sanctions list before signing — flagged wallets simply can’t receive.',
+    v: 'Screen wallets, enforce jurisdictional or protocol policies, and deny signatures for blocked recipients before assets move.',
     href: `${EXAMPLES_BASE}/compliance-transfer-gate`,
   },
 ];
@@ -78,13 +85,13 @@ const LandingHowItWorks = () => {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge>What it looks like</Badge>
             <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
-              One file. Reads, computes, signs across chains.
+              One policy file. Checks, decides, signs.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
               A Lit Action is JavaScript that runs inside the network&apos;s
-              TEE. Deploy it once. Sign with a wallet bound to the action code
-              itself, or with one you control through your own on-chain
-              governance.
+              TEE. Use it to verify conditions, enforce policy, and produce
+              signatures only when your rules pass. Deploy once, bind signing
+              authority to code, and govern upgrades on-chain.
             </p>
           </div>
 
@@ -94,7 +101,7 @@ const LandingHowItWorks = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
               <span className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
               <span className="ml-3 text-xs font-mono text-white/40">
-                rebalance.action.ts
+                policy-gated-transfer.action.ts
               </span>
             </div>
             <pre className="text-xs md:text-sm leading-relaxed font-mono p-5 md:p-7 text-white/85 overflow-x-auto">
@@ -110,21 +117,22 @@ const LandingHowItWorks = () => {
           <div className="max-w-3xl">
             <Badge>Why TEE, not consensus</Badge>
             <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
-              Speed of a backend, trust of a contract. A{' '}
-              <span className="text-mint-500">chain-secured enclave</span>.
+              Backend speed. Verifiable controls.
+              <br />
+              <span className="text-mint-500">Enclave-secured execution</span>.
             </h2>
             <p className="mt-8 text-white/70 text-lg leading-relaxed">
-              Most cross-chain infra forces a tradeoff: trust a multisig, or
-              wait for slow consensus on every read. Lit takes a different
-              path. Code runs inside a TEE — an enclave the hardware itself
-              cryptographically attests to. Keys never leave. Logs can&apos;t
-              be rewritten.
+              Most automation forces a tradeoff: trust a backend operator,
+              rely on a multisig, or wait for slow consensus on every decision.
+              Lit takes a different path. Policy code runs inside a TEE — an
+              enclave the hardware itself cryptographically attests to. Keys
+              never leave. Operators can&apos;t inspect secrets.
             </p>
             <p className="mt-4 text-white/70 text-lg leading-relaxed">
               The TEE&apos;s identity, its allowed code, and its signing
-              authority are all governed on-chain. You get the speed and
-              expressiveness of a single trusted runtime, with the
-              auditability and on-chain governability of a smart contract.
+              authority are all governed on-chain. Teams can enforce security,
+              compliance, and governance rules at runtime while keeping the
+              latency and flexibility of programmable infrastructure.
             </p>
           </div>
         </Container>
@@ -137,15 +145,15 @@ const LandingHowItWorks = () => {
             <div>
               <Badge>The properties</Badge>
               <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
-                Decentralized where it matters. <br />
-                <span className="text-mint-500">Fast where it has to be.</span>
+                Policy before every signature. <br />
+                <span className="text-mint-500">Fast enough for production.</span>
               </h2>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <Stat k="Latency" v="Sub-second signing" />
-              <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01 per second" />
-              <Stat k="Surface" v="Any HTTP, any chain" />
+              <Stat k="Policy" v="Custom checks before signing" />
+              <Stat k="Attestation" v="TEE identity and code hash verifiable" />
+              <Stat k="Key safety" v="Keys never leave the network" />
+              <Stat k="Surface" v="Any HTTP, any chain, any API" />
             </div>
           </div>
         </Container>
@@ -157,7 +165,7 @@ const LandingHowItWorks = () => {
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <Badge>Patterns shipping today</Badge>
             <h2 className="mt-5 text-4xl md:text-5xl font-medium">
-              Things people are building right now.
+              Security and policy patterns shipping today.
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
@@ -184,12 +192,12 @@ const LandingHowItWorks = () => {
       <section>
         <Container size="md" className="!py-28 text-center">
           <h2 className="text-4xl md:text-6xl font-medium leading-tight">
-            Read. Compute. Write. <br />
+            Check. Enforce. Sign. <br />
             <span className="text-mint-500">Anywhere.</span>
           </h2>
           <p className="mt-6 text-white/60 max-w-xl mx-auto">
-            One programmable runtime for everything that has to happen between
-            an event and a signed action.
+            One programmable policy layer for everything that must happen before
+            a key signs.
           </p>
           <div className="mt-10 flex gap-3 justify-center">
             <Button
