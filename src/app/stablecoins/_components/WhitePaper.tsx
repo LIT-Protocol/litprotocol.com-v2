@@ -25,7 +25,7 @@ const Fn = ({ n }: { n: number }) => (
 const SECTIONS = [
   { id: 'forcing-function', n: '1', title: 'The forcing function' },
   { id: 'problem', n: '2', title: 'Control by promise' },
-  { id: 'shift', n: '3', title: 'Provable control' },
+  { id: 'shift', n: '3', title: 'Verifiable control' },
   { id: 'external', n: '4', title: 'External compliance' },
   { id: 'internal', n: '5', title: 'Internal compliance' },
   { id: 'architecture', n: '6', title: 'The architecture' },
@@ -115,7 +115,7 @@ export default function WhitePaper() {
         <Container size="lg" className="relative !pt-20 !pb-16 md:!pt-28">
           <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">Position paper</div>
           <h1 className="mt-5 max-w-[18ch] text-[clamp(2.5rem,6.5vw,5rem)] font-medium leading-[1.0] tracking-tight">
-            Provable Compliance
+            Verifiable Compliance
           </h1>
           <p className="mt-5 max-w-[46ch] text-[clamp(1.1rem,2vw,1.4rem)] leading-snug text-white/70">
             Code-enforced control for regulated stablecoins and tokenized assets.
@@ -210,13 +210,13 @@ export default function WhitePaper() {
 
             {/* 3 */}
             <section id="sec-shift" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="3" id="shift" title="Provable control" />
+              <SectionHead n="3" id="shift" title="Verifiable control" />
               <P>The alternative is to verify the system rather than trust the operator. Three properties make that possible:</P>
               <ul className="mt-4 space-y-3">
                 {[
                   ['Blind.', 'The signing key is generated and used only inside a sealed trusted execution environment (TEE). No operator, host, or vendor — Lit included — can see or extract it.'],
                   ['Bound.', 'The key’s authority is not an administrative setting but on-chain state: it signs only what an immutable, content-addressed policy permits.'],
-                  ['Provable.', 'Every decision the key makes, and every transfer it refuses, is an attested record that anyone entitled to it can verify.'],
+                  ['Verifiable.', 'Every decision the key makes, and every transfer it refuses, is an attested record that anyone entitled to it can verify.'],
                 ].map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/80">
                     <span className="absolute left-0 top-[0.55rem] font-mono text-lit-orange">◆</span>
@@ -286,7 +286,7 @@ export default function WhitePaper() {
                 <Lead>Bound to the chain.</Lead> A key’s authority is on-chain state on Base: permission contracts bind each key to the exact, content-addressed policies it may run. Changing what a key can do means changing on-chain state under the issuer’s own governance — not flipping an administrative switch.<Fn n={6} />
               </P>
               <P>
-                <Lead>Provable hardware.</Lead> Each enclave emits a hardware attestation: a signed, deterministic measurement of the exact code running inside. The Proof of Cloud approach extends that attestation to prove the machine runs in vetted infrastructure rather than on an attacker’s bench — binding the chip’s identity to a second root of trust and closing the physical side-channel gap.<Fn n={8} />
+                <Lead>Verifiable hardware.</Lead> Each enclave emits a hardware attestation: a signed, deterministic measurement of the exact code running inside. The Proof of Cloud approach extends that attestation to prove the machine runs in vetted infrastructure rather than on an attacker’s bench — binding the chip’s identity to a second root of trust and closing the physical side-channel gap.<Fn n={8} />
               </P>
               <figure className="mt-7 rounded-2xl border border-dashed border-lit-orange/30 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.06),_transparent_60%)] px-5 pb-6 pt-9">
                 <span className="-mt-12 mb-1 block font-mono text-[0.7rem] tracking-wide text-lit-orange">Sealed enclave · operators are blind</span>

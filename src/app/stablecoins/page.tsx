@@ -7,12 +7,12 @@ const DESCRIPTION =
   'The GENIUS Act takes effect Jan 18, 2027. How stablecoin and tokenized-asset issuers enforce block, freeze, and seize controls in code — and prove it.';
 
 export const metadata: Metadata = {
-  title: 'Provable Compliance: Stablecoins & the GENIUS Act | Lit Protocol',
+  title: 'Verifiable Compliance: Stablecoins & the GENIUS Act | Lit Protocol',
   description: DESCRIPTION,
   alternates: { canonical: '/stablecoins' },
   openGraph: {
     type: 'article',
-    title: 'Provable Compliance — Code-Enforced Control for Regulated Assets',
+    title: 'Verifiable Compliance — Code-Enforced Control for Regulated Assets',
     description: DESCRIPTION,
     url: URL,
     siteName: 'Lit Protocol',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Provable Compliance — Lit Protocol',
+    title: 'Verifiable Compliance — Lit Protocol',
     description: DESCRIPTION,
     creator: '@LitProtocol',
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: 'Provable Compliance',
+  headline: 'Verifiable Compliance',
   alternativeHeadline:
     'Code-enforced control for regulated stablecoins and tokenized assets',
   description: DESCRIPTION,
