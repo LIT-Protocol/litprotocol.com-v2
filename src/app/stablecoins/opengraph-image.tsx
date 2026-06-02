@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/server';
 
 export const runtime = 'edge';
 export const alt =
-  'Provable Compliance — a Lit Protocol white paper on code-enforced control for regulated stablecoins and tokenized assets.';
+  'Provable Compliance — a Lit Protocol position paper on code-enforced control for regulated stablecoins and tokenized assets.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -70,7 +70,7 @@ export default function Image() {
               display: 'flex',
             }}
           />
-          LIT PROTOCOL · WHITE PAPER
+          LIT PROTOCOL · POSITION PAPER
         </div>
 
         <div

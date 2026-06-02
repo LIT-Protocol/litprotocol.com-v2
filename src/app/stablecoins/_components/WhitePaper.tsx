@@ -113,7 +113,7 @@ export default function WhitePaper() {
       <header className="relative overflow-hidden border-b border-white/10">
         <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[min(1000px,140vw)] -translate-x-1/2 -translate-y-1/3 blur-[10px] bg-[radial-gradient(ellipse_at_center,_oklch(53.51%_0.163_39.51/0.20)_0%,_transparent_64%)]" />
         <Container size="lg" className="relative !pt-20 !pb-16 md:!pt-28">
-          <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">White paper</div>
+          <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">Position paper</div>
           <h1 className="mt-5 max-w-[18ch] text-[clamp(2.5rem,6.5vw,5rem)] font-medium leading-[1.0] tracking-tight">
             Provable Compliance
           </h1>
