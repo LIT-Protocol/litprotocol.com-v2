@@ -1,12 +1,10 @@
 'use client';
 
 import { Container } from '@mantine/core';
-import { IconArrowNarrowRight, IconExternalLink } from '@tabler/icons-react';
+import { IconExternalLink } from '@tabler/icons-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
 
-const DEPLOYMENT_FORM =
-  'https://docs.google.com/forms/d/e/1FAIpQLScQ8dU09fbdRa6Al70rP9Bb-iX_CngnGl1U6_YFh7s0UyKgkQ/viewform';
 const SOLVER_VAULT_EXAMPLE =
   'https://github.com/LIT-Protocol/chipotle/tree/main/examples/lit-solver-vault';
 
@@ -19,14 +17,15 @@ const Fn = ({ n }: { n: number }) => (
 );
 
 const SECTIONS = [
-  { id: 'market', n: '1', title: 'The market' },
-  { id: 'taxonomy', n: '2', title: 'Solver taxonomy' },
-  { id: 'techniques', n: '3', title: 'Execution patterns' },
-  { id: 'risks', n: '4', title: 'Control surfaces' },
-  { id: 'lit', n: '5', title: 'Where Lit fits' },
-  { id: 'map', n: '6', title: 'Company map' },
-  { id: 'outreach', n: '7', title: 'Outreach workflow' },
-  { id: 'references', n: '8', title: 'References' },
+  { id: 'forcing-function', n: '1', title: 'The forcing function' },
+  { id: 'solver-role', n: '2', title: 'The solver role' },
+  { id: 'execution-models', n: '3', title: 'Execution models' },
+  { id: 'ecosystem', n: '4', title: 'The ecosystem' },
+  { id: 'fault-lines', n: '5', title: 'Operational fault lines' },
+  { id: 'verifiable-control', n: '6', title: 'Verifiable control' },
+  { id: 'proof', n: '7', title: 'What a solver can prove' },
+  { id: 'open-questions', n: '8', title: 'Open questions' },
+  { id: 'references', n: '9', title: 'References' },
 ];
 
 const REFERENCES: { n: number; text: ReactNode; href: string }[] = [
@@ -94,31 +93,46 @@ const CONTROL_SURFACES = [
   ['Inventory custody', 'Funds often sit in EOAs, smart accounts, vault contracts, protocol balances, or venue accounts. The critical question is not only where funds sit, but what runtime conditions are required before they can move.'],
   ['Order reconstruction', 'Before a fill, claim, or rebalance, a solver must reconstruct source-chain events, bridge attestations, quote IDs, deadlines, recipients, token amounts, and replay constraints.'],
   ['Latency budget', 'A 100 ms quote path cannot carry the same checks as a settlement, withdrawal, or rebalance path. Controls have to be placed at the right phase of the lifecycle.'],
-  ['Onboarding model', '“Solver” can mean permissionless filler, allowlisted resolver, private RFQ maker, bonded relayer, internal executor, or infrastructure node. Each carries different trust and sales motion.'],
+  ['Participation model', '“Solver” can mean permissionless filler, allowlisted resolver, private RFQ maker, bonded relayer, internal executor, or infrastructure node. Each carries different trust and operational assumptions.'],
   ['Standards compatibility', 'ERC-7683 is creating a shared cross-chain intent language, but production systems still use many protocol-specific order formats and API payloads.'],
 ];
 
-const LIT_FITS = [
-  ['Policy-gated inventory', 'Put solver inventory behind a vault or signing flow that releases funds only when a Lit Action verifies the order, route, amount, deadline, profitability, and risk limits.'],
-  ['Attested execution', 'Run authorization logic inside TEEs and produce evidence that the exact policy approved or denied a fill, claim, withdrawal, or rebalance.'],
-  ['Cross-chain source verification', 'Use Lit Actions to read source-chain state, bridge attestations, VAAs, CCTP messages, or settlement roots before signing a downstream action.'],
-  ['Role separation', 'Separate quote generation, strategy, execution, withdrawal, and emergency permissions so no single bot or operator has unilateral inventory authority.'],
-  ['Company-specific deployment', 'The right wedge differs by category: Across-style relayer fills, RFQ quote signing, CCTP rebalancing, and aggregator executor wallets need different policies.'],
+const VERIFIABLE_CONTROLS = [
+  ['Policy-gated inventory', 'Solver inventory can sit behind a vault or signing flow that releases funds only when code verifies the order, route, amount, deadline, profitability, and risk limits.'],
+  ['Attested execution', 'Authorization logic can run inside TEEs and produce evidence that a specific policy approved or denied a fill, claim, withdrawal, or rebalance.'],
+  ['Cross-chain source verification', 'Source-chain state, bridge attestations, VAAs, CCTP messages, or settlement roots can be checked before a downstream action is signed.'],
+  ['Role separation', 'Quote generation, strategy, execution, withdrawal, and emergency permissions can be separated so no single bot or operator has unilateral inventory authority.'],
+  ['Phase-aware controls', 'The controls used for quoting, filling, claiming, and rebalancing can differ according to each phase’s latency budget and risk profile.'],
 ];
 
-const COMPANY_MAP = [
-  ['P0', 'Across', 'Fast-fill relayer network', 'Relayer inventory custody, exclusive flows, fill authorization latency.'],
-  ['P0', 'deBridge DLN', '0-TVL cross-chain order network', 'Taker/filler claim keys, order fulfillment flow, reserve custody.'],
-  ['P0', 'Wormhole Settlement / Mayan', 'Settlement and solver ecosystem', 'Solver curation, VAA/CCTP verification, fast auction constraints.'],
-  ['P0', '1inch Fusion+', 'Cross-chain Dutch-auction resolver network', 'Resolver keys, escrow flow, secret generation and reveal.'],
-  ['P0', 'Squid Coral', 'Intent swaps over Axelar', 'Solver participation model, quote signing, inventory risk.'],
-  ['P0', 'Relay.link', 'Managed fast bridging and execution API', 'Liquidity provider custody, signer modes, rebalancing paths.'],
-  ['P1', 'UniswapX', 'Dutch-auction filler system', 'Cross-chain filler inventory, RFQ paths, reactor settlement.'],
-  ['P1', 'CoW Protocol', 'Batch-auction solver network', 'Settlement signing, solver buffers, hooks, simulation.'],
-  ['P1', 'LI.FI', 'Aggregator and intent router', 'Executor roles, solver access, route-safety policies.'],
-  ['P1', 'Socket / Bungee', 'Chain-abstraction orchestration', 'Transmitters, EIP-7683 support, gas and refund control.'],
-  ['P1', 'Hashflow / Bebop', 'RFQ market-maker networks', 'Quote-signing keys, stale quotes, PMM inventory controls.'],
-  ['P2', 'Everclear', 'Clearing and netting layer', 'Solver rebalancing reduction, settlement responsibilities.'],
+const PROOF_POINTS = [
+  ['Inventory moved under policy', 'A fill, claim, withdrawal, or rebalance was authorized only after the required order, route, limit, and risk checks passed.'],
+  ['A denial was real', 'A risky or invalid request failed because the policy refused to sign, not because an operator happened to notice it.'],
+  ['The signer was constrained', 'The key could not be exported or used outside the allowed policy path, reducing hot-wallet and insider risk.'],
+  ['The execution path is auditable', 'The decision can be tied to code identity, chain state, and the specific cross-chain facts that were observed at signing time.'],
+];
+
+const ECOSYSTEM = [
+  ['Across', 'Fast-fill relayer network', 'Relayers fill users on the destination chain and are repaid through optimistic settlement bundles.'],
+  ['deBridge DLN', '0-TVL cross-chain order network', 'Takers fulfill destination orders and later claim or unlock source-side value.'],
+  ['Wormhole Settlement / Mayan', 'Settlement and solver ecosystem', 'Solvers compete around Wormhole attestations, CCTP, and fast auction flows.'],
+  ['1inch Fusion+', 'Cross-chain Dutch-auction resolver network', 'Resolvers coordinate source and destination escrows using hashlock and timelock-style mechanics.'],
+  ['Squid Coral', 'Intent swaps over Axelar', 'Solvers quote and fill intent swaps while Axelar provides cross-chain transport.'],
+  ['Relay.link', 'Managed fast bridging and execution API', 'Relay and liquidity providers deliver fast destination execution and rebalance behind the API.'],
+  ['UniswapX', 'Dutch-auction filler system', 'Fillers compete to execute signed orders through reactor contracts; cross-chain variants extend the model.'],
+  ['CoW Protocol', 'Batch-auction solver network', 'Solvers compete to produce aggregate settlements across user intents and liquidity venues.'],
+  ['LI.FI', 'Aggregator and intent router', 'Routes across bridges, DEX aggregators, intent protocols, and status/execution APIs.'],
+  ['Socket / Bungee', 'Chain-abstraction orchestration', 'Coordinates route execution, transmitters, and EIP-7683-compatible order surfaces.'],
+  ['Hashflow / Bebop', 'RFQ market-maker networks', 'Professional makers quote firm prices against private inventory across supported chains.'],
+  ['Everclear', 'Clearing and netting layer', 'Nets cross-chain obligations to reduce solver rebalancing cost and settlement friction.'],
+];
+
+const OPEN_QUESTIONS = [
+  'Which solver roles are actually permissionless today, and which remain allowlisted or relationship-driven?',
+  'How much policy checking can happen before quote, before fill, before claim, and before rebalance without breaking latency?',
+  'Will ERC-7683 become the common order format, or will production systems continue to use protocol-specific payloads?',
+  'Where should risk live: in solver bots, vault contracts, TEEs, multisigs, optimistic dispute systems, or clearing layers?',
+  'How should users and applications evaluate solver reliability when fills are fast but settlement and rebalancing happen later?',
 ];
 
 const P = ({ children }: { children: ReactNode }) => (
@@ -139,7 +153,7 @@ function SectionHead({ n, id, title }: { n: string; id: string; title: string })
 }
 
 export default function SolversReport() {
-  const [active, setActive] = useState<string>('market');
+  const [active, setActive] = useState<string>('forcing-function');
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -167,7 +181,7 @@ export default function SolversReport() {
             Cross-Chain Solvers
           </h1>
           <p className="mt-5 max-w-[48ch] text-[clamp(1.1rem,2vw,1.4rem)] leading-snug text-white/70">
-            Market map, taxonomy, and control architecture for intent-based execution.
+            A state-of-the-market report on fillers, RFQ makers, intent routers, and settlement rails.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
             <span>Version 0.1 · June 2026</span>
@@ -175,11 +189,11 @@ export default function SolversReport() {
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href={DEPLOYMENT_FORM} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
-              Discuss solver infrastructure
+            <Button href="#sec-solver-role">
+              Read the taxonomy
             </Button>
-            <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
-              See the solver vault example
+            <Button variant="outline" href="#sec-references">
+              Read the references
             </Button>
           </div>
         </Container>
@@ -214,8 +228,8 @@ export default function SolversReport() {
           </nav>
 
           <article className="wp-doc max-w-[44rem]">
-            <section id="sec-market" className="scroll-mt-24">
-              <SectionHead n="1" id="market" title="The market" />
+            <section id="sec-forcing-function" className="scroll-mt-24">
+              <SectionHead n="1" id="forcing-function" title="The forcing function" />
               <P>
                 The cross-chain user experience is moving from “choose a bridge, choose a DEX, wait, then complete the trade” to <Lead>state the outcome and let a solver compete to deliver it</Lead>. The user signs an intent or creates an order; the solver decides whether the route is profitable and safe; the protocol enforces settlement.
               </P>
@@ -224,8 +238,8 @@ export default function SolversReport() {
               </P>
             </section>
 
-            <section id="sec-taxonomy" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="2" id="taxonomy" title="Solver taxonomy" />
+            <section id="sec-solver-role" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="2" id="solver-role" title="The solver role" />
               <P>The same word, “solver,” covers several different business and technical roles. A useful taxonomy starts with how the actor gets selected and how it is repaid.</P>
               <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
                 <table className="w-full border-collapse text-left align-top">
@@ -252,8 +266,8 @@ export default function SolversReport() {
               </figure>
             </section>
 
-            <section id="sec-techniques" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="3" id="techniques" title="Execution patterns" />
+            <section id="sec-execution-models" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="3" id="execution-models" title="Execution models" />
               <P>
                 Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
               </P>
@@ -276,9 +290,36 @@ export default function SolversReport() {
               </P>
             </section>
 
-            <section id="sec-risks" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="4" id="risks" title="Control surfaces" />
-              <P>The industry report is not only a map of protocols. It is a map of operational control surfaces that appear again and again across solver designs.</P>
+            <section id="sec-ecosystem" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="4" id="ecosystem" title="The ecosystem" />
+              <P>
+                The solver ecosystem is not a single market. It is a stack of relayers, resolvers, RFQ makers, routers, settlement systems, canonical transfer rails, and clearing layers. Some teams operate inventory directly; others coordinate execution or reduce settlement friction.
+              </P>
+              <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
+                <table className="w-full border-collapse text-left align-top">
+                  <thead>
+                    <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
+                      <th className="p-4 font-normal">Project</th>
+                      <th className="p-4 font-normal">Category</th>
+                      <th className="p-4 font-normal">Role in the solver stack</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ECOSYSTEM.map(([project, category, role]) => (
+                      <tr key={project} className="border-t border-white/10 align-top">
+                        <td className="p-4 text-[0.95rem] font-medium text-white">{project}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{category}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{role}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </figure>
+            </section>
+
+            <section id="sec-fault-lines" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="5" id="fault-lines" title="Operational fault lines" />
+              <P>The state of solvers is defined as much by operational constraints as by protocol design. The same fault lines appear across otherwise different systems.</P>
               <ul className="mt-4 space-y-4">
                 {CONTROL_SURFACES.map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
@@ -289,13 +330,13 @@ export default function SolversReport() {
               </ul>
             </section>
 
-            <section id="sec-lit" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="5" id="lit" title="Where Lit fits" />
+            <section id="sec-verifiable-control" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="6" id="verifiable-control" title="Verifiable control" />
               <P>
-                Lit is not a bridge, DEX, or router. The wedge is narrower and more fundamental: <Lead>programmable, attestable signing for solver inventory and execution authority</Lead>. A solver can keep its strategy fast while moving sensitive actions behind code-enforced policy.
+                The control problem is not unique to any one protocol. A solver needs a way to move quickly without turning every hot wallet, executor, or quote signer into an unconstrained source of loss. The emerging answer is <Lead>programmable, attestable signing for solver inventory and execution authority</Lead>: sensitive actions can move behind code-enforced policy while strategy remains fast.
               </P>
               <ul className="mt-4 space-y-4">
-                {LIT_FITS.map(([h, b]) => (
+                {VERIFIABLE_CONTROLS.map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
                     <span className="absolute left-0 top-[0.55rem] font-mono text-lit-orange">◆</span>
                     <Lead>{h}.</Lead> {b}
@@ -303,40 +344,28 @@ export default function SolversReport() {
                 ))}
               </ul>
               <P>
-                The Chipotle repository already contains a solver vault example that demonstrates this shape: a vault releases inventory only when a Lit Action verifies the policy and authorizes the solver action.<Fn n={10} /><Fn n={11} />
+                One implementation pattern is to pair policy-gated signing with verifiable execution environments: the policy checks cross-chain facts, and the signing path produces evidence about the code and context that authorized the action. Lit’s solver vault example is included in the references as one concrete version of this architecture.<Fn n={10} /><Fn n={11} />
               </P>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button href={DEPLOYMENT_FORM} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
-                  Talk through a solver design
-                </Button>
-                <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
-                  View example code
-                </Button>
-              </div>
             </section>
 
-            <section id="sec-map" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="6" id="map" title="Company map" />
+            <section id="sec-proof" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="7" id="proof" title="What a solver can prove" />
               <P>
-                The first outreach list should focus on companies whose products already expose solver, filler, RFQ, or route-executor control surfaces. Each profile should verify the architecture before moving into a sales conversation.
+                A mature solver stack should be able to show more than a transaction hash after the fact. It should be able to show why an action was allowed, why a risky action was denied, and which code path held authority over inventory.
               </P>
               <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
                 <table className="w-full border-collapse text-left align-top">
                   <thead>
                     <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
-                      <th className="w-16 p-4 font-normal">Priority</th>
-                      <th className="p-4 font-normal">Company / project</th>
-                      <th className="p-4 font-normal">Category</th>
-                      <th className="p-4 font-normal">Verify first</th>
+                      <th className="w-1/3 p-4 font-normal">Claim</th>
+                      <th className="p-4 font-normal">Evidence</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {COMPANY_MAP.map(([priority, company, category, verify]) => (
-                      <tr key={company} className="border-t border-white/10 align-top">
-                        <td className="p-4 font-mono text-xs text-lit-orange-700">{priority}</td>
-                        <td className="p-4 text-[0.95rem] font-medium text-white">{company}</td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{category}</td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{verify}</td>
+                    {PROOF_POINTS.map(([claim, evidence]) => (
+                      <tr key={claim} className="border-t border-white/10 align-top">
+                        <td className="p-4 text-[0.95rem] font-medium text-white">{claim}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{evidence}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -344,34 +373,23 @@ export default function SolversReport() {
               </figure>
             </section>
 
-            <section id="sec-outreach" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="7" id="outreach" title="Outreach workflow" />
+            <section id="sec-open-questions" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="8" id="open-questions" title="Open questions" />
               <P>
-                The report should open doors as a credible industry artifact. The recommended motion is to ask each team to verify the technical section about them before pitching any Lit-specific integration.
+                The market is early enough that many important details remain unsettled. These questions will determine whether solver networks become open infrastructure, vertically integrated liquidity businesses, or something in between.
               </P>
-              <ol className="mt-4 space-y-3">
-                {[
-                  'Share the taxonomy and the company profile draft.',
-                  'Ask the team to correct onboarding, solver responsibilities, custody, latency, and standards claims.',
-                  'Incorporate corrections and mark which claims are verified versus inferred from public docs.',
-                  'Only then discuss the company-specific Lit hypothesis: inventory vault, quote signer, settlement signer, withdrawal policy, or rebalancing control.',
-                ].map((item, i) => (
-                  <li key={item} className="flex gap-3 text-[1.02rem] leading-[1.7] text-white/70">
-                    <span className="font-mono text-xs text-lit-orange-700">{i + 1}</span>
-                    <span>{item}</span>
+              <ul className="mt-4 space-y-3">
+                {OPEN_QUESTIONS.map((item) => (
+                  <li key={item} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
+                    <span className="absolute left-0 top-[0.6rem] h-1.5 w-1.5 rounded-full bg-lit-orange-700" />
+                    {item}
                   </li>
                 ))}
-              </ol>
-              <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-                <div className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-lit-orange">Draft ask</div>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-white/65">
-                  We are putting together an industry report on cross-chain solvers, fillers, RFQ makers, intent protocols, and solver-adjacent interoperability rails. We included a section on your team and want to make sure we describe your architecture accurately. Would someone technical be open to reviewing onboarding, custody, signer assumptions, latency constraints, order formats, and public/private docs boundaries?
-                </p>
-              </div>
+              </ul>
             </section>
 
             <section id="sec-references" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="8" id="references" title="References" />
+              <SectionHead n="9" id="references" title="References" />
               <ol className="mt-4 space-y-3">
                 {REFERENCES.map((r) => (
                   <li key={r.n} id={`ref-${r.n}`} className="scroll-mt-24 flex gap-3 text-[0.9rem] leading-relaxed text-white/60">
@@ -386,7 +404,7 @@ export default function SolversReport() {
                 ))}
               </ol>
               <p className="mt-10 border-t border-white/10 pt-5 font-mono text-[0.7rem] leading-relaxed text-white/30">
-                Informational only. This report summarizes public materials and first-pass research current to June 2026. Company sections should be verified with the teams before publication or outreach. Lit-specific deployment ideas are hypotheses until validated against each protocol’s actual production architecture.
+                Informational only. This report summarizes public materials and first-pass research current to June 2026. The solver market is changing quickly; production details such as solver participation, custody, latency budgets, and standards support should be treated as implementation-specific and subject to change.
               </p>
             </section>
           </article>
