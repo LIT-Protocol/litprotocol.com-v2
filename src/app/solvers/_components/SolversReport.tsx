@@ -18,14 +18,15 @@ const Fn = ({ n }: { n: number }) => (
 
 const SECTIONS = [
   { id: 'forcing-function', n: '1', title: 'The forcing function' },
-  { id: 'solver-role', n: '2', title: 'The solver role' },
-  { id: 'execution-models', n: '3', title: 'Execution models' },
-  { id: 'ecosystem', n: '4', title: 'The ecosystem' },
-  { id: 'fault-lines', n: '5', title: 'Operational fault lines' },
-  { id: 'verifiable-control', n: '6', title: 'Verifiable control' },
-  { id: 'proof', n: '7', title: 'What a solver can prove' },
-  { id: 'open-questions', n: '8', title: 'Open questions' },
-  { id: 'references', n: '9', title: 'References' },
+  { id: 'loss-pattern', n: '2', title: 'The loss pattern' },
+  { id: 'solver-role', n: '3', title: 'The solver role' },
+  { id: 'execution-models', n: '4', title: 'Execution models' },
+  { id: 'ecosystem', n: '5', title: 'The ecosystem' },
+  { id: 'fault-lines', n: '6', title: 'Operational fault lines' },
+  { id: 'verifiable-control', n: '7', title: 'Verifiable control' },
+  { id: 'proof', n: '8', title: 'What a solver can prove' },
+  { id: 'open-questions', n: '9', title: 'Open questions' },
+  { id: 'references', n: '10', title: 'References' },
 ];
 
 const REFERENCES: { n: number; text: ReactNode; href: string }[] = [
@@ -38,8 +39,11 @@ const REFERENCES: { n: number; text: ReactNode; href: string }[] = [
   { n: 7, text: 'LI.FI architecture and quote API documentation.', href: 'https://docs.li.fi/introduction/lifi-architecture/system-overview' },
   { n: 8, text: 'Socket architecture and EIP-7683 documentation.', href: 'https://docs.socket.tech/eip7683/' },
   { n: 9, text: 'ERC-7683: Cross Chain Intents standard.', href: 'https://eips.ethereum.org/EIPS/eip-7683' },
-  { n: 10, text: 'Lit Protocol v3 (Chipotle): TEE-based execution, on-chain key orchestration, and hardware attestation.', href: 'https://spark.litprotocol.com/introducing-lit-protocol-v3-chipotle/' },
-  { n: 11, text: 'Lit solver vault example in the Chipotle repository.', href: SOLVER_VAULT_EXAMPLE },
+  { n: 10, text: 'Chainalysis, “$2.2 Billion Stolen from Crypto Platforms in 2024” — 2024 stolen funds, centralized-service hacks, DMM Bitcoin and WazirX examples, and private-key compromise share.', href: 'https://www.chainalysis.com/blog/crypto-hacking-stolen-funds-2025/' },
+  { n: 11, text: 'TRM Labs, “$2.2 billion was stolen in crypto-related hacks in 2024” — threat-vector breakdown and private-key / seed-phrase compromise share.', href: 'https://www.trmlabs.com/resources/blog/category-deep-dive-2-2-billion-was-stolen-in-crypto-related-hacks-in-2024' },
+  { n: 12, text: 'TRM Labs, “Bybit Hack Update” — approximately $1.5B stolen and rapid laundering through DeFi and cross-chain services.', href: 'https://www.trmlabs.com/resources/blog/bybit-hack-update-north-korea-moves-to-next-stage-of-laundering' },
+  { n: 13, text: 'Lit Protocol v3 (Chipotle): TEE-based execution, on-chain key orchestration, and hardware attestation.', href: 'https://spark.litprotocol.com/introducing-lit-protocol-v3-chipotle/' },
+  { n: 14, text: 'Lit solver vault example in the Chipotle repository.', href: SOLVER_VAULT_EXAMPLE },
 ];
 
 const TAXONOMY = [
@@ -89,6 +93,33 @@ const TECHNIQUES = [
   ['Rebalancing', 'Inventory is moved across chains, venues, or custody systems to prepare for the next fill.'],
 ];
 
+const LOSS_STATS = [
+  {
+    value: '$2.2B',
+    label: 'stolen in 2024',
+    body: 'Chainalysis estimated $2.2B stolen from crypto platforms in 2024 across 303 incidents; TRM’s independent 2024 hack deep dive reports the same headline total.',
+    refs: [10, 11],
+  },
+  {
+    value: '44–70%',
+    label: 'tied to private keys',
+    body: 'Chainalysis attributed 43.8% of stolen 2024 value to private-key compromises; TRM attributed nearly 70% to infrastructure attacks, primarily private-key and seed-phrase compromises.',
+    refs: [10, 11],
+  },
+  {
+    value: '~$1.0–1.5B',
+    label: '2024 private-key loss range',
+    body: 'Applied to the $2.2B 2024 total, those two estimates imply roughly $964M to $1.54B of 2024 losses from private-key / seed-phrase style compromise.',
+    refs: [10, 11],
+  },
+  {
+    value: '$1.5B',
+    label: 'Bybit 2025 exploit',
+    body: 'TRM describes the February 2025 Bybit theft as approximately $1.5B in ETH tokens, with at least $160M moved through illicit channels within 48 hours and over $400M moved by February 26.',
+    refs: [12],
+  },
+];
+
 const CONTROL_SURFACES = [
   ['Inventory custody', 'Funds often sit in EOAs, smart accounts, vault contracts, protocol balances, or venue accounts. The critical question is not only where funds sit, but what runtime conditions are required before they can move.'],
   ['Order reconstruction', 'Before a fill, claim, or rebalance, a solver must reconstruct source-chain events, bridge attestations, quote IDs, deadlines, recipients, token amounts, and replay constraints.'],
@@ -103,6 +134,15 @@ const VERIFIABLE_CONTROLS = [
   ['Cross-chain source verification', 'Source-chain state, bridge attestations, VAAs, CCTP messages, or settlement roots can be checked before a downstream action is signed.'],
   ['Role separation', 'Quote generation, strategy, execution, withdrawal, and emergency permissions can be separated so no single bot or operator has unilateral inventory authority.'],
   ['Phase-aware controls', 'The controls used for quoting, filling, claiming, and rebalancing can differ according to each phase’s latency budget and risk profile.'],
+];
+
+const LIT_HELP = [
+  ['Hot-wallet drain prevention', 'A solver vault can require a Lit Action policy before inventory moves. If a bot server, API key, or ordinary operator credential is compromised, the attacker still cannot drain funds unless the order, route, limits, and chain facts satisfy policy.'],
+  ['Blast-radius limits', 'Policies can enforce per-token, per-chain, per-counterparty, per-route, and time-window limits so a single failure cannot become an unlimited cross-chain inventory drain.'],
+  ['Source-of-truth checks', 'Before signing a fill, claim, withdrawal, or rebalance, a Lit Action can reconstruct source-chain deposits, bridge attestations, CCTP messages, VAAs, deadlines, recipients, and replay state.'],
+  ['Phase-specific controls', 'Low-latency quote paths can stay fast, while higher-risk phases — destination release, claim, withdrawal, and rebalance — use stricter checks and attested approvals.'],
+  ['Emergency response', 'A policy can include kill switches, circuit breakers, allowlist changes, or governance-gated upgrades without handing a single hot key the power to move every asset.'],
+  ['Auditability', 'The solver can show which code path authorized or denied a movement of funds, turning key management from an operational promise into a verifiable control.'],
 ];
 
 const PROOF_POINTS = [
@@ -238,8 +278,29 @@ export default function SolversReport() {
               </P>
             </section>
 
+            <section id="sec-loss-pattern" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="2" id="loss-pattern" title="The loss pattern" />
+              <P>
+                The main risk for production solvers is not abstract bridge risk. It is inventory controlled by keys that must stay online enough to quote, fill, claim, withdraw, and rebalance. The broader crypto market shows how expensive that key-management layer can become when it fails.
+              </P>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {LOSS_STATS.map((stat) => (
+                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+                    <div className="text-[clamp(1.8rem,4vw,2.6rem)] font-semibold leading-none tracking-tight text-lit-orange">{stat.value}</div>
+                    <div className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/40">{stat.label}</div>
+                    <p className="mt-3 text-[0.9rem] leading-relaxed text-white/65">
+                      {stat.body}{stat.refs.map((n) => <Fn key={n} n={n} />)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <P>
+                A solver is not an exchange, but the failure mode rhymes: once a hot key can move valuable inventory, compromise turns directly into loss. For solver networks, the practical question is whether inventory-moving authority can be online enough to compete while still being constrained enough that a compromised bot cannot empty the vault.
+              </P>
+            </section>
+
             <section id="sec-solver-role" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="2" id="solver-role" title="The solver role" />
+              <SectionHead n="3" id="solver-role" title="The solver role" />
               <P>The same word, “solver,” covers several different business and technical roles. A useful taxonomy starts with how the actor gets selected and how it is repaid.</P>
               <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
                 <table className="w-full border-collapse text-left align-top">
@@ -267,7 +328,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-execution-models" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="3" id="execution-models" title="Execution models" />
+              <SectionHead n="4" id="execution-models" title="Execution models" />
               <P>
                 Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
               </P>
@@ -291,7 +352,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-ecosystem" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="4" id="ecosystem" title="The ecosystem" />
+              <SectionHead n="5" id="ecosystem" title="The ecosystem" />
               <P>
                 The solver ecosystem is not a single market. It is a stack of relayers, resolvers, RFQ makers, routers, settlement systems, canonical transfer rails, and clearing layers. Some teams operate inventory directly; others coordinate execution or reduce settlement friction.
               </P>
@@ -318,7 +379,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-fault-lines" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="5" id="fault-lines" title="Operational fault lines" />
+              <SectionHead n="6" id="fault-lines" title="Operational fault lines" />
               <P>The state of solvers is defined as much by operational constraints as by protocol design. The same fault lines appear across otherwise different systems.</P>
               <ul className="mt-4 space-y-4">
                 {CONTROL_SURFACES.map(([h, b]) => (
@@ -331,7 +392,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-verifiable-control" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="6" id="verifiable-control" title="Verifiable control" />
+              <SectionHead n="7" id="verifiable-control" title="Verifiable control" />
               <P>
                 The control problem is not unique to any one protocol. A solver needs a way to move quickly without turning every hot wallet, executor, or quote signer into an unconstrained source of loss. The emerging answer is <Lead>programmable, attestable signing for solver inventory and execution authority</Lead>: sensitive actions can move behind code-enforced policy while strategy remains fast.
               </P>
@@ -344,12 +405,20 @@ export default function SolversReport() {
                 ))}
               </ul>
               <P>
-                One implementation pattern is to pair policy-gated signing with verifiable execution environments: the policy checks cross-chain facts, and the signing path produces evidence about the code and context that authorized the action. Lit’s solver vault example is included in the references as one concrete version of this architecture.<Fn n={10} /><Fn n={11} />
+                Lit is one implementation of this pattern. A Lit Action can run the policy check; Lit’s TEE-backed signing path can authorize the transaction only if the policy passes; and the solver can keep a record of what code and context approved the action.<Fn n={13} /><Fn n={14} />
               </P>
+              <ul className="mt-4 space-y-4">
+                {LIT_HELP.map(([h, b]) => (
+                  <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
+                    <span className="absolute left-0 top-[0.6rem] h-1.5 w-1.5 rounded-full bg-lit-orange" />
+                    <Lead>{h}.</Lead> {b}
+                  </li>
+                ))}
+              </ul>
             </section>
 
             <section id="sec-proof" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="7" id="proof" title="What a solver can prove" />
+              <SectionHead n="8" id="proof" title="What a solver can prove" />
               <P>
                 A mature solver stack should be able to show more than a transaction hash after the fact. It should be able to show why an action was allowed, why a risky action was denied, and which code path held authority over inventory.
               </P>
@@ -374,7 +443,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-open-questions" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="8" id="open-questions" title="Open questions" />
+              <SectionHead n="9" id="open-questions" title="Open questions" />
               <P>
                 The market is early enough that many important details remain unsettled. These questions will determine whether solver networks become open infrastructure, vertically integrated liquidity businesses, or something in between.
               </P>
@@ -389,7 +458,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-references" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="9" id="references" title="References" />
+              <SectionHead n="10" id="references" title="References" />
               <ol className="mt-4 space-y-3">
                 {REFERENCES.map((r) => (
                   <li key={r.n} id={`ref-${r.n}`} className="scroll-mt-24 flex gap-3 text-[0.9rem] leading-relaxed text-white/60">
@@ -404,7 +473,7 @@ export default function SolversReport() {
                 ))}
               </ol>
               <p className="mt-10 border-t border-white/10 pt-5 font-mono text-[0.7rem] leading-relaxed text-white/30">
-                Informational only. This report summarizes public materials and first-pass research current to June 2026. The solver market is changing quickly; production details such as solver participation, custody, latency budgets, and standards support should be treated as implementation-specific and subject to change.
+                Informational only. This report summarizes public materials and first-pass research current to June 2026. Loss estimates vary by source and attribution method; the figures above are directional and should be read as evidence of the magnitude of key-management risk, not as a legal or forensic conclusion. The solver market is changing quickly; production details such as solver participation, custody, latency budgets, and standards support should be treated as implementation-specific and subject to change.
               </p>
             </section>
           </article>
