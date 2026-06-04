@@ -15,15 +15,11 @@ import {
   DOCS_LINK,
   GITHUB_LINK,
   SPARK_LINK,
-  VINCENT_LINK,
   DEVELOPER_CONSTANT_LINK,
   COMMUNITY_CONSTANT_LINK,
   COMPANY_CONSTANT_LINK,
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
-import SparkleIcon from './assets/SparkleIcon';
-import { useState } from 'react';
-import SparkleIconFilled from './assets/SparkleIconFilled';
 
 interface LinkItem {
   link: string;
@@ -33,11 +29,6 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  {
-    link: VINCENT_LINK,
-    label: 'Vincent',
-    external: false,
-  },
   {
     link: DEVELOPER_CONSTANT_LINK,
     label: 'Developers',
@@ -62,17 +53,8 @@ const links: LinkItem[] = [
   },
 ];
 
-const VincentIcon = ({ hovered }: { hovered: boolean }) => {
-  return hovered ? (
-    <SparkleIconFilled size={16} className="transition-all fill-white" />
-  ) : (
-    <SparkleIcon size={16} className="transition-all" />
-  );
-};
-
-// Individual link component with its own hover state
+// Individual link component
 const NavLink = ({ link }: { link: LinkItem }) => {
-  const [hovered, setHovered] = useState(false);
   const isExternal = link.external === true;
   const hasSubLinks = !!link.links?.length;
 
@@ -107,17 +89,9 @@ const NavLink = ({ link }: { link: LinkItem }) => {
       >
         <Menu.Target>
           <a href={link.link}>
-            <Center
-              className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
+            <Center className="group text-off-white font-medium px-[.75rem] py-[.375rem]">
               <span className="mr-[5px]">{link.label}</span>
-              {link.label === 'Vincent' ? (
-                <VincentIcon hovered={hovered} />
-              ) : (
-                <IconChevronDown size={16} stroke={1.5} />
-              )}
+              <IconChevronDown size={16} stroke={1.5} />
             </Center>
           </a>
         </Menu.Target>
@@ -133,24 +107,14 @@ const NavLink = ({ link }: { link: LinkItem }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Center 
-        className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
+      <Center className="group text-off-white font-medium px-[.75rem] py-[.375rem]">
         <span className="mr-[5px]">{link.label}</span>
-        {link.label === 'Vincent' && <VincentIcon hovered={hovered} />}
       </Center>
     </a>
   ) : (
     <Link key={link.link} href={link.link}>
-      <Center 
-        className="group text-off-white font-medium px-[.75rem] py-[.375rem]"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
+      <Center className="group text-off-white font-medium px-[.75rem] py-[.375rem]">
         <span className="mr-[5px]">{link.label}</span>
-        {link.label === 'Vincent' && <VincentIcon hovered={hovered} />}
       </Center>
     </Link>
   );

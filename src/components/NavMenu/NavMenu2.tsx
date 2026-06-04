@@ -5,7 +5,6 @@ import {
   DOCS_LINK,
   GITHUB_LINK,
   SPARK_LINK,
-  VINCENT_LINK,
 } from '@/utils/constants';
 import { HeaderMenu } from '../Header/Header';
 import { Group, Modal } from '@mantine/core';
@@ -21,11 +20,6 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  {
-    link: VINCENT_LINK,
-    label: 'Vincent',
-    external: true,
-  },
   {
     link: '#dev',
     label: 'Developers',
