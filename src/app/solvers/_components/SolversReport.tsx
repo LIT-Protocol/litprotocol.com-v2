@@ -4,10 +4,12 @@ import { Container } from '@mantine/core';
 import { IconArrowNarrowRight, IconExternalLink } from '@tabler/icons-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
-import { CALENDAR_LINK } from '@/utils/constants';
 
 const SOLVER_VAULT_EXAMPLE =
   'https://github.com/LIT-Protocol/chipotle/tree/main/examples/lit-solver-vault';
+
+const SOLVER_REVIEW_FORM =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeZ16PjwV7YZIvEuTwJ-7ijVb039SsIwVqkJyI2ffPdwkn6DQ/viewform';
 
 const Fn = ({ n }: { n: number }) => (
   <sup className="ml-px">
@@ -230,7 +232,7 @@ export default function SolversReport() {
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href={CALENDAR_LINK} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
+            <Button href={SOLVER_REVIEW_FORM} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
               Book a solver security review
             </Button>
             <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
@@ -506,7 +508,7 @@ export default function SolversReport() {
                   If you operate solver inventory across chains, we’ll walk your team through policy-gated signing — and a working vault you can fork today.
                 </p>
                 <div className="mt-7 flex flex-wrap justify-center gap-3">
-                  <Button href={CALENDAR_LINK} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
+                  <Button href={SOLVER_REVIEW_FORM} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
                     Book a solver security review
                   </Button>
                   <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
