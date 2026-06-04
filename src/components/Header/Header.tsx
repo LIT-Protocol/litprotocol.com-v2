@@ -30,6 +30,14 @@ interface LinkItem {
 
 const links: LinkItem[] = [
   {
+    link: '/stablecoins',
+    label: 'Use cases',
+    links: [
+      { link: '/stablecoins', label: 'Stablecoins', external: false },
+      { link: '/solvers', label: 'Solvers', external: false },
+    ],
+  },
+  {
     link: DEVELOPER_CONSTANT_LINK,
     label: 'Developers',
     links: [
