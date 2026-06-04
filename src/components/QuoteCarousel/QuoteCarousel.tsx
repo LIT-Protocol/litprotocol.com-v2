@@ -62,42 +62,33 @@ function Quote({ image, name, link, alt, quote }: QuoteProps) {
   const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <Card
-      radius="md"
-      className={`w-full m-auto h-full ${
+      radius="lg"
+      className={`relative w-full m-auto h-full overflow-hidden ${
         isMobile ? 'min-h-[30rem]' : 'h-[22rem]'
-      } !bg-transparent !bg-gradient-to-bl !from-quote-gray-700 !via-quote-gray-500 !to-quote-gray-700 flex-1 !py-[2rem] !px-[2.5rem] !rounded-md !z-10`}
+      } border border-white/10 !bg-white/[0.02] flex-1 !py-[2.25rem] !px-[2.5rem] !rounded-2xl !z-10`}
     >
-      <div className="flex flex-col justify-between h-full text-white">
-        {/* Top: Logo + Quote */}
-        <div className="flex flex-col flex-grow">
-          <div className="flex items-center mb-6" style={{ height: '2rem' }}>
-            <Image
-              src={image}
-              alt={alt}
-              height={35}
-              style={{
-                maxHeight: '100%',
-                objectFit: 'contain',
-              }}
-            />
-          </div>
-          <Text
-            ta="left"
-            className="text-white !text-[1.05rem]/[1.5rem] sm:!text-[1.25rem]/[1.625rem]"
-          >
-            {quote}
-          </Text>
-        </div>
-
-        {/* Bottom: Name */}
-        <div className="flex justify-end mt-6">
-          <Text
-            ta="right"
-            className="text-white !text-[1.25rem] sm:!text-[1.5rem] md:!text-[1.25rem]"
-            m="0"
-          >
-            &mdash; {name}
-          </Text>
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-7 top-3 select-none font-serif text-[5.5rem] leading-none text-mint-500/15"
+      >
+        ”
+      </span>
+      <div className="relative flex flex-col justify-between h-full text-white">
+        <Text
+          ta="left"
+          className="text-white/90 !text-[1.1rem]/[1.6rem] sm:!text-[1.2rem]/[1.7rem]"
+        >
+          {quote}
+        </Text>
+        {/* Attribution */}
+        <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+          <Image
+            src={image}
+            alt={alt}
+            height={26}
+            style={{ maxHeight: '26px', width: 'auto', objectFit: 'contain' }}
+          />
+          <span className="text-[0.95rem] text-white/55">{name}</span>
         </div>
       </div>
     </Card>
