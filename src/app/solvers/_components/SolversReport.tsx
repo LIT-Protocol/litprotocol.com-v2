@@ -1,8 +1,8 @@
 'use client';
 
 import { Container } from '@mantine/core';
-import { IconExternalLink } from '@tabler/icons-react';
-import { useEffect, useState, type ReactNode } from 'react';
+import { IconArrowNarrowRight, IconExternalLink } from '@tabler/icons-react';
+import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
 
 const SOLVER_VAULT_EXAMPLE =
@@ -85,12 +85,12 @@ const TAXONOMY = [
   },
 ];
 
-const TECHNIQUES = [
-  ['Order intake', 'User signs an intent, places an RFQ, deposits into escrow, or submits a bridgeable route.'],
-  ['Solver selection', 'A resolver, filler, maker, or route executor wins by price, speed, exclusivity, reputation, or auction rules.'],
-  ['Destination execution', 'The solver fronts funds, performs a swap, executes a call, or creates destination-side escrow.'],
-  ['Claim and settlement', 'The solver proves the source order, unlocks funds, receives repayment, or nets obligations through a clearing layer.'],
-  ['Rebalancing', 'Inventory is moved across chains, venues, or custody systems to prepare for the next fill.'],
+const LIFECYCLE = [
+  { n: '01', title: 'Order intake', chain: 'Source chain', body: 'User signs an intent, places an RFQ, deposits into escrow, or submits a bridgeable route.', gated: false },
+  { n: '02', title: 'Solver selection', chain: 'Off-chain', body: 'A resolver, filler, maker, or route executor wins on price, speed, exclusivity, or auction rules.', gated: false },
+  { n: '03', title: 'Destination execution', chain: 'Destination', body: 'The solver fronts funds, swaps, or executes a call — its first inventory-moving signature.', gated: true },
+  { n: '04', title: 'Claim & settlement', chain: 'Source chain', body: 'The solver proves the source order and unlocks, claims, or nets repayment.', gated: true },
+  { n: '05', title: 'Rebalancing', chain: 'Cross-chain', body: 'Inventory is moved across chains and venues to prepare for the next fill.', gated: true },
 ];
 
 const LOSS_STATS = [
@@ -229,11 +229,11 @@ export default function SolversReport() {
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="#sec-solver-role">
-              Read the taxonomy
+            <Button href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
+              See the solver vault example
             </Button>
-            <Button variant="outline" href="#sec-references">
-              Read the references
+            <Button variant="outline" href="#sec-solver-role">
+              Read the taxonomy
             </Button>
           </div>
         </Container>
@@ -332,20 +332,29 @@ export default function SolversReport() {
               <P>
                 Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
               </P>
-              <figure className="mt-7 rounded-2xl border border-dashed border-lit-orange/30 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.06),_transparent_60%)] px-5 pb-6 pt-9">
-                <span className="-mt-12 mb-1 block font-mono text-[0.7rem] tracking-wide text-lit-orange">Intent lifecycle · solver-controlled phases</span>
-                <div className="mt-3 grid gap-2.5">
-                  {TECHNIQUES.map(([title, body], i) => (
-                    <div key={title} className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-                      <span className="w-6 shrink-0 pt-0.5 font-mono text-xs font-semibold text-lit-orange">{String(i + 1).padStart(2, '0')}</span>
-                      <div>
-                        <b className="block text-[0.95rem] font-medium">{title}</b>
-                        <span className="text-sm text-white/55">{body}</span>
+              <figure className="mt-7">
+                <div className="flex flex-col gap-2.5 md:flex-row md:items-stretch md:gap-0">
+                  {LIFECYCLE.map((p, i) => (
+                    <Fragment key={p.n}>
+                      <div className={`flex-1 rounded-xl border p-4 ${p.gated ? 'border-lit-orange/40 bg-lit-orange/[0.06]' : 'border-white/10 bg-white/[0.02]'}`}>
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs text-lit-orange">{p.n}</span>
+                          <span className="font-mono text-[0.58rem] uppercase tracking-[0.12em] text-white/40">{p.chain}</span>
+                        </div>
+                        <b className="mt-2.5 block text-sm font-medium">{p.title}</b>
+                        <span className="mt-1.5 block text-xs leading-relaxed text-white/55">{p.body}</span>
+                        {p.gated && (
+                          <span className="mt-3 inline-block rounded bg-lit-orange/15 px-2 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-lit-orange">◆ solver signs</span>
+                        )}
                       </div>
-                    </div>
+                      {i < LIFECYCLE.length - 1 && (
+                        <span className="hidden shrink-0 items-center px-1.5 font-mono text-lit-orange-700 md:flex">→</span>
+                      )}
+                    </Fragment>
                   ))}
                 </div>
               </figure>
+              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 1 — The cross-chain intent lifecycle. Phases 3–5 are where a solver’s keys move inventory — and where a compromised signer turns into a loss.</figcaption>
               <P>
                 ERC-7683 is an important step toward standard cross-chain intent order formats, with Across and Socket among the teams pushing explicit support.<Fn n={1} /><Fn n={8} /><Fn n={9} /> But today, many production systems still use project-specific escrow formats, RFQ payloads, API routes, or settlement contracts.
               </P>
@@ -407,7 +416,37 @@ export default function SolversReport() {
               <P>
                 Lit is one implementation of this pattern. A Lit Action can run the policy check; Lit’s TEE-backed signing path can authorize the transaction only if the policy passes; and the solver can keep a record of what code and context approved the action.<Fn n={13} /><Fn n={14} />
               </P>
-              <ul className="mt-4 space-y-4">
+              <figure className="mt-7">
+                <div className="grid items-stretch gap-3 md:grid-cols-[1fr_auto_1.3fr_auto_1fr]">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                    <div className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white/40">Fast path</div>
+                    <b className="mt-2 block text-[0.95rem] font-medium">Solver strategy &amp; bots</b>
+                    <span className="mt-1 block text-xs leading-relaxed text-white/55">Hot keys, API credentials, quote signers — competing on speed.</span>
+                  </div>
+                  <span className="hidden items-center justify-center font-mono text-lit-orange-700 md:flex">→</span>
+                  <div className="rounded-xl border border-dashed border-lit-orange/40 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.08),_transparent_60%)] p-5">
+                    <div className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-lit-orange">Policy gate · Lit Action in a TEE</div>
+                    <span className="mt-2 block text-xs text-white/70">Before any inventory move, verify:</span>
+                    <ul className="mt-2 space-y-1 text-xs text-white/60">
+                      <li>◆ order, route, amount, deadline</li>
+                      <li>◆ per-token / per-chain / per-window limits</li>
+                      <li>◆ source of truth — deposits, VAAs, CCTP, replay state</li>
+                    </ul>
+                    <div className="mt-3 flex flex-wrap gap-2 font-mono text-[0.62rem]">
+                      <span className="rounded bg-lit-orange/15 px-2 py-1 text-lit-orange">pass → sign</span>
+                      <span className="rounded bg-white/5 px-2 py-1 text-white/40">fail → no signature</span>
+                    </div>
+                  </div>
+                  <span className="hidden items-center justify-center font-mono text-lit-orange-700 md:flex">→</span>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                    <div className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white/40">Protected</div>
+                    <b className="mt-2 block text-[0.95rem] font-medium">Solver inventory</b>
+                    <span className="mt-1 block text-xs leading-relaxed text-white/55">Vaults &amp; balances across chains — move only on a verified signature.</span>
+                  </div>
+                </div>
+              </figure>
+              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 2 — A policy gate in front of inventory-moving signatures. Strategy stays fast; the signature is withheld unless code verifies the order, route, limits, and chain facts.</figcaption>
+              <ul className="mt-6 space-y-4">
                 {LIT_HELP.map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
                     <span className="absolute left-0 top-[0.6rem] h-1.5 w-1.5 rounded-full bg-lit-orange" />
