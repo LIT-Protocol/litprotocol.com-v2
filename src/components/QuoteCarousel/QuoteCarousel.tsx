@@ -1,7 +1,7 @@
 'use client';
 
 import { Carousel } from '@mantine/carousel';
-import { Group, Image, Card, Text } from '@mantine/core';
+import { Image, Card, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { Button } from '../ui/Button';
 import {

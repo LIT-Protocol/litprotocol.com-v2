@@ -8,7 +8,7 @@ const LandingPage = () => {
     <div className="overflow-x-hidden relative min-h-full bg-coal-950 text-off-white">
       <LandingHero />
       <section className="bg-coal-950 border-b border-white/5">
-        <Container size="lg" className="!py-20">
+        <Container size="lg" className="!py-24">
           <QuoteCarousel />
         </Container>
       </section>

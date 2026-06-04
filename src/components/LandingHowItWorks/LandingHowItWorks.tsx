@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@mantine/core';
+import Link from 'next/link';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
@@ -12,14 +13,30 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
-const Stat = ({ k, v }: { k: string; v: string }) => (
-  <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-    <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
-      {k}
+const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
+  const body = (
+    <>
+      <div className="font-mono text-[11px] uppercase tracking-widest text-white/40">
+        {k}
+      </div>
+      <div className="mt-2 text-sm">{v}</div>
+    </>
+  );
+  return href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-mint-500/40 transition"
+    >
+      {body}
+    </a>
+  ) : (
+    <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+      {body}
     </div>
-    <div className="mt-2 text-sm">{v}</div>
-  </div>
-);
+  );
+};
 
 const codeSample = `// Inside a Lit Action — runs in a chain-secured TEE
 
@@ -46,6 +63,8 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
 const EXAMPLES_BASE =
   'https://github.com/LIT-Protocol/chipotle/tree/main/examples';
 
+const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
+
 const patterns = [
   {
     k: 'Cross-chain token',
@@ -69,6 +88,19 @@ const patterns = [
   },
 ];
 
+const deepDives = [
+  {
+    k: 'Verifiable compliance for stablecoins',
+    v: 'Code-enforced, on-chain key control that satisfies the GENIUS Act — and your own auditors.',
+    href: '/stablecoins',
+  },
+  {
+    k: 'Cross-chain solvers',
+    v: 'A policy gate in a TEE that signs only the inventory moves your rules allow.',
+    href: '/solvers',
+  },
+];
+
 const LandingHowItWorks = () => {
   return (
     <div className="bg-coal-950 text-off-white">
@@ -81,7 +113,7 @@ const LandingHowItWorks = () => {
               One file. Reads, computes, signs across chains.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
-              A Lit Action is JavaScript that runs inside the network&apos;s
+              A Lit Action is JavaScript that runs inside the network’s
               TEE. Deploy it once. Sign with a wallet bound to the action code
               itself, or with one you control through your own on-chain
               governance.
@@ -89,11 +121,8 @@ const LandingHowItWorks = () => {
           </div>
 
           <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
-            <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 bg-white/[0.02]">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
-              <span className="ml-3 text-xs font-mono text-white/40">
+            <div className="flex items-center px-4 py-2 border-b border-white/10 bg-white/[0.02]">
+              <span className="text-xs font-mono text-white/40">
                 rebalance.action.ts
               </span>
             </div>
@@ -117,11 +146,11 @@ const LandingHowItWorks = () => {
               Most cross-chain infra forces a tradeoff: trust a multisig, or
               wait for slow consensus on every read. Lit takes a different
               path. Code runs inside a TEE — an enclave the hardware itself
-              cryptographically attests to. Keys never leave. Logs can&apos;t
+              cryptographically attests to. Keys never leave. Logs can’t
               be rewritten.
             </p>
             <p className="mt-4 text-white/70 text-lg leading-relaxed">
-              The TEE&apos;s identity, its allowed code, and its signing
+              The TEE’s identity, its allowed code, and its signing
               authority are all governed on-chain. You get the speed and
               expressiveness of a single trusted runtime, with the
               auditability and on-chain governability of a smart contract.
@@ -132,7 +161,7 @@ const LandingHowItWorks = () => {
 
       {/* PROPERTIES */}
       <section className="border-b border-white/5">
-        <Container size="lg" className="!py-24">
+        <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <Badge>The properties</Badge>
@@ -144,7 +173,7 @@ const LandingHowItWorks = () => {
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01 per second" />
+              <Stat k="Pricing" v="$0.01 per second" href={PRICING_DOCS} />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
@@ -180,6 +209,33 @@ const LandingHowItWorks = () => {
         </Container>
       </section>
 
+      {/* DEEP DIVES */}
+      <section className="border-b border-white/5">
+        <Container size="lg" className="!py-28">
+          <div className="text-center mb-14 max-w-3xl mx-auto">
+            <Badge>Deep dives</Badge>
+            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+              Where this matters most.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            {deepDives.map((d) => (
+              <Link
+                key={d.href}
+                href={d.href}
+                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
+              >
+                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
+                <div>
+                  <div className="font-medium text-lg">{d.k}</div>
+                  <div className="text-white/60 text-sm mt-1">{d.v}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* CTA */}
       <section>
         <Container size="md" className="!py-28 text-center">
@@ -198,7 +254,7 @@ const LandingHowItWorks = () => {
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
-              Read the docs
+              Start building
             </Button>
             <Button
               variant="outline"
@@ -206,7 +262,7 @@ const LandingHowItWorks = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get in touch
+              Talk to an engineer
             </Button>
           </div>
         </Container>
