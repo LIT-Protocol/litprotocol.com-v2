@@ -230,9 +230,6 @@ const LandingHowItWorks = () => {
               >
                 <div className="font-mono text-mint-500 text-sm mt-1">→</div>
                 <div>
-                  <div className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-mint-500/80 mb-1.5">
-                    Position paper
-                  </div>
                   <div className="font-medium text-lg">{d.k}</div>
                   <div className="text-white/60 text-sm mt-1">{d.v}</div>
                 </div>
