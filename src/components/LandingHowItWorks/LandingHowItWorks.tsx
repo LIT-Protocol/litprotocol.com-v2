@@ -13,14 +13,30 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
-const Stat = ({ k, v }: { k: string; v: string }) => (
-  <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-    <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
-      {k}
+const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
+  const body = (
+    <>
+      <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+        {k}
+      </div>
+      <div className="mt-2 text-sm">{v}</div>
+    </>
+  );
+  return href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-mint-500/40 transition"
+    >
+      {body}
+    </a>
+  ) : (
+    <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+      {body}
     </div>
-    <div className="mt-2 text-sm">{v}</div>
-  </div>
-);
+  );
+};
 
 const codeSample = `// Inside a Lit Action — runs in a chain-secured TEE
 
@@ -46,6 +62,8 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
 
 const EXAMPLES_BASE =
   'https://github.com/LIT-Protocol/chipotle/tree/main/examples';
+
+const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
 
 const patterns = [
   {
@@ -158,7 +176,7 @@ const LandingHowItWorks = () => {
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01 per second" />
+              <Stat k="Pricing" v="$0.01 per second" href={PRICING_DOCS} />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
