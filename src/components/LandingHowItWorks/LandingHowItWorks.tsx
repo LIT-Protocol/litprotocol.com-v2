@@ -212,6 +212,9 @@ const LandingHowItWorks = () => {
               >
                 <div className="font-mono text-mint-500 text-sm mt-1">→</div>
                 <div>
+                  <div className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-mint-500/80 mb-1.5">
+                    Position paper
+                  </div>
                   <div className="font-medium text-lg">{d.k}</div>
                   <div className="text-white/60 text-sm mt-1">{d.v}</div>
                 </div>
@@ -239,7 +242,7 @@ const LandingHowItWorks = () => {
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
-              Read the docs
+              Start building
             </Button>
             <Button
               variant="outline"
@@ -247,7 +250,7 @@ const LandingHowItWorks = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get in touch
+              Talk to an engineer
             </Button>
           </div>
         </Container>
