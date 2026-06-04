@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@mantine/core';
+import Link from 'next/link';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
@@ -66,6 +67,19 @@ const patterns = [
     k: 'Compliance-gated transfers',
     v: 'Lit Action screens every recipient against a sanctions list before signing — flagged wallets simply can’t receive.',
     href: `${EXAMPLES_BASE}/compliance-transfer-gate`,
+  },
+];
+
+const deepDives = [
+  {
+    k: 'Verifiable compliance for stablecoins',
+    v: 'Code-enforced, on-chain key control that satisfies the GENIUS Act — and your own auditors.',
+    href: '/stablecoins',
+  },
+  {
+    k: 'Cross-chain solvers',
+    v: 'A policy gate in a TEE that signs only the inventory moves your rules allow.',
+    href: '/solvers',
   },
 ];
 
@@ -175,6 +189,33 @@ const LandingHowItWorks = () => {
                   <div className="text-white/60 text-sm mt-1">{p.v}</div>
                 </div>
               </a>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* DEEP DIVES */}
+      <section className="border-b border-white/5">
+        <Container size="lg" className="!py-28">
+          <div className="text-center mb-14 max-w-3xl mx-auto">
+            <Badge>Deep dives</Badge>
+            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+              Where this matters most.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            {deepDives.map((d) => (
+              <Link
+                key={d.href}
+                href={d.href}
+                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
+              >
+                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
+                <div>
+                  <div className="font-medium text-lg">{d.k}</div>
+                  <div className="text-white/60 text-sm mt-1">{d.v}</div>
+                </div>
+              </Link>
             ))}
           </div>
         </Container>

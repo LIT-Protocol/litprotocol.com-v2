@@ -54,7 +54,7 @@ const Footer = () => {
             </a>
           </div>
           {/* Improved responsive grid layout */}
-          <div className="flex-1 grid gap-6 text-white grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:gap-8">
+          <div className="flex-1 grid gap-6 text-white grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:gap-8">
             <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Resources</h6>
               <a
@@ -104,6 +104,15 @@ const Footer = () => {
                 className={styles.footer__link}
               >
                 Governance
+              </a>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h6 className={styles.footer__category}>Use cases</h6>
+              <a href="/stablecoins" className={styles.footer__link}>
+                Stablecoins
+              </a>
+              <a href="/solvers" className={styles.footer__link}>
+                Solvers
               </a>
             </div>
             <div className="flex flex-col gap-3">
