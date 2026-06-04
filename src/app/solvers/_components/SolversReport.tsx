@@ -2,7 +2,7 @@
 
 import { Container } from '@mantine/core';
 import { IconArrowNarrowRight, IconExternalLink } from '@tabler/icons-react';
-import { Fragment, useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
 import { CALENDAR_LINK } from '@/utils/constants';
 
@@ -26,7 +26,7 @@ const SECTIONS = [
   { id: 'fault-lines', n: '6', title: 'Operational fault lines' },
   { id: 'verifiable-control', n: '7', title: 'Verifiable control' },
   { id: 'proof', n: '8', title: 'What a solver can prove' },
-  { id: 'open-questions', n: '9', title: 'Open questions' },
+  { id: 'open-questions', n: '9', title: 'Questions worth asking' },
   { id: 'references', n: '10', title: 'References' },
 ];
 
@@ -169,11 +169,11 @@ const ECOSYSTEM = [
 ];
 
 const OPEN_QUESTIONS = [
-  'Which solver roles are actually permissionless today, and which remain allowlisted or relationship-driven?',
-  'How much policy checking can happen before quote, before fill, before claim, and before rebalance without breaking latency?',
-  'Will ERC-7683 become the common order format, or will production systems continue to use protocol-specific payloads?',
-  'Where should risk live: in solver bots, vault contracts, TEEs, multisigs, optimistic dispute systems, or clearing layers?',
-  'How should users and applications evaluate solver reliability when fills are fast but settlement and rebalancing happen later?',
+  'If a bot server or API key is compromised, can it still move inventory — or does code gate every transfer first?',
+  'Can you prove a risky or invalid fill was denied, not just that nothing bad happened to occur?',
+  'Is inventory-moving authority separated from strategy and quoting, or does one hot key do everything?',
+  'Before a claim, withdrawal, or rebalance, what reconstructs source-chain truth — and what happens if it is wrong?',
+  'Could you show an auditor, a partner, or a user exactly which code path authorized a movement of funds?',
 ];
 
 const P = ({ children }: { children: ReactNode }) => (
@@ -334,24 +334,24 @@ export default function SolversReport() {
                 Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
               </P>
               <figure className="mt-7">
-                <div className="flex flex-col gap-2.5 md:flex-row md:items-stretch md:gap-0">
+                <div className="overflow-hidden rounded-2xl border border-white/10">
                   {LIFECYCLE.map((p, i) => (
-                    <Fragment key={p.n}>
-                      <div className={`flex-1 rounded-xl border p-4 ${p.gated ? 'border-lit-orange/40 bg-lit-orange/[0.06]' : 'border-white/10 bg-white/[0.02]'}`}>
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs text-lit-orange">{p.n}</span>
-                          <span className="font-mono text-[0.58rem] uppercase tracking-[0.12em] text-white/40">{p.chain}</span>
+                    <div
+                      key={p.n}
+                      className={`flex items-start gap-4 p-4 md:gap-5 md:p-5 ${i > 0 ? 'border-t border-white/10' : ''} ${p.gated ? 'bg-lit-orange/[0.05]' : 'bg-white/[0.02]'}`}
+                    >
+                      <span className="w-8 shrink-0 pt-0.5 font-mono text-sm font-semibold text-lit-orange">{p.n}</span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                          <b className="text-[0.95rem] font-medium">{p.title}</b>
+                          <span className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-white/40">{p.chain}</span>
+                          {p.gated && (
+                            <span className="rounded bg-lit-orange/15 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-[0.12em] text-lit-orange">◆ solver signs</span>
+                          )}
                         </div>
-                        <b className="mt-2.5 block text-sm font-medium">{p.title}</b>
-                        <span className="mt-1.5 block text-xs leading-relaxed text-white/55">{p.body}</span>
-                        {p.gated && (
-                          <span className="mt-3 inline-block rounded bg-lit-orange/15 px-2 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-lit-orange">◆ solver signs</span>
-                        )}
+                        <span className="mt-1.5 block text-sm leading-relaxed text-white/55">{p.body}</span>
                       </div>
-                      {i < LIFECYCLE.length - 1 && (
-                        <span className="hidden shrink-0 items-center px-1.5 font-mono text-lit-orange-700 md:flex">→</span>
-                      )}
-                    </Fragment>
+                    </div>
                   ))}
                 </div>
               </figure>
@@ -483,9 +483,9 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-open-questions" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="9" id="open-questions" title="Open questions" />
+              <SectionHead n="9" id="open-questions" title="Questions worth asking" />
               <P>
-                The market is early enough that many important details remain unsettled. These questions will determine whether solver networks become open infrastructure, vertically integrated liquidity businesses, or something in between.
+                Whether you run solver inventory or depend on one, these are the questions that separate a controlled stack from a hopeful one — and the ones a policy-gated signing layer is built to answer.
               </P>
               <ul className="mt-4 space-y-3">
                 {OPEN_QUESTIONS.map((item) => (
