@@ -4,6 +4,7 @@ import { Container } from '@mantine/core';
 import { IconArrowNarrowRight, IconExternalLink } from '@tabler/icons-react';
 import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/Button';
+import { CALENDAR_LINK } from '@/utils/constants';
 
 const SOLVER_VAULT_EXAMPLE =
   'https://github.com/LIT-Protocol/chipotle/tree/main/examples/lit-solver-vault';
@@ -229,11 +230,11 @@ export default function SolversReport() {
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
-              See the solver vault example
+            <Button href={CALENDAR_LINK} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
+              Book a solver security review
             </Button>
-            <Button variant="outline" href="#sec-solver-role">
-              Read the taxonomy
+            <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
+              See the solver vault example
             </Button>
           </div>
         </Container>
@@ -494,6 +495,25 @@ export default function SolversReport() {
                   </li>
                 ))}
               </ul>
+            </section>
+
+            <section className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <div className="rounded-2xl border border-lit-orange/25 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.10),_transparent_65%)] p-8 text-center md:p-12">
+                <h2 className="mx-auto max-w-[22ch] text-[clamp(1.6rem,3.4vw,2.4rem)] font-medium leading-tight tracking-tight">
+                  Keep the speed. Lose the unconstrained key.
+                </h2>
+                <p className="mx-auto mt-4 max-w-[50ch] text-[1.02rem] leading-relaxed text-white/65">
+                  If you operate solver inventory across chains, we’ll walk your team through policy-gated signing — and a working vault you can fork today.
+                </p>
+                <div className="mt-7 flex flex-wrap justify-center gap-3">
+                  <Button href={CALENDAR_LINK} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
+                    Book a solver security review
+                  </Button>
+                  <Button variant="outline" href={SOLVER_VAULT_EXAMPLE} target="_blank" rel="noopener noreferrer">
+                    See the solver vault example
+                  </Button>
+                </div>
+              </div>
             </section>
 
             <section id="sec-references" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
