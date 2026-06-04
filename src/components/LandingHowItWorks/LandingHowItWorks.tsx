@@ -16,7 +16,7 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
 const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
   const body = (
     <>
-      <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-white/40">
         {k}
       </div>
       <div className="mt-2 text-sm">{v}</div>
@@ -113,7 +113,7 @@ const LandingHowItWorks = () => {
               One file. Reads, computes, signs across chains.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
-              A Lit Action is JavaScript that runs inside the network&apos;s
+              A Lit Action is JavaScript that runs inside the network’s
               TEE. Deploy it once. Sign with a wallet bound to the action code
               itself, or with one you control through your own on-chain
               governance.
@@ -121,11 +121,8 @@ const LandingHowItWorks = () => {
           </div>
 
           <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
-            <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 bg-white/[0.02]">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
-              <span className="ml-3 text-xs font-mono text-white/40">
+            <div className="flex items-center px-4 py-2 border-b border-white/10 bg-white/[0.02]">
+              <span className="text-xs font-mono text-white/40">
                 rebalance.action.ts
               </span>
             </div>
@@ -149,11 +146,11 @@ const LandingHowItWorks = () => {
               Most cross-chain infra forces a tradeoff: trust a multisig, or
               wait for slow consensus on every read. Lit takes a different
               path. Code runs inside a TEE — an enclave the hardware itself
-              cryptographically attests to. Keys never leave. Logs can&apos;t
+              cryptographically attests to. Keys never leave. Logs can’t
               be rewritten.
             </p>
             <p className="mt-4 text-white/70 text-lg leading-relaxed">
-              The TEE&apos;s identity, its allowed code, and its signing
+              The TEE’s identity, its allowed code, and its signing
               authority are all governed on-chain. You get the speed and
               expressiveness of a single trusted runtime, with the
               auditability and on-chain governability of a smart contract.
@@ -164,7 +161,7 @@ const LandingHowItWorks = () => {
 
       {/* PROPERTIES */}
       <section className="border-b border-white/5">
-        <Container size="lg" className="!py-24">
+        <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <Badge>The properties</Badge>

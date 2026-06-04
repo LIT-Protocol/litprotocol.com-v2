@@ -67,7 +67,7 @@ const LandingHero = () => {
         </div>
 
         <div className="mt-20 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-2 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
             <Pillar label="READ" sub="APIs · RPCs · feeds · prices" />
             <PillarCenter />
             <Pillar label="WRITE" sub="EVM · SVM · BTC · Cosmos · HTTPS" />
