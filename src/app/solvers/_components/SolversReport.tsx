@@ -216,12 +216,12 @@ export default function SolversReport() {
       <header className="relative overflow-hidden border-b border-white/10">
         <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[min(1000px,140vw)] -translate-x-1/2 -translate-y-1/3 blur-[10px] bg-[radial-gradient(ellipse_at_center,_oklch(53.51%_0.163_39.51/0.22)_0%,_transparent_64%)]" />
         <Container size="lg" className="relative !pt-20 !pb-16 md:!pt-28">
-          <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">Industry report</div>
+          <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">Position paper</div>
           <h1 className="mt-5 max-w-[18ch] text-[clamp(2.5rem,6.5vw,5rem)] font-medium leading-[1.0] tracking-tight">
             Cross-Chain Solvers
           </h1>
           <p className="mt-5 max-w-[48ch] text-[clamp(1.1rem,2vw,1.4rem)] leading-snug text-white/70">
-            A state-of-the-market report on fillers, RFQ makers, intent routers, and settlement rails.
+            A state-of-the-market survey of fillers, RFQ makers, intent routers, and settlement rails.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
             <span>Version 0.1 · June 2026</span>

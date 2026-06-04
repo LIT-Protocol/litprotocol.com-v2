@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/server';
 
 export const runtime = 'edge';
 export const alt =
-  'Cross-Chain Solvers — a Lit Protocol industry report on solver networks, intent routing, and programmable custody.';
+  'Cross-Chain Solvers — a Lit Protocol position paper on solver networks, intent routing, and programmable custody.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -69,7 +69,7 @@ export default function Image() {
               display: 'flex',
             }}
           />
-          LIT PROTOCOL · INDUSTRY REPORT
+          LIT PROTOCOL · POSITION PAPER
         </div>
 
         <div
