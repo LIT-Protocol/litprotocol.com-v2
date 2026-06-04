@@ -121,8 +121,6 @@ export default function WhitePaper() {
             Code-enforced control for regulated stablecoins and tokenized assets.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
-            <span>Version 1.0 · June 2026</span>
-            <span className="text-white/15">|</span>
             <span className="text-white/60">
               GENIUS Act takes effect in <Countdown compact /> — January 18, 2027
             </span>
