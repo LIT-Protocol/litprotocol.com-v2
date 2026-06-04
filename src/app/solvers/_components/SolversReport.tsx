@@ -227,8 +227,6 @@ export default function SolversReport() {
             A state-of-the-market survey of fillers, RFQ makers, intent routers, and settlement rails.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
-            <span>Version 0.1 · June 2026</span>
-            <span className="text-white/15">|</span>
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
