@@ -16,6 +16,8 @@ export const SRC = {
   pocSite: 'https://proofofcloud.org/',
   pocPaper: 'https://arxiv.org/abs/2510.12469',
   pocFlashbots: 'https://writings.flashbots.net/mind-the-gap-tee-poc',
+  // PYUSD ~$300T accidental mint — Oct 2025
+  pyusd: 'https://www.cnbc.com/2025/10/16/paypals-crypto-partner-mints-300-trillion-stablecoins-in-technical-error.html',
 };
 
 export type SourceItem = { label: string; note?: string; href: string };
