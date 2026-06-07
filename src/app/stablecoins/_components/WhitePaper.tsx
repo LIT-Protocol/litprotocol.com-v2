@@ -43,13 +43,14 @@ const REFERENCES: { n: number; text: ReactNode; href: string }[] = [
   { n: 6, text: 'Lit Protocol, “Introducing Lit Protocol v3 (Chipotle)” — TEE-based execution, on-chain key orchestration, and hardware attestation.', href: SRC.chipotle },
   { n: 7, text: 'Lit Protocol developer documentation — architecture and security.', href: SRC.litDocs },
   { n: 8, text: '“Proof of Cloud: Data Center Execution Assurance for Confidential VMs,” arXiv:2510.12469; Flashbots, “Mind the Gap.”', href: SRC.pocPaper },
+  { n: 9, text: 'CNBC, “PayPal’s crypto partner mints a whopping $300 trillion worth of stablecoins in ‘technical error’” (Oct. 16, 2025) — Paxos minted roughly $300 trillion in PYUSD via a 6-decimal error and burned it within about 20 minutes.', href: SRC.pyusd },
 ];
 
 const TABLE1: { ob: ReactNode; cap: ReactNode }[] = [
-  { ob: <>Block or reject a prohibited transfer <em className="not-italic text-white">before</em> it executes<Fn n={1} /><Fn n={3} /></>, cap: 'A policy screens the counterparty against an OFAC/sanctions oracle and withholds the signature on a hit; enforcement happens at the moment of signing.' },
+  { ob: <>Block or reject a prohibited transfer <em className="not-italic text-white">before</em> it executes<Fn n={1} /><Fn n={3} /></>, cap: 'A policy screens the counterparty against an OFAC/sanctions oracle and withholds the signature on a hit; enforcement happens at the moment of signing — and the screen runs inside the enclave, so balances, amounts, and the counterparty graph are never published on-chain.' },
   { ob: <>Comply with a lawful order to seize, freeze, or burn<Fn n={2} /></>, cap: 'Freeze and burn paths are condition-gated and governance-bound, executing only on a verified order.' },
   { ob: <>Enforce across every chain the asset touches<Fn n={3} /></>, cap: 'One enclave-held key signs across Bitcoin, EVM, Solana and Cosmos, and reorg-validates cross-chain mint and burn.' },
-  { ob: <>Reach secondary, smart-contract and agent activity<Fn n={3} /></>, cap: 'Authority is bound to the signing key and to scoped, revocable agent permissions — not to a single token contract.' },
+  { ob: <>Sanctions blocking that reaches secondary-market and smart-contract activity<Fn n={3} /></>, cap: 'A blocked person cannot transact the asset even where the issuer is not a direct party: authority is bound to the signing key and to scoped, revocable agent permissions, not to a single token contract. Sanctions blocking applies across primary and secondary markets, as the rule requires; the architecture does not impose — and the rule does not mandate — blanket secondary-market surveillance.' },
   { ob: <>Evidence the program and report blocked transactions<Fn n={3} /></>, cap: 'Policies are immutable and code-hash-verified; each decision is a cryptographically attested record.' },
 ];
 
@@ -209,12 +210,13 @@ export default function WhitePaper() {
             {/* 3 */}
             <section id="sec-shift" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
               <SectionHead n="3" id="shift" title="Verifiable control" />
-              <P>The alternative is to verify the system rather than trust the operator. Three properties make that possible:</P>
+              <P>The alternative is to verify the system rather than trust the operator. Four properties make that possible:</P>
               <ul className="mt-4 space-y-3">
                 {[
                   ['Blind.', 'The signing key is generated and used only inside a sealed trusted execution environment (TEE). No operator, host, or vendor — Lit included — can see or extract it.'],
                   ['Bound.', 'The key’s authority is not an administrative setting but on-chain state: it signs only what an immutable, content-addressed policy permits.'],
                   ['Verifiable.', 'Every decision the key makes, and every transfer it refuses, is an attested record that anyone entitled to it can verify.'],
+                  ['Confidential.', 'The same enclave that holds the key sees the transaction in the clear only to screen it — the counterparty, the amount, the balances never touch the public chain. An issuer satisfies the sanctions mandate without publishing its customers’ activity to the world. Privacy is not traded away for compliance; it is a property of how the control runs.'],
                 ].map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/80">
                     <span className="absolute left-0 top-[0.55rem] font-mono text-lit-orange">◆</span>
@@ -223,7 +225,7 @@ export default function WhitePaper() {
                 ))}
               </ul>
               <P>
-                Together they close the gap between policy and enforcement: the key leaves human hands, and no privileged actor can sign around the control. That is what <Lead>impossible to misuse</Lead> means here; §6 makes it precise. These are also the properties an internal control framework requires, which §5 takes up.
+                Together they close the gap between policy and enforcement: the key leaves human hands, no privileged actor can sign around the control, and the screen runs without putting customer activity on the public chain. That is what <Lead>impossible to misuse</Lead> means here; §6 makes it precise. These are also the properties an internal control framework requires, which §5 takes up.
               </P>
             </section>
 
@@ -261,10 +263,10 @@ export default function WhitePaper() {
                   ['Segregation of duties, enforced cryptographically.', 'No single person can mint, move, or freeze; authority is split across the network and bound to policy. Segregation of duties stops being an administrative arrangement that can be quietly undone and becomes a property of the system.'],
                   ['A complete, tamper-evident audit trail.', 'Every action — and every blocked attempt — is an attested, immutable record. An issuer can evidence that a control operated, continuously, not merely that it was designed; that distinction is what external auditors actually test.'],
                   ['Change management by construction.', 'The policy is code: versioned, content-addressed, and alterable only through on-chain governance. There is no out-of-band configuration change to reconcile.'],
-                  ['A smaller risk surface.', 'There is no custodial key to steal, subpoena, or fat-finger; the insider, coercion, and operational-error paths are removed rather than monitored. The October 2025 episode in which an issuer accidentally minted and then unwound trillions of dollars is precisely the class of error a supply-cap invariant in code prevents.'],
+                  ['A smaller risk surface.', <>There is no custodial key to steal, subpoena, or fat-finger; the insider, coercion, and operational-error paths are removed rather than monitored. The October 2025 PYUSD incident — in which Paxos accidentally minted roughly $300 trillion before burning it within minutes — is precisely the class of error a supply-cap invariant in code prevents.<Fn n={9} /></>],
                   ['Continuous assurance.', 'The control operates and is evidenced in real time, not attested once a quarter.'],
-                ].map(([h, b]) => (
-                  <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
+                ].map(([h, b], i) => (
+                  <li key={i} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
                     <span className="absolute left-0 top-[0.6rem] h-1.5 w-1.5 rounded-full bg-lit-orange" />
                     <Lead>{h}</Lead> {b}
                   </li>
@@ -335,7 +337,7 @@ export default function WhitePaper() {
             <section id="sec-implementation" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
               <SectionHead n="8" id="implementation" title="Implementation" />
               <P>
-                Demonstrable capability is reached fastest by starting narrow. A reference implementation can enforce sanctions-screened, supply-capped minting on a single asset and a single chain, prove it end-to-end against the proposed rule’s requirements, and expand from there. The goal before January 18, 2027 is a control an examiner and an auditor can verify — not a finished platform.
+                Demonstrable capability is reached fastest by starting narrow. A reference implementation can enforce sanctions-screened, supply-capped minting on a single asset and a single chain, prove it end-to-end against the proposed rule’s requirements, then extend across the other chains the asset touches. The architecture is cross-chain by design; starting on one chain proves the control end-to-end — not a retreat from the cross-chain enforcement of §4. The goal before January 18, 2027 is a control an examiner and an auditor can verify — not a finished platform.
               </P>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button href={DEPLOYMENT_FORM} target="_blank" rel="noopener noreferrer" rightIcon={<IconArrowNarrowRight stroke={2} />}>
