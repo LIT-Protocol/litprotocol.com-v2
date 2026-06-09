@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { Container } from '@mantine/core';
 
+const DOCS_EXAMPLES =
+  'https://developer.litprotocol.com/lit-actions/examples';
+
 const USE_CASES = [
   {
     tag: 'Stablecoins',
@@ -49,6 +52,16 @@ const UseCases = () => (
             </div>
           </Link>
         ))}
+      </div>
+      <div className="mt-8 text-center">
+        <a
+          href={DOCS_EXAMPLES}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-sm text-white/45 underline-offset-4 transition hover:text-lit-orange hover:underline"
+        >
+          More patterns developers are shipping →
+        </a>
       </div>
     </Container>
   </section>

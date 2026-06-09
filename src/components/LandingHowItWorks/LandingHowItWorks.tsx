@@ -59,33 +59,7 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
   Lit.Actions.setResponse({ response: tx.hash });
 }`;
 
-const EXAMPLES_BASE =
-  'https://github.com/LIT-Protocol/chipotle/tree/main/examples';
-
 const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
-
-const patterns = [
-  {
-    k: 'Cross-chain token',
-    v: 'Lit checks burn events on one chain and signs the matching mint on another. Permissionless bridging, any chain.',
-    href: `${EXAMPLES_BASE}/cross-chain-token`,
-  },
-  {
-    k: 'Custom price oracle',
-    v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
-    href: `${EXAMPLES_BASE}/multi-source-price-oracle`,
-  },
-  {
-    k: 'Prediction market resolver',
-    v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain. No UMA, no dispute window.',
-    href: `${EXAMPLES_BASE}/prediction-market-oracle`,
-  },
-  {
-    k: 'Compliance-gated transfers',
-    v: 'Lit Action screens every recipient against a sanctions list before signing. Flagged wallets simply can’t receive.',
-    href: `${EXAMPLES_BASE}/compliance-transfer-gate`,
-  },
-];
 
 const LandingHowItWorks = () => {
   return (
@@ -143,35 +117,6 @@ const LandingHowItWorks = () => {
               <Stat k="Pricing" v="$0.01 per second" href={PRICING_DOCS} />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* PATTERNS */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-28">
-          <div className="text-center mb-14 max-w-3xl mx-auto">
-            <Badge>Patterns shipping today</Badge>
-            <h2 className="mt-5 text-3xl md:text-[2.6rem] font-medium">
-              Things people are building right now.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
-            {patterns.map((p) => (
-              <a
-                key={p.k}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-lit-orange/40 transition bg-white/[0.02] no-underline text-inherit"
-              >
-                <div className="font-mono text-lit-orange text-sm mt-1">→</div>
-                <div>
-                  <div className="font-medium text-lg">{p.k}</div>
-                  <div className="text-white/60 text-sm mt-1">{p.v}</div>
-                </div>
-              </a>
-            ))}
           </div>
         </Container>
       </section>
