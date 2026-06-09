@@ -54,7 +54,7 @@ const jsonLd = {
   about: [
     'GENIUS Act',
     'stablecoin compliance',
-    'tokenized assets',
+    'payment stablecoins',
     'sanctions screening',
   ],
 };
