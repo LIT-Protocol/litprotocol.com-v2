@@ -69,7 +69,7 @@ function Quote({ image, name, link, alt, quote }: QuoteProps) {
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute right-7 top-3 select-none font-serif text-[5.5rem] leading-none text-mint-500/15"
+        className="pointer-events-none absolute right-7 top-3 select-none font-serif text-[5.5rem] leading-none text-lit-orange/15"
       >
         ”
       </span>

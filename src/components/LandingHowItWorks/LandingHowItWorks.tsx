@@ -8,7 +8,7 @@ import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/60 border border-white/15 rounded-full px-3 py-1">
-    <span className="w-1.5 h-1.5 rounded-full bg-mint-500" />
+    <span className="w-1.5 h-1.5 rounded-full bg-lit-orange" />
     {children}
   </span>
 );
@@ -27,7 +27,7 @@ const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-mint-500/40 transition"
+      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-lit-orange/40 transition"
     >
       {body}
     </a>
@@ -140,7 +140,7 @@ const LandingHowItWorks = () => {
             <Badge>Why TEE, not consensus</Badge>
             <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
               Speed of a backend, trust of a contract. A{' '}
-              <span className="text-mint-500">chain-secured enclave</span>.
+              <span className="text-lit-orange">chain-secured enclave</span>.
             </h2>
             <p className="mt-8 text-white/70 text-lg leading-relaxed">
               Most cross-chain infra forces a tradeoff: trust a multisig, or
@@ -167,7 +167,7 @@ const LandingHowItWorks = () => {
               <Badge>The properties</Badge>
               <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
                 Decentralized where it matters. <br />
-                <span className="text-mint-500">Fast where it has to be.</span>
+                <span className="text-lit-orange">Fast where it has to be.</span>
               </h2>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -196,9 +196,9 @@ const LandingHowItWorks = () => {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
+                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-lit-orange/40 transition bg-white/[0.02] no-underline text-inherit"
               >
-                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
+                <div className="font-mono text-lit-orange text-sm mt-1">→</div>
                 <div>
                   <div className="font-medium text-lg">{p.k}</div>
                   <div className="text-white/60 text-sm mt-1">{p.v}</div>
@@ -223,9 +223,9 @@ const LandingHowItWorks = () => {
               <Link
                 key={d.href}
                 href={d.href}
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
+                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-lit-orange/40 transition bg-white/[0.02] no-underline text-inherit"
               >
-                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
+                <div className="font-mono text-lit-orange text-sm mt-1">→</div>
                 <div>
                   <div className="font-medium text-lg">{d.k}</div>
                   <div className="text-white/60 text-sm mt-1">{d.v}</div>
@@ -241,7 +241,7 @@ const LandingHowItWorks = () => {
         <Container size="md" className="!py-28 text-center">
           <h2 className="text-4xl md:text-6xl font-medium leading-tight">
             Read. Compute. Write. <br />
-            <span className="text-mint-500">Anywhere.</span>
+            <span className="text-lit-orange">Anywhere.</span>
           </h2>
           <p className="mt-6 text-white/60 max-w-xl mx-auto">
             One programmable runtime for everything that has to happen between
