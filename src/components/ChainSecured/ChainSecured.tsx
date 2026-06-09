@@ -16,12 +16,12 @@ const PROPS = [
   {
     Icon: IconEyeOff,
     t: 'Blind',
-    b: 'Keys are generated and used only inside sealed TEEs. No operator — including Lit — can see or extract them.',
+    b: 'Keys are generated and used only inside sealed TEEs. No operator, including Lit, can see or extract them.',
   },
   {
     Icon: IconLink,
     t: 'Bound',
-    b: 'A key’s authority is on-chain state on Base. It signs only what an immutable, content-addressed policy permits — code, not an admin switch.',
+    b: 'A key’s authority is on-chain state on Base. It signs only what an immutable, content-addressed policy permits. Code, not an admin switch.',
   },
   {
     Icon: IconShieldCheck,
@@ -41,7 +41,7 @@ const ChainSecured = () => (
         Control you can prove, not promise.
       </h2>
       <p className="mt-5 max-w-[54ch] mx-auto text-white/65 text-lg leading-relaxed">
-        We operate the network — but operating it grants no access. Here’s how:
+        We operate the network, but operating it grants no access.
       </p>
       <div className="mt-12 grid gap-5 md:grid-cols-3 text-left max-w-5xl mx-auto">
         {PROPS.map(({ Icon, t, b }) => (
@@ -56,8 +56,8 @@ const ChainSecured = () => (
       </div>
       <p className="mt-9 max-w-[60ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
         There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
-        We run the network; on-chain rules and sealed hardware enforce it — in the
-        open, where you can check.
+        We run the network. On-chain rules and sealed hardware enforce it, in the
+        open where anyone can check.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button

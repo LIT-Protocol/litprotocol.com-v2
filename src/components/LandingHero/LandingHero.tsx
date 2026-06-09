@@ -19,7 +19,7 @@ const PillarCenter = () => (
     <div className="font-mono text-xs uppercase tracking-[0.18em] text-lit-orange">
       COMPUTE · SIGN · ENFORCE
     </div>
-    <div className="mt-3 text-sm text-white">Your logic, signing &amp; policy — in the TEE</div>
+    <div className="mt-3 text-sm text-white">Your logic, signing &amp; policy, in the TEE</div>
   </div>
 );
 
@@ -49,8 +49,8 @@ const LandingHero = () => {
           Write to any chain.
         </h1>
         <p className="mt-8 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
-          Chain-secured, open-source programmable runtime — so no one, including
-          us, can see or extract your keys.
+          Chain-secured, open-source programmable runtime. No one, including us,
+          can see or extract your keys.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button

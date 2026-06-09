@@ -68,7 +68,7 @@ const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
 const patterns = [
   {
     k: 'Cross-chain token',
-    v: 'Lit checks burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
+    v: 'Lit checks burn events on one chain and signs the matching mint on another. Permissionless bridging, any chain.',
     href: `${EXAMPLES_BASE}/cross-chain-token`,
   },
   {
@@ -78,12 +78,12 @@ const patterns = [
   },
   {
     k: 'Prediction market resolver',
-    v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain — no UMA, no dispute window.',
+    v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain. No UMA, no dispute window.',
     href: `${EXAMPLES_BASE}/prediction-market-oracle`,
   },
   {
     k: 'Compliance-gated transfers',
-    v: 'Lit Action screens every recipient against a sanctions list before signing — flagged wallets simply can’t receive.',
+    v: 'Lit Action screens every recipient against a sanctions list before signing. Flagged wallets simply can’t receive.',
     href: `${EXAMPLES_BASE}/compliance-transfer-gate`,
   },
 ];
@@ -91,7 +91,7 @@ const patterns = [
 const deepDives = [
   {
     k: 'Verifiable compliance for stablecoins',
-    v: 'Code-enforced, on-chain key control that satisfies the GENIUS Act — and your own auditors.',
+    v: 'Code-enforced, on-chain key control built for the GENIUS Act, verifiable by your own auditors.',
     href: '/stablecoins',
   },
   {
@@ -109,7 +109,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge>What it looks like</Badge>
-            <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
+            <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
               One file. Reads, computes, signs across chains.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
@@ -133,42 +133,23 @@ const LandingHowItWorks = () => {
         </Container>
       </section>
 
-      {/* WHY TEE */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-28">
-          <div className="max-w-3xl">
-            <Badge>Why TEE, not consensus</Badge>
-            <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
-              Speed of a backend, trust of a contract. A{' '}
-              <span className="text-lit-orange">chain-secured enclave</span>.
-            </h2>
-            <p className="mt-8 text-white/70 text-lg leading-relaxed">
-              Most cross-chain infra forces a tradeoff: trust a multisig, or
-              wait for slow consensus on every read. Lit takes a different
-              path. Code runs inside a TEE — an enclave the hardware itself
-              cryptographically attests to. Keys never leave. Logs can’t
-              be rewritten.
-            </p>
-            <p className="mt-4 text-white/70 text-lg leading-relaxed">
-              The TEE’s identity, its allowed code, and its signing
-              authority are all governed on-chain. You get the speed and
-              expressiveness of a single trusted runtime, with the
-              auditability and on-chain governability of a smart contract.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* PROPERTIES */}
+      {/* WHY A TEE + PROPERTIES (combined) */}
       <section className="border-b border-white/5">
         <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <Badge>The properties</Badge>
-              <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
-                Decentralized where it matters. <br />
-                <span className="text-lit-orange">Fast where it has to be.</span>
+              <Badge>Why a TEE, not consensus</Badge>
+              <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
+                Speed of a backend, trust of a{' '}
+                <span className="text-lit-orange">contract</span>.
               </h2>
+              <p className="mt-6 text-white/70 text-lg leading-relaxed">
+                Most cross-chain infra forces a tradeoff: trust a multisig, or
+                wait for slow consensus on every read. Lit runs your code inside
+                a chain-secured TEE instead. Keys never leave, logs can’t be
+                rewritten, and the on-chain governance that sets policy makes
+                every action auditable.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
@@ -185,7 +166,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <Badge>Patterns shipping today</Badge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+            <h2 className="mt-5 text-3xl md:text-[2.6rem] font-medium">
               Things people are building right now.
             </h2>
           </div>
@@ -214,7 +195,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <Badge>Deep dives</Badge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
+            <h2 className="mt-5 text-3xl md:text-[2.6rem] font-medium">
               Where this matters most.
             </h2>
           </div>
@@ -239,7 +220,7 @@ const LandingHowItWorks = () => {
       {/* CTA */}
       <section>
         <Container size="md" className="!py-28 text-center">
-          <h2 className="text-4xl md:text-6xl font-medium leading-tight">
+          <h2 className="text-3xl md:text-[2.6rem] font-medium leading-tight">
             Read. Compute. Write. <br />
             <span className="text-lit-orange">Anywhere.</span>
           </h2>
