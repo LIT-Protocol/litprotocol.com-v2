@@ -2,6 +2,7 @@ import { Container } from '@mantine/core';
 import LandingHero from '../LandingHero/LandingHero';
 import TrustStrip from '../TrustStrip/TrustStrip';
 import ChainSecured from '../ChainSecured/ChainSecured';
+import UseCases from '../UseCases/UseCases';
 import LandingHowItWorks from '../LandingHowItWorks/LandingHowItWorks';
 import { QuoteCarousel } from '../QuoteCarousel/QuoteCarousel';
 
@@ -11,6 +12,7 @@ const LandingPage = () => {
       <LandingHero />
       <TrustStrip />
       <ChainSecured />
+      <UseCases />
       <section className="bg-coal-950 border-b border-white/5">
         <Container size="lg" className="!py-24">
           <QuoteCarousel />

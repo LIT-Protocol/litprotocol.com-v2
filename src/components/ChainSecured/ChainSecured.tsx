@@ -79,7 +79,7 @@ const ChainSecured = () => (
           rel="noopener noreferrer"
           className="font-mono text-sm text-white/45 underline-offset-4 transition hover:text-gold-500 hover:underline"
         >
-          Prefer to run it yourself? Self-host the open-source network →
+          Prefer to run it yourself? Learn more about self-hosting →
         </a>
       </div>
     </Container>
