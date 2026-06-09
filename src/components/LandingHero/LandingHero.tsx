@@ -7,7 +7,7 @@ import { CONTACT_FORM, QUICKSTART_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
-    <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
+    <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/55">
       {label}
     </div>
     <div className="mt-3 text-sm text-white/70">{sub}</div>
@@ -83,7 +83,7 @@ const LandingHero = () => {
             href={GITHUB_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-[0.18em] text-white/40 underline-offset-4 transition hover:text-gold-500 hover:underline"
+            className="font-mono text-xs uppercase tracking-[0.18em] text-white/55 underline-offset-4 transition hover:text-gold-500 hover:underline"
           >
             View the open-source code →
           </a>

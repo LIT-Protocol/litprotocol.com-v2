@@ -18,7 +18,7 @@ const LOGOS = [
 const TrustStrip = () => (
   <section className="bg-coal-950 border-b border-white/5">
     <Container size="lg" className="!py-12 text-center">
-      <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-white/35">
+      <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-white/55">
         Building on Lit
       </div>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-x-14 gap-y-6">

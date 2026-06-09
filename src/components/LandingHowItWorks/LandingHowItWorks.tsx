@@ -6,8 +6,7 @@ import { IconArrowNarrowRight } from '@tabler/icons-react';
 import { CONTACT_FORM, QUICKSTART_LINK } from '@/utils/constants';
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/60 border border-white/15 rounded-full px-3 py-1">
-    <span className="w-1.5 h-1.5 rounded-full bg-lit-orange" />
+  <span className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
     {children}
   </span>
 );
@@ -15,7 +14,7 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
 const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
   const body = (
     <>
-      <div className="font-mono text-[11px] uppercase tracking-widest text-white/40">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-white/55">
         {k}
       </div>
       <div className="mt-2 text-sm">{v}</div>
@@ -82,7 +81,7 @@ const LandingHowItWorks = () => {
 
           <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
             <div className="flex items-center px-4 py-2 border-b border-white/10 bg-white/[0.02]">
-              <span className="text-xs font-mono text-white/40">
+              <span className="text-xs font-mono text-white/55">
                 rebalance.action.ts
               </span>
             </div>
@@ -98,7 +97,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <Badge>Hardware, governed on-chain</Badge>
+              <Badge>Encrypted hardware, governed on-chain</Badge>
               <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
                 Speed of a backend, trust of a{' '}
                 <span className="text-lit-orange">contract</span>.

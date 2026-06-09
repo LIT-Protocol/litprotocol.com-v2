@@ -88,7 +88,7 @@ const ChainSecured = () => (
           href={DOCS_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-sm text-white/45 underline-offset-4 transition hover:text-gold-500 hover:underline"
+          className="font-mono text-sm text-white/55 underline-offset-4 transition hover:text-gold-500 hover:underline"
         >
           Prefer to run it yourself? Learn more about self-hosting →
         </a>

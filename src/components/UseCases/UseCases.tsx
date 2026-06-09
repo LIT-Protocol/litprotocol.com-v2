@@ -37,7 +37,7 @@ const UseCases = () => (
             href={d.href}
             className="group rounded-2xl border border-white/10 bg-white/[0.02] p-7 no-underline text-inherit transition hover:border-lit-orange/40 hover:bg-white/[0.04]"
           >
-            <div className="font-mono text-[11px] uppercase tracking-widest text-white/40">
+            <div className="font-mono text-[11px] uppercase tracking-widest text-white/55">
               {d.tag}
             </div>
             <div className="mt-3 text-lg font-medium">{d.k}</div>
@@ -58,7 +58,7 @@ const UseCases = () => (
           href={DOCS_EXAMPLES}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-sm text-white/45 underline-offset-4 transition hover:text-lit-orange hover:underline"
+          className="font-mono text-sm text-white/55 underline-offset-4 transition hover:text-lit-orange hover:underline"
         >
           More patterns developers are shipping →
         </a>
