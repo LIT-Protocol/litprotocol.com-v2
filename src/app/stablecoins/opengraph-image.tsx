@@ -95,7 +95,7 @@ export default function Image() {
             lineHeight: 1.3,
           }}
         >
-          Code-enforced control for regulated stablecoins and tokenized assets.
+          Code-enforced control for regulated stablecoins.
         </div>
 
         <div

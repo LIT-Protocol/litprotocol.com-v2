@@ -4,7 +4,7 @@ import WhitePaper from './_components/WhitePaper';
 
 const URL = 'https://litprotocol.com/stablecoins';
 const DESCRIPTION =
-  'The GENIUS Act takes effect Jan 18, 2027. How stablecoin and tokenized-asset issuers enforce block, freeze, and seize controls in code — and prove it.';
+  'The GENIUS Act takes effect Jan 18, 2027. How stablecoin issuers enforce block, freeze, and seize controls in code — and prove it.';
 
 export const metadata: Metadata = {
   title: 'Verifiable Compliance: Stablecoins & the GENIUS Act | Lit Protocol',
@@ -31,8 +31,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'Verifiable Compliance',
-  alternativeHeadline:
-    'Code-enforced control for regulated stablecoins and tokenized assets',
+  alternativeHeadline: 'Code-enforced control for regulated stablecoins',
   description: DESCRIPTION,
   inLanguage: 'en',
   datePublished: '2026-06-01',

@@ -138,6 +138,11 @@ export default function WhitePaper() {
               See the Lit Actions examples
             </Button>
           </div>
+          <div className="mt-5">
+            <a href="/stablecoins" className="font-mono text-xs text-white/55 underline-offset-4 transition hover:text-gold-500 hover:underline">
+              Issuing a payment stablecoin under the GENIUS Act? See /stablecoins →
+            </a>
+          </div>
         </Container>
       </header>
 
