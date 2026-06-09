@@ -11,6 +11,8 @@ import {
 import { DOCS_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const PROOF_OF_CLOUD = 'https://proofofcloud.org/';
+const ONCHAIN_KMS =
+  'https://developer.litprotocol.com/architecture/verification/onchain-kms';
 
 const PROPS = [
   {
@@ -57,7 +59,16 @@ const ChainSecured = () => (
       <p className="mt-9 max-w-[60ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
         There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
         We run the network. On-chain rules and sealed hardware enforce it, in the
-        open where anyone can check.
+        open where{' '}
+        <a
+          href={ONCHAIN_KMS}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold-500 underline decoration-gold-500/40 underline-offset-4 transition hover:decoration-gold-500"
+        >
+          anyone can check
+        </a>
+        .
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button
