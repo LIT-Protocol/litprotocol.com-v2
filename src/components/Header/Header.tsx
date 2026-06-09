@@ -35,6 +35,7 @@ const links: LinkItem[] = [
     links: [
       { link: '/stablecoins', label: 'Stablecoins', external: false },
       { link: '/solvers', label: 'Solvers', external: false },
+      { link: '/rwa', label: 'RWAs', external: false },
     ],
   },
   {

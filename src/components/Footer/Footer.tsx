@@ -107,6 +107,9 @@ const Footer = () => {
               <a href="/solvers" className={styles.footer__link}>
                 Solvers
               </a>
+              <a href="/rwa" className={styles.footer__link}>
+                RWAs
+              </a>
             </div>
             <div className="flex flex-col gap-3">
               <h6 className={styles.footer__category}>Social</h6>

@@ -17,6 +17,12 @@ const USE_CASES = [
     v: 'A policy gate in a TEE that signs only the inventory moves your rules allow.',
     href: '/solvers',
   },
+  {
+    tag: 'RWAs',
+    k: 'Control for tokenized real-world assets',
+    v: 'Mint, burn, freeze and seize, bound to immutable policy and provable to an auditor.',
+    href: '/rwa',
+  },
 ];
 
 const UseCases = () => (
@@ -30,7 +36,7 @@ const UseCases = () => (
           Where this matters most.
         </h2>
       </div>
-      <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
         {USE_CASES.map((d) => (
           <Link
             key={d.href}
