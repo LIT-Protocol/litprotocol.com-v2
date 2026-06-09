@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/server';
 
 export const runtime = 'edge';
 export const alt =
-  'Cross-Chain Solvers — a Lit Protocol position paper on solver networks, intent routing, and programmable custody.';
+  'Cross-Chain Solvers — a Lit Protocol position paper on signing solver inventory you can prove, not just trust.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -95,7 +95,7 @@ export default function Image() {
             lineHeight: 1.3,
           }}
         >
-          Market map, taxonomy, and control architecture for intent-based execution.
+          Signing you can prove, not just trust.
         </div>
 
         <div

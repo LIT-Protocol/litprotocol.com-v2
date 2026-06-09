@@ -4,15 +4,15 @@ import SolversReport from './_components/SolversReport';
 
 const URL = 'https://litprotocol.com/solvers';
 const DESCRIPTION =
-  'A position paper on cross-chain solvers: fillers, RFQ makers, intent routers, settlement rails, operational risk, and where programmable policy can improve solver infrastructure.';
+  'A position paper on cross-chain solvers: fillers, RFQ makers, intent routers, and settlement rails, the operational risk of hot-key inventory, and how to sign solver moves under verifiable on-chain policy instead of a trusted operator.';
 
 export const metadata: Metadata = {
-  title: 'Cross-Chain Solvers: A Position Paper | Lit Protocol',
+  title: 'Cross-Chain Solvers: Signing You Can Prove | Lit Protocol',
   description: DESCRIPTION,
   alternates: { canonical: '/solvers' },
   openGraph: {
     type: 'article',
-    title: 'Cross-Chain Solvers — A Position Paper',
+    title: 'Cross-Chain Solvers — Signing You Can Prove',
     description: DESCRIPTION,
     url: URL,
     siteName: 'Lit Protocol',
@@ -31,7 +31,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'Cross-Chain Solvers',
-  alternativeHeadline: 'A position paper on cross-chain solver infrastructure',
+  alternativeHeadline: 'Signing cross-chain solver inventory under verifiable on-chain policy',
   description: DESCRIPTION,
   inLanguage: 'en',
   datePublished: '2026-06-02',
