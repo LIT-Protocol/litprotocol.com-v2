@@ -3,7 +3,7 @@
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
+import { CONTACT_FORM, DOCS_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
@@ -14,18 +14,18 @@ const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   </div>
 );
 
-const PillarCenter = () => (
+const PillarCenter = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border-2 border-lit-orange rounded-xl p-5 bg-lit-orange/10 text-left relative">
     <div className="font-mono text-xs uppercase tracking-[0.18em] text-lit-orange">
-      COMPUTE · SIGN · ENFORCE
+      {label}
     </div>
-    <div className="mt-3 text-sm text-white">Your logic, signing &amp; policy, in the TEE</div>
+    <div className="mt-3 text-sm text-white">{sub}</div>
   </div>
 );
 
-const Chip = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] text-white/45">
-    <span className="text-gold-500">◇</span> {children}
+const Metric = ({ value, label }: { value: string; label: string }) => (
+  <span>
+    <b className="font-semibold text-lit-orange">{value}</b> {label}
   </span>
 );
 
@@ -41,16 +41,16 @@ const LandingHero = () => {
         <img src="/textures/hero-right.png" alt="" className="w-full h-auto" />
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
-        <h1 className="mx-auto max-w-5xl text-[2.3rem]/[1.14] md:text-[3.6rem]/[1.1] font-medium tracking-tight text-balance">
-          Read anywhere.{' '}
+        <h1 className="mx-auto max-w-5xl text-[2.1rem]/[1.16] md:text-[3.2rem]/[1.12] font-medium tracking-tight text-balance">
+          Sign on any chain, only by your rules.{' '}
           <br className="hidden md:inline" />
-          <span className="text-lit-orange">Compute, sign &amp; enforce in a TEE.</span>{' '}
-          <br className="hidden md:inline" />
-          Write to any chain.
+          <span className="text-lit-orange">
+            Keys no one can extract. Not even us.
+          </span>
         </h1>
-        <p className="mt-8 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
-          Chain-secured, open-source programmable runtime. No one, including us,
-          can see or extract your keys.
+        <p className="mt-7 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
+          Your code runs inside a sealed TEE, secured by the chain, not by a
+          trusted operator.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
@@ -70,17 +70,33 @@ const LandingHero = () => {
             Talk to an engineer
           </Button>
         </div>
-        <div className="mx-auto mt-7 flex max-w-2xl flex-wrap items-center justify-center gap-x-7 gap-y-2 border-t border-white/5 pt-6">
-          <Chip>Open source</Chip>
-          <Chip>No trusted operator</Chip>
-          <Chip>Hardware-attested</Chip>
+
+        <div className="mx-auto mt-9 flex max-w-2xl flex-wrap items-baseline justify-center gap-x-5 gap-y-2 border-t border-white/5 pt-6 font-mono text-[clamp(0.95rem,1.6vw,1.15rem)] text-white/65">
+          <Metric value="$400M+" label="secured" />
+          <span className="text-white/20">·</span>
+          <Metric value="1.6M+" label="wallets" />
+          <span className="text-white/20">·</span>
+          <Metric value="$135M+" label="volume" />
+        </div>
+        <div className="mt-4">
+          <a
+            href={GITHUB_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs uppercase tracking-[0.18em] text-white/40 underline-offset-4 transition hover:text-gold-500 hover:underline"
+          >
+            View the open-source code →
+          </a>
         </div>
 
         <div className="mt-14 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-            <Pillar label="READ" sub="APIs · RPCs · feeds · prices" />
-            <PillarCenter />
-            <Pillar label="WRITE" sub="EVM · SVM · BTC · Cosmos · HTTPS" />
+            <Pillar label="READ" sub="Any API, any chain." />
+            <PillarCenter
+              label="DECIDE & SIGN"
+              sub="Your policy runs in the TEE. Keys sign only what it allows."
+            />
+            <Pillar label="WRITE" sub="Any EVM chain, Solana, Bitcoin, Cosmos." />
           </div>
         </div>
       </Container>
