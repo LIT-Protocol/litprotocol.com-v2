@@ -17,20 +17,13 @@ import {
 import styles from './footer.module.scss';
 import { Container } from '@mantine/core';
 
-import dynamic from 'next/dynamic';
-
-const LandingCta = dynamic(() => import('../LandingCta/LandingCta'), {
-  ssr: false,
-});
-
 const Footer = () => {
   return (
-    <footer className="w-full m-auto pb-[4rem] bg-gradient-to-t from-blue-950 to-coal-950 relative overflow-x-hidden">
+    <footer className="w-full m-auto pb-[4rem] bg-coal-950 bg-[linear-gradient(to_top,var(--color-blue-950),var(--color-coal-950))] relative overflow-x-hidden">
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none min-w-[150%] md:w-full">
         <img src="/textures/footer.png" alt="" className="w-full h-auto" />
       </div>
       <Container style={{ position: 'relative', zIndex: 10 }} size="lg">
-        <LandingCta />
         <nav className={styles.footer__nav}>
           <div className={styles.footer__company}>
             <svg

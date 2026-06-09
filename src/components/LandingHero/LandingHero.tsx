@@ -2,32 +2,38 @@
 
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
-import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
+import { IconArrowNarrowRight, IconBrandGithub } from '@tabler/icons-react';
+import { CONTACT_FORM, QUICKSTART_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
-    <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
+    <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/55">
       {label}
     </div>
     <div className="mt-3 text-sm text-white/70">{sub}</div>
   </div>
 );
 
-const PillarCenter = () => (
-  <div className="border-2 border-mint-500 rounded-xl p-5 bg-mint-500/10 text-center relative">
-    <div className="font-mono text-xs uppercase tracking-[0.2em] text-mint-500">
-      COMPUTE
+const PillarCenter = ({ label, sub }: { label: string; sub: string }) => (
+  <div className="border-2 border-lit-orange rounded-xl p-5 bg-lit-orange/10 text-left relative">
+    <div className="font-mono text-xs uppercase tracking-[0.18em] text-lit-orange">
+      {label}
     </div>
-    <div className="mt-3 text-sm text-white">Your JavaScript, in a TEE</div>
+    <div className="mt-3 text-sm text-white">{sub}</div>
   </div>
+);
+
+const Metric = ({ value, label }: { value: string; label: string }) => (
+  <span>
+    <b className="font-semibold text-lit-orange">{value}</b> {label}
+  </span>
 );
 
 const LandingHero = () => {
   return (
     <section className="relative overflow-hidden border-b border-white/5 bg-gradient-to-b from-blue-950 to-coal-950">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,_var(--color-blue-950)_0%,_transparent_55%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,_oklch(82.91%_0.133_174.96/0.18)_0%,_transparent_55%)] pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_-5%,_oklch(53.51%_0.163_39.51/0.16)_0%,_transparent_55%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_82%_78%,_oklch(24.69%_0.075_260.78/0.5)_0%,_transparent_55%)]" />
       <div className="absolute -left-[16rem] -top-[6rem] z-0 hidden md:block pointer-events-none w-[40rem] opacity-50">
         <img src="/textures/hero-left.png" alt="" className="w-full h-auto" />
       </div>
@@ -35,21 +41,20 @@ const LandingHero = () => {
         <img src="/textures/hero-right.png" alt="" className="w-full h-auto" />
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
-        <h1 className="text-[2.5rem]/[1.1] md:text-[4.5rem]/[1.05] font-medium tracking-tight max-w-4xl mx-auto text-balance">
-          Read anywhere.{' '}
+        <h1 className="mx-auto max-w-5xl text-[2.1rem]/[1.16] md:text-[3.2rem]/[1.12] font-medium tracking-tight text-balance">
+          Sign on any chain, only by your rules.{' '}
           <br className="hidden md:inline" />
-          <span className="text-mint-500">Compute</span> in a TEE.{' '}
-          <br className="hidden md:inline" />
-          Write to any chain or API.
+          <span className="text-lit-orange">
+            Keys no operator can extract. Not even us.
+          </span>
         </h1>
-        <p className="mt-8 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
-          One programmable runtime. Pulls data from any source, runs your logic
-          inside a chain-secured TEE, signs on any chain or API. Open source,
-          no backend to trust.
+        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
+          Deploy your code once and the Lit Protocol runs it in a sealed TEE,
+          secured by the chain. No servers for you to run, no operator to trust.
         </p>
-        <div className="mt-10 flex gap-3 justify-center flex-wrap">
+        <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
-            href={DOCS_LINK}
+            href={QUICKSTART_LINK}
             target="_blank"
             rel="noopener noreferrer"
             rightIcon={<IconArrowNarrowRight stroke={2} />}
@@ -66,11 +71,32 @@ const LandingHero = () => {
           </Button>
         </div>
 
-        <div className="mt-20 max-w-4xl mx-auto">
+        <div className="mx-auto mt-9 flex max-w-2xl flex-wrap items-baseline justify-center gap-x-5 gap-y-2 border-t border-white/5 pt-6 font-mono text-[clamp(0.95rem,1.6vw,1.15rem)] text-white/65">
+          <Metric value="$400M+" label="secured" />
+          <span className="text-white/20">·</span>
+          <Metric value="1.6M+" label="wallets" />
+          <span className="text-white/20">·</span>
+          <Metric value="$135M+" label="volume" />
+        </div>
+        <div className="mt-4">
+          <a
+            href={GITHUB_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/55 transition hover:text-gold-500"
+          >
+            <IconBrandGithub size={15} stroke={1.8} /> Open source
+          </a>
+        </div>
+
+        <div className="mt-14 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-            <Pillar label="READ" sub="APIs · RPCs · feeds · prices" />
-            <PillarCenter />
-            <Pillar label="WRITE" sub="EVM · SVM · BTC · Cosmos · HTTPS" />
+            <Pillar label="READ" sub="Any API, any chain." />
+            <PillarCenter
+              label="DECIDE & SIGN"
+              sub="Your policy runs in the TEE. Keys sign only what it allows."
+            />
+            <Pillar label="WRITE" sub="Any EVM chain, Solana, Bitcoin, Cosmos." />
           </div>
         </div>
       </Container>

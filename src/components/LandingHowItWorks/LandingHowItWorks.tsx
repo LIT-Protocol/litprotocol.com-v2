@@ -1,14 +1,12 @@
 'use client';
 
 import { Container } from '@mantine/core';
-import Link from 'next/link';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
+import { CONTACT_FORM, QUICKSTART_LINK } from '@/utils/constants';
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/60 border border-white/15 rounded-full px-3 py-1">
-    <span className="w-1.5 h-1.5 rounded-full bg-mint-500" />
+  <span className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
     {children}
   </span>
 );
@@ -16,7 +14,7 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
 const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
   const body = (
     <>
-      <div className="font-mono text-[11px] uppercase tracking-widest text-white/40">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-white/55">
         {k}
       </div>
       <div className="mt-2 text-sm">{v}</div>
@@ -27,7 +25,7 @@ const Stat = ({ k, v, href }: { k: string; v: string; href?: string }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-mint-500/40 transition"
+      className="border border-white/10 rounded-lg p-4 bg-white/[0.02] block no-underline text-inherit hover:border-lit-orange/40 transition"
     >
       {body}
     </a>
@@ -60,46 +58,7 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
   Lit.Actions.setResponse({ response: tx.hash });
 }`;
 
-const EXAMPLES_BASE =
-  'https://github.com/LIT-Protocol/chipotle/tree/main/examples';
-
 const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
-
-const patterns = [
-  {
-    k: 'Cross-chain token',
-    v: 'Lit checks burn events on one chain and signs the matching mint on another — permissionless bridging, any chain.',
-    href: `${EXAMPLES_BASE}/cross-chain-token`,
-  },
-  {
-    k: 'Custom price oracle',
-    v: 'Aggregate any combination of CEX + DEX feeds, sign once, deliver to multiple chains.',
-    href: `${EXAMPLES_BASE}/multi-source-price-oracle`,
-  },
-  {
-    k: 'Prediction market resolver',
-    v: 'Poll one or more LLMs in a TEE, sign the consensus, post it on-chain — no UMA, no dispute window.',
-    href: `${EXAMPLES_BASE}/prediction-market-oracle`,
-  },
-  {
-    k: 'Compliance-gated transfers',
-    v: 'Lit Action screens every recipient against a sanctions list before signing — flagged wallets simply can’t receive.',
-    href: `${EXAMPLES_BASE}/compliance-transfer-gate`,
-  },
-];
-
-const deepDives = [
-  {
-    k: 'Verifiable compliance for stablecoins',
-    v: 'Code-enforced, on-chain key control that satisfies the GENIUS Act — and your own auditors.',
-    href: '/stablecoins',
-  },
-  {
-    k: 'Cross-chain solvers',
-    v: 'A policy gate in a TEE that signs only the inventory moves your rules allow.',
-    href: '/solvers',
-  },
-];
 
 const LandingHowItWorks = () => {
   return (
@@ -109,7 +68,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge>What it looks like</Badge>
-            <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
+            <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
               One file. Reads, computes, signs across chains.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
@@ -122,7 +81,7 @@ const LandingHowItWorks = () => {
 
           <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl">
             <div className="flex items-center px-4 py-2 border-b border-white/10 bg-white/[0.02]">
-              <span className="text-xs font-mono text-white/40">
+              <span className="text-xs font-mono text-white/55">
                 rebalance.action.ts
               </span>
             </div>
@@ -133,105 +92,30 @@ const LandingHowItWorks = () => {
         </Container>
       </section>
 
-      {/* WHY TEE */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-28">
-          <div className="max-w-3xl">
-            <Badge>Why TEE, not consensus</Badge>
-            <h2 className="mt-6 text-4xl md:text-6xl font-medium leading-tight">
-              Speed of a backend, trust of a contract. A{' '}
-              <span className="text-mint-500">chain-secured enclave</span>.
-            </h2>
-            <p className="mt-8 text-white/70 text-lg leading-relaxed">
-              Most cross-chain infra forces a tradeoff: trust a multisig, or
-              wait for slow consensus on every read. Lit takes a different
-              path. Code runs inside a TEE — an enclave the hardware itself
-              cryptographically attests to. Keys never leave. Logs can’t
-              be rewritten.
-            </p>
-            <p className="mt-4 text-white/70 text-lg leading-relaxed">
-              The TEE’s identity, its allowed code, and its signing
-              authority are all governed on-chain. You get the speed and
-              expressiveness of a single trusted runtime, with the
-              auditability and on-chain governability of a smart contract.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* PROPERTIES */}
+      {/* WHY A TEE + PROPERTIES (combined) */}
       <section className="border-b border-white/5">
         <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <Badge>The properties</Badge>
-              <h2 className="mt-5 text-4xl md:text-5xl font-medium leading-tight">
-                Decentralized where it matters. <br />
-                <span className="text-mint-500">Fast where it has to be.</span>
+              <Badge>Encrypted hardware, governed on-chain</Badge>
+              <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
+                Speed of a backend, trust of a{' '}
+                <span className="text-lit-orange">contract</span>.
               </h2>
+              <p className="mt-6 text-white/70 text-lg leading-relaxed">
+                Your code runs in hardware, so it moves at backend speed. Its
+                authority lives on-chain: smart contracts on Base decide which
+                keys it can use and which code is allowed to run, with every
+                change auditable on Basescan and impossible for any one party to
+                push alone.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01 per second" href={PRICING_DOCS} />
+              <Stat k="Pricing" v="$0.01/sec, less at scale" href={PRICING_DOCS} />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* PATTERNS */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-28">
-          <div className="text-center mb-14 max-w-3xl mx-auto">
-            <Badge>Patterns shipping today</Badge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
-              Things people are building right now.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
-            {patterns.map((p) => (
-              <a
-                key={p.k}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
-              >
-                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
-                <div>
-                  <div className="font-medium text-lg">{p.k}</div>
-                  <div className="text-white/60 text-sm mt-1">{p.v}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* DEEP DIVES */}
-      <section className="border-b border-white/5">
-        <Container size="lg" className="!py-28">
-          <div className="text-center mb-14 max-w-3xl mx-auto">
-            <Badge>Deep dives</Badge>
-            <h2 className="mt-5 text-4xl md:text-5xl font-medium">
-              Where this matters most.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
-            {deepDives.map((d) => (
-              <Link
-                key={d.href}
-                href={d.href}
-                className="rounded-xl border border-white/10 p-6 flex items-start gap-4 hover:border-mint-500/40 transition bg-white/[0.02] no-underline text-inherit"
-              >
-                <div className="font-mono text-mint-500 text-sm mt-1">→</div>
-                <div>
-                  <div className="font-medium text-lg">{d.k}</div>
-                  <div className="text-white/60 text-sm mt-1">{d.v}</div>
-                </div>
-              </Link>
-            ))}
           </div>
         </Container>
       </section>
@@ -239,9 +123,9 @@ const LandingHowItWorks = () => {
       {/* CTA */}
       <section>
         <Container size="md" className="!py-28 text-center">
-          <h2 className="text-4xl md:text-6xl font-medium leading-tight">
+          <h2 className="text-3xl md:text-[2.6rem] font-medium leading-tight">
             Read. Compute. Write. <br />
-            <span className="text-mint-500">Anywhere.</span>
+            <span className="text-lit-orange">Anywhere.</span>
           </h2>
           <p className="mt-6 text-white/60 max-w-xl mx-auto">
             One programmable runtime for everything that has to happen between
@@ -249,7 +133,7 @@ const LandingHowItWorks = () => {
           </p>
           <div className="mt-10 flex gap-3 justify-center">
             <Button
-              href={DOCS_LINK}
+              href={QUICKSTART_LINK}
               target="_blank"
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
