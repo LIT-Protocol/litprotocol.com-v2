@@ -10,9 +10,12 @@ import {
 } from '@tabler/icons-react';
 import { DOCS_LINK, GITHUB_LINK } from '@/utils/constants';
 
-const PROOF_OF_CLOUD = 'https://proofofcloud.org/';
+const ATTESTATION =
+  'https://developer.litprotocol.com/architecture/verification/attestation';
 const ONCHAIN_KMS =
   'https://developer.litprotocol.com/architecture/verification/onchain-kms';
+const UPGRADE_GOVERNANCE =
+  'https://developer.litprotocol.com/architecture/verification/upgrade-governance';
 
 const PROPS = [
   {
@@ -56,10 +59,19 @@ const ChainSecured = () => (
           </div>
         ))}
       </div>
-      <p className="mt-9 max-w-[60ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
+      <p className="mt-9 max-w-[62ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
         There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
-        We run the network. On-chain rules and sealed hardware enforce it, in the
-        open where{' '}
+        We run the network, but changing what it runs is never unilateral: every
+        upgrade is an{' '}
+        <a
+          href={UPGRADE_GOVERNANCE}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold-500 underline decoration-gold-500/40 underline-offset-4 transition hover:decoration-gold-500"
+        >
+          on-chain, multisig-approved transaction
+        </a>
+        . On-chain rules and sealed hardware enforce it, in the open where{' '}
         <a
           href={ONCHAIN_KMS}
           target="_blank"
@@ -76,7 +88,7 @@ const ChainSecured = () => (
             <IconBrandGithub size={17} stroke={1.8} /> Open source
           </span>
         </Button>
-        <Button variant="outline" href={PROOF_OF_CLOUD} target="_blank" rel="noopener noreferrer">
+        <Button variant="outline" href={ATTESTATION} target="_blank" rel="noopener noreferrer">
           How attestation works
         </Button>
       </div>
