@@ -6,7 +6,7 @@ import {
   IconEyeOff,
   IconLink,
   IconShieldCheck,
-  IconArrowNarrowRight,
+  IconBrandGithub,
 } from '@tabler/icons-react';
 import { DOCS_LINK, GITHUB_LINK } from '@/utils/constants';
 
@@ -71,13 +71,10 @@ const ChainSecured = () => (
         .
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Button
-          href={GITHUB_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          rightIcon={<IconArrowNarrowRight stroke={2} />}
-        >
-          Read the code
+        <Button href={GITHUB_LINK} target="_blank" rel="noopener noreferrer">
+          <span className="inline-flex items-center gap-2">
+            <IconBrandGithub size={17} stroke={1.8} /> Open source
+          </span>
         </Button>
         <Button variant="outline" href={PROOF_OF_CLOUD} target="_blank" rel="noopener noreferrer">
           How attestation works

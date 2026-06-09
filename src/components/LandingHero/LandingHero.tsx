@@ -2,7 +2,7 @@
 
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
-import { IconArrowNarrowRight } from '@tabler/icons-react';
+import { IconArrowNarrowRight, IconBrandGithub } from '@tabler/icons-react';
 import { CONTACT_FORM, QUICKSTART_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
@@ -83,9 +83,9 @@ const LandingHero = () => {
             href={GITHUB_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-[0.18em] text-white/55 underline-offset-4 transition hover:text-gold-500 hover:underline"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/55 transition hover:text-gold-500"
           >
-            View the open-source code →
+            <IconBrandGithub size={15} stroke={1.8} /> Open source
           </a>
         </div>
 
