@@ -113,7 +113,7 @@ const LandingHowItWorks = () => {
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01/sec, less at scale" href={PRICING_DOCS} />
+              <Stat k="Pricing" v="$0.01/sec, less on annual plans" href={PRICING_DOCS} />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
