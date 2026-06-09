@@ -2,25 +2,25 @@ import type { Metadata } from 'next';
 import PaperLayout from './_components/PaperLayout';
 import WhitePaper from './_components/WhitePaper';
 
-const URL = 'https://litprotocol.com/stablecoins';
+const URL = 'https://litprotocol.com/rwa';
 const DESCRIPTION =
-  'The GENIUS Act takes effect Jan 18, 2027. How stablecoin issuers enforce block, freeze, and seize controls in code — and prove it.';
+  'Tokenized real-world assets are controlled by privileged keys — mint, burn, freeze, seize. How issuers and transfer agents make that authority impossible to misuse outside policy, and provable to a regulator or auditor.';
 
 export const metadata: Metadata = {
-  title: 'Verifiable Compliance: Stablecoins & the GENIUS Act | Lit Protocol',
+  title: 'Provable Control: Privileged Keys for Tokenized RWAs | Lit Protocol',
   description: DESCRIPTION,
-  alternates: { canonical: '/stablecoins' },
+  alternates: { canonical: '/rwa' },
   openGraph: {
     type: 'article',
-    title: 'Verifiable Compliance — Code-Enforced Control for Regulated Assets',
+    title: 'Provable Control — Code-Enforced Authority for Tokenized RWAs',
     description: DESCRIPTION,
     url: URL,
     siteName: 'Lit Protocol',
-    publishedTime: '2026-06-01T00:00:00.000Z',
+    publishedTime: '2026-06-09T00:00:00.000Z',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verifiable Compliance — Lit Protocol',
+    title: 'Provable Control — Lit Protocol',
     description: DESCRIPTION,
     creator: '@LitProtocol',
   },
@@ -30,12 +30,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: 'Verifiable Compliance',
-  alternativeHeadline: 'Code-enforced control for regulated stablecoins',
+  headline: 'Provable Control',
+  alternativeHeadline:
+    'Code-enforced authority for the privileged keys behind tokenized real-world assets',
   description: DESCRIPTION,
   inLanguage: 'en',
-  datePublished: '2026-06-01',
-  dateModified: '2026-06-01',
+  datePublished: '2026-06-09',
+  dateModified: '2026-06-09',
   author: {
     '@type': 'Organization',
     name: 'Lit Protocol',
@@ -52,14 +53,14 @@ const jsonLd = {
   mainEntityOfPage: URL,
   image: 'https://litprotocol.com/api/og',
   about: [
-    'GENIUS Act',
-    'stablecoin compliance',
-    'payment stablecoins',
-    'sanctions screening',
+    'real-world assets',
+    'tokenized securities',
+    'privileged key management',
+    'transfer agent controls',
   ],
 };
 
-export default function StablecoinsPage() {
+export default function RwaPage() {
   return (
     <PaperLayout>
       <script

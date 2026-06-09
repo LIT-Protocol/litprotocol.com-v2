@@ -5,6 +5,9 @@ import { Button } from '../ui/Button';
 import { IconArrowNarrowRight, IconBrandGithub } from '@tabler/icons-react';
 import { CONTACT_FORM, QUICKSTART_LINK, GITHUB_LINK } from '@/utils/constants';
 
+const ONCHAIN_KMS =
+  'https://developer.litprotocol.com/architecture/verification/onchain-kms';
+
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
     <div className="font-mono text-xs uppercase tracking-[0.2em] text-white/55">
@@ -78,14 +81,23 @@ const LandingHero = () => {
           <span className="text-white/20">·</span>
           <Metric value="$135M+" label="volume" />
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.16em] text-white/55">
           <a
             href={GITHUB_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/55 transition hover:text-gold-500"
+            className="inline-flex items-center gap-1.5 transition hover:text-gold-500"
           >
-            <IconBrandGithub size={15} stroke={1.8} /> Open source
+            <IconBrandGithub size={14} stroke={1.8} /> Open source
+          </a>
+          <span className="text-white/25">·</span>
+          <a
+            href={ONCHAIN_KMS}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition hover:text-gold-500"
+          >
+            Cryptographically verifiable
           </a>
         </div>
 

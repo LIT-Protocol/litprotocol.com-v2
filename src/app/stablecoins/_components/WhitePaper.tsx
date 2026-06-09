@@ -119,7 +119,7 @@ export default function WhitePaper() {
             Verifiable Compliance
           </h1>
           <p className="mt-5 max-w-[46ch] text-[clamp(1.1rem,2vw,1.4rem)] leading-snug text-white/70">
-            Code-enforced control for regulated stablecoins and tokenized assets.
+            Code-enforced control for regulated stablecoins.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
             <span className="text-white/60">
@@ -133,6 +133,11 @@ export default function WhitePaper() {
             <Button variant="outline" href={DOCS_EXAMPLES} target="_blank" rel="noopener noreferrer">
               See the Lit Actions examples
             </Button>
+          </div>
+          <div className="mt-5">
+            <a href="/rwa" className="font-mono text-xs text-white/55 underline-offset-4 transition hover:text-gold-500 hover:underline">
+              Tokenizing securities, funds, or other real-world assets? See /rwa →
+            </a>
           </div>
         </Container>
       </header>

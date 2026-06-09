@@ -2,11 +2,11 @@ import { ImageResponse } from 'next/server';
 
 export const runtime = 'edge';
 export const alt =
-  'Verifiable Compliance — a Lit Protocol position paper on code-enforced control for regulated stablecoins.';
+  'Provable Control — a Lit Protocol position paper on code-enforced authority for the privileged keys behind tokenized real-world assets.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// Bespoke Open Graph / Twitter card for /stablecoins (Next wires it automatically).
+// Bespoke Open Graph / Twitter card for /rwa (Next wires it automatically).
 export default function Image() {
   return new ImageResponse(
     (
@@ -76,13 +76,13 @@ export default function Image() {
         <div
           style={{
             display: 'flex',
-            fontSize: 108,
+            fontSize: 116,
             fontWeight: 600,
             letterSpacing: '-0.03em',
             lineHeight: 1,
           }}
         >
-          Verifiable Compliance
+          Provable Control
         </div>
 
         <div
@@ -91,11 +91,11 @@ export default function Image() {
             fontSize: 34,
             color: 'rgba(246,237,226,0.72)',
             marginTop: 28,
-            maxWidth: 880,
+            maxWidth: 900,
             lineHeight: 1.3,
           }}
         >
-          Code-enforced control for regulated stablecoins.
+          Code-enforced authority for the privileged keys behind tokenized real-world assets.
         </div>
 
         <div
@@ -110,8 +110,8 @@ export default function Image() {
             letterSpacing: '0.12em',
           }}
         >
-          <span style={{ display: 'flex' }}>litprotocol.com/stablecoins</span>
-          <span style={{ display: 'flex' }}>GENIUS ACT · JAN 18 2027</span>
+          <span style={{ display: 'flex' }}>litprotocol.com/rwa</span>
+          <span style={{ display: 'flex' }}>MINT · BURN · FREEZE · SEIZE</span>
         </div>
       </div>
     ),
