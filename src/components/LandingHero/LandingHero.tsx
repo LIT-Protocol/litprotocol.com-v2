@@ -45,7 +45,7 @@ const LandingHero = () => {
           Sign on any chain, only by your rules.{' '}
           <br className="hidden md:inline" />
           <span className="text-lit-orange">
-            Keys no operator can extract. Not even us.
+            Keys no one else can extract. Not even us.
           </span>
         </h1>
         <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
