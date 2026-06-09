@@ -5,19 +5,26 @@ import ChainSecured from '../ChainSecured/ChainSecured';
 import UseCases from '../UseCases/UseCases';
 import LandingHowItWorks from '../LandingHowItWorks/LandingHowItWorks';
 import { QuoteCarousel } from '../QuoteCarousel/QuoteCarousel';
+import Reveal from '../ui/Reveal';
 
 const LandingPage = () => {
   return (
     <div className="overflow-x-hidden relative min-h-full bg-coal-950 text-off-white">
       <LandingHero />
       <TrustStrip />
-      <ChainSecured />
-      <UseCases />
-      <section className="bg-coal-950 border-b border-white/5">
-        <Container size="lg" className="!py-24">
-          <QuoteCarousel />
-        </Container>
-      </section>
+      <Reveal>
+        <ChainSecured />
+      </Reveal>
+      <Reveal>
+        <UseCases />
+      </Reveal>
+      <Reveal>
+        <section className="bg-coal-950 border-b border-white/5">
+          <Container size="lg" className="!py-24">
+            <QuoteCarousel />
+          </Container>
+        </section>
+      </Reveal>
       <LandingHowItWorks />
     </div>
   );
