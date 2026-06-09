@@ -48,9 +48,9 @@ const LandingHero = () => {
             Keys no one can extract. Not even us.
           </span>
         </h1>
-        <p className="mt-7 max-w-xl mx-auto text-white/70 text-lg leading-relaxed">
-          Your code runs inside a sealed TEE, secured by the chain, not by a
-          trusted operator.
+        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
+          Deploy your code once and Lit runs it in a sealed TEE, secured by the
+          chain. No servers for you to run, no operator to trust.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
