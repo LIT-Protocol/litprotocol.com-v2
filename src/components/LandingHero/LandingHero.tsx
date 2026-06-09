@@ -3,7 +3,7 @@
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { CONTACT_FORM, DOCS_LINK, GITHUB_LINK } from '@/utils/constants';
+import { CONTACT_FORM, QUICKSTART_LINK, GITHUB_LINK } from '@/utils/constants';
 
 const Pillar = ({ label, sub }: { label: string; sub: string }) => (
   <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02] text-left">
@@ -54,7 +54,7 @@ const LandingHero = () => {
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
-            href={DOCS_LINK}
+            href={QUICKSTART_LINK}
             target="_blank"
             rel="noopener noreferrer"
             rightIcon={<IconArrowNarrowRight stroke={2} />}

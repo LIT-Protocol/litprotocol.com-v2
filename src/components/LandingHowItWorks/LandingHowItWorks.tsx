@@ -3,7 +3,7 @@
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { CONTACT_FORM, DOCS_LINK } from '@/utils/constants';
+import { CONTACT_FORM, QUICKSTART_LINK } from '@/utils/constants';
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/60 border border-white/15 rounded-full px-3 py-1">
@@ -98,17 +98,17 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <Badge>Why a TEE, not consensus</Badge>
+              <Badge>Hardware, governed on-chain</Badge>
               <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
                 Speed of a backend, trust of a{' '}
                 <span className="text-lit-orange">contract</span>.
               </h2>
               <p className="mt-6 text-white/70 text-lg leading-relaxed">
-                Most cross-chain infra forces a tradeoff: trust a multisig, or
-                wait for slow consensus on every read. Lit runs your code inside
-                a chain-secured TEE instead. Keys never leave, logs can’t be
-                rewritten, and the on-chain governance that sets policy makes
-                every action auditable.
+                Your code runs in hardware, so it moves at backend speed. Its
+                authority lives on-chain: smart contracts on Base decide which
+                keys it can use and which code is allowed to run, with every
+                change auditable on Basescan and impossible for any one party to
+                push alone.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -134,7 +134,7 @@ const LandingHowItWorks = () => {
           </p>
           <div className="mt-10 flex gap-3 justify-center">
             <Button
-              href={DOCS_LINK}
+              href={QUICKSTART_LINK}
               target="_blank"
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
