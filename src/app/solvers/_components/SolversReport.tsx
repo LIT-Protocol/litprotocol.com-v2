@@ -22,12 +22,12 @@ const Fn = ({ n }: { n: number }) => (
 const SECTIONS = [
   { id: 'forcing-function', n: '1', title: 'The forcing function' },
   { id: 'loss-pattern', n: '2', title: 'The loss pattern' },
-  { id: 'solver-role', n: '3', title: 'The solver role' },
-  { id: 'execution-models', n: '4', title: 'Execution models' },
-  { id: 'ecosystem', n: '5', title: 'The ecosystem' },
-  { id: 'fault-lines', n: '6', title: 'Operational fault lines' },
-  { id: 'verifiable-control', n: '7', title: 'Verifiable control' },
-  { id: 'proof', n: '8', title: 'What a solver can prove' },
+  { id: 'fault-lines', n: '3', title: 'Operational fault lines' },
+  { id: 'verifiable-control', n: '4', title: 'Verifiable control' },
+  { id: 'proof', n: '5', title: 'What a solver can prove' },
+  { id: 'solver-role', n: '6', title: 'The solver role' },
+  { id: 'execution-models', n: '7', title: 'Execution models' },
+  { id: 'ecosystem', n: '8', title: 'The ecosystem' },
   { id: 'open-questions', n: '9', title: 'Questions worth asking' },
   { id: 'references', n: '10', title: 'References' },
 ];
@@ -140,12 +140,12 @@ const VERIFIABLE_CONTROLS = [
 ];
 
 const LIT_HELP = [
+  ['Auditability', 'The solver can show which code path authorized or denied a movement of funds, turning key management from an operational promise into a verifiable control.'],
   ['Hot-wallet drain prevention', 'A solver vault can require a Lit Action policy before inventory moves. If a bot server, API key, or ordinary operator credential is compromised, the attacker still cannot drain funds unless the order, route, limits, and chain facts satisfy policy.'],
   ['Blast-radius limits', 'Policies can enforce per-token, per-chain, per-counterparty, per-route, and time-window limits so a single failure cannot become an unlimited cross-chain inventory drain.'],
   ['Source-of-truth checks', 'Before signing a fill, claim, withdrawal, or rebalance, a Lit Action can reconstruct source-chain deposits, bridge attestations, CCTP messages, VAAs, deadlines, recipients, and replay state.'],
   ['Phase-specific controls', 'Low-latency quote paths can stay fast, while higher-risk phases — destination release, claim, withdrawal, and rebalance — use stricter checks and attested approvals.'],
   ['Emergency response', 'A policy can include kill switches, circuit breakers, allowlist changes, or governance-gated upgrades without handing a single hot key the power to move every asset.'],
-  ['Auditability', 'The solver can show which code path authorized or denied a movement of funds, turning key management from an operational promise into a verifiable control.'],
 ];
 
 const PROOF_POINTS = [
@@ -220,11 +220,11 @@ export default function SolversReport() {
         <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[min(1000px,140vw)] -translate-x-1/2 -translate-y-1/3 blur-[10px] bg-[radial-gradient(ellipse_at_center,_oklch(53.51%_0.163_39.51/0.22)_0%,_transparent_64%)]" />
         <Container size="lg" className="relative !pt-20 !pb-16 md:!pt-28">
           <div className="font-mono text-xs uppercase tracking-[0.28em] text-lit-orange">Position paper</div>
-          <h1 className="mt-5 max-w-[18ch] text-[clamp(2.5rem,6.5vw,5rem)] font-medium leading-[1.0] tracking-tight">
-            Cross-Chain Solvers
+          <h1 className="mt-5 max-w-[20ch] text-[clamp(2.2rem,5.2vw,3.9rem)] font-medium leading-[1.05] tracking-tight">
+            Cross-chain signing you can prove, not just trust.
           </h1>
-          <p className="mt-5 max-w-[48ch] text-[clamp(1.1rem,2vw,1.4rem)] leading-snug text-white/70">
-            A state-of-the-market survey of fillers, RFQ makers, intent routers, and settlement rails.
+          <p className="mt-6 max-w-[54ch] text-[clamp(1.05rem,1.9vw,1.3rem)] leading-relaxed text-white/70">
+            Cross-chain solvers move inventory through hot keys, where a single compromised signer can drain the vault. Lit signs those moves inside a sealed, attested TEE under on-chain policy you set: the speed of a bot, with a proof instead of a promise.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-white/40">
             <span className="text-white/60">Fillers · RFQ makers · intent routers · settlement rails</span>
@@ -246,6 +246,30 @@ export default function SolversReport() {
           <p className="text-[1.05rem] leading-[1.75] text-white/80">
             Cross-chain solvers are the operators behind intent-based execution. They accept a user order on one domain and make the desired outcome happen on another by fronting destination-chain liquidity, performing swaps or calls, and later reclaiming value through a bridge, escrow, message layer, canonical asset rail, or clearing system. The market is converging around a small number of repeatable patterns, but each pattern exposes a hard operational problem: <Lead>who can move solver inventory, under what conditions, and how can that decision be verified?</Lead>
           </p>
+        </div>
+
+        <div className="mx-auto mt-10 max-w-[44rem]">
+          <p className="text-center text-sm text-white/50">
+            Both sign at bot speed. Only one lets you prove the rules held.
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <div className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/40">
+                Custodial single-cloud signer
+              </div>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-white/65">
+                Signing runs inside one company’s cloud. You trust the operator’s word that keys stay safe and rules are followed, with no way to check either yourself.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-lit-orange/30 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.08),_transparent_60%)] p-6">
+              <div className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-lit-orange">
+                Lit
+              </div>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-white/80">
+                Signing runs in sealed hardware whose exact code you can verify by attestation, gated by on-chain policy on Base. Keys never leave the enclave, so no one (not even Lit) can extract them. And Lit can’t silently change the code: every version must be whitelisted on-chain by a multisig and re-attested before it can touch a key.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="wp-grid mt-16 lg:grid lg:grid-cols-[200px_minmax(0,44rem)] lg:justify-center lg:gap-16">
@@ -300,96 +324,8 @@ export default function SolversReport() {
               </P>
             </section>
 
-            <section id="sec-solver-role" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="3" id="solver-role" title="The solver role" />
-              <P>The same word, “solver,” covers several different business and technical roles. A useful taxonomy starts with how the actor gets selected and how it is repaid.</P>
-              <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
-                <table className="w-full border-collapse text-left align-top">
-                  <thead>
-                    <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
-                      <th className="w-1/4 p-4 font-normal">Category</th>
-                      <th className="p-4 font-normal">Technique</th>
-                      <th className="p-4 font-normal">Control question</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {TAXONOMY.map((r) => (
-                      <tr key={r.category} className="border-t border-white/10 align-top">
-                        <td className="p-4 text-[0.95rem] font-medium text-white">
-                          {r.category}
-                          <span className="mt-1 block text-xs font-normal leading-relaxed text-white/35">{r.examples}</span>
-                        </td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{r.technique}</td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{r.question}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </figure>
-            </section>
-
-            <section id="sec-execution-models" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="4" id="execution-models" title="Execution models" />
-              <P>
-                Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
-              </P>
-              <figure className="mt-7">
-                <div className="overflow-hidden rounded-2xl border border-white/10">
-                  {LIFECYCLE.map((p, i) => (
-                    <div
-                      key={p.n}
-                      className={`flex items-start gap-4 p-4 md:gap-5 md:p-5 ${i > 0 ? 'border-t border-white/10' : ''} ${p.gated ? 'bg-lit-orange/[0.05]' : 'bg-white/[0.02]'}`}
-                    >
-                      <span className="w-8 shrink-0 pt-0.5 font-mono text-sm font-semibold text-lit-orange">{p.n}</span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                          <b className="text-[0.95rem] font-medium">{p.title}</b>
-                          <span className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-white/40">{p.chain}</span>
-                          {p.gated && (
-                            <span className="rounded bg-lit-orange/15 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-[0.12em] text-lit-orange">◆ solver signs</span>
-                          )}
-                        </div>
-                        <span className="mt-1.5 block text-sm leading-relaxed text-white/55">{p.body}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </figure>
-              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 1 — The cross-chain intent lifecycle. Phases 3–5 are where a solver’s keys move inventory — and where a compromised signer turns into a loss.</figcaption>
-              <P>
-                ERC-7683 is an important step toward standard cross-chain intent order formats, with Across and Socket among the teams pushing explicit support.<Fn n={1} /><Fn n={8} /><Fn n={9} /> But today, many production systems still use project-specific escrow formats, RFQ payloads, API routes, or settlement contracts.
-              </P>
-            </section>
-
-            <section id="sec-ecosystem" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="5" id="ecosystem" title="The ecosystem" />
-              <P>
-                The solver ecosystem is not a single market. It is a stack of relayers, resolvers, RFQ makers, routers, settlement systems, canonical transfer rails, and clearing layers. Some teams operate inventory directly; others coordinate execution or reduce settlement friction.
-              </P>
-              <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
-                <table className="w-full border-collapse text-left align-top">
-                  <thead>
-                    <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
-                      <th className="p-4 font-normal">Project</th>
-                      <th className="p-4 font-normal">Category</th>
-                      <th className="p-4 font-normal">Role in the solver stack</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {ECOSYSTEM.map(([project, category, role]) => (
-                      <tr key={project} className="border-t border-white/10 align-top">
-                        <td className="p-4 text-[0.95rem] font-medium text-white">{project}</td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{category}</td>
-                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{role}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </figure>
-            </section>
-
             <section id="sec-fault-lines" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="6" id="fault-lines" title="Operational fault lines" />
+              <SectionHead n="3" id="fault-lines" title="Operational fault lines" />
               <P>The state of solvers is defined as much by operational constraints as by protocol design. The same fault lines appear across otherwise different systems.</P>
               <ul className="mt-4 space-y-4">
                 {CONTROL_SURFACES.map(([h, b]) => (
@@ -402,7 +338,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-verifiable-control" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="7" id="verifiable-control" title="Verifiable control" />
+              <SectionHead n="4" id="verifiable-control" title="Verifiable control" />
               <P>
                 The control problem is not unique to any one protocol. A solver needs a way to move quickly without turning every hot wallet, executor, or quote signer into an unconstrained source of loss. The emerging answer is <Lead>programmable, attestable signing for solver inventory and execution authority</Lead>: sensitive actions can move behind code-enforced policy while strategy remains fast.
               </P>
@@ -446,7 +382,7 @@ export default function SolversReport() {
                   </div>
                 </div>
               </figure>
-              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 2 — A policy gate in front of inventory-moving signatures. Strategy stays fast; the signature is withheld unless code verifies the order, route, limits, and chain facts.</figcaption>
+              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 1 — A policy gate in front of inventory-moving signatures. Strategy stays fast; the signature is withheld unless code verifies the order, route, limits, and chain facts.</figcaption>
               <ul className="mt-6 space-y-4">
                 {LIT_HELP.map(([h, b]) => (
                   <li key={h} className="relative pl-6 text-[1.02rem] leading-[1.7] text-white/70">
@@ -458,7 +394,7 @@ export default function SolversReport() {
             </section>
 
             <section id="sec-proof" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
-              <SectionHead n="8" id="proof" title="What a solver can prove" />
+              <SectionHead n="5" id="proof" title="What a solver can prove" />
               <P>
                 A mature solver stack should be able to show more than a transaction hash after the fact. It should be able to show why an action was allowed, why a risky action was denied, and which code path held authority over inventory.
               </P>
@@ -475,6 +411,94 @@ export default function SolversReport() {
                       <tr key={claim} className="border-t border-white/10 align-top">
                         <td className="p-4 text-[0.95rem] font-medium text-white">{claim}</td>
                         <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{evidence}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </figure>
+            </section>
+
+            <section id="sec-solver-role" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="6" id="solver-role" title="The solver role" />
+              <P>The same word, “solver,” covers several different business and technical roles. A useful taxonomy starts with how the actor gets selected and how it is repaid.</P>
+              <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
+                <table className="w-full border-collapse text-left align-top">
+                  <thead>
+                    <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
+                      <th className="w-1/4 p-4 font-normal">Category</th>
+                      <th className="p-4 font-normal">Technique</th>
+                      <th className="p-4 font-normal">Control question</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {TAXONOMY.map((r) => (
+                      <tr key={r.category} className="border-t border-white/10 align-top">
+                        <td className="p-4 text-[0.95rem] font-medium text-white">
+                          {r.category}
+                          <span className="mt-1 block text-xs font-normal leading-relaxed text-white/35">{r.examples}</span>
+                        </td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{r.technique}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{r.question}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </figure>
+            </section>
+
+            <section id="sec-execution-models" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="7" id="execution-models" title="Execution models" />
+              <P>
+                Across Dutch auctions, RFQ, batch auctions, and fast-fill networks, the operational lifecycle repeats: take an order, select a solver, execute on the destination, claim on the source, then rebalance for the next trade.
+              </P>
+              <figure className="mt-7">
+                <div className="overflow-hidden rounded-2xl border border-white/10">
+                  {LIFECYCLE.map((p, i) => (
+                    <div
+                      key={p.n}
+                      className={`flex items-start gap-4 p-4 md:gap-5 md:p-5 ${i > 0 ? 'border-t border-white/10' : ''} ${p.gated ? 'bg-lit-orange/[0.05]' : 'bg-white/[0.02]'}`}
+                    >
+                      <span className="w-8 shrink-0 pt-0.5 font-mono text-sm font-semibold text-lit-orange">{p.n}</span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                          <b className="text-[0.95rem] font-medium">{p.title}</b>
+                          <span className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-white/40">{p.chain}</span>
+                          {p.gated && (
+                            <span className="rounded bg-lit-orange/15 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-[0.12em] text-lit-orange">◆ solver signs</span>
+                          )}
+                        </div>
+                        <span className="mt-1.5 block text-sm leading-relaxed text-white/55">{p.body}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </figure>
+              <figcaption className="mt-3 font-mono text-[0.72rem] text-white/35">Figure 2 — The cross-chain intent lifecycle. Phases 3–5 are where a solver’s keys move inventory — and where a compromised signer turns into a loss.</figcaption>
+              <P>
+                ERC-7683 is an important step toward standard cross-chain intent order formats, with Across and Socket among the teams pushing explicit support.<Fn n={1} /><Fn n={8} /><Fn n={9} /> But today, many production systems still use project-specific escrow formats, RFQ payloads, API routes, or settlement contracts.
+              </P>
+            </section>
+
+            <section id="sec-ecosystem" className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
+              <SectionHead n="8" id="ecosystem" title="The ecosystem" />
+              <P>
+                The solver ecosystem is not a single market. It is a stack of relayers, resolvers, RFQ makers, routers, settlement systems, canonical transfer rails, and clearing layers. Some teams operate inventory directly; others coordinate execution or reduce settlement friction.
+              </P>
+              <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
+                <table className="w-full border-collapse text-left align-top">
+                  <thead>
+                    <tr className="bg-white/[0.03] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-white/40">
+                      <th className="p-4 font-normal">Project</th>
+                      <th className="p-4 font-normal">Category</th>
+                      <th className="p-4 font-normal">Role in the solver stack</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ECOSYSTEM.map(([project, category, role]) => (
+                      <tr key={project} className="border-t border-white/10 align-top">
+                        <td className="p-4 text-[0.95rem] font-medium text-white">{project}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{category}</td>
+                        <td className="p-4 text-[0.92rem] leading-relaxed text-white/65">{role}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -500,7 +524,7 @@ export default function SolversReport() {
             <section className="mt-14 scroll-mt-24 border-t border-white/10 pt-14">
               <div className="rounded-2xl border border-lit-orange/25 bg-[radial-gradient(120%_120%_at_50%_0,_oklch(53.51%_0.163_39.51/0.10),_transparent_65%)] p-8 text-center md:p-12">
                 <h2 className="mx-auto max-w-[22ch] text-[clamp(1.6rem,3.4vw,2.4rem)] font-medium leading-tight tracking-tight">
-                  Keep the speed. Lose the unconstrained key.
+                  Keep the speed. Prove the rules held.
                 </h2>
                 <p className="mx-auto mt-4 max-w-[50ch] text-[1.02rem] leading-relaxed text-white/65">
                   If you operate solver inventory across chains, we’ll walk your team through policy-gated signing — and a working vault you can fork today.
