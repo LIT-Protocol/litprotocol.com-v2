@@ -266,7 +266,7 @@ export default function SolversReport() {
                 Lit
               </div>
               <p className="mt-3 text-[0.95rem] leading-relaxed text-white/80">
-                Signing runs in sealed hardware whose exact code you can attest, gated by on-chain policy on Base. Keys can’t be seen or extracted, funds move only when code approves, and no single party (including Lit) changes the rules unilaterally.
+                Signing runs in sealed hardware whose exact code you can verify by attestation, gated by on-chain policy on Base. Keys never leave the enclave, so no one (not even Lit) can extract them. And Lit can’t silently change the code: every version must be whitelisted on-chain by a multisig and re-attested before it can touch a key.
               </p>
             </div>
           </div>
