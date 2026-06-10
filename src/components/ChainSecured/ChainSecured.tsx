@@ -59,17 +59,17 @@ const ChainSecured = () => (
       </div>
       <p className="mt-9 max-w-[56ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
         There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
-        We run the network, but we can’t change what it runs on our own: every
-        upgrade is an{' '}
+        We run the network, but we can’t silently change what it runs: every
+        upgrade is{' '}
         <a
           href={UPGRADE_GOVERNANCE}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gold-500 underline decoration-gold-500/40 underline-offset-4 transition hover:decoration-gold-500"
         >
-          on-chain, multisig-approved transaction
-        </a>{' '}
-        you can audit on Base.
+          whitelisted on-chain by a multisig
+        </a>
+        , in the open on Base.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button href={GITHUB_LINK} target="_blank" rel="noopener noreferrer">
