@@ -53,8 +53,8 @@ const LandingHero = () => {
         </h1>
         <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
           Your code runs in secure hardware that holds the keys and signs only
-          when your rules pass. No servers to run. Keys no one can extract,
-          not even us.
+          when your rules pass. Non-custodial, with no servers to run. Keys no
+          one can extract. Not even us.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
