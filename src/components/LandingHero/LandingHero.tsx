@@ -45,15 +45,16 @@ const LandingHero = () => {
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
         <h1 className="mx-auto max-w-5xl text-[2.1rem]/[1.16] md:text-[3.2rem]/[1.12] font-medium tracking-tight text-balance">
-          Sign on any chain, only by your rules.{' '}
+          Read any source. Decide in code.{' '}
           <br className="hidden md:inline" />
           <span className="text-lit-orange">
-            Keys no one can extract. Not even us.
+            Sign on any chain.
           </span>
         </h1>
         <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
-          Deploy your code once and the Lit Protocol runs it in a sealed TEE,
-          secured by the chain. No servers for you to run, no operator to trust.
+          Your code runs in secure hardware that holds the keys and signs only
+          when your rules pass. Non-custodial, with no servers to run. Keys no
+          one can extract. Not even us.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
@@ -106,7 +107,7 @@ const LandingHero = () => {
             <Pillar label="READ" sub="Any API, any chain." />
             <PillarCenter
               label="DECIDE & SIGN"
-              sub="Your policy runs in the TEE. Keys sign only what it allows."
+              sub="Your policy runs in secure hardware. Keys sign only what it allows."
             />
             <Pillar label="WRITE" sub="Any EVM chain, Solana, Bitcoin, Cosmos." />
           </div>
