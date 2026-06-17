@@ -6,8 +6,10 @@ import Beacon from '../QuoteCarousel/assets/beacon.webp';
 import Tria from '../QuoteCarousel/assets/tria.webp';
 import Genius from '../QuoteCarousel/assets/genius.webp';
 import Gvnr from '../QuoteCarousel/assets/gvnr.png';
+import Relay from '../QuoteCarousel/assets/relay.svg';
 
 const LOGOS = [
+  { src: Relay.src, alt: 'Relay' },
   { src: Emblem.src, alt: 'Emblem Vault' },
   { src: Beacon.src, alt: 'Beacon Protocol' },
   { src: Tria.src, alt: 'Tria' },
