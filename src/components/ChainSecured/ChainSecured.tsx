@@ -41,10 +41,13 @@ const ChainSecured = () => (
         Don’t trust. Verify.
       </div>
       <h2 className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-tight tracking-tight">
-        Control you can prove, not promise.
+        <span className="block text-white/45">
+          Other wallet providers say non-custodial.
+        </span>
+        <span className="block text-lit-orange">Lit proves non-custodial.</span>
       </h2>
-      <p className="mt-5 max-w-[54ch] mx-auto text-white/65 text-lg leading-relaxed">
-        We operate the network, but operating it grants no access.
+      <p className="mt-6 text-[clamp(1.15rem,2.2vw,1.5rem)] font-medium text-white/90">
+        Does your provider prove it?
       </p>
       <div className="mt-12 grid gap-5 md:grid-cols-3 text-left max-w-5xl mx-auto">
         {PROPS.map(({ Icon, t, b }) => (
@@ -53,13 +56,13 @@ const ChainSecured = () => (
               <Icon size={24} stroke={1.6} />
             </div>
             <div className="text-lg font-medium">{t}</div>
-            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-white/60">{b}</p>
+            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-pretty text-white/60">{b}</p>
           </div>
         ))}
       </div>
-      <p className="mt-9 max-w-[56ch] mx-auto text-[1.05rem] leading-relaxed text-white/80">
+      <p className="mt-9 max-w-[68ch] mx-auto text-[1.05rem] leading-relaxed text-balance text-white/80">
         There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
-        We run the network, but we can’t silently change what it runs: every
+        We run the network, but we can’t silently change what it runs — every
         upgrade is{' '}
         <a
           href={UPGRADE_GOVERNANCE}
@@ -69,7 +72,7 @@ const ChainSecured = () => (
         >
           whitelisted on-chain by a multisig
         </a>
-        , in the open on Base.
+        , open on Base.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button href={GITHUB_LINK} target="_blank" rel="noopener noreferrer">

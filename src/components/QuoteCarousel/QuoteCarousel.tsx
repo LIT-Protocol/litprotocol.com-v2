@@ -76,7 +76,7 @@ function Quote({ image, name, link, alt, quote }: QuoteProps) {
       <div className="relative flex flex-col justify-between h-full text-white">
         <Text
           ta="left"
-          className="text-white/90 !text-[1.1rem]/[1.6rem] sm:!text-[1.2rem]/[1.7rem]"
+          className="text-white/90 !text-[1.1rem]/[1.6rem] sm:!text-[1.2rem]/[1.7rem] text-pretty"
         >
           {quote}
         </Text>

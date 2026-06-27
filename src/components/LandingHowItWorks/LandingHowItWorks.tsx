@@ -68,7 +68,7 @@ const LandingHowItWorks = () => {
         <Container size="lg" className="!py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge>What it looks like</Badge>
-            <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
+            <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight text-balance">
               One file. Reads, computes, signs across chains.
             </h2>
             <p className="mt-6 text-white/70 text-lg">
@@ -98,7 +98,7 @@ const LandingHowItWorks = () => {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <Badge>Encrypted hardware, governed on-chain</Badge>
-              <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight">
+              <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight text-balance">
                 Speed of a backend, trust of a{' '}
                 <span className="text-lit-orange">contract</span>.
               </h2>
@@ -127,7 +127,7 @@ const LandingHowItWorks = () => {
             Read. Compute. Write. <br />
             <span className="text-lit-orange">Anywhere.</span>
           </h2>
-          <p className="mt-6 text-white/60 max-w-xl mx-auto">
+          <p className="mt-6 text-white/60 max-w-xl mx-auto text-pretty">
             One programmable runtime for everything that has to happen between
             an event and a signed action.
           </p>

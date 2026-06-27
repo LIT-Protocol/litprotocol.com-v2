@@ -45,16 +45,13 @@ const LandingHero = () => {
       </div>
       <Container size="lg" className="relative z-10 !pt-28 !pb-32 text-center">
         <h1 className="mx-auto max-w-5xl text-[2.1rem]/[1.16] md:text-[3.2rem]/[1.12] font-medium tracking-tight text-balance">
-          Read any source. Decide in code.{' '}
-          <br className="hidden md:inline" />
-          <span className="text-lit-orange">
-            Sign on any chain.
-          </span>
+          The <span className="text-lit-orange">verifiable</span> integration
+          layer for finance.
         </h1>
-        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
-          Your code runs in secure hardware that holds the keys and signs only
-          when your rules pass. Non-custodial, with no servers to run. Keys no
-          one can extract. Not even us.
+        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed text-pretty">
+          Read any source, enforce your policy in code, and settle on any
+          chain — inside confidential hardware that holds the keys and proves
+          exactly what ran. Non-custodial. Keys no one can extract, not even us.
         </p>
         <div className="mt-9 flex gap-3 justify-center flex-wrap">
           <Button
@@ -104,12 +101,12 @@ const LandingHero = () => {
 
         <div className="mt-14 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-            <Pillar label="READ" sub="Any API, any chain." />
+            <Pillar label="READ" sub="Any source. APIs, oracles, any chain." />
             <PillarCenter
               label="DECIDE & SIGN"
-              sub="Your policy runs in secure hardware. Keys sign only what it allows."
+              sub="Your policy runs in confidential hardware. Keys sign only what it allows."
             />
-            <Pillar label="WRITE" sub="Any EVM chain, Solana, Bitcoin, Cosmos." />
+            <Pillar label="SETTLE" sub="Any chain. EVM, Solana, Bitcoin, Cosmos." />
           </div>
         </div>
       </Container>
