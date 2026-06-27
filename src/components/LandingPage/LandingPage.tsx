@@ -2,6 +2,8 @@ import { Container } from '@mantine/core';
 import LandingHero from '../LandingHero/LandingHero';
 import TrustStrip from '../TrustStrip/TrustStrip';
 import ChainSecured from '../ChainSecured/ChainSecured';
+import ConfidentialCompute from '../ConfidentialCompute/ConfidentialCompute';
+import RunAnywhere from '../RunAnywhere/RunAnywhere';
 import UseCases from '../UseCases/UseCases';
 import LandingHowItWorks from '../LandingHowItWorks/LandingHowItWorks';
 import { QuoteCarousel } from '../QuoteCarousel/QuoteCarousel';
@@ -14,6 +16,12 @@ const LandingPage = () => {
       <TrustStrip />
       <Reveal>
         <ChainSecured />
+      </Reveal>
+      <Reveal>
+        <ConfidentialCompute />
+      </Reveal>
+      <Reveal>
+        <RunAnywhere />
       </Reveal>
       <Reveal>
         <UseCases />
