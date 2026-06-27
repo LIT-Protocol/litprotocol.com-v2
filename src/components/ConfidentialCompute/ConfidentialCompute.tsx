@@ -29,15 +29,15 @@ const ConfidentialCompute = () => (
           <div className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
             Confidential compute
           </div>
-          <h2 className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-tight tracking-tight">
-            Run any workload where{' '}
-            <span className="text-lit-orange">no one can see in</span>.
+          <h2 className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-tight tracking-tight text-balance">
+            Run any workload{' '}
+            <span className="text-lit-orange whitespace-nowrap">no one can see in</span>.
           </h2>
-          <p className="mt-5 max-w-[52ch] text-white/65 text-lg leading-relaxed">
+          <p className="mt-5 max-w-[52ch] text-white/65 text-lg leading-relaxed text-pretty">
             Signing is just the start. Spin up a confidential microVM and run
             any code inside the same attested hardware that guards the keys.
             Your logic and data stay private from every operator — and every run
-            leaves hardware-backed proof of exactly what executed.
+            leaves hardware-backed proof of exactly what ran.
           </p>
           <ul className="mt-7 space-y-3">
             {POINTS.map(({ Icon, t }) => (

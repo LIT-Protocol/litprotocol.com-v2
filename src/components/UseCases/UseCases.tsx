@@ -47,7 +47,7 @@ const UseCases = () => (
               {d.tag}
             </div>
             <div className="mt-3 text-lg font-medium">{d.k}</div>
-            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-white/60">
+            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-pretty text-white/60">
               {d.v}
             </p>
             <div className="mt-6 inline-flex items-center gap-1.5 font-mono text-sm text-lit-orange">

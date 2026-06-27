@@ -22,11 +22,11 @@ const RunAnywhere = () => (
       <div className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
         Managed, not locked in
       </div>
-      <h2 className="mt-4 text-[clamp(1.7rem,3.2vw,2.4rem)] font-medium leading-tight tracking-tight">
+      <h2 className="mt-4 text-[clamp(1.7rem,3.2vw,2.4rem)] font-medium leading-tight tracking-tight text-balance">
         We run the infrastructure. You{' '}
-        <span className="text-lit-orange">just start</span>.
+        <span className="text-lit-orange whitespace-nowrap">just start</span>.
       </h2>
-      <p className="mt-5 max-w-[56ch] mx-auto text-white/65 text-lg leading-relaxed">
+      <p className="mt-5 max-w-[56ch] mx-auto text-white/65 text-lg leading-relaxed text-pretty">
         Lit operates the network, so you call the API and go — nothing to deploy,
         nothing to babysit. Need full control? Self-host in your own cloud or
         on-prem and own your governance, with the same attested guarantees.

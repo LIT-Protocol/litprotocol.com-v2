@@ -48,7 +48,7 @@ const LandingHero = () => {
           The <span className="text-lit-orange">verifiable</span> integration
           layer for finance.
         </h1>
-        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed">
+        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed text-pretty">
           Read any source, enforce your policy in code, and settle on any
           chain — inside confidential hardware that holds the keys and proves
           exactly what ran. Non-custodial. Keys no one can extract, not even us.
