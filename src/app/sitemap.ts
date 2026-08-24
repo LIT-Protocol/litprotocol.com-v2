@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/stablecoins`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/solvers`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/careers`, lastModified, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE}/contact`, lastModified: '2026-08-24', changeFrequency: 'yearly', priority: 0.5 },
     { url: `${BASE}/legal/privacy-policy`, lastModified, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/legal/terms-of-service`, lastModified, changeFrequency: 'yearly', priority: 0.3 },
   ];
