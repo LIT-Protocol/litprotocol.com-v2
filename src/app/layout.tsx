@@ -18,7 +18,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://litprotocol.com'),
   title: 'Lit Protocol',
   description: DESCRIPTION,
+  // Relative canonical resolves against metadataBase per-route, so every page
+  // gets a self-referencing canonical unless it overrides alternates itself.
+  alternates: { canonical: './' },
   openGraph: {
+    type: 'website',
     title: 'Lit Protocol',
     description: DESCRIPTION,
     url: 'https://litprotocol.com',
