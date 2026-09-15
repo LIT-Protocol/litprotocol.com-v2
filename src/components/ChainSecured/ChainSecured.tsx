@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@mantine/core';
+import ComparisonLinks from '../Comparisons/ComparisonLinks';
 import { Button } from '../ui/Button';
 import {
   IconEyeOff,
@@ -33,46 +34,96 @@ const PROPS = [
   },
 ];
 
-const ChainSecured = () => (
+const DRAFT_PROPS = [
+  {
+    Icon: IconEyeOff,
+    t: 'Private keys',
+    b: 'Lit derives and uses keys inside confidential hardware, isolated from the host operating system.',
+  },
+  {
+    Icon: IconLink,
+    t: 'On-chain authority',
+    b: 'Your account governs wallet permissions on Base. Bind a wallet to content-addressed code that defines what it can sign.',
+  },
+  {
+    Icon: IconShieldCheck,
+    t: 'Verifiable software',
+    b: 'Check the attested runtime against approved measurements. Inspect the contract state that authorizes it.',
+  },
+];
+
+const ChainSecured = ({ draft = false }: { draft?: boolean }) => (
   <section className="relative overflow-hidden bg-coal-950 border-b border-white/5">
     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,_oklch(53.51%_0.163_39.51/0.07)_0%,_transparent_55%)]" />
     <Container size="lg" className="relative !py-28 text-center">
       <div className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
-        Don’t trust. Verify.
+        {draft ? 'Wallet infrastructure' : 'Don’t trust. Verify.'}
       </div>
       <h2 className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-tight tracking-tight">
         <span className="block text-white/45">
-          Other wallet providers say non-custodial.
+          {draft
+            ? 'Verify the code.'
+            : 'Other wallet providers say non-custodial.'}
         </span>
-        <span className="block text-lit-orange">Lit proves non-custodial.</span>
+        <span className="block text-lit-orange">
+          {draft ? 'Inspect the authority.' : 'Lit proves non-custodial.'}
+        </span>
       </h2>
       <p className="mt-6 text-[clamp(1.15rem,2.2vw,1.5rem)] font-medium text-white/90">
-        Does your provider prove it?
+        {draft
+          ? 'Programmable wallets. Permissions governed on-chain.'
+          : 'Does your provider prove it?'}
       </p>
       <div className="mt-12 grid gap-5 md:grid-cols-3 text-left max-w-5xl mx-auto">
-        {PROPS.map(({ Icon, t, b }) => (
-          <div key={t} className="rounded-2xl border border-white/10 bg-white/[0.02] p-7">
+        {(draft ? DRAFT_PROPS : PROPS).map(({ Icon, t, b }) => (
+          <div
+            key={t}
+            className="rounded-2xl border border-white/10 bg-white/[0.02] p-7"
+          >
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-lit-orange/[0.12] text-lit-orange">
               <Icon size={24} stroke={1.6} />
             </div>
             <div className="text-lg font-medium">{t}</div>
-            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-pretty text-white/60">{b}</p>
+            <p className="mt-2.5 text-[0.97rem] leading-relaxed text-pretty text-white/60">
+              {b}
+            </p>
           </div>
         ))}
       </div>
       <p className="mt-9 max-w-[68ch] mx-auto text-[1.05rem] leading-relaxed text-balance text-white/80">
-        There is <strong className="font-medium text-lit-orange">no trusted operator</strong>.
-        We run the network, but we can’t silently change what it runs — every
-        upgrade is{' '}
-        <a
-          href={UPGRADE_GOVERNANCE}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gold-500 underline decoration-gold-500/40 underline-offset-4 transition hover:decoration-gold-500"
-        >
-          whitelisted on-chain by a multisig
-        </a>
-        , open on Base.
+        {draft ? (
+          <>
+            Your on-chain account controls wallet permissions. Lit operates the
+            runtime, with release approvals recorded publicly.{' '}
+            <a
+              href={UPGRADE_GOVERNANCE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-500 underline underline-offset-4"
+            >
+              See who can approve runtime changes
+            </a>
+            .
+          </>
+        ) : (
+          <>
+            There is{' '}
+            <strong className="font-medium text-lit-orange">
+              no trusted operator
+            </strong>
+            . We run the network, but we can’t silently change what it runs —
+            every upgrade is{' '}
+            <a
+              href={UPGRADE_GOVERNANCE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-500 underline underline-offset-4"
+            >
+              whitelisted on-chain by a multisig
+            </a>
+            , open on Base.
+          </>
+        )}
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button href={GITHUB_LINK} target="_blank" rel="noopener noreferrer">
@@ -80,7 +131,12 @@ const ChainSecured = () => (
             <IconBrandGithub size={17} stroke={1.8} /> Open source
           </span>
         </Button>
-        <Button variant="outline" href={ATTESTATION} target="_blank" rel="noopener noreferrer">
+        <Button
+          variant="outline"
+          href={ATTESTATION}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           How attestation works
         </Button>
       </div>
@@ -94,6 +150,7 @@ const ChainSecured = () => (
           Prefer to run it yourself? Learn more about self-hosting →
         </a>
       </div>
+      {draft && <ComparisonLinks category="wallets" />}
     </Container>
   </section>
 );

@@ -15,9 +15,12 @@ import {
   MICA_LINK,
 } from '@/utils/constants';
 import styles from './footer.module.scss';
+import PreviewFooter from './PreviewFooter';
 import { Container } from '@mantine/core';
 
-const Footer = () => {
+const Footer = ({ preview = false }: { preview?: boolean }) => {
+  if (preview) return <PreviewFooter />;
+
   return (
     <footer className="w-full m-auto pb-[4rem] bg-coal-950 bg-[linear-gradient(to_top,var(--color-blue-950),var(--color-coal-950))] relative overflow-x-hidden">
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none min-w-[150%] md:w-full">
@@ -49,7 +52,7 @@ const Footer = () => {
           {/* Improved responsive grid layout */}
           <div className="flex-1 grid gap-6 text-white grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:gap-8">
             <div className="flex flex-col gap-3">
-              <h6 className={styles.footer__category}>Resources</h6>
+              <h2 className={styles.footer__category}>Resources</h2>
               <a
                 href={DOCS_LINK}
                 target="_blank"
@@ -100,7 +103,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex flex-col gap-3">
-              <h6 className={styles.footer__category}>Use cases</h6>
+              <h2 className={styles.footer__category}>Use cases</h2>
               <a href="/stablecoins" className={styles.footer__link}>
                 Stablecoins
               </a>
@@ -112,7 +115,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex flex-col gap-3">
-              <h6 className={styles.footer__category}>Social</h6>
+              <h2 className={styles.footer__category}>Social</h2>
               <a
                 href={TWITTER_LINK}
                 target="_blank"
@@ -155,7 +158,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex flex-col gap-3">
-              <h6 className={styles.footer__category}>Company</h6>
+              <h2 className={styles.footer__category}>Company</h2>
               <a href={CAREERS_LINK} className={styles.footer__link}>
                 Careers
               </a>
@@ -169,7 +172,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex flex-col gap-3">
-              <h6 className={styles.footer__category}>Legal</h6>
+              <h2 className={styles.footer__category}>Legal</h2>
               <a href="/legal/privacy-policy" className={styles.footer__link}>
                 Privacy Policy
               </a>

@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@mantine/core';
+import ComparisonLinks from '../Comparisons/ComparisonLinks';
 import { Button } from '../ui/Button';
 import {
   IconArrowNarrowRight,
@@ -19,28 +20,51 @@ const POINTS = [
   { Icon: IconCertificate, t: 'Hardware-attested: prove what ran' },
 ];
 
-const ConfidentialCompute = () => (
-  <section className="relative overflow-hidden bg-coal-950 border-b border-white/5">
+const AI_POINTS = [
+  { Icon: IconCpu, t: 'Training and fine-tuning on sensitive datasets' },
+  { Icon: IconEyeOff, t: 'Inference with private prompts and context' },
+  {
+    Icon: IconCertificate,
+    t: 'Defined policies for outputs and outbound requests',
+  },
+];
+
+const ConfidentialCompute = ({ draft = false }: { draft?: boolean }) => (
+  <section
+    id={draft ? 'ai' : undefined}
+    className="relative overflow-hidden bg-coal-950 border-b border-white/5"
+  >
     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_100%,_oklch(53.51%_0.163_39.51/0.06)_0%,_transparent_55%)]" />
     <Container size="lg" className="relative !py-28">
       <div className="grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
         {/* Left: copy */}
         <div>
           <div className="font-mono text-xs uppercase tracking-[0.22em] text-gold-500">
-            Confidential compute
+            {draft ? 'AI training & inference' : 'Confidential compute'}
           </div>
           <h2 className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] font-medium leading-tight tracking-tight text-balance">
-            Run any workload{' '}
-            <span className="text-lit-orange whitespace-nowrap">no one can see in</span>.
+            {draft ? (
+              <>
+                Confidential execution for{' '}
+                <span className="text-lit-orange">training and inference.</span>
+              </>
+            ) : (
+              <>
+                Run any workload{' '}
+                <span className="text-lit-orange whitespace-nowrap">
+                  no one can see in
+                </span>
+                .
+              </>
+            )}
           </h2>
           <p className="mt-5 max-w-[52ch] text-white/65 text-lg leading-relaxed text-pretty">
-            Signing is just the start. Spin up a confidential microVM and run
-            any code inside the same attested hardware that guards the keys.
-            Your logic and data stay private from every operator — and every run
-            leaves hardware-backed proof of exactly what ran.
+            {draft
+              ? 'Evaluate AI training and inference workloads with verifiable code, private execution, and explicit policies for data access and egress. Work with the Lit Protocol team to define deployment requirements and permitted outputs or outbound requests.'
+              : 'Signing is just the start. Spin up a confidential microVM and run any code inside the same attested hardware that guards the keys. Your logic and data stay private from every operator — and every run leaves hardware-backed proof of exactly what ran.'}
           </p>
           <ul className="mt-7 space-y-3">
-            {POINTS.map(({ Icon, t }) => (
+            {(draft ? AI_POINTS : POINTS).map(({ Icon, t }) => (
               <li key={t} className="flex items-center gap-3 text-white/75">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-lit-orange/[0.12] text-lit-orange">
                   <Icon size={18} stroke={1.7} />
@@ -56,19 +80,23 @@ const ConfidentialCompute = () => (
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
-              Talk to us
+              {draft ? 'Discuss AI deployment' : 'Talk to us'}
             </Button>
-            <Button
-              variant="outline"
-              href={COMPUTE_DOCS}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read the docs
-            </Button>
+            {!draft && (
+              <Button
+                variant="outline"
+                href={COMPUTE_DOCS}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the docs
+              </Button>
+            )}
           </div>
           <p className="mt-4 font-mono text-xs text-white/45">
-            Live with design partners — onboarding is hands-on for now.
+            {draft
+              ? 'Workload assessment, privacy requirements, and deployment planning.'
+              : 'Live with design partners — onboarding is hands-on for now.'}
           </p>
         </div>
 
@@ -83,30 +111,46 @@ const ConfidentialCompute = () => (
             </span>
           </div>
           <div className="p-6 font-mono text-[13px] leading-relaxed">
-            <div className="text-white/45">$ run ./settlement-engine</div>
+            <div className="text-white/45">
+              {draft
+                ? 'AI workload · execution overview'
+                : '$ run ./settlement-engine'}
+            </div>
             <div className="mt-3 space-y-1.5 text-white/70">
               <div>
-                <span className="text-lit-orange">●</span> booting Intel TDX
-                enclave
+                <span className="text-lit-orange">●</span>{' '}
+                {draft
+                  ? 'verify code and environment'
+                  : 'booting Intel TDX enclave'}
               </div>
               <div>
-                <span className="text-lit-orange">●</span> loading code · hash
-                measured on-chain
+                <span className="text-lit-orange">●</span>{' '}
+                {draft
+                  ? 'protect data during execution'
+                  : 'loading code · hash measured on-chain'}
               </div>
               <div>
-                <span className="text-lit-orange">●</span> inputs sealed · no
-                operator can read
+                <span className="text-lit-orange">●</span>{' '}
+                {draft
+                  ? 'run training or inference'
+                  : 'inputs sealed · no operator can read'}
               </div>
               <div>
-                <span className="text-lit-orange">●</span> running your workload
+                <span className="text-lit-orange">●</span>{' '}
+                {draft
+                  ? 'apply output and egress policies'
+                  : 'running your workload'}
               </div>
             </div>
             <div className="mt-4 rounded-lg border border-lit-orange/20 bg-lit-orange/[0.06] px-3 py-2 text-white/80">
-              ✓ attested · proof of exactly what ran
+              {draft
+                ? 'Private execution · verifiable code · controlled egress'
+                : '✓ attested · proof of exactly what ran'}
             </div>
           </div>
         </div>
       </div>
+      {draft && <ComparisonLinks category="compute" />}
     </Container>
   </section>
 );

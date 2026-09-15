@@ -3,6 +3,7 @@ import {
   COMMUNITY_LINK,
   CONTACT_FORM,
   DOCS_LINK,
+  DASHBOARD_LINK,
   GITHUB_LINK,
   SPARK_LINK,
 } from '@/utils/constants';
@@ -56,11 +57,16 @@ const links: LinkItem[] = [
 export const NavMenu2 = ({
   menuOpen,
   toggleMenu,
+  preview = false,
 }: {
   menuOpen: boolean;
   toggleMenu: () => void;
+  preview?: boolean;
 }) => {
-  const items = links.map(item => {
+  const navigationLinks = links.filter(
+    item => !preview || item.label !== 'Use cases'
+  );
+  const items = navigationLinks.map(item => {
     const isExternal = item.external === true;
 
     // Direct link item
@@ -130,7 +136,11 @@ export const NavMenu2 = ({
         }}
       >
         <Group gap={0} style={{ flexDirection: 'column', width: '100%' }}>
-          <HeaderMenu toggleMenu={toggleMenu} menuOpen={menuOpen} />
+          <HeaderMenu
+            toggleMenu={toggleMenu}
+            menuOpen={menuOpen}
+            preview={preview}
+          />
 
           <Accordion
             styles={{
@@ -156,7 +166,7 @@ export const NavMenu2 = ({
           <Button
             className="w-[12rem] flex items-center justify-center"
             rel="noopener noreferrer"
-            href={DOCS_LINK}
+            href={preview ? DASHBOARD_LINK : DOCS_LINK}
             rightIcon={<IconArrowNarrowRight stroke={2} />}
           >
             Get started

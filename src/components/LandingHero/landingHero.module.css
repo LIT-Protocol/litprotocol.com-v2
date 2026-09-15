@@ -1,0 +1,21 @@
+.draft {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(255 255 255 / 7%), transparent 60%),
+    linear-gradient(180deg, #141619 0%, #111318 65%, var(--color-coal-950) 100%);
+}
+
+.proofLink {
+  text-underline-offset: 5px;
+  transition: color 150ms ease;
+}
+
+.proofLink:hover {
+  color: var(--color-off-white);
+  text-decoration: underline;
+}
+
+.proofLink:focus-visible {
+  outline: 2px solid var(--color-off-white);
+  outline-offset: 5px;
+  border-radius: 2px;
+}

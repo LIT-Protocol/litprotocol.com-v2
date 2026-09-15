@@ -22,7 +22,7 @@ const jsonLd = {
         url: 'https://litprotocol.com/lit-logo.png',
       },
       description:
-        'Lit is a programmable runtime that pulls data from any source, runs your logic in a chain-secured TEE, and signs on any chain or API.',
+        'Lit Protocol provides confidential, verifiable execution for crypto transactions and works with teams on private AI training and inference.',
       email: 'support@litprotocol.com',
       contactPoint: [
         {
@@ -51,7 +51,6 @@ const jsonLd = {
       operatingSystem: 'Any',
       url: 'https://litprotocol.com',
       softwareHelp: { '@type': 'CreativeWork', url: DOCS_LINK },
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       publisher: { '@id': 'https://litprotocol.com/#organization' },
     },
   ],

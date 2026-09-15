@@ -60,20 +60,24 @@ if (Number(price.data.amount) * Number(ratio) < threshold) {
 
 const PRICING_DOCS = 'https://developer.litprotocol.com/management/pricing';
 
-const LandingHowItWorks = () => {
+const LandingHowItWorks = ({ draft = false }: { draft?: boolean }) => {
   return (
     <div className="bg-coal-950 text-off-white">
       {/* WHAT IT LOOKS LIKE */}
       <section className="border-b border-white/5 bg-gradient-to-b from-blue-950/30 to-transparent">
         <Container size="lg" className="!py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <Badge>What it looks like</Badge>
+            <Badge>
+              {draft ? 'Lit Protocol Cloud for crypto' : 'What it looks like'}
+            </Badge>
             <h2 className="mt-6 text-3xl md:text-[2.6rem] font-medium leading-tight text-balance">
-              One file. Reads, computes, signs across chains.
+              {draft
+                ? 'Programmable transaction execution across chains.'
+                : 'One file. Reads, computes, signs across chains.'}
             </h2>
             <p className="mt-6 text-white/70 text-lg">
-              A Lit Action is JavaScript that runs inside the network’s
-              TEE. Deploy it once. Sign with a wallet bound to the action code
+              A Lit Action is JavaScript that runs inside the network’s TEE.
+              Deploy it once. Sign with a wallet bound to the action code
               itself, or with one you control through your own on-chain
               governance.
             </p>
@@ -103,17 +107,19 @@ const LandingHowItWorks = () => {
                 <span className="text-lit-orange">contract</span>.
               </h2>
               <p className="mt-6 text-white/70 text-lg leading-relaxed">
-                Your code runs in hardware, so it moves at backend speed. Its
-                authority lives on-chain: smart contracts on Base decide which
-                keys it can use and which code is allowed to run, with every
-                change auditable on Basescan and impossible for any one party to
-                push alone.
+                {draft
+                  ? 'Lit runs your code in confidential hardware. Your on-chain account governs wallet permissions; a separate multisig approves runtime releases. Both are recorded on Base for inspection.'
+                  : 'Your code runs in hardware, so it moves at backend speed. Its authority lives on-chain: smart contracts on Base decide which keys it can use and which code is allowed to run, with every change auditable on Basescan and impossible for any one party to push alone.'}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Stat k="Latency" v="Sub-second signing" />
               <Stat k="Auditability" v="Code hash on-chain" />
-              <Stat k="Pricing" v="$0.01/sec, less on annual plans" href={PRICING_DOCS} />
+              <Stat
+                k="Pricing"
+                v="$0.01/sec, less on annual plans"
+                href={PRICING_DOCS}
+              />
               <Stat k="Surface" v="Any HTTP, any chain" />
             </div>
           </div>
@@ -124,12 +130,16 @@ const LandingHowItWorks = () => {
       <section>
         <Container size="md" className="!py-28 text-center">
           <h2 className="text-3xl md:text-[2.6rem] font-medium leading-tight">
-            Read. Compute. Write. <br />
-            <span className="text-lit-orange">Anywhere.</span>
+            {draft ? 'Confidential, verifiable' : 'Read. Compute. Write.'}{' '}
+            <br />
+            <span className="text-lit-orange">
+              {draft ? 'execution.' : 'Anywhere.'}
+            </span>
           </h2>
           <p className="mt-6 text-white/60 max-w-xl mx-auto text-pretty">
-            One programmable runtime for everything that has to happen between
-            an event and a signed action.
+            {draft
+              ? 'Use the developer documentation to integrate crypto transaction workloads. Discuss private AI training and inference requirements with the Lit Protocol team.'
+              : 'One programmable runtime for everything that has to happen between an event and a signed action.'}
           </p>
           <div className="mt-10 flex gap-3 justify-center">
             <Button
@@ -138,7 +148,7 @@ const LandingHowItWorks = () => {
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
-              Start building
+              {draft ? 'Crypto documentation' : 'Start building'}
             </Button>
             <Button
               variant="outline"
@@ -146,7 +156,7 @@ const LandingHowItWorks = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Talk to an engineer
+              {draft ? 'Discuss AI deployment' : 'Talk to an engineer'}
             </Button>
           </div>
         </Container>

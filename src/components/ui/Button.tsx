@@ -7,6 +7,7 @@ type CustomButtonProps = ButtonProps & {
   href?: string;
   target?: string;
   rel?: string;
+  title?: string;
   type?: 'submit' | 'button' | 'reset';
   style?: CSSProperties;
 };

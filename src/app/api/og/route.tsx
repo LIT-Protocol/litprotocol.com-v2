@@ -14,7 +14,7 @@ export async function GET() {
           justifyContent: 'center',
           padding: '80px',
           background:
-            'linear-gradient(135deg, #0a1226 0%, #1a2347 45%, #0e1a2e 100%)',
+            'linear-gradient(135deg, #0b1018 0%, #15181c 45%, #0b1018 100%)',
           color: 'white',
           position: 'relative',
         }}
@@ -27,7 +27,7 @@ export async function GET() {
             width: 700,
             height: 700,
             background:
-              'radial-gradient(circle, rgba(167,243,208,0.18) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%)',
             display: 'flex',
           }}
         />
@@ -61,29 +61,25 @@ export async function GET() {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: '#a7f3d0',
+              background: '#cb3f0a',
               display: 'flex',
             }}
           />
-          LIT PROTOCOL · TEE-SECURED COMPUTE
+          LIT PROTOCOL
         </div>
 
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            fontSize: 80,
+            fontSize: 78,
             lineHeight: 1.05,
             fontWeight: 500,
             letterSpacing: '-0.02em',
           }}
         >
-          <div style={{ display: 'flex' }}>Read anywhere.</div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ color: '#a7f3d0' }}>Compute</span>
-            <span style={{ marginLeft: '0.3em' }}>in a TEE.</span>
-          </div>
-          <div style={{ display: 'flex' }}>Write to any chain or API.</div>
+          <div style={{ display: 'flex' }}>Confidential,</div>
+          <div style={{ display: 'flex' }}>verifiable execution.</div>
         </div>
 
         <div
@@ -95,11 +91,11 @@ export async function GET() {
             color: 'rgba(255,255,255,0.55)',
             fontSize: 24,
             fontFamily: 'monospace',
-            letterSpacing: '0.15em',
+            letterSpacing: '0',
           }}
         >
           <span>litprotocol.com</span>
-          <span>READ · COMPUTE · WRITE</span>
+          <span>Crypto · AI training · Inference</span>
         </div>
       </div>
     ),

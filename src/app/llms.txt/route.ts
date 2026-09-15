@@ -2,31 +2,50 @@ export const dynamic = 'force-static';
 
 const LLMS_TXT = `# Lit Protocol
 
-> Lit is a programmable runtime for autonomous agents and applications: read data from any source, run your logic inside a chain-secured trusted execution environment (TEE), and sign transactions or API calls on any chain or web service. Lit combines decentralized key management (threshold MPC + TEEs) with confidential compute, so no single party — including Lit node operators — can access raw private keys or the data being processed.
+> Confidential, verifiable execution for crypto transactions, AI training, and inference. Lit runs code in confidential hardware. Applications can read external data, verify the software running, and define permitted actions and outputs.
 
-## When to use Lit
+## Get started
 
-Use Lit when you need to:
+- [Lit dashboard](https://dashboard.chipotle.litprotocol.com/dapps/dashboard/): create an account and start using the API for crypto workloads
+- [Contact us for AI](https://forms.gle/n4WKtsyxaduEz8dDA): discuss confidential AI training and inference with the Lit team
+- [Quickstart](https://developer.litprotocol.com/quickstart): run your first Lit Action through the dashboard or REST API
 
-- Give an AI agent or application a wallet/signing capability without any single party custodying the private key (keys are generated and used inside the network; they never exist whole anywhere).
-- Run policy or business logic that must be tamper-proof and verifiable (e.g. "only sign if these conditions are met"), enforced in a TEE rather than on a trusted server.
-- Encrypt data with on-chain or programmable access-control conditions and decrypt it only when those conditions are met.
-- Sign to multiple chains (EVM, Solana, Bitcoin, Cosmos) or to arbitrary HTTPS APIs from one programmable key.
+## Wallet infrastructure
 
-Do NOT use Lit for general-purpose hosting or as a database; it is a signing, encryption, and confidential-compute layer.
+Write code that reads from APIs or blockchains and decides when a wallet can sign. In ChainSecured mode, a customer-controlled wallet owns the account, and contracts on Base govern permissions. Lit executes authorized code inside confidential hardware. Check the runtime's code hash against an approved release.
 
-## Docs
+- [Stablecoins](https://litprotocol.com/stablecoins)
+- [Cross-chain solvers](https://litprotocol.com/solvers)
+- [Tokenized assets](https://litprotocol.com/rwa)
+- [Lit Actions](https://developer.litprotocol.com/lit-actions): immutable JavaScript programs with data access, encryption, and signing
+- [Chain Secured](https://developer.litprotocol.com/architecture/chain-secured): customer-controlled permissions
 
-- [Developer documentation](https://developer.litprotocol.com): full guides and API reference for the Lit SDK
-- [Quickstart](https://developer.litprotocol.com/quickstart): install the SDK and make your first request
-- [Signing (Lit Actions)](https://developer.litprotocol.com/sdk/serverless-signing/overview): serverless programs that run in the TEE and sign with distributed keys
-- [Encryption and access control](https://developer.litprotocol.com/sdk/access-control/intro): encrypt/decrypt gated by programmable conditions
-- [User wallets](https://developer.litprotocol.com/user-wallets/overview): non-custodial wallets for end users and agents
+## Private compute and AI
 
-## Code
+Work with the Lit team to define the model, compute requirements, private execution environment, software verification, data access, and output policies. Training and inference deployments are scoped with the team; this page does not establish specific GPU availability, model support, capacity, or latency.
 
-- [GitHub organization](https://github.com/LIT-Protocol): SDKs, examples, and node software
-- SDK packages are published on npm under the \`@lit-protocol\` scope
+## Verification and governance
+
+Lit manages the hosted system, following the on-chain process for approving protocol updates. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet policy and hosted runtime approvals are separate. The published hosted upgrade configuration uses a Lit-controlled 2-of-4 Safe without a timelock; inspect current contracts and governance documentation. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.
+
+- [Open source](https://github.com/LIT-Protocol)
+- [Security and verification](https://developer.litprotocol.com/architecture/verification/index)
+- [How attestation works](https://developer.litprotocol.com/architecture/verification/attestation)
+- [Runtime governance](https://developer.litprotocol.com/architecture/verification/upgrade-governance)
+- [Self-hosting](https://developer.litprotocol.com/architecture/self-hosting)
+- [Developer documentation](https://developer.litprotocol.com)
+
+## Comparisons
+
+These comparisons use provider documentation and identified public source code, distinguish Lit's interpretation from evidence, and disclose tradeoffs.
+
+- [Comparison methodology](https://litprotocol.com/compare#methodology)
+- [Lit vs Privy](https://litprotocol.com/compare/privy)
+- [Lit vs Turnkey](https://litprotocol.com/compare/turnkey)
+- [Lit vs Fireblocks](https://litprotocol.com/compare/fireblocks)
+- [Lit vs Google Confidential Cloud](https://litprotocol.com/compare/google-cloud): scoped to Google Confidential Space
+- [Lit vs Fortanix](https://litprotocol.com/compare/fortanix): scoped to Confidential Computing Manager
+- [Lit vs Tinfoil](https://litprotocol.com/compare/tinfoil)
 
 ## Company
 
@@ -34,12 +53,6 @@ Do NOT use Lit for general-purpose hosting or as a database; it is a signing, en
 - [Contact](https://litprotocol.com/contact): support@litprotocol.com
 - [Blog](https://spark.litprotocol.com)
 - [Careers](https://litprotocol.com/careers)
-
-## Optional
-
-- [Use cases: stablecoin compliance](https://litprotocol.com/stablecoins)
-- [Use cases: cross-chain solvers](https://litprotocol.com/solvers)
-- [Use cases: tokenized real-world assets](https://litprotocol.com/rwa)
 - [Privacy policy](https://litprotocol.com/legal/privacy-policy)
 - [Terms of service](https://litprotocol.com/legal/terms-of-service)
 `;
