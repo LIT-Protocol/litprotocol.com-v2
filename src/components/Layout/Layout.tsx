@@ -5,7 +5,13 @@ import Footer from '../Footer/Footer';
 import { NavMenu2 } from '../NavMenu/NavMenu2';
 import { useState } from 'react';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({
+  children,
+  preview = true,
+}: {
+  children: React.ReactNode;
+  preview?: boolean;
+}) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   function toggleMenu(): void {
@@ -14,10 +20,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <HeaderMenu
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}
+        preview={preview}
+      />
       <main className="relative w-full h-full min-h-[100vh]">{children}</main>
-      <Footer />
-      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <Footer preview={preview} />
+      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} preview={preview} />
     </>
   );
 };

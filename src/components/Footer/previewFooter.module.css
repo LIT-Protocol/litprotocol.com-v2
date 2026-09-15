@@ -1,0 +1,148 @@
+.footer {
+  padding: 3rem 0 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  background: var(--color-coal-950);
+  color: rgb(255 255 255 / 65%);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.directory {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 2.3fr 0.9fr 0.7fr;
+  column-gap: 2rem;
+  align-items: start;
+}
+
+.brand {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.125rem 0;
+  color: var(--color-off-white);
+}
+
+.logo {
+  height: 1.75rem;
+  width: auto;
+}
+
+.footer h2,
+.footer p {
+  margin: 0;
+  font-size: inherit;
+}
+
+.footer h2 {
+  margin-bottom: 0.75rem;
+  color: var(--color-off-white);
+  font-weight: 500;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+}
+
+.footer a {
+  text-underline-offset: 4px;
+}
+
+.footer a:hover {
+  color: var(--color-off-white);
+  text-decoration: underline;
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--color-off-white);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.compare {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.comparisonGroups {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.5rem;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  font-size: 0.75rem;
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+}
+
+@media (max-width: 991px) {
+  .directory {
+    grid-template-columns: 1fr 2.8fr 0.8fr 0.7fr;
+    gap: 1.75rem;
+  }
+  .brand {
+    grid-column: 1 / -1;
+  }
+  .compare {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .footer {
+    padding-top: 2rem;
+  }
+  .directory {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 1.5rem;
+  }
+  .brand {
+    grid-column: 1;
+  }
+  .documentation {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .compare {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .footer li a,
+  .legal a {
+    min-height: 36px;
+  }
+  .bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+  .legal {
+    gap: 0.25rem 1rem;
+  }
+}

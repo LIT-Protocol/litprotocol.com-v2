@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 
 const DESCRIPTION =
-  'Read anywhere. Compute in a TEE. Write to any chain or API. Lit is a programmable runtime that pulls data from any source, runs your logic in a chain-secured TEE, and signs on any chain or API.';
+  'Confidential, verifiable execution for crypto transactions, AI training, and inference. Open-source infrastructure with on-chain permissions and verifiable software.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://litprotocol.com'),
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       url: '/api/og',
       width: 1200,
       height: 630,
-      alt: 'Lit Protocol — Read anywhere. Compute in a TEE. Write to any chain or API.',
+      alt: 'Lit Protocol — Confidential, verifiable execution.',
     },
   },
   twitter: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       url: '/api/og',
       width: 1200,
       height: 630,
-      alt: 'Lit Protocol — Read anywhere. Compute in a TEE. Write to any chain or API.',
+      alt: 'Lit Protocol — Confidential, verifiable execution.',
     },
   },
 };

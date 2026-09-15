@@ -13,6 +13,7 @@ import {
   COMMUNITY_LINK,
   CONTACT_FORM,
   DOCS_LINK,
+  DASHBOARD_LINK,
   GITHUB_LINK,
   SPARK_LINK,
   DEVELOPER_CONSTANT_LINK,
@@ -132,11 +133,15 @@ const NavLink = ({ link }: { link: LinkItem }) => {
 export function HeaderMenu({
   menuOpen,
   toggleMenu,
+  preview = false,
 }: {
   menuOpen: boolean;
   toggleMenu: () => void;
+  preview?: boolean;
 }) {
-  const items = links.map(link => <NavLink key={link.label} link={link} />);
+  const items = links
+    .filter(link => !preview || link.label !== 'Use cases')
+    .map(link => <NavLink key={link.label} link={link} />);
 
   return (
     <header className="relative w-full top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
@@ -159,7 +164,7 @@ export function HeaderMenu({
             <Button className="hidden" />
           ) : (
             <Button
-              href={DOCS_LINK}
+              href={preview ? DASHBOARD_LINK : DOCS_LINK}
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
               Get started

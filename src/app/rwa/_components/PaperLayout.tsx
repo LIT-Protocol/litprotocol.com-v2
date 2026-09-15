@@ -12,9 +12,9 @@ export default function PaperLayout({ children }: { children: React.ReactNode })
 
   return (
     <>
-      <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} preview />
       <main className="relative h-full min-h-[100vh] w-full">{children}</main>
-      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} preview />
     </>
   );
 }
