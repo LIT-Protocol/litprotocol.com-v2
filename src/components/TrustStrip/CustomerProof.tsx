@@ -55,6 +55,7 @@ export default function CustomerProof() {
 
   return (
     <section
+      id="customers"
       className={styles.section}
       aria-labelledby="customer-proof-heading"
       onMouseEnter={() => setHovered(true)}

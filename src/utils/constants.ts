@@ -1,5 +1,6 @@
 // Resources
 export const DOCS_LINK = 'https://developer.litprotocol.com';
+export const AI_DOCS_LINK = `${DOCS_LINK}/ai/overview`;
 export const QUICKSTART_LINK = 'https://developer.litprotocol.com/quickstart';
 export const DASHBOARD_LINK = 'https://dashboard.chipotle.litprotocol.com/dapps/dashboard/';
 export const BANNER_LINK = 'https://x.com/LitProtocol/status/1911850883845149065';

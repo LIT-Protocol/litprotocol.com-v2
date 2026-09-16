@@ -63,7 +63,7 @@ export default function RootLayout({
           src="https://plausible.io/js/script.js"
         />
       </head>
-      <body>
+      <body id="top">
         <MantineProvider>{children}</MantineProvider>
       </body>
     </html>

@@ -1,0 +1,69 @@
+.visual {
+  width: 100%;
+  margin: 0 0 30px;
+}
+.visual svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.visual text {
+  fill: #393935;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+.visual .language {
+  fill: #64645c;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.plate {
+  stroke: #ccccc3;
+  stroke-width: 0.8;
+}
+.back {
+  fill: #e9e9e1;
+  stroke: #dcdcd3;
+  stroke-width: 0.7;
+}
+.detail {
+  stroke: #c6c6bc;
+  stroke-width: 1.2;
+}
+.accent,
+.signal {
+  fill: none;
+  stroke: #bd4019;
+  stroke-width: 1.2;
+}
+.track {
+  stroke: #dadad2;
+  fill: none;
+}
+.code {
+  fill: #fafaf7;
+  stroke: #d3bcb0;
+}
+.codeGlyph {
+  fill: none;
+  stroke: #a64a2c;
+  stroke-width: 1.1;
+}
+.boundary {
+  fill: none;
+  stroke: #cacac1;
+  stroke-width: 0.8;
+}
+.visual .caption {
+  fill: #77776e;
+  font-size: 10px;
+  letter-spacing: 0.035em;
+}
+@media (max-width: 720px) {
+  .visual {
+    max-width: 430px;
+    margin-inline: auto;
+    margin-bottom: 26px;
+  }
+}

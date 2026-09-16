@@ -4,6 +4,7 @@ import { HeaderMenu } from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { NavMenu2 } from '../NavMenu/NavMenu2';
 import { useState } from 'react';
+import ProductHeader from '../Platform/ProductHeader';
 
 const Layout = ({
   children,
@@ -20,14 +21,30 @@ const Layout = ({
 
   return (
     <>
-      <HeaderMenu
-        menuOpen={menuOpen}
-        toggleMenu={toggleMenu}
-        preview={preview}
-      />
-      <main className="relative w-full h-full min-h-[100vh]">{children}</main>
+      {preview ? (
+        <ProductHeader />
+      ) : (
+        <HeaderMenu
+          menuOpen={menuOpen}
+          toggleMenu={toggleMenu}
+          preview={preview}
+        />
+      )}
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative w-full h-full min-h-[100vh]"
+      >
+        {children}
+      </main>
       <Footer preview={preview} />
-      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} preview={preview} />
+      {!preview && (
+        <NavMenu2
+          menuOpen={menuOpen}
+          toggleMenu={toggleMenu}
+          preview={preview}
+        />
+      )}
     </>
   );
 };

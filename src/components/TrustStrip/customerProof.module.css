@@ -1,7 +1,8 @@
 .section {
-  padding: 3rem 0 3.5rem;
+  padding: 2.5rem 0 2rem;
   border-bottom: 1px solid rgb(255 255 255 / 8%);
-  background: var(--color-coal-950);
+  background: #181818;
+  scroll-margin-top: 80px;
 }
 
 .heading {
@@ -78,7 +79,7 @@
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   max-width: 49rem;
-  margin: 1.75rem auto 0;
+  margin: 1rem auto 0;
   text-align: center;
   border-radius: 2px;
 }
@@ -90,7 +91,7 @@
 .quote {
   flex: 0 0 100%;
   min-width: 0;
-  min-height: 220px;
+  min-height: 165px;
   margin: 0;
   padding: 1rem;
   display: flex;
@@ -156,7 +157,7 @@
     margin-top: 1rem;
   }
   .quote {
-    min-height: 280px;
+    min-height: 205px;
     padding: 1rem 0.25rem;
   }
 }

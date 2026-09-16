@@ -177,12 +177,12 @@ export function PreviewInfrastructure() {
             >
               <a
                 href={GITHUB_LINK}
-                aria-label="Open source on GitHub"
+                aria-label="Open-source on GitHub"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <IconBrandGithubFilled size={18} aria-hidden="true" />
-                Open source
+                Open-source
               </a>
               <a href={ATTESTATION} target="_blank" rel="noopener noreferrer">
                 How attestation works
