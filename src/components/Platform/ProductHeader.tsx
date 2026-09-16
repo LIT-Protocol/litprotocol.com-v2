@@ -119,10 +119,20 @@ export default function ProductHeader() {
       </a>
       <div className={styles.bar}>
         <Link
-          href="/"
+          href="/#top"
           className={styles.brand}
           aria-label="Lit Protocol home"
-          onClick={close}
+          onClick={event => {
+            close();
+            // Repeated clicks on the current URL do not trigger route scrolling.
+            if (
+              pathname === '/' &&
+              event.button === 0 &&
+              !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
+            ) {
+              window.scrollTo({ top: 0, left: 0 });
+            }
+          }}
         >
           <LitLogo className={styles.logo} />
         </Link>
