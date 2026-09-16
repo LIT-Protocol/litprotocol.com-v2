@@ -44,19 +44,23 @@
   border-bottom: 1px solid transparent;
 }
 
-.logoLink {
+.logoLabel {
   gap: 0.4rem;
   color: rgb(255 255 255 / 50%);
   font-size: 1rem;
   font-weight: 500;
 }
 
-.logoLink img {
+.logoLabel img {
   flex-shrink: 0;
 }
 
-.logoLink:hover img {
+.staticLogo:hover img {
   opacity: 1;
+}
+
+.logoLabel:hover {
+  color: var(--color-off-white);
 }
 
 .logoButton[aria-pressed='true'] {

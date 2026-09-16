@@ -97,16 +97,10 @@ export default function CustomerProof() {
               />
             </button>
           ))}
-          <a
-            className={`${styles.staticLogo} ${styles.logoLink}`}
-            href="https://x.com/Treasure_DAO"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Treasure DAO on X"
-          >
-            <Image src="/logos/treasure.svg" alt="" width={32} height={32} />
-            <span>Treasure</span>
-          </a>
+          <div className={`${styles.staticLogo} ${styles.logoLabel}`}>
+            <Image src="/logos/treasure.svg" alt="Treasure DAO" width={32} height={32} />
+            <span aria-hidden="true">Treasure</span>
+          </div>
         </div>
         <div
           id="customer-quote"
