@@ -6,7 +6,6 @@ import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 import { quotes as customerQuotes } from '../QuoteCarousel/quotes';
 import Relay from '../QuoteCarousel/assets/relay.svg';
-import Gvnr from '../QuoteCarousel/assets/gvnr.png';
 import styles from './customerProof.module.css';
 
 const quotes = [
@@ -98,9 +97,16 @@ export default function CustomerProof() {
               />
             </button>
           ))}
-          <div className={styles.staticLogo}>
-            <Image src={Gvnr} alt="GVNR" width={100} height={28} />
-          </div>
+          <a
+            className={`${styles.staticLogo} ${styles.logoLink}`}
+            href="https://x.com/Treasure_DAO"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Treasure DAO on X"
+          >
+            <Image src="/logos/treasure.svg" alt="" width={32} height={32} />
+            <span>Treasure</span>
+          </a>
         </div>
         <div
           id="customer-quote"
