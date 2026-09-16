@@ -5,7 +5,6 @@ import Emblem from '../QuoteCarousel/assets/emblem.webp';
 import Beacon from '../QuoteCarousel/assets/beacon.webp';
 import Tria from '../QuoteCarousel/assets/tria.webp';
 import Genius from '../QuoteCarousel/assets/genius.webp';
-import Gvnr from '../QuoteCarousel/assets/gvnr.png';
 import Relay from '../QuoteCarousel/assets/relay.svg';
 
 const LOGOS = [
@@ -14,7 +13,7 @@ const LOGOS = [
   { src: Beacon.src, alt: 'Beacon Protocol' },
   { src: Tria.src, alt: 'Tria' },
   { src: Genius.src, alt: 'Genius' },
-  { src: Gvnr.src, alt: 'GVNR' },
+  { src: '/logos/treasure.svg', alt: 'Treasure DAO' },
 ];
 
 const TrustStrip = () => (
