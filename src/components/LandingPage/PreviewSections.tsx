@@ -3,7 +3,7 @@
 import { Container } from '@mantine/core';
 import { Button } from '../ui/Button';
 import ComparisonLinks from '../Comparisons/ComparisonLinks';
-import { CONTACT_FORM, GITHUB_LINK, DASHBOARD_LINK } from '@/utils/constants';
+import { AI_CONTACT_FORM, GITHUB_LINK, DASHBOARD_LINK } from '@/utils/constants';
 import { IconBrandGithubFilled } from '@tabler/icons-react';
 import styles from './preview.module.css';
 
@@ -65,7 +65,7 @@ export function PreviewWallets() {
           </p>
           <div className={styles.actions}>
             <Button href={DASHBOARD_LINK} target="_blank" style={buttonStyle}>
-              Get started
+              Get started with crypto
             </Button>
           </div>
         </header>
@@ -114,8 +114,8 @@ export function PreviewCompute() {
               software, and set rules for data access and outputs.
             </p>
             <div className={styles.actions}>
-              <Button href={CONTACT_FORM} target="_blank" style={buttonStyle}>
-                Contact us for AI
+              <Button href={AI_CONTACT_FORM} target="_blank" style={buttonStyle}>
+                Contact for Lit AI
               </Button>
             </div>
           </header>
@@ -218,15 +218,15 @@ export function PreviewClosing() {
           </p>
           <div className={styles.actions}>
             <Button href={DASHBOARD_LINK} target="_blank" style={buttonStyle}>
-              Get started
+              Get started with crypto
             </Button>
             <Button
               variant="outline"
-              href={CONTACT_FORM}
+              href={AI_CONTACT_FORM}
               target="_blank"
               style={outlineStyle}
             >
-              Contact us for AI
+              Contact for Lit AI
             </Button>
           </div>
         </div>

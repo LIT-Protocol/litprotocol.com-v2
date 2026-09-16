@@ -10,7 +10,7 @@ import {
   IconEyeOff,
   IconCertificate,
 } from '@tabler/icons-react';
-import { CONTACT_FORM } from '@/utils/constants';
+import { AI_CONTACT_FORM, CONTACT_FORM } from '@/utils/constants';
 
 const COMPUTE_DOCS = 'https://developer.litprotocol.com/architecture/index';
 
@@ -75,12 +75,12 @@ const ConfidentialCompute = ({ draft = false }: { draft?: boolean }) => (
           </ul>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button
-              href={CONTACT_FORM}
+              href={draft ? AI_CONTACT_FORM : CONTACT_FORM}
               target="_blank"
               rel="noopener noreferrer"
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >
-              {draft ? 'Discuss AI deployment' : 'Talk to us'}
+              {draft ? 'Contact for Lit AI' : 'Talk to us'}
             </Button>
             {!draft && (
               <Button

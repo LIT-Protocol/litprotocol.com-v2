@@ -21,6 +21,7 @@ import {
   COMPANY_CONSTANT_LINK,
 } from '@/utils/constants';
 import { Button } from '../ui/Button';
+import navigationStyles from '../NavMenu/navMenu.module.css';
 
 interface LinkItem {
   link: string;
@@ -64,7 +65,7 @@ const links: LinkItem[] = [
 ];
 
 // Individual link component
-const NavLink = ({ link }: { link: LinkItem }) => {
+const NavLink = ({ link, preview = false }: { link: LinkItem; preview?: boolean }) => {
   const isExternal = link.external === true;
   const hasSubLinks = !!link.links?.length;
 
@@ -90,6 +91,11 @@ const NavLink = ({ link }: { link: LinkItem }) => {
 
     return (
       <Menu
+        classNames={preview ? {
+          dropdown: navigationStyles.dropdown,
+          item: navigationStyles.dropdownItem,
+          arrow: navigationStyles.dropdownArrow,
+        } : undefined}
         key={link.label}
         trigger="hover"
         transitionProps={{ exitDuration: 0 }}
@@ -141,14 +147,15 @@ export function HeaderMenu({
 }) {
   const items = links
     .filter(link => !preview || link.label !== 'Use cases')
-    .map(link => <NavLink key={link.label} link={link} />);
+    .map(link => <NavLink key={link.label} link={link} preview={preview} />);
 
   return (
     <header className="relative w-full top-0 left-0 h-[4.5rem] z-10 bg-coal-950">
       <Container size="md">
         <div className="flex h-[4.5rem] justify-between items-center">
-          <Group gap={4}>
+          <Group gap={4} wrap="nowrap">
             <Burger
+              aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
               opened={menuOpen}
               onClick={toggleMenu}
               size="sm"
@@ -164,6 +171,7 @@ export function HeaderMenu({
             <Button className="hidden" />
           ) : (
             <Button
+              className="whitespace-nowrap text-sm sm:text-base"
               href={preview ? DASHBOARD_LINK : DOCS_LINK}
               rightIcon={<IconArrowNarrowRight stroke={2} />}
             >

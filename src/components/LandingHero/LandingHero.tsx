@@ -10,6 +10,7 @@ import {
 } from '@tabler/icons-react';
 import {
   CONTACT_FORM,
+  AI_CONTACT_FORM,
   QUICKSTART_LINK,
   GITHUB_LINK,
   DASHBOARD_LINK,
@@ -81,7 +82,7 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
       </div>
       <Container
         size="lg"
-        className={`relative z-10 !pt-28 text-center ${draft ? '!pb-20' : '!pb-32'}`}
+        className={`relative z-10 text-center ${draft ? styles.container : '!pt-28 !pb-32'}`}
       >
         <h1
           className={`mx-auto max-w-5xl font-medium tracking-tight text-balance ${draft ? 'text-[clamp(2.35rem,4.8vw,4rem)] leading-[1.08]' : 'text-[2.1rem]/[1.16] md:text-[3.2rem]/[1.12]'}`}
@@ -97,12 +98,30 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
             </>
           )}
         </h1>
-        <p className="mt-7 max-w-2xl mx-auto text-white/70 text-lg leading-relaxed text-balance">
-          {draft
-            ? 'Lit runs your code in confidential hardware. You can verify the software, connect to any data source, and control what the code can do and send. Use it for crypto transactions, or for AI training and inference.'
-            : 'Deploy software verifiably to compute and sign across DeFi, centralized exchanges, and more.'}
+        <p
+          className={`mt-7 mx-auto text-white/70 text-lg leading-relaxed text-balance ${
+            draft ? styles.description : 'max-w-2xl'
+          }`}
+        >
+          {draft ? (
+            <>
+              <span className={styles.sentence}>
+                Get real control of what your application does and who it shares
+                data with.
+              </span>{' '}
+              <span className={styles.sentence}>
+                <span className={styles.workloadLead}>
+                  Run crypto automations and AI workloads in{' '}
+                  <span className={styles.phrase}>confidential hardware,</span>
+                </span>{' '}
+                connected to your accounts, tools, and blockchains.
+              </span>
+            </>
+          ) : (
+            'Deploy software verifiably to compute and sign across DeFi, centralized exchanges, and more.'
+          )}
         </p>
-        <div className="mt-9 flex gap-3 justify-center flex-wrap">
+        <div className={`mt-9 flex gap-3 justify-center flex-wrap ${draft ? styles.actions : ''}`}>
           <Button
             href={draft ? DASHBOARD_LINK : QUICKSTART_LINK}
             target="_blank"
@@ -114,7 +133,7 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
                 : undefined
             }
           >
-            {draft ? 'Get started' : 'Start building'}
+            {draft ? 'Get started with crypto' : 'Start building'}
           </Button>
           <Button
             variant="outline"
@@ -127,15 +146,15 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
                   }
                 : undefined
             }
-            href={CONTACT_FORM}
+            href={draft ? AI_CONTACT_FORM : CONTACT_FORM}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {draft ? 'Contact us for AI' : 'Talk to an engineer'}
+            {draft ? 'Contact for Lit AI' : 'Talk to an engineer'}
           </Button>
         </div>
 
-        <div className="mx-auto mt-9 flex max-w-2xl flex-wrap items-baseline justify-center gap-x-5 gap-y-2 border-t border-white/5 pt-6 font-mono text-[clamp(0.95rem,1.6vw,1.15rem)] text-white/65">
+        <div className={`mx-auto mt-9 flex max-w-2xl flex-wrap items-baseline justify-center gap-x-5 gap-y-2 border-t border-white/5 pt-6 text-[clamp(0.95rem,1.6vw,1.15rem)] text-white/65 ${draft ? 'tabular-nums' : 'font-mono'}`}>
           <Metric value="$50B+" label="secured" draft={draft} />
         </div>
         <div

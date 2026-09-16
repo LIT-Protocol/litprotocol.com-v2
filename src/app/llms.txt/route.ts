@@ -1,3 +1,5 @@
+import { AI_CONTACT_FORM, GITHUB_LINK } from '@/utils/constants';
+
 export const dynamic = 'force-static';
 
 const LLMS_TXT = `# Lit Protocol
@@ -6,8 +8,8 @@ const LLMS_TXT = `# Lit Protocol
 
 ## Get started
 
-- [Lit dashboard](https://dashboard.chipotle.litprotocol.com/dapps/dashboard/): create an account and start using the API for crypto workloads
-- [Contact us for AI](https://forms.gle/n4WKtsyxaduEz8dDA): discuss confidential AI training and inference with the Lit team
+- [Get started with crypto](https://dashboard.chipotle.litprotocol.com/dapps/dashboard/): create an account and start using the API for crypto workloads
+- [Contact for Lit AI](${AI_CONTACT_FORM}): discuss confidential AI training and inference with the Lit team
 - [Quickstart](https://developer.litprotocol.com/quickstart): run your first Lit Action through the dashboard or REST API
 
 ## Wallet infrastructure
@@ -28,7 +30,7 @@ Work with the Lit team to define the model, compute requirements, private execut
 
 Lit manages the hosted system, following the on-chain process for approving protocol updates. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet policy and hosted runtime approvals are separate. The published hosted upgrade configuration uses a Lit-controlled 2-of-4 Safe without a timelock; inspect current contracts and governance documentation. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.
 
-- [Open source](https://github.com/LIT-Protocol)
+- [Open source](${GITHUB_LINK})
 - [Security and verification](https://developer.litprotocol.com/architecture/verification/index)
 - [How attestation works](https://developer.litprotocol.com/architecture/verification/attestation)
 - [Runtime governance](https://developer.litprotocol.com/architecture/verification/upgrade-governance)
