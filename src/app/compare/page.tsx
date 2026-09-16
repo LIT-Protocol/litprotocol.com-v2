@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: 'Compare infrastructure | Lit Protocol',
     url: '/compare',
     description:
-      'Compare wallet infrastructure and private compute by verification, authorization, governance, and recovery.',
+      'Compare operator authority, custody, and attack surfaces across wallet and confidential-compute providers.',
   },
   description:
-    'Compare wallet infrastructure and private compute: software verification, authorization, governance, and recovery.',
+    'Compare Lit Chipotle ChainSecured with wallet and confidential-compute providers: permissions, software approvals, and access.',
 };
 
 export default function Comparisons() {
@@ -34,12 +34,12 @@ export default function Comparisons() {
             <span aria-hidden="true">← </span>Lit Protocol
           </a>
           <header className={styles.header}>
-            <p className={styles.eyebrow}>Architecture comparisons</p>
-            <h1>Where does authority live?</h1>
+            <p className={styles.eyebrow}>Compare control</p>
+            <h1>Who can change the rules?</h1>
             <p className={styles.introduction}>
-              Compare how providers protect execution, authorize software, and
-              govern changes. Each provider has a separate analysis with primary
-              sources.
+              Hardware protects execution. Control depends on who can change
+              permissions, approve software, and stop access. See how Lit and
+              other providers handle each decision.
             </p>
           </header>
           {(['wallets', 'compute'] as const).map(category => (
@@ -64,77 +64,60 @@ export default function Comparisons() {
             </section>
           ))}
           <section id="methodology" className={styles.methodology}>
-            <h2 className="text-2xl font-medium text-white">
-              Scope and method
-            </h2>
+            <h2>How we make these comparisons</h2>
             <p>
-              Published by Lit Protocol. Sources reviewed {REVIEWED_ON}. These
-              are architectural comparisons based on provider documentation and,
-              where identified, public source code. The conclusions labeled “Lit
-              assessment” express our interpretation of the cited mechanisms.
+              Published by Lit Protocol. Reviewed {REVIEWED_ON}. We compare operator
+              powers using primary documentation and identified source snapshots.
+              Our conclusions are architectural assessments, not security audits,
+              exploit findings, or legal classifications of custody.
+            </p>
+            <h3>Chipotle, in ChainSecured mode</h3>
+            <p>
+              These pages describe Chipotle, not Lit’s legacy MPC network or managed
+              API-mode accounts. A customer-controlled wallet administers account
+              permissions on Base. The attested runtime enforces them.{' '}
+              <a href={sources.litAccountCode.url}>Inspect the permission check</a>.
+              Account ownership, runtime approval, and contract upgrades are
+              different authorities.
+            </p>
+            <h3>On-chain governance</h3>
+            <p>
+              Lit separates deployment from approval. The key-management system
+              checks attested measurements against contract rules before releasing
+              runtime keys. An operator cannot authorize new code simply by
+              deploying it. Previously approved releases remain allowed until
+              revoked.{' '}
+              <a href={sources.litGovernance.url}>Runtime governance</a>.
             </p>
             <p>
-              All Lit wallet comparisons assume ChainSecured mode: a
-              customer-controlled wallet owns the account, and contracts on Base
-              govern permissions. Lit operates the TEE that executes those
-              permissions.{' '}
-              <a
-                href={sources.litArchitecture.url}
-                className="text-gold-500 underline underline-offset-4"
-              >
-                Lit architecture
-              </a>
-              .
+              Account permissions and protocol upgrades have separate authorization
+              rules. Chipotle’s account contracts support upgrades, so a review
+              should examine both the permission checks and how those checks can
+              change. These comparisons describe the method; deployment-specific
+              approval policies are evaluated separately.{' '}
+              <a href={sources.litUpgradeCode.url}>Upgrade source</a>;{' '}
+              <a href={sources.litVerification.url}>verification guide</a>.
+            </p>
+            <h3>Evidence and limits</h3>
+            <p>
+              We distinguish hardware protection from release authority, and
+              permission to sign from the ability to recover without a provider.
+              All deployments retain dependencies on software correctness, hardware
+              trust roots, and availability. Lit also depends on chain state and
+              key infrastructure. An omitted feature in a document is not proof
+              that a product lacks it.
             </p>
             <p>
-              Account policy and runtime governance are distinct. Lit’s hosted
-              upgrade documentation describes a 2-of-4 Safe with Lit-controlled
-              signer keys and no timelock. That approval is publicly auditable;
-              it is not a customer veto over every hosted upgrade. Configuration
-              can change, so inspect the contracts linked in the{' '}
-              <a
-                href={sources.litGovernance.url}
-                className="text-gold-500 underline underline-offset-4"
-              >
-                upgrade-governance documentation
-              </a>
-              .
-            </p>
-            <h3 className="text-xl font-medium text-white">
-              Operational assurance and runtime evidence
-            </h3>
-            <p>
-              SOC 2 examines a service organization’s controls. A report can
-              inform due diligence, but does not itself demonstrate which binary
-              is executing a request. Hardware attestation and code measurements
-              provide a different kind of evidence. Providers can use both.{' '}
-              <a
-                href={sources.soc2.url}
-                className="text-gold-500 underline underline-offset-4"
-              >
-                AICPA’s SOC 2 scope
-              </a>
-              ;{' '}
-              <a
-                href={sources.litAttestation.url}
-                className="text-gold-500 underline underline-offset-4"
-              >
-                Lit’s attestation model
-              </a>
-              .
+              A SOC 2 report evaluates organizational controls; attestation provides
+              evidence of a measured runtime. Neither alone establishes that approved
+              code is safe.{' '}
+              <a href={sources.soc2.url}>SOC 2 scope</a>;{' '}
+              <a href={sources.litAttestation.url}>attestation</a>.
             </p>
             <p>
-              The comparison criteria are software identity, authorization,
-              upgrade control, and continuity. We have not benchmarked
-              performance or reviewed private audit reports. A property absent
-              from the cited documentation is not assumed absent from a
-              provider’s product.
-            </p>
-            <p>
-              For AI, Lit’s deployment fit is assessed with the team. Each
-              workload needs defined code and model measurements, data handling,
-              and output policies. Runtime attestation is not a proof of model
-              correctness or a guarantee against every data leak.
+              Contact Lit to confirm model and hardware support for your application.
+              These comparisons do not benchmark throughput or latency. Each AI
+              deployment needs its own rules for code, credentials, and outputs.
             </p>
           </section>
         </Container>

@@ -1,0 +1,33 @@
+.root [data-piece] {
+  transition:
+    transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 700ms ease;
+  transition-delay: var(--delay, 0ms);
+}
+.root[data-motion='ready']
+  [data-reveal]:not([data-visible='true'])
+  [data-piece] {
+  transform: translateY(12px);
+  opacity: 0;
+}
+.root [data-draw] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 950ms cubic-bezier(0.22, 1, 0.36, 1) 150ms;
+}
+.root[data-motion='ready']
+  [data-reveal]:not([data-visible='true'])
+  [data-draw] {
+  stroke-dashoffset: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .root [data-piece] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .root [data-draw] {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}

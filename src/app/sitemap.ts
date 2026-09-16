@@ -7,15 +7,21 @@ const BASE = 'https://litprotocol.com';
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = '2026-06-01';
   return [
+    ...['/crypto', '/ai', '/security'].map(path => ({
+      url: `${BASE}${path}`,
+      lastModified: '2026-09-16',
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    })),
     {
       url: `${BASE}/compare`,
-      lastModified: '2026-09-15',
+      lastModified: '2026-09-16',
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     ...comparisons.map(item => ({
       url: `${BASE}/compare/${item.slug}`,
-      lastModified: '2026-09-15',
+      lastModified: '2026-09-16',
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
@@ -27,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE}/`,
-      lastModified: '2026-09-15',
+      lastModified: '2026-09-16',
       changeFrequency: 'weekly',
       priority: 1,
     },

@@ -128,7 +128,7 @@ const ChainSecured = ({ draft = false }: { draft?: boolean }) => (
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button href={GITHUB_LINK} target="_blank" rel="noopener noreferrer">
           <span className="inline-flex items-center gap-2">
-            <IconBrandGithub size={17} stroke={1.8} /> Open source
+            <IconBrandGithub size={17} stroke={1.8} /> Open-source
           </span>
         </Button>
         <Button

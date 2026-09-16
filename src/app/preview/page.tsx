@@ -13,7 +13,7 @@ export default function CopyPreview() {
 
   return (
     <Layout preview>
-      <LandingPage draft />
+      <LandingPage />
     </Layout>
   );
 }

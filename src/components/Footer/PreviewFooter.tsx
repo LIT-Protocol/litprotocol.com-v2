@@ -76,14 +76,17 @@ export default function PreviewFooter() {
   return (
     <footer id="footer" className={styles.footer}>
       <Container size="lg">
-        <div className={styles.directory}>
-          <a
-            href="/"
-            aria-label="Lit Protocol home"
-            className={styles.brand}
-          >
+        <div className={styles.brandBar}>
+          <a href="/" aria-label="Lit Protocol home" className={styles.brand}>
             <LitLogo className={styles.logo} />
           </a>
+          <nav aria-label="Footer platform" className={styles.platformLinks}>
+            <a href="/crypto">Programmable wallets</a>
+            <a href="/ai">Confidential AI</a>
+            <a href="/security">Security & verification</a>
+          </nav>
+        </div>
+        <div className={styles.directory}>
           <FooterGroup group={groups[0]} />
           <section className={styles.compare} aria-label="Comparisons">
             <div className={styles.comparisonGroups}>

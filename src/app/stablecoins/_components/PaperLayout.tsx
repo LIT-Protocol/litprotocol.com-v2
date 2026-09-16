@@ -1,20 +1,21 @@
-'use client';
+import ProductHeader from '@/components/Platform/ProductHeader';
 
-import { useState } from 'react';
-import { HeaderMenu } from '@/components/Header/Header';
-import { NavMenu2 } from '@/components/NavMenu/NavMenu2';
-
-// Same chrome as the site Layout (header + slide-out nav) but without the global
-// newsletter Footer — the white paper ends with its own References and disclaimer.
-export default function PaperLayout({ children }: { children: React.ReactNode }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen((v) => !v);
-
+// Papers share the product navigation and retain their own references and ending.
+export default function PaperLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
-      <HeaderMenu menuOpen={menuOpen} toggleMenu={toggleMenu} preview />
-      <main className="relative h-full min-h-[100vh] w-full">{children}</main>
-      <NavMenu2 menuOpen={menuOpen} toggleMenu={toggleMenu} preview />
+      <ProductHeader />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative h-full min-h-[100vh] w-full"
+      >
+        {children}
+      </main>
     </>
   );
 }

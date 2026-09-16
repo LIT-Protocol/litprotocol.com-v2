@@ -13,40 +13,26 @@ import {
 import ComparisonLinks from './ComparisonLinks';
 import styles from './comparisons.module.css';
 
-export default function ComparisonArticle({
-  comparison,
-}: {
-  comparison: Comparison;
-}) {
-  const ids = Array.from(
-    new Set(
-      comparison.assessmentSources.concat(
-        comparison.tradeoffSources ?? [],
-        comparison.rows.flatMap(row => [
-          ...row.provider.sources,
-          ...row.lit.sources,
-        ]),
-        comparison.extra?.sources ?? [],
-        comparison.securityReview?.findings.flatMap(
-          finding => finding.sources
-        ) ?? []
-      )
-    )
-  );
-  const references = (refs: SourceId[]) =>
-    refs.map(id => (
-      <a
-        key={id}
-        href={sources[id].url}
-        target="_blank"
-        rel="noopener noreferrer"
-        title={sources[id].title}
-        aria-label={sources[id].title}
-        className={styles.reference}
-      >
-        [{ids.indexOf(id) + 1}]
-      </a>
-    ));
+const governanceSources: SourceId[] = [
+  'litGovernance', 'litUpgradeCode', 'litVerification',
+];
+
+export default function ComparisonArticle({ comparison }: { comparison: Comparison }) {
+  const ids = Array.from(new Set([
+    ...comparison.assessment.sources,
+    ...comparison.parity.sources,
+    ...comparison.rows.flatMap(row => [...row.lit.sources, ...row.provider.sources]),
+    ...comparison.custody.sources,
+    ...(comparison.detail?.sources ?? []),
+    ...governanceSources,
+  ]));
+  const references = (refs: SourceId[]) => refs.map(id => (
+    <a key={id} href={sources[id].url} target="_blank" rel="noopener noreferrer"
+      title={sources[id].title} aria-label={sources[id].title} className={styles.reference}>
+      [{ids.indexOf(id) + 1}]
+    </a>
+  ));
+
   return (
     <article className={styles.article}>
       <Container size="lg" className={styles.container}>
@@ -55,71 +41,51 @@ export default function ComparisonArticle({
         </a>
         <header className={styles.header}>
           <p className={styles.eyebrow}>
-            {comparison.category === 'wallets'
-              ? 'Wallet infrastructure'
-              : 'Private compute & AI'}
+            {comparison.category === 'wallets' ? 'Wallet infrastructure' : 'Private compute & AI'}
           </p>
           <h1>Lit Protocol vs {comparison.provider}</h1>
           <p className={styles.headline}>{comparison.headline}</p>
           <p className={styles.introduction}>{comparison.introduction}</p>
-          <p className={styles.meta}>
-            By Lit Protocol · Sources reviewed {REVIEWED_ON}
-          </p>
+          <p className={styles.meta}>By Lit Protocol · Reviewed {REVIEWED_ON}</p>
         </header>
-        <p className={styles.scope}>
-          <strong>Scope: </strong>
-          {comparison.scope}
-        </p>
+        <p className={styles.scope}><strong>Scope: </strong>{comparison.scope}</p>
         <div className={styles.decision}>
           <section>
-            <p className={styles.eyebrow}>Lit assessment</p>
-            <h2>Why choose Lit</h2>
+            <p className={styles.eyebrow}>The Lit advantage</p>
+            <h2>Permissions you can inspect on-chain</h2>
             <p className={styles.assessment}>
-              {comparison.assessment}
-              {references(comparison.assessmentSources)}
+              {comparison.assessment.text}{references(comparison.assessment.sources)}
             </p>
+            <a href={sources.litChain.url} className={styles.inlineLink}>
+              How ChainSecured works <span aria-hidden="true">↗</span>
+            </a>
           </section>
           <section>
-            <h2>Tradeoffs to weigh</h2>
-            <p>
-              {comparison.tradeoff}
-              {references(comparison.tradeoffSources ?? [])}
-            </p>
+            <p className={styles.eyebrow}>Shared protections</p>
+            <h2>What both protect</h2>
+            <p>{comparison.parity.text}{references(comparison.parity.sources)}</p>
           </section>
         </div>
-        <section
-          className={styles.section}
-          aria-labelledby="architecture-heading"
-        >
-          <h2 id="architecture-heading">Architecture, side by side</h2>
+        <section className={styles.section} aria-labelledby="authority-heading">
+          <p className={styles.eyebrow}>Operator authority</p>
+          <h2 id="authority-heading">Who can change the rules or stop access?</h2>
           <div className={styles.tableWrap}>
             <table>
               <caption className="sr-only">
-                Architecture of {comparison.provider} compared with Lit Protocol
-                in ChainSecured mode
+                Operator authority: Lit Chipotle ChainSecured compared with {comparison.provider}
               </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Dimension</th>
-                  <th scope="col">{comparison.provider}</th>
-                  <th scope="col">Lit (ChainSecured mode)</th>
+              <thead><tr>
+                <th scope="col">Control</th>
+                <th scope="col">Lit · ChainSecured</th>
+                <th scope="col">{comparison.provider}</th>
+              </tr></thead>
+              <tbody>{comparison.rows.map(row => (
+                <tr key={row.dimension}>
+                  <th scope="row">{row.dimension}</th>
+                  <td>{row.lit.text}{references(row.lit.sources)}</td>
+                  <td>{row.provider.text}{references(row.provider.sources)}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {comparison.rows.map(row => (
-                  <tr key={row.dimension}>
-                    <th scope="row">{row.dimension}</th>
-                    <td>
-                      {row.provider.text}
-                      {references(row.provider.sources)}
-                    </td>
-                    <td>
-                      {row.lit.text}
-                      {references(row.lit.sources)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+              ))}</tbody>
             </table>
           </div>
           <div className={styles.mobileComparison}>
@@ -127,112 +93,61 @@ export default function ComparisonArticle({
               <section key={row.dimension} className={styles.mobileRow}>
                 <h3>{row.dimension}</h3>
                 <dl>
+                  <dt>Lit · ChainSecured</dt>
+                  <dd>{row.lit.text}{references(row.lit.sources)}</dd>
                   <dt>{comparison.provider}</dt>
-                  <dd>
-                    {row.provider.text}
-                    {references(row.provider.sources)}
-                  </dd>
-                  <dt>Lit (ChainSecured mode)</dt>
-                  <dd>
-                    {row.lit.text}
-                    {references(row.lit.sources)}
-                  </dd>
+                  <dd>{row.provider.text}{references(row.provider.sources)}</dd>
                 </dl>
               </section>
             ))}
           </div>
         </section>
-        {comparison.securityReview && (
-          <section
-            className={styles.section}
-            aria-labelledby="security-review-heading"
-          >
-            <p className={styles.eyebrow}>Security analysis</p>
-            <h2 id="security-review-heading">What the guarantees depend on</h2>
-            <p className={styles.analysisIntro}>
-              {comparison.securityReview.conclusion}
-            </p>
-            <div className={styles.findings}>
-              {comparison.securityReview.findings.map(finding => (
-                <details key={finding.title}>
-                  <summary>
-                    {finding.title}
-                    <span aria-hidden="true" className={styles.disclosureMark}>
-                      +
-                    </span>
-                  </summary>
-                  <p className={styles.status}>{finding.status}</p>
-                  <p>
-                    {finding.text}
-                    {references(finding.sources)}
-                  </p>
-                </details>
-              ))}
-            </div>
-            <p className={styles.reviewScope}>
-              {comparison.securityReview.scope}
-            </p>
-          </section>
-        )}
-        {comparison.extra && (
-          <section className={styles.section}>
-            <h2>{comparison.extra.title}</h2>
-            <p className={styles.analysisIntro}>
-              {comparison.extra.text}
-              {references(comparison.extra.sources)}
-            </p>
-          </section>
-        )}
-        <aside className={styles.governance}>
-          <h2>Lit’s governance boundary</h2>
-          <p>
-            Customer-owned wallet policy and hosted runtime approvals are
-            separate. Runtime governance remains a trust dependency.{' '}
-            <a
-              href={sources.litGovernance.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Inspect its quorum and upgrade rules
-            </a>
-            , or read our{' '}
-            <a href={`${COMPARISON_BASE}#methodology`}>
-              comparison methodology
-            </a>
-            .
+        <section className={styles.section} aria-labelledby="custody-heading">
+          <h2 id="custody-heading">
+            {comparison.category === 'wallets' ? 'What custody means in practice' : 'What control means in practice'}
+          </h2>
+          <p className={styles.analysisIntro}>
+            {comparison.custody.text}{references(comparison.custody.sources)}
           </p>
-        </aside>
-        <section className={styles.sources} aria-labelledby="sources-heading">
-          <h2 id="sources-heading">Primary sources</h2>
-          <ol>
-            {ids.map(id => (
-              <li key={id}>
-                <a
-                  href={sources[id].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {sources[id].title}
-                </a>
-              </li>
-            ))}
-          </ol>
         </section>
-        <div className={styles.actions}>
-          <Button
-            href={
-              comparison.category === 'wallets' ? DASHBOARD_LINK : AI_CONTACT_FORM
-            }
-            target="_blank"
-            style={{ padding: '0.7rem 1.1rem', borderRadius: '10px' }}
-          >
-            {comparison.category === 'wallets'
-              ? 'Get started with crypto'
-              : 'Contact for Lit AI'}
-          </Button>
-          <a href="/" className={styles.back}>
-            Explore Lit Protocol <span aria-hidden="true">→</span>
+        <aside className={styles.governance}>
+          <h2>How upgrades are governed</h2>
+          <p>
+            Your account controls wallet permissions. Protocol governance controls
+            which runtime releases receive keys. Check who can change each set
+            of rules, including through contract upgrades.
+            {references(governanceSources)}
+          </p>
+          <a href={`${COMPARISON_BASE}#methodology`} className={styles.inlineLink}>
+            How we make these comparisons <span aria-hidden="true">→</span>
           </a>
+        </aside>
+        <div className={styles.findings}>
+          {comparison.detail && (
+            <details>
+              <summary>{comparison.detail.title}<span aria-hidden="true" className={styles.disclosureMark}>+</span></summary>
+              <p>{comparison.detail.text}{references(comparison.detail.sources)}</p>
+            </details>
+          )}
+          <details className={styles.sources}>
+            <summary>Sources and review scope<span aria-hidden="true" className={styles.disclosureMark}>+</span></summary>
+            <p className={styles.reviewScope}>
+              These comparisons use published documentation and the source code
+              linked below. We have not audited or tested the providers’ live systems.
+              Configurations vary, and source code alone does not establish who
+              currently owns a deployed contract or how it is configured.
+            </p>
+            <ol>{ids.map(id => (
+              <li key={id}><a href={sources[id].url} target="_blank" rel="noopener noreferrer">{sources[id].title}</a></li>
+            ))}</ol>
+          </details>
+        </div>
+        <div className={styles.actions}>
+          <Button href={comparison.category === 'wallets' ? DASHBOARD_LINK : AI_CONTACT_FORM}
+            target="_blank" style={{ padding: '0.7rem 1.1rem', borderRadius: '8px', background: '#181818' }}>
+            {comparison.category === 'wallets' ? 'Get started with crypto' : 'Contact for Lit AI'}
+          </Button>
+          <a href="/security" className={styles.back}>Explore Lit’s security <span aria-hidden="true">→</span></a>
         </div>
         <ComparisonLinks category={comparison.category} />
       </Container>

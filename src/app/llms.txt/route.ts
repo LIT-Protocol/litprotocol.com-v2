@@ -12,10 +12,17 @@ const LLMS_TXT = `# Lit Protocol
 - [Contact for Lit AI](${AI_CONTACT_FORM}): discuss confidential AI training and inference with the Lit team
 - [Quickstart](https://developer.litprotocol.com/quickstart): run your first Lit Action through the dashboard or REST API
 
+## Explore the platform
+
+- [Programmable wallets](https://litprotocol.com/crypto): hot wallets, vaults, and agent wallets with immutable code and updatable on-chain permissions
+- [Confidential AI](https://litprotocol.com/ai): Docker workloads, private training and inference, measured egress policy, and on-chain release approval
+- [Security & verification](https://litprotocol.com/security): software identity, wallet authority, runtime governance, and trust boundaries
+
 ## Wallet infrastructure
 
-Write code that reads from APIs or blockchains and decides when a wallet can sign. In ChainSecured mode, a customer-controlled wallet owns the account, and contracts on Base govern permissions. Lit executes authorized code inside confidential hardware. Check the runtime's code hash against an approved release.
+Build a programmable wallet for your crypto system: hot wallets, vaults, and agent wallets whose signing rules run as code. Agents can transact within code-defined limits, with wallet access updated or revoked through on-chain permissions. Each Action version is immutable. Account permissions can authorize new versions and revoke old ones while the wallet retains its address. Write code that reads from APIs or blockchains and decides when the wallet can sign. In ChainSecured mode, a customer-controlled wallet owns the account, and contracts on Base govern permissions. Lit executes authorized code inside confidential hardware. Check the runtime's code hash against an approved release.
 
+- [Agent wallets](https://litprotocol.com/crypto#agent-wallets)
 - [Stablecoins](https://litprotocol.com/stablecoins)
 - [Cross-chain solvers](https://litprotocol.com/solvers)
 - [Tokenized assets](https://litprotocol.com/rwa)
@@ -24,13 +31,13 @@ Write code that reads from APIs or blockchains and decides when a wallet can sig
 
 ## Private compute and AI
 
-Work with the Lit team to define the model, compute requirements, private execution environment, software verification, data access, and output policies. Training and inference deployments are scoped with the team; this page does not establish specific GPU availability, model support, capacity, or latency.
+Bring your own or a vendor’s Docker container to a confidential virtual machine. The pinned image and outbound connection policy form a measured release approved on-chain. Application egress passes through a proxy enforcing an approved hostname allowlist; application code controls what is sent. An allowed external model provider receives the inputs sent to it and remains outside the confidential runtime. Work with Lit to assess hardware, model artifacts, credentials, outputs, and verification. Hardware support and performance depend on the agreed workload.
 
 ## Verification and governance
 
-Lit manages the hosted system, following the on-chain process for approving protocol updates. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet policy and hosted runtime approvals are separate. The published hosted upgrade configuration uses a Lit-controlled 2-of-4 Safe without a timelock; inspect current contracts and governance documentation. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.
+Protocol updates follow an on-chain approval process. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet permissions and runtime approvals are separate. Deployment alone does not authorize new code to receive runtime keys; the key-management system checks attestation against contract rules. Review both permission checks and upgrade rules for a deployment. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.
 
-- [Open source](${GITHUB_LINK})
+- [Open-source](${GITHUB_LINK})
 - [Security and verification](https://developer.litprotocol.com/architecture/verification/index)
 - [How attestation works](https://developer.litprotocol.com/architecture/verification/attestation)
 - [Runtime governance](https://developer.litprotocol.com/architecture/verification/upgrade-governance)
@@ -39,7 +46,7 @@ Lit manages the hosted system, following the on-chain process for approving prot
 
 ## Comparisons
 
-These comparisons use provider documentation and identified public source code, distinguish Lit's interpretation from evidence, and disclose tradeoffs.
+These comparisons examine operator authority: who can change permissions, approve software, withhold service, and recover access. Lit is scoped to Chipotle ChainSecured, not the legacy MPC network. Shared TEE protections are distinguished from chain-secured authorization. Runtime and account-contract upgrade rules are separate from account permissions. These comparisons describe the method; deployment-specific approval policies are evaluated separately.
 
 - [Comparison methodology](https://litprotocol.com/compare#methodology)
 - [Lit vs Privy](https://litprotocol.com/compare/privy)

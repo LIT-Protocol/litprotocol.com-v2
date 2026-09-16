@@ -162,7 +162,7 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
         >
           <a
             href={GITHUB_LINK}
-            aria-label={draft ? 'Open source on GitHub' : undefined}
+            aria-label={draft ? 'Open-source on GitHub' : undefined}
             title={draft ? 'GitHub' : undefined}
             target="_blank"
             rel="noopener noreferrer"
@@ -171,11 +171,11 @@ const LandingHero = ({ draft = false }: { draft?: boolean }) => {
             {draft ? (
               <>
                 <IconBrandGithubFilled size={24} aria-hidden="true" />
-                Open source
+                Open-source
               </>
             ) : (
               <>
-                <IconBrandGithub size={14} stroke={1.8} /> Open source
+                <IconBrandGithub size={14} stroke={1.8} /> Open-source
               </>
             )}
           </a>
