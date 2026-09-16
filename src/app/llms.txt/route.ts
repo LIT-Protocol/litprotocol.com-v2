@@ -46,7 +46,7 @@ Protocol updates follow an on-chain approval process. Source code, approved rele
 
 ## Comparisons
 
-These comparisons examine operator authority: who can change permissions, approve software, withhold service, and recover access. Lit is scoped to Chipotle ChainSecured, not the legacy MPC network. Shared TEE protections are distinguished from chain-secured authorization. Runtime and account-contract upgrade rules are separate from account permissions. These comparisons describe the method; deployment-specific approval policies are evaluated separately.
+These comparisons examine operator authority: who can change permissions, approve software, withhold service, and recover access. Wallet comparisons cover Chipotle ChainSecured, not the legacy MPC network. Compute comparisons cover confidential containers whose code and network policies require on-chain release approval. Shared TEE protections are distinguished from on-chain authorization. Wallet permissions, runtime approvals, and contract upgrade rules are separate. Deployment-specific approval policies are evaluated separately.
 
 - [Comparison methodology](https://litprotocol.com/compare#methodology)
 - [Lit vs Privy](https://litprotocol.com/compare/privy)

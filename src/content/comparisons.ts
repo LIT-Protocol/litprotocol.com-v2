@@ -2,6 +2,10 @@ export const REVIEWED_ON = 'September 16, 2026';
 export const COMPARISON_BASE = '/compare';
 
 export const sources = {
+  litAi: {
+    title: 'Lit: Confidential AI containers and egress controls',
+    url: 'https://developer.litprotocol.com/ai/overview',
+  },
   litAccountCode: {
     title: 'Chipotle: account mutation authorization (reviewed source)',
     url: 'https://github.com/LIT-Protocol/chipotle/blob/b7ce97fbc106d161e1378e8d97b65870429a070a/lit-api-server/blockchain/lit_node_express/contracts/AccountConfigFacets/AppStorage.sol',
@@ -126,6 +130,10 @@ const accountAuthority: Claim = {
   text: 'Your account wallet approves permission changes on Base. A usage API key can run authorized Actions but cannot change those permissions.',
   sources: ['litAccountCode', 'litChain'],
 };
+const containerApproval: Claim = {
+  text: 'Changes to container code or network policy create a new measured release. The deployment’s on-chain approval rules determine whether that release is authorized.',
+  sources: ['litAi', 'litKms'],
+};
 const runtimeAuthority: Claim = {
   text: 'New software cannot receive runtime keys just because an operator deploys it. The key-management system checks hardware attestation and on-chain approval before releasing keys.',
   sources: ['litKms', 'litGovernance'],
@@ -183,7 +191,7 @@ export const comparisons: Comparison[] = [
     },
     detail: {
       title: 'The operator is part of the threat model',
-      text: 'Turnkey explicitly trusts its enclave applications and their QuorumSets. Attestation can establish that approved code is running; it cannot establish that the people approving it made a safe choice. Lit separates deployment from approval through public contract rules. The approval process remains part of the security model.',
+      text: 'Turnkey’s security depends on its enclave code and the operator quorums that approve it. Attestation can establish that approved code is running; it cannot establish that the people approving it made a safe choice. Lit records and enforces runtime approval through public contracts. The approval process remains part of the security model.',
       sources: ['turnkeyArchitecture', 'turnkeyQuorum', 'litGovernance'],
     },
   },
@@ -199,7 +207,7 @@ export const comparisons: Comparison[] = [
       sources: ['litChain', 'litGroups'],
     },
     parity: {
-      text: 'Both protect key operations inside confidential hardware. Privy also verifies authorization signatures and enforces wallet policies in its enclave. Its controls are cryptographic, not merely contractual.',
+      text: 'Both protect key operations inside confidential hardware. Privy also verifies authorization signatures and enforces wallet policies in its enclave.',
       sources: ['privyArchitecture', 'privyPolicies', 'litAttestation'],
     },
     rows: [
@@ -251,7 +259,7 @@ export const comparisons: Comparison[] = [
       } },
     ],
     custody: {
-      text: 'A party can lack enough shares to steal funds yet still be necessary for everyday access. Fireblocks’ documented recovery path matters here. Lit puts programmable signing rules and permissions on-chain. That does not by itself give it a stronger recovery path without a provider.',
+      text: 'A party can lack enough shares to steal funds yet still be necessary for everyday access. Fireblocks’ documented recovery path matters here. Lit records on-chain which signing code your account authorizes. That does not by itself give it a stronger recovery path without a provider.',
       sources: ['fireblocksRecovery', 'litChain'],
     },
   },
@@ -259,19 +267,19 @@ export const comparisons: Comparison[] = [
     slug: 'google-cloud',
     provider: 'Google Confidential Cloud',
     category: 'compute',
-    scope: 'Lit Chipotle’s ChainSecured model and Google Confidential Space, rather than every Google Cloud confidential-computing product. Contact Lit to plan an AI deployment.',
+    scope: 'Lit’s on-chain approval method for confidential containers and Google Confidential Space, rather than every Google Cloud confidential-computing product. Contact Lit to plan an AI deployment.',
     headline: 'Approve private compute through on-chain rules.',
     introduction: 'Confidential hardware protects execution. The next question is who can authorize the workload, grant it data, and change those decisions.',
     assessment: {
-      text: 'Lit records application permissions and runtime approvals on Base. Different teams can inspect the same rules and approval history directly.',
-      sources: ['litChain', 'litKms'],
+      text: 'Lit requires on-chain approval for container releases and checks it before releasing runtime keys. Teams can inspect which releases were approved.',
+      sources: ['litAi', 'litKms'],
     },
     parity: {
       text: 'Both use attestation to identify software. Google Confidential Space can restrict data access to specific workload image digests, so a workload operator cannot simply substitute arbitrary code and retain that access.',
       sources: ['googlePolicy', 'googleAssertions', 'litAttestation'],
     },
     rows: [
-      { dimension: 'Change access rules', lit: accountAuthority, provider: {
+      { dimension: 'Change application permissions', lit: containerApproval, provider: {
         text: 'Data collaborators set attestation conditions and resource permissions. In the standard Google IAM setup, the relevant policy administrators—not merely the workload operator—can change these grants.',
         sources: ['googlePolicy'],
       } },
@@ -280,31 +288,31 @@ export const comparisons: Comparison[] = [
         sources: ['googlePolicy'],
       } },
       { dimension: 'Control what leaves', lit: {
-        text: 'Permitted Actions define application behavior, including external calls. For AI, define the model, credentials, allowed services, and output rules with Lit. Attestation does not prove that every output is safe.',
-        sources: ['litActions', 'litAttestation'],
+        text: 'The container’s network policy limits outbound connections to allowed services. Changing that policy requires a new measured release and on-chain approval. Application code still determines what data is sent.',
+        sources: ['litAi', 'litAttestation'],
       }, provider: {
         text: 'Collaborators and workload authors choose resource access and result destinations. Confidential execution does not, by itself, constrain every output of the approved application.',
         sources: ['googlePolicy'],
       } },
     ],
     custody: {
-      text: 'For private compute, control means deciding which code can use data and what it may release. Lit brings that decision into an on-chain account model. Google can separate data owners from workload operators too; the distinction is where authorization lives and who can revise it.',
-      sources: ['litChain', 'googlePolicy'],
+      text: 'For private compute, control means deciding which code can use data and what it may release. Lit binds container code and network policy to releases approved on-chain. Google can separate data owners from workload operators too; the distinction is where authorization lives and who can revise it.',
+      sources: ['litAi', 'googlePolicy'],
     },
   },
   {
     slug: 'fortanix',
     provider: 'Fortanix',
     category: 'compute',
-    scope: 'Lit Chipotle’s ChainSecured model and Fortanix Confidential Computing Manager (CCM). Contact Lit to plan an AI deployment.',
+    scope: 'Lit’s on-chain approval method for confidential containers and Fortanix Confidential Computing Manager (CCM). Contact Lit to plan an AI deployment.',
     headline: 'See who can approve the next release.',
     introduction: 'Check which software is running and who can approve its replacement.',
     assessment: {
       text: 'Lit uses public contracts to determine which software can receive runtime keys. Teams can inspect approved code hashes and approval history without access to a private management console.',
-      sources: ['litKms', 'litChain'],
+      sources: ['litKms', 'litAi'],
     },
     parity: {
-      text: 'Both identify confidential workloads through attestation and measurements. Fortanix CCM uses approved builds and domains when issuing application certificates. It has a technical approval gate, not just a review procedure.',
+      text: 'Both identify confidential workloads through attestation and measurements. Fortanix CCM uses approved builds and domains when issuing application certificates.',
       sources: ['fortanixBuild', 'fortanixApprovals', 'litAttestation'],
     },
     rows: [
@@ -312,13 +320,13 @@ export const comparisons: Comparison[] = [
         text: 'CCM Administrator or Editor roles can approve a build. Certificate issuance depends on approval. Those role holders are therefore part of the application’s trust boundary.',
         sources: ['fortanixApprovals'],
       } },
-      { dimension: 'Change application authority', lit: accountAuthority, provider: {
+      { dimension: 'Approve application changes', lit: containerApproval, provider: {
         text: 'CCM’s role and domain administration govern which applications receive certificates. Inspect who can grant those roles and approve domains in the organization’s actual deployment.',
         sources: ['fortanixApprovals'],
       } },
       { dimension: 'Inspect the decision', lit: {
-        text: 'Base records the relevant account permissions and runtime approvals. A verifier can inspect the contract state as well as the attested runtime identity.',
-        sources: ['litVerification', 'litGroups'],
+        text: 'The on-chain record identifies approved releases. A verifier can compare that record with the runtime’s attested identity.',
+        sources: ['litAi', 'litAttestation'],
       }, provider: {
         text: 'CCM exposes build and domain approval tasks within its management environment. Its approval model centers on the organization’s administrative roles.',
         sources: ['fortanixApprovals'],
@@ -333,15 +341,15 @@ export const comparisons: Comparison[] = [
     slug: 'tinfoil',
     provider: 'Tinfoil',
     category: 'compute',
-    scope: 'Lit Chipotle’s ChainSecured model, Tinfoil hosted inference, and Tinfoil Containers. Contact Lit to plan training or inference.',
+    scope: 'Lit’s on-chain approval method for confidential containers, Tinfoil hosted inference, and Tinfoil Containers. Contact Lit to plan training or inference.',
     headline: 'Verify the runtime. Govern what it can do.',
     introduction: 'Private inference needs protection from the host. Applications that also use credentials, tools, or wallets need a clear authority model for those actions.',
     assessment: {
-      text: 'Lit Actions can call services, use secrets, and sign transactions under your account’s on-chain permissions. For AI, work with Lit to define which code can use your data, credentials, and tools.',
-      sources: ['litActions', 'litGroups'],
+      text: 'Lit requires on-chain approval for changes to container code and network policy. The attested runtime must match an approved release before receiving its keys.',
+      sources: ['litAi', 'litKms'],
     },
     parity: {
-      text: 'Both provide software verification and hardware isolation. Tinfoil’s SDK checks attested software against published build evidence and encrypts requests to the enclave. Code-hash verification is not unique to Lit.',
+      text: 'Both provide software verification and hardware isolation. Tinfoil’s SDK checks attested software against published build evidence and encrypts requests to the enclave.',
       sources: ['tinfoilVerification', 'litAttestation'],
     },
     rows: [
@@ -349,21 +357,21 @@ export const comparisons: Comparison[] = [
         text: 'SDK verification rejects measurements that do not match the expected build. Its documented flow follows the latest published release, making release authority a separate question from host access.',
         sources: ['tinfoilVerification'],
       } },
-      { dimension: 'Authorize application actions', lit: accountAuthority, provider: {
+      { dimension: 'Change code and network access', lit: containerApproval, provider: {
         text: 'Hosted inference runs Tinfoil’s published service; Containers let customers deploy their own applications. Evaluate who controls the application’s releases and credentials in the chosen product.',
         sources: ['tinfoilContainers', 'tinfoilVerification'],
       } },
       { dimension: 'Control outputs', lit: {
-        text: 'Specify which code can run, which accounts it can use, and where it can send data. Review the code and model as well as the runtime.',
-        sources: ['litActions', 'litAttestation'],
+        text: 'The container’s network policy determines which services the application can reach. Its code determines what data it sends. Review both before approving a release.',
+        sources: ['litAi', 'litAttestation'],
       }, provider: {
         text: 'Encrypted, attested connections protect data from the host. They do not establish that an approved model or custom application cannot disclose data through its allowed outputs.',
         sources: ['tinfoilVerification', 'tinfoilContainers'],
       } },
     ],
     custody: {
-      text: 'For AI, assess control over data, credentials, releases, and outputs separately. Tinfoil offers a direct private-inference product. Lit puts application permissions on-chain. The team confirms model support, hardware capacity, and what you can verify for each deployment.',
-      sources: ['tinfoilContainers', 'litChain'],
+      text: 'For AI, assess control over data, credentials, releases, and outputs separately. Tinfoil offers a direct private-inference product. Lit uses on-chain approval to authorize container releases and their network policies. The team confirms model support, hardware capacity, and what you can verify for each deployment.',
+      sources: ['tinfoilContainers', 'litAi'],
     },
   },
 ];

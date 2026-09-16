@@ -13,11 +13,12 @@ import {
 import ComparisonLinks from './ComparisonLinks';
 import styles from './comparisons.module.css';
 
-const governanceSources: SourceId[] = [
-  'litGovernance', 'litUpgradeCode', 'litVerification',
-];
-
 export default function ComparisonArticle({ comparison }: { comparison: Comparison }) {
+  const compute = comparison.category === 'compute';
+  const litLabel = compute ? 'Lit · On-chain approvals' : 'Lit · ChainSecured';
+  const governanceSources: SourceId[] = compute
+    ? ['litAi', 'litGovernance', 'litKms']
+    : ['litGovernance', 'litUpgradeCode', 'litVerification'];
   const ids = Array.from(new Set([
     ...comparison.assessment.sources,
     ...comparison.parity.sources,
@@ -52,12 +53,14 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
         <div className={styles.decision}>
           <section>
             <p className={styles.eyebrow}>The Lit advantage</p>
-            <h2>Permissions you can inspect on-chain</h2>
+            <h2>{compute
+              ? 'On-chain rules govern runtime key access'
+              : 'Your on-chain rules govern signing'}</h2>
             <p className={styles.assessment}>
               {comparison.assessment.text}{references(comparison.assessment.sources)}
             </p>
-            <a href={sources.litChain.url} className={styles.inlineLink}>
-              How ChainSecured works <span aria-hidden="true">↗</span>
+            <a href={compute ? sources.litAi.url : sources.litChain.url} className={styles.inlineLink}>
+              {compute ? 'How confidential AI works' : 'How ChainSecured works'} <span aria-hidden="true">↗</span>
             </a>
           </section>
           <section>
@@ -72,11 +75,11 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
           <div className={styles.tableWrap}>
             <table>
               <caption className="sr-only">
-                Operator authority: Lit Chipotle ChainSecured compared with {comparison.provider}
+                Operator authority: {compute ? 'Lit confidential containers' : 'Lit Chipotle ChainSecured'} compared with {comparison.provider}
               </caption>
               <thead><tr>
                 <th scope="col">Control</th>
-                <th scope="col">Lit · ChainSecured</th>
+                <th scope="col">{litLabel}</th>
                 <th scope="col">{comparison.provider}</th>
               </tr></thead>
               <tbody>{comparison.rows.map(row => (
@@ -93,7 +96,7 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
               <section key={row.dimension} className={styles.mobileRow}>
                 <h3>{row.dimension}</h3>
                 <dl>
-                  <dt>Lit · ChainSecured</dt>
+                  <dt>{litLabel}</dt>
                   <dd>{row.lit.text}{references(row.lit.sources)}</dd>
                   <dt>{comparison.provider}</dt>
                   <dd>{row.provider.text}{references(row.provider.sources)}</dd>
@@ -113,9 +116,9 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
         <aside className={styles.governance}>
           <h2>How upgrades are governed</h2>
           <p>
-            Your account controls wallet permissions. Protocol governance controls
-            which runtime releases receive keys. Check who can change each set
-            of rules, including through contract upgrades.
+            {compute
+              ? 'Runtime approvals and contract upgrades have separate rules. Check who can approve a new release and who can change the rules for approving it.'
+              : 'Your account controls wallet permissions. Protocol governance controls which runtime releases receive keys. Check who can change each set of rules, including through contract upgrades.'}
             {references(governanceSources)}
           </p>
           <a href={`${COMPARISON_BASE}#methodology`} className={styles.inlineLink}>

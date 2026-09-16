@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       'Compare operator authority, custody, and attack surfaces across wallet and confidential-compute providers.',
   },
   description:
-    'Compare Lit Chipotle ChainSecured with wallet and confidential-compute providers: permissions, software approvals, and access.',
+      'Compare Lit with wallet and confidential-compute providers: on-chain permissions, software approvals, and access.',
 };
 
 export default function Comparisons() {
@@ -71,14 +71,19 @@ export default function Comparisons() {
               Our conclusions are architectural assessments, not security audits,
               exploit findings, or legal classifications of custody.
             </p>
-            <h3>Chipotle, in ChainSecured mode</h3>
+            <h3>Wallets and confidential containers</h3>
             <p>
-              These pages describe Chipotle, not Lit’s legacy MPC network or managed
-              API-mode accounts. A customer-controlled wallet administers account
-              permissions on Base. The attested runtime enforces them.{' '}
+              The wallet comparisons cover Chipotle in ChainSecured mode. A
+              customer-controlled wallet administers account permissions on Base,
+              and the attested runtime enforces them. They do not cover Lit’s
+              legacy MPC network or API-mode accounts.{' '}
               <a href={sources.litAccountCode.url}>Inspect the permission check</a>.
-              Account ownership, runtime approval, and contract upgrades are
-              different authorities.
+            </p>
+            <p>
+              The compute comparisons cover Docker containers with on-chain
+              approval of code and network policy. They do not use the wallet
+              account or Lit Actions API as the AI deployment interface.{' '}
+              <a href={sources.litAi.url}>Read the AI deployment guide</a>.
             </p>
             <h3>On-chain governance</h3>
             <p>
