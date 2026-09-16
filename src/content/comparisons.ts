@@ -131,15 +131,19 @@ const accountAuthority: Claim = {
   sources: ['litAccountCode', 'litChain'],
 };
 const containerApproval: Claim = {
-  text: 'Changes to container code or network policy create a new measured release. The deployment’s on-chain approval rules determine whether that release is authorized.',
+  text: 'Approvers designated by the deployment’s on-chain governance authorize changes to container code or network policy. Each change creates a new measured release.',
   sources: ['litAi', 'litKms'],
 };
 const runtimeAuthority: Claim = {
-  text: 'New software cannot receive runtime keys just because an operator deploys it. The key-management system checks hardware attestation and on-chain approval before releasing keys.',
+  text: 'The approvers authorized by the governance contracts can approve runtime releases. The key-management system checks on-chain approval and hardware attestation before releasing keys. Deploying new code is not enough.',
   sources: ['litKms', 'litGovernance'],
 };
+const computeAvailability: Claim = {
+  text: 'The runtime host can stop execution. Key release also depends on the key-management service. On-chain approval does not guarantee continued service or recovery.',
+  sources: ['litAi', 'litKms'],
+};
 const serviceDependency: Claim = {
-  text: 'You can still inspect on-chain permissions if the API goes offline. Running code still needs the runtime and key-management system. On-chain control does not by itself provide recovery without a provider.',
+  text: 'The API operator or runtime host can interrupt normal signing. On-chain permissions remain inspectable, but execution still needs the runtime and key-management system. Recovery requires a separate plan.',
   sources: ['litArchitecture', 'litKms'],
 };
 
@@ -150,7 +154,7 @@ export const comparisons: Comparison[] = [
     category: 'wallets',
     scope: 'Lit Chipotle in ChainSecured mode and Turnkey’s hosted wallet infrastructure on AWS Nitro.',
     headline: 'Your wallet rules, secured on-chain.',
-    introduction: 'Both protect keys in confidential hardware. Lit puts account permissions and runtime approval records on-chain, so control can be inspected beyond the provider’s API.',
+    introduction: 'A wallet’s security depends on who can change its rules, approve its software, and keep it available. Lit enforces permissions and runtime approval through public contracts.',
     assessment: {
       text: 'Your account decides which Actions can use each wallet key. Each Action is identified by its code hash, and the runtime checks your on-chain permissions. The runtime itself must have on-chain approval to receive its keys.',
       sources: ['litGroups', 'litKms'],
@@ -161,7 +165,7 @@ export const comparisons: Comparison[] = [
     },
     rows: [
       {
-        dimension: 'Change the signing rules',
+        dimension: 'Who can change the permissions?',
         lit: accountAuthority,
         provider: {
           text: 'Customer authorization governs policy changes within Turnkey’s enclave system. Its integrity depends on the approved enclave applications and the operator quorums that authorize them.',
@@ -169,7 +173,7 @@ export const comparisons: Comparison[] = [
         },
       },
       {
-        dimension: 'Replace the software',
+        dimension: 'Who can approve replacement code?',
         lit: runtimeAuthority,
         provider: {
           text: 'Turnkey’s operator quorums authorize enclave software and service-secret provisioning. AWS supplies the Nitro attestation root; the operator approval process determines which code is trusted with secrets.',
@@ -177,7 +181,7 @@ export const comparisons: Comparison[] = [
         },
       },
       {
-        dimension: 'Withhold service',
+        dimension: 'Who can stop access?',
         lit: serviceDependency,
         provider: {
           text: 'Signing and normal key export require Turnkey’s service. Its disaster-recovery documentation describes provider restoration; that is distinct from a customer’s independently tested exit path.',
@@ -211,15 +215,15 @@ export const comparisons: Comparison[] = [
       sources: ['privyArchitecture', 'privyPolicies', 'litAttestation'],
     },
     rows: [
-      { dimension: 'Change wallet permissions', lit: accountAuthority, provider: {
+      { dimension: 'Who can change the permissions?', lit: accountAuthority, provider: {
         text: 'Owners and authorization-key quorums control wallet actions through Privy’s API. Those rules are enforced by its enclave; they are not customer permissions recorded in Lit’s public contract system.',
         sources: ['privyPolicies'],
       } },
-      { dimension: 'Replace the software', lit: runtimeAuthority, provider: {
+      { dimension: 'Who can approve replacement code?', lit: runtimeAuthority, provider: {
         text: 'Privy documents multiple reviewers, protected builds, hardware keys, and staged deployments. These constrain release operators; the cited architecture does not establish a public, on-chain runtime approval gate.',
         sources: ['privyArchitecture'],
       } },
-      { dimension: 'Withhold service', lit: serviceDependency, provider: {
+      { dimension: 'Who can stop access?', lit: serviceDependency, provider: {
         text: 'Wallet actions, including normal key export, go through Privy’s authorization and enclave path. Evaluate the actual recovery setup separately from the wallet’s ownership label.',
         sources: ['privyPolicies'],
       } },
@@ -235,7 +239,7 @@ export const comparisons: Comparison[] = [
     category: 'wallets',
     scope: 'Lit Chipotle in ChainSecured mode and Fireblocks Vault infrastructure. Fireblocks deployments and recovery arrangements vary.',
     headline: 'Control the permission to sign.',
-    introduction: 'Splitting a key addresses one threat. Governing what may be signed addresses another. Lit’s model centers on customer-controlled permissions enforced by verified code.',
+    introduction: 'Look beyond the key shares. Compare who controls signing policy, approves software, and can withhold a signature.',
     assessment: {
       text: 'Use Lit to power hot wallets and vaults with signing rules expressed as code and governed on-chain. A permitted Action can evaluate external information before using a wallet. Authority follows the account’s contract permissions, rather than participation in an MPC signing threshold.',
       sources: ['litActions', 'litGroups', 'litArchitecture'],
@@ -245,15 +249,15 @@ export const comparisons: Comparison[] = [
       sources: ['fireblocksArchitecture', 'litArchitecture'],
     },
     rows: [
-      { dimension: 'Change signing authority', lit: accountAuthority, provider: {
+      { dimension: 'Who can change the permissions?', lit: accountAuthority, provider: {
         text: 'Workspace policy and approval roles govern transactions alongside the signing threshold. Assess who administers those roles and co-signers, not just how many key shares exist.',
         sources: ['fireblocksArchitecture'],
       } },
-      { dimension: 'Trust the operators', lit: runtimeAuthority, provider: {
-        text: 'Security depends on the deployed signing participants, their software, and policy administration. A distributed key does not by itself prove that those authorities are organizationally independent.',
+      { dimension: 'Who can approve replacement code?', lit: runtimeAuthority, provider: {
+        text: 'Software control depends on the deployed Fireblocks components and co-signers. The cited overview does not identify every authority that can approve replacement code; verify that authority for your deployment.',
         sources: ['fireblocksArchitecture'],
       } },
-      { dimension: 'Withhold a signature', lit: serviceDependency, provider: {
+      { dimension: 'Who can stop access?', lit: serviceDependency, provider: {
         text: 'Normal signing needs enough participating shares. Fireblocks documents recovery for lost signing devices or suspended operations. Confirm the required backups and recovery materials are in place.',
         sources: ['fireblocksRecovery'],
       } },
@@ -279,19 +283,16 @@ export const comparisons: Comparison[] = [
       sources: ['googlePolicy', 'googleAssertions', 'litAttestation'],
     },
     rows: [
-      { dimension: 'Change application permissions', lit: containerApproval, provider: {
+      { dimension: 'Who can change the permissions?', lit: containerApproval, provider: {
         text: 'Data collaborators set attestation conditions and resource permissions. In the standard Google IAM setup, the relevant policy administrators—not merely the workload operator—can change these grants.',
         sources: ['googlePolicy'],
       } },
-      { dimension: 'Approve new code', lit: runtimeAuthority, provider: {
-        text: 'Digest-based grants can reject a changed workload. Review who can edit those grants or broaden identity conditions. The approval authority lives in the configured identity and resource controls.',
+      { dimension: 'Who can approve replacement code?', lit: runtimeAuthority, provider: {
+        text: 'The administrators who can change resource grants and attestation conditions decide which replacement images gain access. Digest-based grants can reject code that has not been approved.',
         sources: ['googlePolicy'],
       } },
-      { dimension: 'Control what leaves', lit: {
-        text: 'The container’s network policy limits outbound connections to allowed services. Changing that policy requires a new measured release and on-chain approval. Application code still determines what data is sent.',
-        sources: ['litAi', 'litAttestation'],
-      }, provider: {
-        text: 'Collaborators and workload authors choose resource access and result destinations. Confidential execution does not, by itself, constrain every output of the approved application.',
+      { dimension: 'Who can stop access?', lit: computeAvailability, provider: {
+        text: 'In the standard IAM setup, access depends on the collaborator’s resource grants and cloud services. Administrators who can change those grants can withdraw access; attestation does not guarantee availability.',
         sources: ['googlePolicy'],
       } },
     ],
@@ -316,19 +317,16 @@ export const comparisons: Comparison[] = [
       sources: ['fortanixBuild', 'fortanixApprovals', 'litAttestation'],
     },
     rows: [
-      { dimension: 'Authorize a build', lit: runtimeAuthority, provider: {
-        text: 'CCM Administrator or Editor roles can approve a build. Certificate issuance depends on approval. Those role holders are therefore part of the application’s trust boundary.',
-        sources: ['fortanixApprovals'],
-      } },
-      { dimension: 'Approve application changes', lit: containerApproval, provider: {
+      { dimension: 'Who can change the permissions?', lit: containerApproval, provider: {
         text: 'CCM’s role and domain administration govern which applications receive certificates. Inspect who can grant those roles and approve domains in the organization’s actual deployment.',
         sources: ['fortanixApprovals'],
       } },
-      { dimension: 'Inspect the decision', lit: {
-        text: 'The on-chain record identifies approved releases. A verifier can compare that record with the runtime’s attested identity.',
-        sources: ['litAi', 'litAttestation'],
-      }, provider: {
-        text: 'CCM exposes build and domain approval tasks within its management environment. Its approval model centers on the organization’s administrative roles.',
+      { dimension: 'Who can approve replacement code?', lit: runtimeAuthority, provider: {
+        text: 'CCM Administrator or Editor roles can approve a build. Certificate issuance depends on approval. Those role holders are therefore part of the application’s trust boundary.',
+        sources: ['fortanixApprovals'],
+      } },
+      { dimension: 'Who can stop access?', lit: computeAvailability, provider: {
+        text: 'CCM can deny certificate issuance when required build or domain approval is absent. Applications that rely on those certificates depend on the approval administrators and CCM service.',
         sources: ['fortanixApprovals'],
       } },
     ],
@@ -353,20 +351,17 @@ export const comparisons: Comparison[] = [
       sources: ['tinfoilVerification', 'litAttestation'],
     },
     rows: [
-      { dimension: 'Substitute the runtime', lit: runtimeAuthority, provider: {
-        text: 'SDK verification rejects measurements that do not match the expected build. Its documented flow follows the latest published release, making release authority a separate question from host access.',
-        sources: ['tinfoilVerification'],
-      } },
-      { dimension: 'Change code and network access', lit: containerApproval, provider: {
-        text: 'Hosted inference runs Tinfoil’s published service; Containers let customers deploy their own applications. Evaluate who controls the application’s releases and credentials in the chosen product.',
+      { dimension: 'Who can change the permissions?', lit: containerApproval, provider: {
+        text: 'Tinfoil controls the hosted inference application. With Containers, customers define their application’s permissions through its code and configuration. Review who can publish changes to that configuration.',
         sources: ['tinfoilContainers', 'tinfoilVerification'],
       } },
-      { dimension: 'Control outputs', lit: {
-        text: 'The container’s network policy determines which services the application can reach. Its code determines what data it sends. Review both before approving a release.',
-        sources: ['litAi', 'litAttestation'],
-      }, provider: {
-        text: 'Encrypted, attested connections protect data from the host. They do not establish that an approved model or custom application cannot disclose data through its allowed outputs.',
-        sources: ['tinfoilVerification', 'tinfoilContainers'],
+      { dimension: 'Who can approve replacement code?', lit: runtimeAuthority, provider: {
+        text: 'Tinfoil publishes the hosted inference releases; Container customers publish their application configuration. The SDK checks the running software against published build evidence. Review who can approve changes to both the application and its underlying runtime.',
+        sources: ['tinfoilContainers', 'tinfoilVerification'],
+      } },
+      { dimension: 'Who can stop access?', lit: computeAvailability, provider: {
+        text: 'Hosted inference and Containers depend on Tinfoil’s running service. Verification can identify the software serving a request; it cannot require the provider to keep serving requests. Evaluate data persistence and recovery separately.',
+        sources: ['tinfoilContainers', 'tinfoilVerification'],
       } },
     ],
     custody: {

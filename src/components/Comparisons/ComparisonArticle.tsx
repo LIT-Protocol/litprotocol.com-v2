@@ -50,28 +50,9 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
           <p className={styles.meta}>By Lit Protocol · Reviewed {REVIEWED_ON}</p>
         </header>
         <p className={styles.scope}><strong>Scope: </strong>{comparison.scope}</p>
-        <div className={styles.decision}>
-          <section>
-            <p className={styles.eyebrow}>The Lit advantage</p>
-            <h2>{compute
-              ? 'On-chain rules govern runtime key access'
-              : 'Your on-chain rules govern signing'}</h2>
-            <p className={styles.assessment}>
-              {comparison.assessment.text}{references(comparison.assessment.sources)}
-            </p>
-            <a href={compute ? sources.litAi.url : sources.litChain.url} className={styles.inlineLink}>
-              {compute ? 'How confidential AI works' : 'How ChainSecured works'} <span aria-hidden="true">↗</span>
-            </a>
-          </section>
-          <section>
-            <p className={styles.eyebrow}>Shared protections</p>
-            <h2>What both protect</h2>
-            <p>{comparison.parity.text}{references(comparison.parity.sources)}</p>
-          </section>
-        </div>
         <section className={styles.section} aria-labelledby="authority-heading">
           <p className={styles.eyebrow}>Operator authority</p>
-          <h2 id="authority-heading">Who can change the rules or stop access?</h2>
+          <h2 id="authority-heading">Three questions about operator authority.</h2>
           <div className={styles.tableWrap}>
             <table>
               <caption className="sr-only">
@@ -105,6 +86,20 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
             ))}
           </div>
         </section>
+        <div className={styles.decision}>
+          <section>
+            <p className={styles.eyebrow}>The Lit advantage</p>
+            <h2>{compute
+              ? 'On-chain rules govern runtime key access'
+              : 'Your on-chain rules govern signing'}</h2>
+            <p className={styles.assessment}>
+              {comparison.assessment.text}{references(comparison.assessment.sources)}
+            </p>
+            <a href={compute ? sources.litAi.url : sources.litChain.url} className={styles.inlineLink}>
+              {compute ? 'How confidential AI works' : 'How ChainSecured works'} <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </div>
         <section className={styles.section} aria-labelledby="custody-heading">
           <h2 id="custody-heading">
             {comparison.category === 'wallets' ? 'What custody means in practice' : 'What control means in practice'}
@@ -126,6 +121,10 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
           </a>
         </aside>
         <div className={styles.findings}>
+          <details>
+            <summary>Shared protections<span aria-hidden="true" className={styles.disclosureMark}>+</span></summary>
+            <p>{comparison.parity.text}{references(comparison.parity.sources)}</p>
+          </details>
           {comparison.detail && (
             <details>
               <summary>{comparison.detail.title}<span aria-hidden="true" className={styles.disclosureMark}>+</span></summary>
