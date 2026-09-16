@@ -9,8 +9,11 @@ export const USE_CASES_LINK =
   'https://litprotocol.notion.site/Lit-Protocol-Use-Cases-a94916becdc0411f848c3095722c7864';
 export const SPARK_LINK = 'https://spark.litprotocol.com';
 export const CONTACT_FORM = 'https://forms.gle/n4WKtsyxaduEz8dDA';
+export const AI_CONTACT_FORM =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeIqxiiMLBgk-igTDU665Yx3UZsGrP_PgLUy9sh7sUx1mYyGg/viewform?usp=publish-editor';
 export const CALENDAR_LINK = 'https://litgateway.com/calendar';
-export const GITHUB_LINK = 'https://github.com/LIT-Protocol';
+export const GITHUB_LINK = 'https://github.com/LIT-Protocol/chipotle';
+export const GITHUB_ORG_LINK = 'https://github.com/LIT-Protocol';
 export const AUDIT_LINK =
   'https://drive.google.com/drive/folders/1Rrht88iUkzpofwl1CvP9gEjqY60BKyFn';
 export const COMMUNITY_LINK = 'https://developer.litprotocol.com/';

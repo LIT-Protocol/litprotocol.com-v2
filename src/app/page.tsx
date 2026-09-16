@@ -2,7 +2,7 @@ import LandingPage from '@/components/LandingPage/LandingPage';
 import Layout from '@/components/Layout/Layout';
 import {
   DOCS_LINK,
-  GITHUB_LINK,
+  GITHUB_ORG_LINK,
   LINKEDIN_LINK,
   SPARK_LINK,
   TWITTER_LINK,
@@ -33,7 +33,7 @@ const jsonLd = {
           availableLanguage: 'English',
         },
       ],
-      sameAs: [TWITTER_LINK, LINKEDIN_LINK, GITHUB_LINK, SPARK_LINK],
+      sameAs: [TWITTER_LINK, LINKEDIN_LINK, GITHUB_ORG_LINK, SPARK_LINK],
     },
     {
       '@type': 'WebSite',

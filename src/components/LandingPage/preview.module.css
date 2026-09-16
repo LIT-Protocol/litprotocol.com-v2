@@ -206,6 +206,14 @@
 }
 
 @media (max-width: 479px) {
+  .centered .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .centered .actions a {
+    width: min(100%, 18rem);
+    min-height: 48px;
+  }
   .infrastructureLinks {
     grid-template-columns: 1fr;
   }

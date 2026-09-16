@@ -2,6 +2,7 @@ import {
   CAREERS_LINK,
   COMMUNITY_LINK,
   CONTACT_FORM,
+  AI_CONTACT_FORM,
   DOCS_LINK,
   DASHBOARD_LINK,
   GITHUB_LINK,
@@ -12,6 +13,7 @@ import { Group, Modal } from '@mantine/core';
 import { Accordion } from '@mantine/core';
 import { Button } from '../ui/Button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
+import styles from './navMenu.module.css';
 
 interface LinkItem {
   link: string;
@@ -118,12 +120,14 @@ export const NavMenu2 = ({
   return (
     <>
       <Modal
+        aria-label="Main navigation"
         opened={menuOpen}
-        onClose={() => {}}
+        onClose={toggleMenu}
         fullScreen
         radius={0}
         withCloseButton={false}
         padding={0}
+        classNames={preview ? { content: styles.content } : undefined}
         styles={{
           body: {
             padding: '0',
@@ -143,6 +147,12 @@ export const NavMenu2 = ({
           />
 
           <Accordion
+            classNames={preview ? {
+              item: styles.item,
+              control: styles.control,
+              chevron: styles.chevron,
+              content: styles.links,
+            } : undefined}
             styles={{
               panel: { paddingLeft: '1rem' },
               content: {
@@ -160,31 +170,37 @@ export const NavMenu2 = ({
           </Accordion>
         </Group>
         <Group
-          gap={'1rem'}
+          className={preview ? styles.actions : undefined}
+          gap={preview ? '0.75rem' : '1rem'}
           style={{ justifyContent: 'center', marginBottom: '1.25rem' }}
         >
           <Button
-            className="w-[12rem] flex items-center justify-center"
+            className="min-w-[12rem] flex items-center justify-center"
+            style={preview ? { padding: '0.7rem 1.1rem', borderRadius: '10px' } : undefined}
             rel="noopener noreferrer"
             href={preview ? DASHBOARD_LINK : DOCS_LINK}
             rightIcon={<IconArrowNarrowRight stroke={2} />}
           >
-            Get started
+            {preview ? 'Get started with crypto' : 'Get started'}
           </Button>
 
           <Button
-            className="w-[12rem] flex items-center justify-center hover:bg-pearl-500"
-            style={{
+            className={preview ? 'flex items-center justify-center' : 'w-[12rem] flex items-center justify-center hover:bg-pearl-500'}
+            style={preview ? {
+              padding: '0.7rem 1.1rem',
+              borderRadius: '10px',
+              boxShadow: 'inset 0 0 0 1px rgb(255 255 255 / 25%)',
+            } : {
               background: 'white',
               boxShadow: 'inset 0 0 0 1px black',
               color: 'black',
             }}
             variant="outline"
-            href={CONTACT_FORM}
+            href={preview ? AI_CONTACT_FORM : CONTACT_FORM}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get In Touch
+            {preview ? 'Contact for Lit AI' : 'Get In Touch'}
           </Button>
         </Group>
       </Modal>

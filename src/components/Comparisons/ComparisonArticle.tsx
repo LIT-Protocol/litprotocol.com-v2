@@ -2,7 +2,7 @@
 
 import { Container } from '@mantine/core';
 import { Button } from '@/components/ui/Button';
-import { CONTACT_FORM, DASHBOARD_LINK } from '@/utils/constants';
+import { AI_CONTACT_FORM, DASHBOARD_LINK } from '@/utils/constants';
 import {
   type Comparison,
   type SourceId,
@@ -221,14 +221,14 @@ export default function ComparisonArticle({
         <div className={styles.actions}>
           <Button
             href={
-              comparison.category === 'wallets' ? DASHBOARD_LINK : CONTACT_FORM
+              comparison.category === 'wallets' ? DASHBOARD_LINK : AI_CONTACT_FORM
             }
             target="_blank"
             style={{ padding: '0.7rem 1.1rem', borderRadius: '10px' }}
           >
             {comparison.category === 'wallets'
-              ? 'Get started'
-              : 'Discuss an AI workload'}
+              ? 'Get started with crypto'
+              : 'Contact for Lit AI'}
           </Button>
           <a href="/" className={styles.back}>
             Explore Lit Protocol <span aria-hidden="true">→</span>
