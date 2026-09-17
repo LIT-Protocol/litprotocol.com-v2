@@ -1,11 +1,15 @@
 import { IconArrowRight, IconDeviceLaptop, IconDeviceDesktop, IconTerminal2, IconKey, IconShieldCheck } from '@tabler/icons-react';
 import k from './keychain.module.css';
+import McpMark from './McpMark';
 
 // Product concept, not live account state or automatic device synchronization.
 export default function KeychainVisual() {
   return (
     <figure className={k.diagram}>
-      <div className={k.diagramLabel}>One keychain. Access from the agents you approve.</div>
+      <div className={k.diagramLabel}>
+        <span>One keychain. Access from the agents you approve.</span>
+        <span className={k.mcpBrand}><McpMark /> MCP</span>
+      </div>
       <div className={k.flow}>
         <div className={k.devices}>
           <div><IconDeviceLaptop size={22} stroke={1.3} aria-hidden="true" /><span>Laptop<small>Approved agent</small></span></div>

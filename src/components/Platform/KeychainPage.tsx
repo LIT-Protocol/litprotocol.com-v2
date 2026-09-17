@@ -2,6 +2,7 @@ import { IconBrandGithub } from '@tabler/icons-react';
 import { KEYCHAIN_LINK, KEYCHAIN_SOURCE_LINK } from '@/utils/constants';
 import { Action, Eyebrow, FAQ, PageHero, TextLink } from './shared';
 import KeychainVisual from './KeychainVisual';
+import McpMark from './McpMark';
 import s from './platform.module.css';
 import k from './keychain.module.css';
 
@@ -9,13 +10,18 @@ export default function KeychainPage() {
   return (
     <div className={`${s.site} ${k.page}`}>
       <PageHero
-        label="Agent Keychain · An app built on Lit"
+        label="Agent Keychain"
         title="Use your credentials across devices and agent sessions."
-        action={<Action href={KEYCHAIN_LINK}>Open Keychain</Action>}
+        action={
+          <>
+            <Action href={KEYCHAIN_LINK}>Open Keychain</Action>
+            <TextLink href="#setup"><McpMark /> Connect with MCP</TextLink>
+          </>
+        }
       >
-        Agent Keychain uses Lit to give approved agents access to your encrypted
-        credentials. Store API keys once and keep working across sessions,
-        with no credential server to host.
+        Store API keys, approve your agent, and connect through MCP. Keychain
+        runs on Lit, so you can work across devices and sessions without
+        deploying or maintaining a secrets server.
       </PageHero>
       <div className={`${s.container} ${k.heroDiagram}`}>
         <nav className={k.principles} aria-label="Keychain principles">
@@ -28,9 +34,10 @@ export default function KeychainPage() {
       <section className={s.section} id="setup">
         <div className={`${s.container} ${s.editorial}`}>
           <div>
-            <Eyebrow>Across your workflow</Eyebrow>
-            <h2>A new session shouldn’t mean setting up your keys again.</h2>
-            <TextLink href={`${KEYCHAIN_LINK}/SKILL.md`} external>Agent setup guide</TextLink>
+            <Eyebrow>Get started with MCP</Eyebrow>
+            <h2>Sign in and connect your agent.</h2>
+            <p className={s.intro}>Give your agent the setup guide. You approve access; Keychain handles credential storage and delivery through Lit.</p>
+            <TextLink href={`${KEYCHAIN_LINK}/SKILL.md`} external><McpMark /> Agent setup guide</TextLink>
           </div>
           <ol className={k.steps}>
             <li>
@@ -38,12 +45,12 @@ export default function KeychainPage() {
               <p>Sign in with Google, a passkey, or a wallet. Your browser encrypts credentials before they are stored in Keychain.</p>
             </li>
             <li>
-              <h3>Connect each device.</h3>
-              <p>Set up the client, approve its agent identity, and save its configuration. Choose which credentials it can use and when access expires.</p>
+              <h3>Approve your agent.</h3>
+              <p>Your agent creates an identity on its device. In Keychain, choose which credentials it can use and when access expires.</p>
             </li>
             <li>
-              <h3>Reuse the setup in later sessions.</h3>
-              <p>The same agent identity and configuration work across sessions while permission remains valid. Use the SDK, CLI, or local MCP integration.</p>
+              <h3>Connect through MCP.</h3>
+              <p>Download the agent configuration and add Keychain to your MCP client. Reuse that setup across sessions while your approval remains valid.</p>
             </li>
           </ol>
         </div>
@@ -52,8 +59,8 @@ export default function KeychainPage() {
         <div className={`${s.container} ${s.editorial}`}>
           <div>
             <Eyebrow>Works with your tools</Eyebrow>
-            <h2>Use a credential where the work happens.</h2>
-            <p className={s.intro}>Connect your existing agents and command-line tools. There’s no credential service for you to deploy or maintain.</p>
+            <h2>Use Keychain from your agent.</h2>
+            <p className={s.intro}>Connect through MCP in Claude Code, Cursor, or another compatible client. The SDK and CLI are there for your own integrations.</p>
           </div>
           <div className={s.detailRows}>
             <div>

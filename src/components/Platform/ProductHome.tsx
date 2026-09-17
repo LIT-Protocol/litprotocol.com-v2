@@ -141,15 +141,15 @@ export default function ProductHome() {
           </div>
         </div>
       </section>
-      <section id="keychain" className={k.appSection} aria-label="An app built on Lit">
+      <section id="keychain" className={k.appSection} aria-label="Agent Keychain">
         <div className={`${s.container} ${k.homeEntry}`}>
           <div>
-            <Eyebrow>An app built on Lit · Agent Keychain</Eyebrow>
+            <Eyebrow>Agent Keychain</Eyebrow>
             <h2>Use your credentials across devices and agent sessions.</h2>
             <p>
               Agent Keychain is an open-source app built on Lit. Store API keys
-              once and connect the agents you approve, with confidential,
-              cryptographically verifiable execution and no credential server to host.
+              once and connect approved agents through MCP. Get confidential,
+              cryptographically verifiable execution without deploying or maintaining a secrets server.
             </p>
             <TextLink href="/keychain">Explore Agent Keychain</TextLink>
           </div>
