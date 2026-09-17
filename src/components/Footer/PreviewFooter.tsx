@@ -123,7 +123,7 @@ export default function PreviewFooter() {
           ))}
         </div>
         <div className={styles.bottom}>
-          <p>© {new Date().getFullYear()} Lit Association</p>
+          <p>© {new Date().getFullYear()} Lit Protocol</p>
           <nav aria-label="Legal" className={styles.legal}>
             <a href="/legal/privacy-policy">Privacy policy</a>
             <a href="/legal/terms-of-service">Terms of service</a>
