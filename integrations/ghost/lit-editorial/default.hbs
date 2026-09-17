@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    <link rel="preload" href="{{asset "fonts/ABCFavorit-Regular.woff2"}}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{asset "editorial.css"}}">
+    {{ghost_head}}
+</head>
+<body class="lit-blog {{body_class}}">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="shell header-inner">
+            <div class="brand">
+                <a class="brand-logo" href="https://www.litprotocol.com/" aria-label="Lit Protocol home">{{> "logo"}}</a>
+                <span class="brand-divider" aria-hidden="true"></span>
+                <a class="brand-blog" href="{{@site.url}}">Blog</a>
+            </div>
+            <nav class="header-links" aria-label="Blog navigation">
+                <a class="main-site-link" href="https://www.litprotocol.com/">Lit Protocol <span aria-hidden="true">↗</span></a>
+                <button class="search-button" type="button" data-ghost-search aria-label="Search articles">{{> "search-icon"}}<span>Search</span></button>
+                {{#if @site.members_enabled}}
+                    {{#if @member}}
+                        <a class="button" href="#/portal/account" data-portal="account">Account</a>
+                    {{else}}
+                        {{#if @site.members_invite_only}}
+                            <a class="button" href="#/portal/signin" data-portal="signin">Sign in</a>
+                        {{else}}
+                            <a class="button" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </nav>
+        </div>
+    </header>
+    {{{body}}}
+    <footer class="site-footer shell">
+        <span>© {{date format="YYYY"}} Lit Protocol</span>
+        <nav aria-label="Footer">
+            <a href="{{@site.url}}/rss/">RSS</a>
+            <a href="https://www.litprotocol.com/legal/privacy-policy">Privacy</a>
+            <a href="https://www.litprotocol.com/legal/terms-of-service">Terms</a>
+            {{#if @site.members_enabled}}{{#unless @member}}<a href="#/portal/signin" data-portal="signin">Sign in</a>{{/unless}}{{/if}}
+        </nav>
+    </footer>
+    <script src="{{asset "editorial.js"}}" defer></script>
+    {{ghost_foot}}
+</body>
+</html>

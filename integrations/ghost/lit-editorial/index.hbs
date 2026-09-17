@@ -1,0 +1,23 @@
+{{!< default}}
+<main id="main-content" class="shell">
+    <header class="index-header">
+        <h1>Blog</h1>
+        <p>Product updates and notes from the Lit team.</p>
+    </header>
+    <div class="post-feed">
+        {{#foreach posts}}
+            {{#is "home"}}
+                {{#if @first}}
+                    {{> "post-card" lead=true}}
+                {{else}}
+                    {{> "post-card"}}
+                {{/if}}
+            {{else}}
+                {{> "post-card"}}
+            {{/is}}
+        {{else}}
+            <p>New articles will appear here.</p>
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</main>

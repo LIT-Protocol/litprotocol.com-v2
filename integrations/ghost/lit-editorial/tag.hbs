@@ -1,0 +1,9 @@
+{{!< default}}
+<main id="main-content" class="shell">
+    <header class="index-header archive-header">
+        <a class="back-link" href="{{@site.url}}">← All articles</a>
+        {{#tag}}<h1>{{name}}</h1>{{#if description}}<p>{{description}}</p>{{/if}}{{/tag}}
+    </header>
+    <div class="post-feed">{{#foreach posts}}{{> "post-card"}}{{/foreach}}</div>
+    {{pagination}}
+</main>

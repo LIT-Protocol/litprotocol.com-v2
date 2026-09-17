@@ -1,0 +1,14 @@
+{
+  "name": "lit-blog-theme-tools",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "preview": "node scripts/preview.cjs",
+    "check": "gscan lit-editorial --v6",
+    "package": "python3 scripts/package.py"
+  },
+  "devDependencies": {
+    "gscan": "6.6.1",
+    "handlebars": "4.7.9"
+  }
+}
