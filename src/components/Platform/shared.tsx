@@ -119,21 +119,16 @@ export function PageHero({
   title,
   children,
   action,
-  index,
 }: {
   label: string;
   title: ReactNode;
   children: ReactNode;
   action: ReactNode;
-  index: string;
 }) {
   return (
     <section className={s.pageHero}>
       <div className={s.container}>
-        <div className={s.pageOverline}>
-          <Eyebrow>{label}</Eyebrow>
-          <span className={s.pageIndex}>LIT / {index}</span>
-        </div>
+        <Eyebrow>{label}</Eyebrow>
         <h1>{title}</h1>
         <div className={s.pageHeroBottom}>
           <p className={s.intro}>{children}</p>

@@ -15,7 +15,6 @@ export default function AIPage() {
     <div className={s.site}>
       <PageHero
         label="Confidential AI"
-        index="02"
         title={
           <>
             Train and run AI.

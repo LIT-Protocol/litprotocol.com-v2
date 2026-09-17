@@ -15,7 +15,6 @@ export default function SecurityPage() {
     <div className={s.site}>
       <PageHero
         label="Security & verification"
-        index="03"
         title={
           <>
             Verify what runs.
