@@ -58,12 +58,12 @@ export default function KeychainPage() {
             <div>
               <h3>Fetch it for a local tool.</h3>
               <p>Deliver a stored secret to an approved agent or command when it needs it. The credential is decrypted in that environment.</p>
-              <TextLink href={`${KEYCHAIN_SOURCE_LINK}/sdk#readme`} external>SDK, CLI & MCP guide</TextLink>
+              <TextLink href={`${KEYCHAIN_LINK}/sdk/README.md`} external>SDK, CLI & MCP guide</TextLink>
             </div>
             <div>
               <h3>Use it inside Lit.</h3>
               <p>For supported services, Lit can use the key and return the result. An agent can check a Stripe balance, for example, without receiving the Stripe key.</p>
-              <TextLink href="https://github.com/LIT-Protocol/agent-keychain-library" external>Explore supported actions</TextLink>
+              <TextLink href={KEYCHAIN_SOURCE_LINK} external>Explore supported actions</TextLink>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function KeychainPage() {
           <div className={k.benefits}>
             <article>
               <h3>Open-source.</h3>
-              <p>Inspect the client, storage API, and immutable Lit Actions that handle your credentials and check permissions.</p>
+              <p>Inspect the credential-handling actions in Keychain’s public library, including the operations and destinations each action allows.</p>
               <TextLink href={KEYCHAIN_SOURCE_LINK} external><IconBrandGithub size={16} /> Read the source</TextLink>
             </article>
             <article id="verification">
@@ -117,7 +117,7 @@ export default function KeychainPage() {
           <div className={s.closingRow}>
             <div>
               <h2>Set up your keychain.</h2>
-              <p className={k.pricing}>Free for 5 secrets. $10/month for up to 1,000.<br />Execution included under fair use. Provider charges are separate.</p>
+              <p className={k.pricing}>Free for 5 secrets. $10/month for up to 1,000.</p>
             </div>
             <Action href={KEYCHAIN_LINK}>Open Keychain</Action>
           </div>

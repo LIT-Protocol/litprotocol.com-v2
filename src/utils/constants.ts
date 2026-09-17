@@ -26,7 +26,7 @@ export const GOVERNANCE_LINK = 'https://getlit.dev/chat';
 
 // Product
 export const KEYCHAIN_LINK = 'https://keychain.litprotocol.com';
-export const KEYCHAIN_SOURCE_LINK = 'https://github.com/LIT-Protocol/chipotle/tree/main/lit-agent-keychain';
+export const KEYCHAIN_SOURCE_LINK = 'https://github.com/LIT-Protocol/agent-keychain-library';
 export const LIT_WALLET_LINK =
   'https://developer.litprotocol.com/user-wallets/overview';
 export const ENCRYPTION_LINK =
