@@ -104,7 +104,7 @@ export default function KeychainPage() {
       <FAQ items={[
         {
           question: 'What does Keychain cost?',
-          answer: <p>Keychain is an app built on Lit. Its credential operations run in Lit’s confidential runtime, so you don’t need to host a credential server. Keychain is free for 5 secrets, or $10/month for up to 1,000.</p>,
+          answer: <p>Keychain is free for 5 secrets, or $10/month for up to 1,000.</p>,
         },
         {
           question: 'What carries across devices and sessions?',
