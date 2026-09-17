@@ -39,7 +39,6 @@
 .steps { list-style: none; margin: 0; padding: 0; }
 .steps li + li { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
 .steps p { margin-bottom: 0; }
-.pricing { font-size: 14px; color: var(--muted); margin-bottom: 0; }
 .appSection { padding-block: 88px; border-top: 1px solid var(--line); }
 .homeEntry { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
 .homeEntry h2 { font-size: clamp(32px, 3.3vw, 47px); }

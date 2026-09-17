@@ -96,6 +96,10 @@ export default function KeychainPage() {
       </section>
       <FAQ items={[
         {
+          question: 'What does Keychain cost?',
+          answer: <p>Keychain is an app built on Lit. Its credential operations run in Lit’s confidential runtime, so you don’t need to host a credential server. Keychain is free for 5 secrets, or $10/month for up to 1,000.</p>,
+        },
+        {
           question: 'What carries across devices and sessions?',
           answer: <p>Your stored credentials and approved access. Each device needs a configured client and an approved agent identity. Later sessions can reuse that setup while permission remains valid. Keychain does not sync conversations, agent memory, or private identity files.</p>,
         },
@@ -116,10 +120,7 @@ export default function KeychainPage() {
         <div className={s.container}>
           <Eyebrow>Lit Agent Keychain</Eyebrow>
           <div className={s.closingRow}>
-            <div>
-              <h2>Set up your keychain.</h2>
-              <p className={k.pricing}>Free for 5 secrets. $10/month for up to 1,000.</p>
-            </div>
+            <h2>Set up your keychain.</h2>
             <Action href={KEYCHAIN_LINK}>Open Keychain</Action>
           </div>
         </div>
