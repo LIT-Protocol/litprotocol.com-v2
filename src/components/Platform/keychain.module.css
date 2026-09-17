@@ -1,0 +1,76 @@
+.heroDiagram { padding-bottom: 16px; }
+.principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  margin: -18px 0 36px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.principles a { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; }
+.principles a:hover { color: var(--ink); }
+.diagram {
+  margin: 0;
+  padding: 34px 38px 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #f4f4ef, #fdfdfb);
+  border-radius: 5px;
+}
+.diagramLabel { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 32px; font-size: 14px; line-height: 1.5; }
+.mcpBrand { display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; font-size: 12px; color: var(--muted); }
+.nodeLabel { font-size: 11px; color: var(--muted); }
+.flow { display: grid; grid-template-columns: 1fr 72px 1fr; align-items: center; gap: 28px; }
+.devices { display: grid; gap: 12px; }
+.devices > div { display: flex; align-items: center; gap: 16px; padding: 12px 0; }
+.devices > div + div { border-top: 1px solid var(--line); }
+.devices svg { color: #74746e; flex-shrink: 0; }
+.devices span { font-size: 15px; }
+.devices small { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.flowArrow { color: #858580; justify-self: center; }
+.runtime { padding: 30px; background: #fff; border: 1px solid #d0d0c8; box-shadow: 0 5px 18px #17171705; border-radius: 4px; }
+.runtime > span { display: block; margin-bottom: 16px; }
+.runtime > strong { display: block; font-size: 22px; font-weight: 400; letter-spacing: -.03em; margin-bottom: 26px; }
+.runtime > div { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 14px; }
+.runtime svg { color: var(--orange); flex-shrink: 0; }
+.diagram figcaption { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.page > section:first-child h1 { max-width: 1080px; font-size: clamp(40px, 5.3vw, 76px); line-height: 1.06; }
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 40px; }
+.benefits article { border-top: 1px solid var(--line); padding-top: 24px; }
+.benefits p, .steps p { color: var(--muted); font-size: 16px; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li + li { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
+.steps p { margin-bottom: 0; }
+.appSection { padding-block: 88px; border-top: 1px solid var(--line); }
+.homeEntry { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+.homeEntry h2 { font-size: clamp(32px, 3.3vw, 47px); }
+.homeEntry p:not(:first-child) { color: var(--muted); font-size: 17px; max-width: 440px; }
+.homeEntry .diagram { padding: 24px; }
+.homeEntry .flow { grid-template-columns: 1fr 24px 1.3fr; gap: 14px; }
+.homeEntry .runtime { padding: 20px; }
+.homeEntry .runtime > strong { font-size: 20px; }
+.homeEntry .devices > div { gap: 8px; }
+.homeEntry .devices span { font-size: 13px; }
+@media (max-width: 1000px) {
+  .homeEntry { gap: 36px; }
+  .diagram { padding-inline: 24px; }
+  .flow { grid-template-columns: 1fr 30px 1.2fr; gap: 20px; }
+  .benefits { gap: 24px; }
+  .homeEntry .flow { grid-template-columns: 1fr; gap: 20px; }
+  .homeEntry .devices { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .homeEntry .devices > div { flex-direction: column; align-items: flex-start; border: 0; padding: 0; }
+  .homeEntry .flowArrow { transform: rotate(90deg); }
+}
+@media (max-width: 700px) {
+  .homeEntry, .benefits { grid-template-columns: 1fr; }
+  .appSection { padding-block: 56px; }
+  .homeEntry { gap: 28px; }
+  .diagram { padding: 24px 20px; }
+  .flow { grid-template-columns: 1fr; gap: 20px; }
+  .devices { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .devices > div { flex-direction: column; align-items: flex-start; border: 0; padding: 0; gap: 12px; }
+  .devices > div + div { border-top: 0; }
+  .devices span { font-size: 13px; }
+  .flowArrow { transform: rotate(90deg); }
+  .runtime { padding: 24px; }
+  .principles { gap: 8px 20px; }
+}

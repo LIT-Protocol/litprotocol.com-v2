@@ -10,6 +10,7 @@ import {
   evidence,
 } from './shared';
 import s from './platform.module.css';
+import { WalletUpdateVisual } from './ArchitectureVisual';
 
 export default function CryptoPage() {
   return (
@@ -45,6 +46,7 @@ export default function CryptoPage() {
               <br />
               Keep the wallet.
             </h2>
+            <WalletUpdateVisual />
           </div>
           <div className={s.detailRows}>
             <div>

@@ -1,0 +1,197 @@
+.wallet,
+.compute {
+  margin: 0;
+  color: var(--ink);
+}
+.wallet {
+  max-width: 440px;
+  margin-top: 38px;
+}
+.versions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #d7d7ce;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #fff, #f4f4ed);
+  box-shadow: 0 3px 0 #eaeae2;
+}
+.card > svg {
+  margin-bottom: 20px;
+  color: #68685e;
+}
+.card strong,
+.walletIdentity strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.card > span,
+.walletIdentity span {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.previous {
+  background: #f0f0ea;
+  box-shadow: none;
+}
+.previous strong {
+  color: var(--muted);
+}
+.approved {
+  border-color: #d5b5a5;
+}
+.approved > svg,
+.approved > span {
+  color: #a53a18;
+}
+.walletConnection {
+  position: relative;
+  width: 26%;
+  height: 28px;
+  margin: 0 0 26px 50%;
+  border-right: 1px solid #b58067;
+  border-bottom: 1px solid #b58067;
+  border-bottom-right-radius: 8px;
+}
+.walletConnection::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 100%;
+  height: 27px;
+  border-left: 1px solid #b58067;
+}
+.walletRuntime {
+  border: 1px solid #cecec3;
+  border-radius: 5px;
+  padding: 17px 24px 22px;
+  background: linear-gradient(135deg, #efefe7, #f8f8f3);
+}
+.label {
+  display: block;
+  color: #626259;
+  font-size: 10px;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.walletIdentity {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 17px;
+}
+.wallet figcaption,
+.compute figcaption {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 18px;
+  text-wrap: pretty;
+}
+.compute {
+  margin: 40px 0 48px;
+}
+.computeFlow {
+  display: grid;
+  grid-template-columns: minmax(0, 2.25fr) 48px minmax(0, 1fr);
+  align-items: center;
+}
+.computeRuntime {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #cecec3;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #efefe7, #f8f8f3);
+}
+.runtimeFlow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr);
+  align-items: stretch;
+  margin-top: 20px;
+}
+.connection {
+  align-self: center;
+  position: relative;
+  height: 1px;
+  background: #b58067;
+}
+.connection::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid #b58067;
+  border-right: 1px solid #b58067;
+  transform: rotate(45deg);
+}
+.services {
+  box-shadow: none;
+  background: transparent;
+  border-style: dashed;
+}
+.services small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+@media (max-width: 900px) {
+  .card {
+    padding: 20px 16px;
+  }
+  .computeFlow {
+    grid-template-columns: minmax(0, 2.25fr) 24px minmax(0, 1fr);
+  }
+  .computeRuntime {
+    padding: 16px;
+  }
+  .runtimeFlow {
+    grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .computeFlow,
+  .runtimeFlow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .runtimeFlow {
+    margin-top: 16px;
+  }
+  .compute .card {
+    padding: 20px 24px;
+  }
+  .compute .card > svg {
+    margin-bottom: 12px;
+  }
+  .connection {
+    justify-self: center;
+    width: 1px;
+    height: 28px;
+  }
+  .connection::after {
+    top: auto;
+    bottom: 1px;
+    right: -3px;
+    transform: rotate(135deg);
+  }
+  .wallet {
+    margin-top: 28px;
+  }
+}

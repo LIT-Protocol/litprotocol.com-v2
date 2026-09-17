@@ -83,6 +83,7 @@ export default function PreviewFooter() {
           <nav aria-label="Footer platform" className={styles.platformLinks}>
             <a href="/crypto">Programmable wallets</a>
             <a href="/ai">Confidential AI</a>
+            <a href="/keychain">Agent Keychain app</a>
             <a href="/security">Security & verification</a>
           </nav>
         </div>
@@ -122,7 +123,7 @@ export default function PreviewFooter() {
           ))}
         </div>
         <div className={styles.bottom}>
-          <p>© {new Date().getFullYear()} Lit Association</p>
+          <p>© {new Date().getFullYear()} Lit Protocol</p>
           <nav aria-label="Legal" className={styles.legal}>
             <a href="/legal/privacy-policy">Privacy policy</a>
             <a href="/legal/terms-of-service">Terms of service</a>

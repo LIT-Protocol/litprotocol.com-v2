@@ -9,6 +9,7 @@ import {
   TextLink,
 } from './shared';
 import s from './platform.module.css';
+import { ContainerVisual } from './ArchitectureVisual';
 
 export default function AIPage() {
   return (
@@ -50,6 +51,7 @@ export default function AIPage() {
               the code and control which services it can connect to.
             </p>
           </div>
+          <ContainerVisual />
           <ol className={s.workflow}>
             <li>
               <span>01</span>

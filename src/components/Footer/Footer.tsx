@@ -191,7 +191,7 @@ const Footer = ({ preview = false }: { preview?: boolean }) => {
           </div>
         </nav>
         <div className="text-xs text-left pt-12 pb-8 md:text-center lg:pt-16 text-pearl-500">
-          <p>Lit Association. Copyright © {new Date().getFullYear()}.</p>
+          <p>© {new Date().getFullYear()} Lit Protocol</p>
         </div>
       </Container>
     </footer>

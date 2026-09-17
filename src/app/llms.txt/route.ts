@@ -33,6 +33,12 @@ Build a programmable wallet for your crypto system: hot wallets, vaults, and age
 
 Bring your own or a vendor’s Docker container to a confidential virtual machine. The pinned image and outbound connection policy form a measured release approved on-chain. Application egress passes through a proxy enforcing an approved hostname allowlist; application code controls what is sent. An allowed external model provider receives the inputs sent to it and remains outside the confidential runtime. Work with Lit to assess hardware, model artifacts, credentials, outputs, and verification. Hardware support and performance depend on the agreed workload.
 
+## Apps built on Lit
+
+- [Agent Keychain](https://litprotocol.com/keychain): an open-source app built on Lit for credential access across devices and agent sessions, with no credential server to host.
+
+[Open Keychain](https://keychain.litprotocol.com). Store credentials once and configure approved agents on your devices. Later sessions reuse their agent identity and configuration while permission remains valid. Users do not host the credential service; the MCP connector runs locally. Keychain does not sync agent memory or identity files. Credentials are encrypted in the browser. Owners approve agent identities and expiry; Lit Actions check signed permissions. Connected-service actions use credentials inside Lit and return results; stored-secret operations deliver credentials to the agent host. Keychain permission records are not ChainSecured wallet permissions: the storage operator supplies the current record and can replay older valid approvals until expiry. Review the [security model](https://keychain.litprotocol.com/SECURITY.md) and [agent setup guide](https://keychain.litprotocol.com/SKILL.md).
+
 ## Verification and governance
 
 Protocol updates follow an on-chain approval process. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet permissions and runtime approvals are separate. Deployment alone does not authorize new code to receive runtime keys; the key-management system checks attestation against contract rules. Review both permission checks and upgrade rules for a deployment. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.

@@ -78,6 +78,12 @@
   color: #72726e;
   margin: 0 12px 16px;
 }
+.appLabel {
+  margin-top: 14px;
+  margin-bottom: 4px;
+  padding-top: 22px;
+  border-top: 1px solid #dcdcd7;
+}
 .products a {
   display: flex;
   align-items: center;

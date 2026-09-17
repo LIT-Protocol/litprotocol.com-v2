@@ -3,6 +3,8 @@ import CustomerProof from '../TrustStrip/CustomerProof';
 import { GITHUB_LINK } from '@/utils/constants';
 import HomeMotion from './HomeMotion';
 import ProductVisual from './ProductVisual';
+import KeychainVisual from './KeychainVisual';
+import k from './keychain.module.css';
 import {
   IconBrandGithub,
   IconCpu,
@@ -37,16 +39,12 @@ export default function ProductHome() {
             <span>Confidential,</span> <span>verifiable execution.</span>
           </h1>
           <div className={s.heroBody}>
-            <div>
-              <p className={s.heroLead}>
-                Get real control of what your application does and who it shares
-                data with.
-              </p>
-              <p className={s.heroSupport}>
-                Run crypto automations and AI workloads in confidential
-                hardware, connected to your accounts, tools, and blockchains.
-              </p>
-            </div>
+            <p className={s.heroLead}>
+              Get real control over your applications.{' '}
+              <span className={s.keepTogether}>Run crypto automations</span> and{' '}
+              <span className={s.keepTogether}>AI workloads</span> in confidential
+              hardware, connected to your accounts, tools, and blockchains.
+            </p>
             <Actions />
           </div>
           <div className={s.heroBottom}>
@@ -141,6 +139,21 @@ export default function ProductHome() {
               Run Lit Protocol on-premises
             </TextLink>
           </div>
+        </div>
+      </section>
+      <section id="keychain" className={k.appSection} aria-label="Agent Keychain">
+        <div className={`${s.container} ${k.homeEntry}`}>
+          <div>
+            <Eyebrow>Agent Keychain</Eyebrow>
+            <h2>Use your credentials across devices and agent sessions.</h2>
+            <p>
+              Agent Keychain is an open-source app built on Lit. Store API keys
+              once and connect approved agents through MCP. Get confidential,
+              cryptographically verifiable execution without deploying or maintaining a secrets server.
+            </p>
+            <TextLink href="/keychain">Explore Agent Keychain</TextLink>
+          </div>
+          <KeychainVisual />
         </div>
       </section>
       <Closing />
