@@ -1,0 +1,19 @@
+{
+  "name": "lit-editorial",
+  "description": "The Lit Protocol blog, styled to match litprotocol.com.",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "keywords": ["ghost-theme"],
+  "author": { "name": "Lit Protocol", "email": "hello@litprotocol.com" },
+  "engines": { "ghost": ">=6.0.0" },
+  "config": {
+    "posts_per_page": 13,
+    "card_assets": true,
+    "image_sizes": {
+      "s": { "width": 400 },
+      "m": { "width": 800 },
+      "l": { "width": 1400 },
+      "xl": { "width": 2000 }
+    }
+  }
+}

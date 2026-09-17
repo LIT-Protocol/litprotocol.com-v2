@@ -1,0 +1,20 @@
+<article class="post-card {{post_class}}{{#if lead}} lead-story{{/if}}">
+    {{#if feature_image}}
+        <a class="card-image" href="{{url}}" tabindex="-1" aria-hidden="true">
+            <img src="{{img_url feature_image size="m"}}"
+                srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1400w"
+                sizes="{{#if lead}}(max-width: 700px) 100vw, 50vw{{else}}(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw{{/if}}"
+                alt="" {{#if lead}}fetchpriority="high"{{else}}loading="lazy"{{/if}}>
+        </a>
+    {{/if}}
+    <div class="card-copy">
+        {{#if lead}}<p class="eyebrow">Latest post</p>{{/if}}
+        <div class="post-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+            {{#primary_tag}}<span class="meta-dot" aria-hidden="true">·</span><a href="{{url}}">{{name}}</a>{{/primary_tag}}
+        </div>
+        <h2><a href="{{url}}">{{title}}</a></h2>
+        {{#if lead}}<p class="card-excerpt">{{excerpt words="28"}}</p>{{/if}}
+        <span class="reading-time">{{reading_time}}</span>
+    </div>
+</article>

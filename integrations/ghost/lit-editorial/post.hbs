@@ -1,0 +1,39 @@
+{{!< default}}
+{{#post}}
+<main id="main-content">
+    <article class="article {{post_class}}">
+        <header class="article-header shell">
+            <a class="back-link" href="{{@site.url}}">← All articles</a>
+            <div class="article-heading">
+                <div class="post-meta">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                    <span class="meta-dot" aria-hidden="true">·</span><span>{{reading_time}}</span>
+                    {{#primary_tag}}<span class="meta-dot" aria-hidden="true">·</span><a href="{{url}}">{{name}}</a>{{/primary_tag}}
+                </div>
+                <h1>{{title}}</h1>
+                {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
+                <div class="article-byline"><span>{{authors}}</span><button class="share-button" type="button" data-copy-link>Copy link <span aria-hidden="true">↗</span></button><span class="sr-only" aria-live="polite" data-copy-status></span></div>
+            </div>
+            {{#if feature_image}}
+                <figure class="article-cover">
+                    <img src="{{img_url feature_image size="l"}}"
+                        srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1400w, {{img_url feature_image size="xl"}} 2000w"
+                        sizes="(min-width: 1280px) 960px, 100vw"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" fetchpriority="high">
+                    {{#if feature_image_caption}}<figcaption>{{feature_image_caption}}</figcaption>{{/if}}
+                </figure>
+            {{/if}}
+        </header>
+        <section class="gh-content gh-canvas">{{content}}</section>
+        {{#if comments}}<section class="article-comments gh-canvas">{{comments}}</section>{{/if}}
+    </article>
+</main>
+{{#get "posts" filter="id:-{{id}}" limit="3" include="tags" as |more_posts|}}
+    {{#if more_posts}}
+        <aside class="related shell" aria-labelledby="related-title">
+            <h2 id="related-title">More from Lit</h2>
+            <div class="post-feed">{{#foreach more_posts}}{{> "post-card"}}{{/foreach}}</div>
+        </aside>
+    {{/if}}
+{{/get}}
+{{/post}}

@@ -127,10 +127,13 @@ export default function AIPage() {
             </div>
             <div>
               <span>02</span>
-              <h3>Network access</h3>
+              <h3>Shared network controls</h3>
               <p>
-                A network proxy checks outbound connections against the list
-                of services you allow.
+                The proxy runs in confidential hardware, with its code and
+                connection rules verified against on-chain approval. Your
+                organization and software provider can approve changes together.
+                Lit or an independent party can operate the hardware without
+                gaining control over those rules.
               </p>
             </div>
             <div>
