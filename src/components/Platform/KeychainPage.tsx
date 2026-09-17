@@ -10,85 +10,115 @@ export default function KeychainPage() {
     <div className={`${s.site} ${k.page}`}>
       <PageHero
         label="Lit Agent Keychain"
-        title="Let agents use your services without holding your API keys."
+        title="Use your credentials across devices and agent sessions."
         action={<Action href={KEYCHAIN_LINK}>Open Keychain</Action>}
       >
-        Choose which supported actions an agent can perform. Lit executes the
-        request with your credentials inside confidential hardware and returns
-        the result.
+        Store API keys once, then connect the agents you approve.
+        Keep working across sessions without hosting a credential server.
       </PageHero>
-      <div className={`${s.container} ${k.heroDiagram}`}><KeychainVisual /></div>
-      <section className={s.section} id="access">
-        <div className={s.container}>
-          <div className={s.sectionHeading}>
-            <Eyebrow>Connected services</Eyebrow>
-            <h2>Give each agent a specific job.</h2>
-          </div>
-          <div className={k.benefits}>
-            <article>
-              <h3>Keep keys out of the agent.</h3>
-              <p>The action uses your credential inside Lit. Your agent receives the result, without a copy of the API key in its environment.</p>
-            </article>
-            <article>
-              <h3>Limit access to an action.</h3>
-              <p>A Stripe balance check or a GitHub file read. The selected action defines the operation the agent can request.</p>
-            </article>
-            <article>
-              <h3>Enforce permission inside Lit.</h3>
-              <p>Code running in confidential hardware checks the agent’s identity and your signed approval before making the request.</p>
-            </article>
-          </div>
-          <TextLink href="https://github.com/LIT-Protocol/agent-keychain-library" external>Explore supported actions</TextLink>
-        </div>
-      </section>
-      <section className={`${s.section} ${s.shade}`} id="setup">
+      <div className={`${s.container} ${k.heroDiagram}`}>
+        <nav className={k.principles} aria-label="Keychain principles">
+          <a href={KEYCHAIN_SOURCE_LINK}><IconBrandGithub size={16} /> Open-source</a>
+          <a href="#verification">Cryptographically verifiable</a>
+          <a href="#confidential">Confidential</a>
+        </nav>
+        <KeychainVisual />
+      </div>
+      <section className={s.section} id="setup">
         <div className={`${s.container} ${s.editorial}`}>
           <div>
-            <Eyebrow>Works with your agents</Eyebrow>
-            <h2>Set up access for your existing agents.</h2>
-            <p className={s.intro}>Use the SDK, CLI, or MCP server with your existing tools.</p>
+            <Eyebrow>Across your workflow</Eyebrow>
+            <h2>A new session shouldn’t mean setting up your keys again.</h2>
             <TextLink href={`${KEYCHAIN_LINK}/SKILL.md`} external>Agent setup guide</TextLink>
           </div>
           <ol className={k.steps}>
-            <li><h3>Choose a service action.</h3><p>Add its API key in Keychain. Your browser encrypts the credential before it is stored.</p></li>
-            <li><h3>Approve an agent.</h3><p>Approve the agent’s public key and set when its permission expires.</p></li>
-            <li><h3>Let Lit check each request.</h3><p>Connect through the SDK, CLI, or MCP server. Lit checks each request and runs the approved action.</p></li>
+            <li>
+              <h3>Store your credentials.</h3>
+              <p>Sign in with Google, a passkey, or a wallet. Your browser encrypts credentials before they are stored in Keychain.</p>
+            </li>
+            <li>
+              <h3>Connect each device.</h3>
+              <p>Set up the client, approve its agent identity, and save its configuration. Choose which credentials it can use and when access expires.</p>
+            </li>
+            <li>
+              <h3>Reuse the setup in later sessions.</h3>
+              <p>The same agent identity and configuration work across sessions while permission remains valid. Use the SDK, CLI, or local MCP integration.</p>
+            </li>
           </ol>
         </div>
-        <div className={s.container}>
-          <aside className={k.stored}>
-            <div><Eyebrow>Also available · Stored secrets</Eyebrow><h3>When your tool needs the key.</h3></div>
+      </section>
+      <section className={`${s.section} ${s.shade}`} id="tools">
+        <div className={`${s.container} ${s.editorial}`}>
+          <div>
+            <Eyebrow>Works with your tools</Eyebrow>
+            <h2>Use a credential where the work happens.</h2>
+            <p className={s.intro}>Connect your existing agents and command-line tools. There’s no credential service for you to deploy or maintain.</p>
+          </div>
+          <div className={s.detailRows}>
             <div>
-              <p>Release a stored credential to an approved agent through the SDK, CLI, or MCP server. In this mode, the agent’s environment receives the decrypted key.</p>
-              <TextLink href={`${KEYCHAIN_SOURCE_LINK}/sdk#readme`} external>Stored-secret integration guide</TextLink>
+              <h3>Fetch it for a local tool.</h3>
+              <p>Deliver a stored secret to an approved agent or command when it needs it. The credential is decrypted in that environment.</p>
+              <TextLink href={`${KEYCHAIN_SOURCE_LINK}/sdk#readme`} external>SDK, CLI & MCP guide</TextLink>
             </div>
-          </aside>
+            <div>
+              <h3>Use it inside Lit.</h3>
+              <p>For supported services, Lit can use the key and return the result. An agent can check a Stripe balance, for example, without receiving the Stripe key.</p>
+              <TextLink href="https://github.com/LIT-Protocol/agent-keychain-library" external>Explore supported actions</TextLink>
+            </div>
+          </div>
         </div>
       </section>
       <section className={s.section} id="security">
-        <div className={`${s.container} ${s.editorial}`}>
-          <div><Eyebrow>Built on Lit</Eyebrow><h2>Permission checks you can inspect.</h2></div>
-          <div className={k.security}>
-            <p>Each credential is bound to an immutable Lit Action. The action checks your signed approval inside confidential hardware. The storage service cannot create a new permission on your behalf.</p>
-            <p>Keychain still relies on that service to supply the latest permission record. An operator could replay an older valid approval until it expires. For suspected compromise, revoke the credential with its provider too.</p>
-            <nav className={k.links} aria-label="Keychain security resources">
+        <div className={s.container}>
+          <div className={s.sectionHeading}>
+            <Eyebrow>Built on Lit</Eyebrow>
+            <h2>Convenient to use. Open to inspection.</h2>
+          </div>
+          <div className={k.benefits}>
+            <article>
+              <h3>Open-source.</h3>
+              <p>Inspect the client, storage API, and immutable Lit Actions that handle your credentials and check permissions.</p>
+              <TextLink href={KEYCHAIN_SOURCE_LINK} external><IconBrandGithub size={16} /> Read the source</TextLink>
+            </article>
+            <article id="verification">
+              <h3>Cryptographically verifiable.</h3>
+              <p>The client checks hardware attestation and approved runtime measurements. Lit verifies your signed permission on each request.</p>
+              <TextLink href={`${KEYCHAIN_LINK}/sdk/README.md#endpoint-attestation`} external>How verification works</TextLink>
+            </article>
+            <article id="confidential">
+              <h3>Confidential.</h3>
+              <p>Credentials are stored encrypted. Lit checks access inside confidential hardware, then uses the credential or encrypts it for delivery to the approved agent.</p>
               <TextLink href={`${KEYCHAIN_LINK}/SECURITY.md`} external>Read the security model</TextLink>
-              <TextLink href={KEYCHAIN_SOURCE_LINK} external><IconBrandGithub size={17} /> Open-source</TextLink>
-            </nav>
+            </article>
           </div>
         </div>
       </section>
       <FAQ items={[
-        { question: 'Does my agent run inside Lit?', answer: <p>Your agent runs wherever you choose. For connected services, the credential-handling action runs inside Lit. With stored secrets, the credential is delivered to the agent’s environment.</p> },
-        { question: 'Are Keychain permissions stored on-chain?', answer: <p>Keychain stores owner-signed permission records and verifies them inside Lit. These are separate from the on-chain wallet permissions in ChainSecured. The underlying Lit runtime follows its own on-chain approval process.</p> },
-        { question: 'What happens when I revoke access?', answer: <p>With the current permission record, revocation blocks subsequent requests. An operator can replay an older valid record until it expires. Revocation cannot recall a key already delivered to an agent or undo a completed action. Rotate or revoke the key at its provider when needed.</p> },
-        { question: 'How do I recover access?', answer: <p>Add and test a second owner credential, and keep an encrypted backup. Connected-service credentials cannot be exported, so retain the original keys separately. <a href={`${KEYCHAIN_LINK}/README.md#owner-setup-and-recovery`}>Read the recovery guide ↗</a></p> },
+        {
+          question: 'What carries across devices and sessions?',
+          answer: <p>Your stored credentials and approved access. Each device needs a configured client and an approved agent identity. Later sessions can reuse that setup while permission remains valid. Keychain does not sync conversations, agent memory, or private identity files.</p>,
+        },
+        {
+          question: 'Do I need to run a server?',
+          answer: <p>You don’t need to host a credential server or database. Install the Keychain client on the machine running your tools. For MCP, the local connector runs alongside your agent and connects to the hosted Keychain and Lit services.</p>,
+        },
+        {
+          question: 'What do I still trust?',
+          answer: <p>Your client, sign-in provider, and Lit runtime remain part of the security model. Keychain’s storage service supplies the current signed permission record; an operator can replay an older valid approval until it expires. These records are separate from ChainSecured wallet permissions. Revoke the provider key too if compromise is suspected. <a href={`${KEYCHAIN_LINK}/SECURITY.md`}>Full security model ↗</a></p>,
+        },
+        {
+          question: 'How do I recover access?',
+          answer: <p>Add and test a second owner credential, and keep an encrypted backup. Connected-service credentials cannot be exported, so retain the original keys separately. <a href={`${KEYCHAIN_LINK}/README.md#owner-setup-and-recovery`}>Read the recovery guide ↗</a></p>,
+        },
       ]} />
       <section className={`${s.dark} ${s.closing}`}>
         <div className={s.container}>
           <Eyebrow>Lit Agent Keychain</Eyebrow>
           <div className={s.closingRow}>
-            <div><h2>Give your agent its first task.</h2><p className={k.pricing}>Free for 5 secrets. $10/month for up to 1,000.<br />Execution included under fair use. Provider charges are separate.</p></div>
+            <div>
+              <h2>Set up your keychain.</h2>
+              <p className={k.pricing}>Free for 5 secrets. $10/month for up to 1,000.<br />Execution included under fair use. Provider charges are separate.</p>
+            </div>
             <Action href={KEYCHAIN_LINK}>Open Keychain</Action>
           </div>
         </div>

@@ -16,7 +16,7 @@ const LLMS_TXT = `# Lit Protocol
 
 - [Programmable wallets](https://litprotocol.com/crypto): hot wallets, vaults, and agent wallets with immutable code and updatable on-chain permissions
 - [Confidential AI](https://litprotocol.com/ai): Docker workloads, private training and inference, measured egress policy, and on-chain release approval
-- [Agent Keychain](https://litprotocol.com/keychain): let agents use supported services without holding API keys; stored-secret delivery is also available
+- [Agent Keychain](https://litprotocol.com/keychain): credentials across devices and agent sessions, without hosting a credential server
 - [Security & verification](https://litprotocol.com/security): software identity, wallet authority, runtime governance, and trust boundaries
 
 ## Wallet infrastructure
@@ -36,7 +36,7 @@ Bring your own or a vendor’s Docker container to a confidential virtual machin
 
 ## Agent Keychain
 
-[Open Keychain](https://keychain.litprotocol.com). Credentials are encrypted in the browser. Owners approve agent identities and expiry; Lit Actions check signed permissions. Connected-service actions use credentials inside Lit and return results; stored-secret operations deliver credentials to the agent host. Keychain permission records are not ChainSecured wallet permissions: the storage operator supplies the current record and can replay older valid approvals until expiry. Review the [security model](https://keychain.litprotocol.com/SECURITY.md) and [agent setup guide](https://keychain.litprotocol.com/SKILL.md).
+[Open Keychain](https://keychain.litprotocol.com). Store credentials once and configure approved agents on your devices. Later sessions reuse their agent identity and configuration while permission remains valid. Users do not host the credential service; the MCP connector runs locally. Keychain does not sync agent memory or identity files. Credentials are encrypted in the browser. Owners approve agent identities and expiry; Lit Actions check signed permissions. Connected-service actions use credentials inside Lit and return results; stored-secret operations deliver credentials to the agent host. Keychain permission records are not ChainSecured wallet permissions: the storage operator supplies the current record and can replay older valid approvals until expiry. Review the [security model](https://keychain.litprotocol.com/SECURITY.md) and [agent setup guide](https://keychain.litprotocol.com/SKILL.md).
 
 ## Verification and governance
 

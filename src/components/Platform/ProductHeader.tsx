@@ -180,7 +180,7 @@ export default function ProductHeader() {
                     <IconKey size={23} stroke={1.5} />
                     <span>
                       <strong>Agent Keychain</strong>
-                      <small>Let agents use services without holding API keys.</small>
+                      <small>Credentials across devices and agent sessions.</small>
                     </span>
                     <IconArrowRight size={17} />
                   </Link>

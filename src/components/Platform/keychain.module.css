@@ -1,72 +1,74 @@
 .heroDiagram { padding-bottom: 16px; }
-.diagram { margin: 0; padding: 34px 38px 24px; border: 1px solid var(--line); background: linear-gradient(135deg, #f4f4ef, #fdfdfb); border-radius: 5px; }
-.diagramLabel, .nodeLabel { font-size: 11px; color: var(--muted); }
-.diagramLabel { margin-bottom: 32px; font-size: 14px; color: var(--ink); line-height: 1.5; max-width: 520px; }
-.flow { display: grid; grid-template-columns: 1fr 36px 1.55fr 36px 1fr; align-items: center; gap: 20px; }
-.endpoint { display: flex; flex-direction: column; gap: 12px; }
-.endpoint strong { font-size: 18px; font-weight: 500; letter-spacing: -.03em; }
-.endpoint > span:last-child { font-size: 12px; color: var(--muted); }
-.flowArrow { color: #858580; }
-.runtime { padding: 24px; background: #fff; border: 1px solid #d0d0c8; box-shadow: 0 5px 18px #17171705; border-radius: 4px; }
-.runtime > span { display: block; margin-bottom: 22px; }
+.principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  margin: -18px 0 36px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.principles a { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; }
+.principles a:hover { color: var(--ink); }
+.diagram {
+  margin: 0;
+  padding: 34px 38px 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #f4f4ef, #fdfdfb);
+  border-radius: 5px;
+}
+.diagramLabel { margin-bottom: 32px; font-size: 14px; line-height: 1.5; }
+.nodeLabel { font-size: 11px; color: var(--muted); }
+.flow { display: grid; grid-template-columns: 1fr 72px 1fr; align-items: center; gap: 28px; }
+.devices { display: grid; gap: 12px; }
+.devices > div { display: flex; align-items: center; gap: 16px; padding: 12px 0; }
+.devices > div + div { border-top: 1px solid var(--line); }
+.devices svg { color: #74746e; flex-shrink: 0; }
+.devices span { font-size: 15px; }
+.devices small { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.flowArrow { color: #858580; justify-self: center; }
+.runtime { padding: 30px; background: #fff; border: 1px solid #d0d0c8; box-shadow: 0 5px 18px #17171705; border-radius: 4px; }
+.runtime > span { display: block; margin-bottom: 16px; }
+.runtime > strong { display: block; font-size: 22px; font-weight: 400; letter-spacing: -.03em; margin-bottom: 26px; }
 .runtime > div { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 14px; }
 .runtime svg { color: var(--orange); flex-shrink: 0; }
 .diagram figcaption { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; }
-.page > section:first-child h1 {
-  max-width: 1120px;
-  font-size: clamp(40px, 5.3vw, 76px);
-  line-height: 1.06;
-}
-.benefits {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-  margin: 40px 0 24px;
-}
+.page > section:first-child h1 { max-width: 1080px; font-size: clamp(40px, 5.3vw, 76px); line-height: 1.06; }
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 40px; }
 .benefits article { border-top: 1px solid var(--line); padding-top: 24px; }
-.benefits p, .security p, .steps p, .stored > div:last-child p { color: var(--muted); font-size: 16px; }
-.stored {
-  border-top: 1px solid var(--line);
-  margin-top: 52px;
-  padding-top: 28px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-.stored > div > p:first-child { margin-bottom: 12px; }
-.stored h3 { font-size: 22px; font-weight: 400; }
+.benefits p, .steps p { color: var(--muted); font-size: 16px; }
 .steps { list-style: none; margin: 0; padding: 0; }
 .steps li + li { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
 .steps p { margin-bottom: 0; }
-.security p { margin-bottom: 24px; }
-.links { display: flex; flex-wrap: wrap; column-gap: 28px; }
 .pricing { font-size: 14px; color: var(--muted); margin-bottom: 0; }
 .homeEntry { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 64px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
 .homeEntry h2 { font-size: clamp(32px, 3.3vw, 47px); }
 .homeEntry p:not(:first-child) { color: var(--muted); font-size: 17px; max-width: 440px; }
 .homeEntry .diagram { padding: 24px; }
-.homeEntry .flow { grid-template-columns: 1fr; gap: 12px; }
-.homeEntry .endpoint { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 10px; }
-.homeEntry .endpoint > span:last-child { display: none; }
-.homeEntry .endpoint strong { font-size: 15px; }
-.homeEntry .flowArrow { transform: rotate(90deg); justify-self: center; }
+.homeEntry .flow { grid-template-columns: 1fr 24px 1.3fr; gap: 14px; }
 .homeEntry .runtime { padding: 20px; }
-.homeEntry .runtime > span { margin-bottom: 16px; }
-.homeEntry .runtime > div { display: inline-flex; margin: 0 14px 6px 0; }
-.homeEntry .diagramLabel { margin-bottom: 24px; }
+.homeEntry .runtime > strong { font-size: 20px; }
+.homeEntry .devices > div { gap: 8px; }
+.homeEntry .devices span { font-size: 13px; }
 @media (max-width: 1000px) {
   .homeEntry { gap: 36px; }
-  .flow { gap: 10px; grid-template-columns: 1fr 24px 1.55fr 24px 1fr; }
   .diagram { padding-inline: 24px; }
-  .runtime { padding: 20px 16px; }
+  .flow { grid-template-columns: 1fr 30px 1.2fr; gap: 20px; }
   .benefits { gap: 24px; }
+  .homeEntry .flow { grid-template-columns: 1fr; gap: 20px; }
+  .homeEntry .devices { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .homeEntry .devices > div { flex-direction: column; align-items: flex-start; border: 0; padding: 0; }
+  .homeEntry .flowArrow { transform: rotate(90deg); }
 }
 @media (max-width: 700px) {
-  .homeEntry, .benefits, .stored { grid-template-columns: 1fr; }
-  .stored { gap: 8px; }
+  .homeEntry, .benefits { grid-template-columns: 1fr; }
   .homeEntry { margin-top: 48px; padding-top: 48px; gap: 28px; }
   .diagram { padding: 24px 20px; }
-  .flow { grid-template-columns: 1fr; gap: 18px; }
-  .endpoint { gap: 8px; }
-  .flowArrow { transform: rotate(90deg); justify-self: center; }
+  .flow { grid-template-columns: 1fr; gap: 20px; }
+  .devices { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .devices > div { flex-direction: column; align-items: flex-start; border: 0; padding: 0; gap: 12px; }
+  .devices > div + div { border-top: 0; }
+  .devices span { font-size: 13px; }
+  .flowArrow { transform: rotate(90deg); }
+  .runtime { padding: 24px; }
+  .principles { gap: 8px 20px; }
 }
