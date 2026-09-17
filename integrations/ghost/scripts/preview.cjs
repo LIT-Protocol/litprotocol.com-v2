@@ -113,7 +113,7 @@ H.registerHelper('excerpt', function (options) {
   const text = this.custom_excerpt || this.excerpt || '';
   const words = text.split(/\s+/);
   const count = Number(options.hash.words || words.length);
-  return words.length > count ? words.slice(0, count).join(' ') + '…' : text;
+  return words.length > count ? words.slice(0, count).join(' ') : text;
 });
 H.registerHelper('post_class', function () {
   return this.feature_image ? 'post' : 'post no-image';

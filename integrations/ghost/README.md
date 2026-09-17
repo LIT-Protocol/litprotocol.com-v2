@@ -56,7 +56,19 @@ Fonts are the existing Lit website assets; this theme is for Lit’s own sites.
 7. Activate only after approval. Re-select the previous theme to roll back.
 
 Uploading/activating this theme is a separate release from merging website PRs.
-No Ghost production setting or content has been changed by this work.
+The theme is now active at `https://spark.litprotocol.com`, with the matching
+publication title, accent, logo, favicon, and share images. The old floating
+signup launcher and B612 font injection have been removed. Existing post
+content and URLs are preserved.
+
+The `branding/` directory contains the SVG source and PNG exports uploaded to
+Ghost for publication settings. Ghost uses the uploaded image URLs, so changing
+these files alone does not update the live blog. Export SVGs at their declared
+dimensions; `blog-social.svg` references the bundled Favorit font.
+
+Ghost integration keys can upload and activate themes, but editing publication
+settings and obtaining native content/theme exports requires staff access.
+Keep keys and exports in gitignored local files; never add them to this theme.
 
 ## Portable public archive
 
