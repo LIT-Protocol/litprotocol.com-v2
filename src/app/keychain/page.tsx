@@ -5,7 +5,7 @@ import { productMetadata } from '@/components/Platform/metadata';
 export const metadata = productMetadata(
   '/keychain',
   'Agent Keychain — credentials for AI agents',
-  'Give agents access to API keys with permissions you approve. Use supported services inside Lit or deliver stored secrets through the SDK, CLI, and MCP server.'
+  'Let agents use your services without holding your API keys. Choose supported actions that run with your credentials inside confidential hardware.'
 );
 
 export default function Page() {

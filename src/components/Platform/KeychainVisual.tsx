@@ -4,7 +4,7 @@ import k from './keychain.module.css';
 export default function KeychainVisual() {
   return (
     <figure className={k.diagram} aria-label="Connected service example: an approved agent requests a Stripe balance. Lit checks permission and uses the credential inside its confidential runtime. Stripe receives the API key; the agent receives the result.">
-      <div className={k.diagramLabel}>Connected service · Stripe balance</div>
+      <div className={k.diagramLabel}>Check your Stripe balance without giving the agent your Stripe key.</div>
       <div className={k.flow} aria-hidden="true">
         <div className={k.endpoint}>
           <span className={k.nodeLabel}>Your agent</span>

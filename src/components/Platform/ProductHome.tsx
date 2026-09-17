@@ -100,8 +100,8 @@ export default function ProductHome() {
           <article id="keychain" className={k.homeEntry}>
             <div>
               <Eyebrow>Agent Keychain</Eyebrow>
-              <h2>Connect your agents.<br />Control their access.</h2>
-              <p>Give agents access to API keys with permissions you approve. For supported services, Lit uses the key and returns the result.</p>
+              <h2>Let agents use your services without holding your API keys.</h2>
+              <p>Choose a supported action. Lit uses your credentials inside confidential hardware and returns the result to your agent.</p>
               <TextLink href="/keychain">Explore Agent Keychain</TextLink>
             </div>
             <KeychainVisual />

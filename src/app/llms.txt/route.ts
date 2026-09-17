@@ -16,7 +16,7 @@ const LLMS_TXT = `# Lit Protocol
 
 - [Programmable wallets](https://litprotocol.com/crypto): hot wallets, vaults, and agent wallets with immutable code and updatable on-chain permissions
 - [Confidential AI](https://litprotocol.com/ai): Docker workloads, private training and inference, measured egress policy, and on-chain release approval
-- [Agent Keychain](https://litprotocol.com/keychain): owner-approved access to API credentials through connected services or stored secrets
+- [Agent Keychain](https://litprotocol.com/keychain): let agents use supported services without holding API keys; stored-secret delivery is also available
 - [Security & verification](https://litprotocol.com/security): software identity, wallet authority, runtime governance, and trust boundaries
 
 ## Wallet infrastructure
