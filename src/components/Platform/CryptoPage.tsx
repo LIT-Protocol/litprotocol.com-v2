@@ -16,7 +16,6 @@ export default function CryptoPage() {
     <div className={s.site}>
       <PageHero
         label="Crypto infrastructure"
-        index="01"
         title={
           <>
             A programmable wallet
