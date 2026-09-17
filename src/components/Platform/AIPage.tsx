@@ -129,9 +129,11 @@ export default function AIPage() {
               <span>02</span>
               <h3>Shared network controls</h3>
               <p>
-                Your organization and software provider can jointly approve
-                where the application connects. We can help you set up a proxy
-                operated by Lit or an independent party to enforce those rules.
+                The proxy runs in confidential hardware, with its code and
+                connection rules verified against on-chain approval. Your
+                organization and software provider can approve changes together.
+                Lit or an independent party can operate the hardware without
+                gaining control over those rules.
               </p>
             </div>
             <div>
