@@ -105,12 +105,12 @@ export function Closing({ ai = false }: { ai?: boolean }) {
 export function TrustLinks() {
   return (
     <nav className={s.trustLinks} aria-label="Platform principles">
+      <a href={evidence.chain}>User-controlled</a>
+      <Link href="/security">Cryptographically verifiable</Link>
       <a href={GITHUB_LINK}>
         <IconBrandGithubFilled size={16} aria-hidden="true" />
         Open-source
       </a>
-      <Link href="/security">Cryptographically verifiable</Link>
-      <a href={evidence.chain}>User-controlled execution</a>
     </nav>
   );
 }
