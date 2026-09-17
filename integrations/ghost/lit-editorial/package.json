@@ -1,7 +1,7 @@
 {
   "name": "lit-editorial",
   "description": "The Lit Protocol blog, styled to match litprotocol.com.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "UNLICENSED",
   "keywords": ["ghost-theme"],
   "author": { "name": "Lit Protocol", "email": "hello@litprotocol.com" },
