@@ -5,7 +5,7 @@ import { productMetadata } from '@/components/Platform/metadata';
 export const metadata = productMetadata(
   '/keychain',
   'Agent Keychain — credentials for AI agents',
-  'Use your credentials across devices and agent sessions without hosting a credential server. Open-source, cryptographically verifiable, and built on confidential hardware.'
+  'Agent Keychain is an open-source app built on Lit for credential access across devices and agent sessions. No credential server to host.'
 );
 
 export default function Page() {

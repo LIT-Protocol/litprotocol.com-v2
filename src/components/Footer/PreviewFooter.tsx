@@ -83,7 +83,7 @@ export default function PreviewFooter() {
           <nav aria-label="Footer platform" className={styles.platformLinks}>
             <a href="/crypto">Programmable wallets</a>
             <a href="/ai">Confidential AI</a>
-            <a href="/keychain">Agent Keychain</a>
+            <a href="/keychain">Agent Keychain app</a>
             <a href="/security">Security & verification</a>
           </nav>
         </div>

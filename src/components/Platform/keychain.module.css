@@ -40,7 +40,8 @@
 .steps li + li { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
 .steps p { margin-bottom: 0; }
 .pricing { font-size: 14px; color: var(--muted); margin-bottom: 0; }
-.homeEntry { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 64px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+.appSection { padding-block: 88px; border-top: 1px solid var(--line); }
+.homeEntry { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
 .homeEntry h2 { font-size: clamp(32px, 3.3vw, 47px); }
 .homeEntry p:not(:first-child) { color: var(--muted); font-size: 17px; max-width: 440px; }
 .homeEntry .diagram { padding: 24px; }
@@ -61,7 +62,8 @@
 }
 @media (max-width: 700px) {
   .homeEntry, .benefits { grid-template-columns: 1fr; }
-  .homeEntry { margin-top: 48px; padding-top: 48px; gap: 28px; }
+  .appSection { padding-block: 56px; }
+  .homeEntry { gap: 28px; }
   .diagram { padding: 24px 20px; }
   .flow { grid-template-columns: 1fr; gap: 20px; }
   .devices { grid-template-columns: repeat(3, 1fr); gap: 10px; }

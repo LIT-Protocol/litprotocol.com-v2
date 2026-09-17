@@ -9,12 +9,13 @@ export default function KeychainPage() {
   return (
     <div className={`${s.site} ${k.page}`}>
       <PageHero
-        label="Lit Agent Keychain"
+        label="Agent Keychain · An app built on Lit"
         title="Use your credentials across devices and agent sessions."
         action={<Action href={KEYCHAIN_LINK}>Open Keychain</Action>}
       >
-        Store API keys once, then connect the agents you approve.
-        Keep working across sessions without hosting a credential server.
+        Agent Keychain uses Lit to give approved agents access to your encrypted
+        credentials. Store API keys once and keep working across sessions,
+        with no credential server to host.
       </PageHero>
       <div className={`${s.container} ${k.heroDiagram}`}>
         <nav className={k.principles} aria-label="Keychain principles">
@@ -71,7 +72,7 @@ export default function KeychainPage() {
       <section className={s.section} id="security">
         <div className={s.container}>
           <div className={s.sectionHeading}>
-            <Eyebrow>Built on Lit</Eyebrow>
+            <Eyebrow>How Lit powers Keychain</Eyebrow>
             <h2>Convenient to use. Open to inspection.</h2>
           </div>
           <div className={k.benefits}>

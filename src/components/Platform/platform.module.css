@@ -145,16 +145,12 @@
   font-size: 21px;
   line-height: 1.45 !important;
   letter-spacing: -0.025em;
-  margin-bottom: 17px;
+  margin-bottom: 0;
   max-width: 630px;
   text-wrap: balance;
 }
-.heroSupport {
-  font-size: 16px;
-  color: var(--muted);
-  margin-bottom: 0;
-  max-width: 615px;
-  text-wrap: balance;
+.keepTogether {
+  white-space: nowrap;
 }
 .actions {
   display: flex;
@@ -887,9 +883,6 @@
   }
   .heroLead {
     font-size: 19px;
-  }
-  .heroSupport {
-    font-size: 15px;
   }
   .heroBody {
     padding-bottom: 34px;

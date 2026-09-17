@@ -39,16 +39,12 @@ export default function ProductHome() {
             <span>Confidential,</span> <span>verifiable execution.</span>
           </h1>
           <div className={s.heroBody}>
-            <div>
-              <p className={s.heroLead}>
-                Get real control of what your application does and who it shares
-                data with.
-              </p>
-              <p className={s.heroSupport}>
-                Run crypto automations and AI workloads in confidential
-                hardware, connected to your accounts, tools, and blockchains.
-              </p>
-            </div>
+            <p className={s.heroLead}>
+              Get real control over your applications.{' '}
+              <span className={s.keepTogether}>Run crypto automations</span> and{' '}
+              <span className={s.keepTogether}>AI workloads</span> in confidential
+              hardware, connected to your accounts, tools, and blockchains.
+            </p>
             <Actions />
           </div>
           <div className={s.heroBottom}>
@@ -97,15 +93,6 @@ export default function ProductHome() {
               <p className={s.productFoot}>Your workloads or a vendor’s. No operator access to runtime memory.</p>
             </article>
           </div>
-          <article id="keychain" className={k.homeEntry}>
-            <div>
-              <Eyebrow>Agent Keychain</Eyebrow>
-              <h2>Use your credentials across devices and agent sessions.</h2>
-              <p>Store API keys once and connect the agents you approve. Open-source, cryptographically verifiable, and confidential. No credential server to host.</p>
-              <TextLink href="/keychain">Explore Agent Keychain</TextLink>
-            </div>
-            <KeychainVisual />
-          </article>
         </div>
       </section>
       <section className={s.proof} id="infrastructure">
@@ -152,6 +139,21 @@ export default function ProductHome() {
               Run Lit Protocol on-premises
             </TextLink>
           </div>
+        </div>
+      </section>
+      <section id="keychain" className={k.appSection} aria-label="An app built on Lit">
+        <div className={`${s.container} ${k.homeEntry}`}>
+          <div>
+            <Eyebrow>An app built on Lit · Agent Keychain</Eyebrow>
+            <h2>Use your credentials across devices and agent sessions.</h2>
+            <p>
+              Agent Keychain is an open-source app built on Lit. Store API keys
+              once and connect the agents you approve, with confidential,
+              cryptographically verifiable execution and no credential server to host.
+            </p>
+            <TextLink href="/keychain">Explore Agent Keychain</TextLink>
+          </div>
+          <KeychainVisual />
         </div>
       </section>
       <Closing />

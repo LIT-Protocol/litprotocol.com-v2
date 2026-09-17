@@ -176,6 +176,7 @@ export default function ProductHeader() {
                     </span>
                     <IconArrowRight size={17} />
                   </Link>
+                  <span className={`${styles.menuLabel} ${styles.appLabel}`}>Apps built on Lit</span>
                   <Link href="/keychain" onClick={close}>
                     <IconKey size={23} stroke={1.5} />
                     <span>
