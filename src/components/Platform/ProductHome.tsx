@@ -3,6 +3,8 @@ import CustomerProof from '../TrustStrip/CustomerProof';
 import { GITHUB_LINK } from '@/utils/constants';
 import HomeMotion from './HomeMotion';
 import ProductVisual from './ProductVisual';
+import KeychainVisual from './KeychainVisual';
+import k from './keychain.module.css';
 import {
   IconBrandGithub,
   IconCpu,
@@ -95,6 +97,15 @@ export default function ProductHome() {
               <p className={s.productFoot}>Your workloads or a vendor’s. No operator access to runtime memory.</p>
             </article>
           </div>
+          <article id="keychain" className={k.homeEntry}>
+            <div>
+              <Eyebrow>Agent Keychain</Eyebrow>
+              <h2>Connect your agents.<br />Control their access.</h2>
+              <p>Give agents access to API keys with permissions you approve. For supported services, Lit uses the key and returns the result.</p>
+              <TextLink href="/keychain">Explore Agent Keychain</TextLink>
+            </div>
+            <KeychainVisual />
+          </article>
         </div>
       </section>
       <section className={s.proof} id="infrastructure">

@@ -16,6 +16,7 @@ const LLMS_TXT = `# Lit Protocol
 
 - [Programmable wallets](https://litprotocol.com/crypto): hot wallets, vaults, and agent wallets with immutable code and updatable on-chain permissions
 - [Confidential AI](https://litprotocol.com/ai): Docker workloads, private training and inference, measured egress policy, and on-chain release approval
+- [Agent Keychain](https://litprotocol.com/keychain): owner-approved access to API credentials through connected services or stored secrets
 - [Security & verification](https://litprotocol.com/security): software identity, wallet authority, runtime governance, and trust boundaries
 
 ## Wallet infrastructure
@@ -32,6 +33,10 @@ Build a programmable wallet for your crypto system: hot wallets, vaults, and age
 ## Private compute and AI
 
 Bring your own or a vendor’s Docker container to a confidential virtual machine. The pinned image and outbound connection policy form a measured release approved on-chain. Application egress passes through a proxy enforcing an approved hostname allowlist; application code controls what is sent. An allowed external model provider receives the inputs sent to it and remains outside the confidential runtime. Work with Lit to assess hardware, model artifacts, credentials, outputs, and verification. Hardware support and performance depend on the agreed workload.
+
+## Agent Keychain
+
+[Open Keychain](https://keychain.litprotocol.com). Credentials are encrypted in the browser. Owners approve agent identities and expiry; Lit Actions check signed permissions. Connected-service actions use credentials inside Lit and return results; stored-secret operations deliver credentials to the agent host. Keychain permission records are not ChainSecured wallet permissions: the storage operator supplies the current record and can replay older valid approvals until expiry. Review the [security model](https://keychain.litprotocol.com/SECURITY.md) and [agent setup guide](https://keychain.litprotocol.com/SKILL.md).
 
 ## Verification and governance
 

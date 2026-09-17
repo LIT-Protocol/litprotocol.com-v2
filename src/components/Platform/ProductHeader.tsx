@@ -11,6 +11,7 @@ import {
   IconX,
   IconCode,
   IconCpu,
+  IconKey,
   IconBrandGithub,
 } from '@tabler/icons-react';
 import LitLogo from '../LitLogo/LitLogo';
@@ -172,6 +173,14 @@ export default function ProductHeader() {
                     <span>
                       <strong>Confidential AI</strong>
                       <small>Private training and inference.</small>
+                    </span>
+                    <IconArrowRight size={17} />
+                  </Link>
+                  <Link href="/keychain" onClick={close}>
+                    <IconKey size={23} stroke={1.5} />
+                    <span>
+                      <strong>Agent Keychain</strong>
+                      <small>Credentials for agents. Access you approve.</small>
                     </span>
                     <IconArrowRight size={17} />
                   </Link>

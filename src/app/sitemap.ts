@@ -7,7 +7,7 @@ const BASE = 'https://litprotocol.com';
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = '2026-06-01';
   return [
-    ...['/crypto', '/ai', '/security'].map(path => ({
+    ...['/crypto', '/ai', '/keychain', '/security'].map(path => ({
       url: `${BASE}${path}`,
       lastModified: '2026-09-16',
       changeFrequency: 'monthly' as const,

@@ -1,0 +1,60 @@
+.heroDiagram { padding-bottom: 16px; }
+.diagram { margin: 0; padding: 34px 38px 24px; border: 1px solid var(--line); background: linear-gradient(135deg, #f4f4ef, #fdfdfb); border-radius: 5px; }
+.diagramLabel, .nodeLabel { font-size: 11px; color: var(--muted); }
+.diagramLabel { margin-bottom: 32px; }
+.flow { display: grid; grid-template-columns: 1fr 36px 1.55fr 36px 1fr; align-items: center; gap: 20px; }
+.endpoint { display: flex; flex-direction: column; gap: 12px; }
+.endpoint strong { font-size: 18px; font-weight: 500; letter-spacing: -.03em; }
+.endpoint > span:last-child { font-size: 12px; color: var(--muted); }
+.flowArrow { color: #858580; }
+.runtime { padding: 24px; background: #fff; border: 1px solid #d0d0c8; box-shadow: 0 5px 18px #17171705; border-radius: 4px; }
+.runtime > span { display: block; margin-bottom: 22px; }
+.runtime > div { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 14px; }
+.runtime svg { color: var(--orange); flex-shrink: 0; }
+.diagram figcaption { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.modes { display: grid; grid-template-columns: 1fr 1fr; }
+.modes article { padding: 32px 60px 0 0; border-top: 1px solid var(--line); }
+.modes article + article { padding-left: 60px; padding-right: 0; border-left: 1px solid var(--line); }
+.modes article h3 { font-size: 30px; font-weight: 400; letter-spacing: -.04em; }
+.modes article > p:not(:first-child), .security p, .steps p { color: var(--muted); font-size: 16px; }
+.receives { display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 18px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 12px; }
+.receives > span { color: var(--muted); }
+.receives strong { font-weight: 500; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li + li { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
+.steps p { margin-bottom: 0; }
+.security p { margin-bottom: 24px; }
+.links { display: flex; flex-wrap: wrap; column-gap: 28px; }
+.pricing { font-size: 14px; color: var(--muted); margin-bottom: 0; }
+.homeEntry { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 64px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+.homeEntry h2 { font-size: clamp(32px, 3.3vw, 47px); }
+.homeEntry p:not(:first-child) { color: var(--muted); font-size: 17px; max-width: 440px; }
+.homeEntry .diagram { padding: 24px; }
+.homeEntry .flow { grid-template-columns: 1fr; gap: 12px; }
+.homeEntry .endpoint { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 10px; }
+.homeEntry .endpoint > span:last-child { display: none; }
+.homeEntry .endpoint strong { font-size: 15px; }
+.homeEntry .flowArrow { transform: rotate(90deg); justify-self: center; }
+.homeEntry .runtime { padding: 20px; }
+.homeEntry .runtime > span { margin-bottom: 16px; }
+.homeEntry .runtime > div { display: inline-flex; margin: 0 14px 6px 0; }
+.homeEntry .diagramLabel { margin-bottom: 24px; }
+@media (max-width: 1000px) {
+  .homeEntry { gap: 36px; }
+  .flow { gap: 10px; grid-template-columns: 1fr 24px 1.55fr 24px 1fr; }
+  .diagram { padding-inline: 24px; }
+  .runtime { padding: 20px 16px; }
+  .modes article { padding-right: 32px; }
+  .modes article + article { padding-left: 32px; }
+}
+@media (max-width: 700px) {
+  .homeEntry, .modes { grid-template-columns: 1fr; }
+  .homeEntry { margin-top: 48px; padding-top: 48px; gap: 28px; }
+  .diagram { padding: 24px 20px; }
+  .flow { grid-template-columns: 1fr; gap: 18px; }
+  .endpoint { gap: 8px; }
+  .flowArrow { transform: rotate(90deg); justify-self: center; }
+  .modes article { padding: 24px 0 32px; }
+  .modes article + article { padding: 24px 0 0; border-left: 0; }
+  .receives { flex-wrap: wrap; }
+}
