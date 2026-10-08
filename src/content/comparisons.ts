@@ -4,7 +4,9 @@ export const COMPARISON_BASE = '/compare';
 export const sources = {
   litAi: {
     title: 'Lit: Confidential AI containers and egress controls',
-    url: 'https://developer.litprotocol.com/ai/overview',
+    // Points at the AI product page until developer.litprotocol.com/ai/overview
+    // is published (LIT-Protocol/chipotle#740); switch back to the docs URL then.
+    url: 'https://www.litprotocol.com/ai',
   },
   litAccountCode: {
     title: 'Chipotle: account mutation authorization (reviewed source)',
