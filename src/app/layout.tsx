@@ -1,7 +1,7 @@
 import './globals.css';
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import { ProductAnalytics } from '../components/ProductAnalytics';
 
 import '@mantine/carousel/styles.css';
 import '@mantine/core/styles.css';
@@ -57,13 +57,9 @@ export default function RootLayout({
     <html lang="en" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
-        <Script
-          defer
-          data-domain="litprotocol.com"
-          src="https://plausible.io/js/script.js"
-        />
       </head>
       <body id="top">
+        <ProductAnalytics />
         <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
