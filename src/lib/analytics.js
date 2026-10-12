@@ -1,5 +1,6 @@
-// Shared browser analytics transport. Synced to Keychain and the marketing repo
-// by scripts/sync-product-analytics.mjs. No remote executable code or DOM capture.
+// Shared browser analytics transport. Synced to Keychain, the docs site, and the
+// marketing repo by scripts/sync-product-analytics.mjs. No remote executable
+// code or DOM capture.
 const TOKEN = "phc_CC3jC8wKzwQwgPjkt8jajRMXnoGutewKf8zxGQohCX2C";
 const HOST = "https://us.i.posthog.com";
 const COOKIE = "lit_analytics_v1";
@@ -7,6 +8,7 @@ const PRODUCTION = {
   marketing: ["litprotocol.com", "www.litprotocol.com"],
   dashboard: ["dashboard.chipotle.litprotocol.com"],
   keychain: ["keychain.litprotocol.com"],
+  docs: ["developer.litprotocol.com"],
 };
 const FIELDS = new Set([
   "section",
@@ -103,8 +105,9 @@ export function createAnalytics(product, browser = globalThis) {
     try {
       const state = read();
       const origin = browser.location.origin;
+      // Marketing and docs paths are public page names; app paths may carry state.
       const path =
-        product === "marketing"
+        product === "marketing" || product === "docs"
           ? browser.location.pathname
           : product === "dashboard"
             ? "/dapps/dashboard/"
