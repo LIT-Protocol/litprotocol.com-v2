@@ -1,5 +1,6 @@
 // Resources
 export const DOCS_LINK = 'https://developer.litprotocol.com';
+// Not linked anywhere until the page is published (LIT-Protocol/chipotle#740).
 export const AI_DOCS_LINK = `${DOCS_LINK}/ai/overview`;
 export const QUICKSTART_LINK = 'https://developer.litprotocol.com/quickstart';
 export const DASHBOARD_LINK = 'https://dashboard.chipotle.litprotocol.com/dapps/dashboard/';

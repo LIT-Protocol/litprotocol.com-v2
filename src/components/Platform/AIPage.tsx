@@ -1,4 +1,4 @@
-import { AI_CONTACT_FORM, AI_DOCS_LINK } from '@/utils/constants';
+import { AI_CONTACT_FORM } from '@/utils/constants';
 import {
   Action,
   Closing,
@@ -69,9 +69,10 @@ export default function AIPage() {
               <p>Use hardware attestation to confirm that the running software matches an approved release.</p>
             </li>
           </ol>
+          {/* Restore when developer.litprotocol.com/ai/overview is published (LIT-Protocol/chipotle#740):
           <div className={s.sourceLinks}>
             <TextLink href={AI_DOCS_LINK} external>Read the AI developer guide</TextLink>
-          </div>
+          </div> */}
         </div>
       </section>
       <section id="workloads" className={s.section}>
