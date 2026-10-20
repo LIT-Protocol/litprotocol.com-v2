@@ -45,7 +45,7 @@ const REF = {
   fullVerification: { href: SRC.fullVerification, text: 'Lit developer documentation — Full Verification Guide: replaying the RTMR3 event log and checking every layer.' },
   security: { href: SRC.security, text: 'Lit Protocol, “Security & verification” — software identity, wallet authority, runtime governance, and the limits of attestation.' },
   paymentsService: { href: SRC.paymentsService, text: 'LIT-Protocol/chipotle — lit-payments: the LITKEY quote, payment page, and receipt-verified, idempotent crediting.' },
-  tokenomics: { href: SRC.tokenomics, text: 'Lit Protocol, “$LITKEY Tokenomics” (Oct. 23, 2025) — token parameters, distribution, and vesting.' },
+  tokenomics: { href: SRC.tokenomics, text: 'Lit Protocol, “$LITKEY Tokenomics” (Oct. 23, 2025) — token parameters at launch.' },
   litkeyLive: { href: SRC.litkeyLive, text: 'Lit Protocol, “$LITKEY is Live” (Oct. 30, 2025) — launch on Aerodrome on Base, airdrop claiming and staking, and the staking contest to select the genesis validator set.' },
   association: { href: SRC.association, text: 'Lit Protocol, “Introducing the Lit Association and Onchain Governance” (Oct. 21, 2025) — the Lit Association, a Swiss non-profit association; the governance domains; and the Lit Improvement Proposal (LIP) process.' },
   repo: { href: SRC.repo, text: 'LIT-Protocol/chipotle — source for the API server, Lit Actions runtime, dashboard, contracts, examples, and local development tooling.' },
@@ -146,7 +146,7 @@ const SECTIONS = [
 const COMPARE: { row: string; mpc: ReactNode; v3: ReactNode }[] = [
   { row: 'Key custody', mpc: 'Key shares split across nodes; two-thirds of the network must cooperate to sign or decrypt', v3: 'Root key held inside attested TEEs and released by an on-chain KMS only to approved software' },
   { row: 'Execution', mpc: 'Coordinated across TEE nodes for every operation', v3: 'One enclave per request; execution decoupled from key management' },
-  { row: 'Coordination layer', mpc: 'The Lit Chain, an Arbitrum Orbit rollup', v3: 'Smart contracts on Base' },
+  { row: 'Coordination layer', mpc: 'The Lit Chain, an Arbitrum Orbit rollup, since shut down', v3: 'Base, for every contract: permissions, release approvals, the KMS, and payments' },
   { row: 'Client', mpc: 'JavaScript SDK with client-side cryptography and node-coordination logic', v3: 'REST API authenticated with an API key; a JS SDK, or a client generated from the OpenAPI spec, is optional' },
   { row: 'Permissions', mpc: 'Keys and their permissions registered on the Lit Chain', v3: 'Contracts on Base: groups binding wallets to permitted action CIDs, plus scoped API keys' },
   { row: 'Economic security', mpc: 'Node operators stake LITKEY; slashing deters misconduct', v3: 'No staked operator set; attestation-gated key release and public, multisig release approval' },
@@ -219,19 +219,9 @@ const TOKEN: [string, ReactNode][] = [
   ['Ticker', 'LITKEY'],
   ['Standard', 'ERC-20, 18 decimals'],
   ['Fixed supply', '1,000,000,000'],
-  ['Initial circulating supply', '22%'],
   ['Launch', 'October 30, 2025, on Aerodrome (Base)'],
-  ['Primary chain', <>Base — <Addr a={BASE_ADDR.litkey} /></>],
-  ['Other chains', 'Live on several chains; bridge to Base via Hyperlane Nexus'],
-];
-
-const DISTRIBUTION: { name: string; pct: number; note: string }[] = [
-  { name: 'Founding contributors', pct: 28, note: 'Contributors who spent five years building Lit Protocol' },
-  { name: 'veLITKEY builder reward pool', pct: 28, note: 'Builder incentives directed by veLITKEY holders; emissions variable and tied to network revenue' },
-  { name: 'Early investors + community sale', pct: 19, note: 'Early investors in Workgraph, Inc. and participants in the Legion community sale' },
-  { name: 'Lit Association', pct: 11, note: 'Operations, ecosystem growth, and progressive decentralization' },
-  { name: 'Lit Protocol airdrop', pct: 10, note: 'The airdrop and other launch activities; distributed from launch to builders, node operators, and other ecosystem participants' },
-  { name: 'Aerodrome incentives', pct: 4, note: 'Voter incentives on Aerodrome, including 1% for the first LITKEY/WETH epoch' },
+  ['Chain', <>Base — <Addr a={BASE_ADDR.litkey} /></>],
+  ['On other chains', 'Bridge to Base through Hyperlane Nexus'],
 ];
 
 /* ---------------- primitives ---------------- */
@@ -421,7 +411,7 @@ export default function WhitePaper() {
                 Threshold cryptography gives strong decentralization guarantees, but every operation needs multi-node coordination, which brings higher latency, higher infrastructure cost, and scaling complexity inherent to the architecture.<Fn k="v3Intro" /> Chipotle keeps what made Lit useful — programmable key usage, immutable Lit Actions, the same hardened JavaScript sandbox — and changes where trust comes from. Each request runs inside one attested TEE rather than across many nodes, the Lit Actions engine is decoupled from key management, and key orchestration moves on-chain through a TEE root of trust.<Fn k="v3Intro" />
               </P>
               <P>
-                Chipotle became generally available on March 31, 2026.<Fn k="pressRelease" /> The Naga network stopped on March 25, 2026 and was fully sunset on April 1. Timelocks were removed so delegated stakers could withdraw, and node operators could unstake during the final week.<Fn k="nagaSunset" /> Table 1 compares the two designs.
+                Chipotle became generally available on March 31, 2026.<Fn k="pressRelease" /> The Naga network stopped on March 25, 2026 and was fully sunset on April 1. Timelocks were removed so delegated stakers could withdraw, and node operators could unstake during the final week.<Fn k="nagaSunset" /> The Lit Chain has since been shut down as well, and every contract Chipotle relies on is on Base. Table 1 compares the two designs.
               </P>
               <figure className="mt-6 overflow-x-auto rounded-xl border border-white/10">
                 <table className="w-full min-w-[34rem] border-collapse text-left align-top">
@@ -733,7 +723,6 @@ export default function WhitePaper() {
                 Table 6 — Token parameters.<Fn k="tokenomics" /><Fn k="litkeyDocs" />
               </Caption>
 
-              <SubHead n="6.1">Role in Chipotle</SubHead>
               <P>
                 In the MPC network, LITKEY had three jobs: a work token that node operators staked and could lose to slashing, a payment and gas token for the Lit Chain and its services, and a governance token.<Fn k="mpcWhitepaper" /> Chipotle’s architecture changes the first two.
               </P>
@@ -741,35 +730,10 @@ export default function WhitePaper() {
                 items={[
                   ['Payment.', <>LITKEY is the native payment token for Lit services. Paying in LITKEY buys credits at a 25% discount to card pricing, settled on Base with no card or fiat conversion.<Fn k="litkeyDocs" /></>],
                   ['No staked operator set.', <>Chipotle does not coordinate a threshold of independent nodes, so it has no operator staking, slashing, or node rewards. Attestation-gated key release and public release governance (§4.3) take the place of the security that staking provided. When Naga was sunset, timelocks were removed so delegated stakers could withdraw, and node operators could unstake.<Fn k="v3Intro" /><Fn k="nagaSunset" /></>],
-                  ['No Lit Chain gas.', <>Chipotle’s coordination contracts live on Base, and on-chain writes pay Base gas in ETH.<Fn k="architecture" /><Fn k="pricing" /></>],
+                  ['All on Base.', <>With the Lit Chain shut down, LITKEY no longer serves as a gas token. Chipotle’s contracts and LITKEY payments are on Base, and on-chain writes pay Base gas in ETH.<Fn k="architecture" /><Fn k="pricing" /></>],
                   ['Governance.', <>The Lit Association stewards protocol governance in collaboration with the core development company, node operators, integration partners, and token holders. Anyone can take part through the public governance forum and the Lit Improvement Proposal (LIP) process (§7).<Fn k="association" /></>],
                 ]}
               />
-
-              <SubHead n="6.2">Distribution</SubHead>
-              <P>The allocation below is as published at launch.<Fn k="tokenomics" /></P>
-              <figure className="mt-6 rounded-xl border border-white/10 p-5">
-                <div className="grid gap-4">
-                  {DISTRIBUTION.map((d) => (
-                    <div key={d.name}>
-                      <div className="flex items-baseline justify-between gap-4">
-                        <span className="text-[0.95rem] font-medium text-white">{d.name}</span>
-                        <span className="font-mono text-sm text-lit-orange">{d.pct}%</span>
-                      </div>
-                      <div className="mt-1.5 h-1.5 w-full rounded-full bg-white/[0.06]">
-                        <div className="h-full rounded-full bg-gradient-to-r from-lit-orange to-lit-orange-700" style={{ width: `${(d.pct / 28) * 100}%` }} />
-                      </div>
-                      <div className="mt-1.5 text-sm leading-snug text-white/50">{d.note}</div>
-                    </div>
-                  ))}
-                </div>
-              </figure>
-              <Caption>
-                Figure 4 — LITKEY allocation as published at launch (October 2025). Bars are scaled to the largest allocation.<Fn k="tokenomics" />
-              </Caption>
-              <P>
-                Team and venture-investor allocations were locked for one year after launch, followed by 24 months of linear vesting. Investor allocations include the Legion community sale, split into 0.17% of total supply liquid at launch, 0.14% vesting linearly over 12 months, and 0.51% locked for one year. Emissions from the builder reward pool are variable and tied directly to network revenue.<Fn k="tokenomics" />
-              </P>
             </section>
 
             {/* 7 */}
