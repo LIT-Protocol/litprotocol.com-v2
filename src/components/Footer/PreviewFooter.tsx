@@ -30,6 +30,7 @@ const groups = [
         label: 'Chain Secured',
         href: `${DOCS_LINK}/architecture/chain-secured`,
       },
+      { label: 'Whitepaper', href: '/whitepaper' },
     ],
   },
   {

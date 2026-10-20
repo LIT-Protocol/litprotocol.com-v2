@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${BASE}/whitepaper`,
+      lastModified: '2026-10-20',
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${BASE}/`,
       lastModified: '2026-09-16',
       changeFrequency: 'weekly',

@@ -43,6 +43,7 @@ Bring your own or a vendor’s Docker container to a confidential virtual machin
 
 Protocol updates follow an on-chain approval process. Source code, approved release records, and hardware attestation let users inspect the software and its authorization. Wallet permissions and runtime approvals are separate. Deployment alone does not authorize new code to receive runtime keys; the key-management system checks attestation against contract rules. Review both permission checks and upgrade rules for a deployment. Attestation establishes software identity, not application correctness or freedom from leakage through permitted outputs.
 
+- [Whitepaper: The Chipotle Network](https://litprotocol.com/whitepaper): Lit Protocol V3 architecture, security and trust model, release governance, pricing, and the LITKEY token
 - [Open-source](${GITHUB_LINK})
 - [Security and verification](https://developer.litprotocol.com/architecture/verification/index)
 - [How attestation works](https://developer.litprotocol.com/architecture/verification/attestation)
