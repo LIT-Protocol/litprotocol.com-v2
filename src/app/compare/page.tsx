@@ -82,8 +82,9 @@ export default function Comparisons() {
             <p>
               The compute comparisons cover Docker containers with on-chain
               approval of code and network policy. They do not use the wallet
-              account or Lit Actions API as the AI deployment interface.{' '}
-              <a href={sources.litAi.url}>Read the AI deployment guide</a>.
+              account or Lit Actions API as the AI deployment interface.
+              {/* Restore "Read the AI deployment guide" (sources.litAi) when
+                  developer.litprotocol.com/ai/overview is published (LIT-Protocol/chipotle#740). */}
             </p>
             <h3>On-chain governance</h3>
             <p>
