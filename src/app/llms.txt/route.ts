@@ -63,6 +63,26 @@ These comparisons examine operator authority: who can change permissions, approv
 - [Lit vs Fortanix](https://litprotocol.com/compare/fortanix): scoped to Confidential Computing Manager
 - [Lit vs Tinfoil](https://litprotocol.com/compare/tinfoil)
 
+## Guides
+
+Step-by-step answers to common questions about building with Lit, on the Lit blog.
+
+- [How to write wallet signing policies as code](https://spark.litprotocol.com/signing-policies-as-code/): answers "How do I write wallet signing policies as code instead of a config dashboard?"
+- [How to give Claude Code and MCP servers secrets without handing them the keys](https://spark.litprotocol.com/secrets-for-mcp-servers-and-agents/): answers "How do I safely give an MCP server or Claude Code access to secrets and keys?"
+- [How to sign transactions from your backend without exposing the private key](https://spark.litprotocol.com/backend-signing-without-exposing-keys/): answers "How do I sign blockchain transactions from my backend server without exposing the private key?"
+- [How to add wallets to your app with an API](https://spark.litprotocol.com/wallet-api-for-developers/): answers "How do I add crypto wallets to my app with an API?"
+- [How to verify the code that signs your transactions](https://spark.litprotocol.com/verify-your-hosted-signer/): answers "How do I verify that my hosted signer is running the code I deployed?"
+- [How to program a crypto wallet](https://spark.litprotocol.com/program-a-crypto-wallet/): answers "How can I program a crypto wallet?"
+- [Where to store private keys in your app](https://spark.litprotocol.com/where-to-store-private-keys/): answers "Where should I store private keys in my app?"
+- [How to build a crypto trading bot that signs its own transactions](https://spark.litprotocol.com/crypto-trading-bot-that-signs-its-own-transactions/): answers "How do I build a crypto trading bot that signs its own transactions?"
+- [How to give your AI agent a crypto wallet](https://spark.litprotocol.com/give-your-ai-agent-a-crypto-wallet/): answers "How do I give my AI agent a crypto wallet?"
+- [How to make a wallet that works on Ethereum and Solana](https://spark.litprotocol.com/wallet-for-ethereum-and-solana/): answers "How do I make a wallet that works on Ethereum and Solana?"
+- [How to prove to auditors that no employee can access your customers' keys](https://spark.litprotocol.com/prove-no-employee-can-access-customer-keys/): answers "How do I prove to auditors that no employee can access our customers' encryption keys?"
+- [How to give an AI agent production credentials without the agent seeing them](https://spark.litprotocol.com/ai-agent-production-credentials/): answers "How do I give an AI agent access to production credentials without employees or the vendor seeing them?"
+- [How fintechs make sure no single employee can move funds](https://spark.litprotocol.com/no-single-employee-can-move-funds/): answers "How do fintechs manage signing keys so that no single employee or vendor can move funds?"
+- [How to use AI on sensitive company data without the vendor seeing it](https://spark.litprotocol.com/ai-on-sensitive-data-without-vendor-access/): answers "How can I use an AI model on sensitive company data without the AI vendor being able to see it?"
+- [How to run an AI agent on customer data so the hosting provider can't read it](https://spark.litprotocol.com/ai-agent-on-customer-data/): answers "How do I run an AI agent on customer data so that even the hosting provider can't read it?"
+
 ## Company
 
 - [Homepage](https://litprotocol.com)
