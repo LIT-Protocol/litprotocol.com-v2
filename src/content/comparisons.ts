@@ -108,6 +108,14 @@ export const sources = {
     title: 'Lit: Lit Triggers',
     url: 'https://developer.litprotocol.com/lit-triggers/index',
   },
+  litTriggersService: {
+    title: 'Lit: Triggers service source and deployment',
+    url: 'https://github.com/LIT-Protocol/chipotle/tree/main/lit-triggers',
+  },
+  keeperhubPermissions: {
+    title: 'KeeperHub: Organization permissions',
+    url: 'https://docs.keeperhub.com/users-teams-orgs/permissions',
+  },
   litTriggerTypes: {
     title: 'Lit: Trigger types, schedules, and retries',
     url: 'https://developer.litprotocol.com/lit-triggers/triggers',
@@ -248,16 +256,16 @@ const serviceDependency: Claim = {
 
 // Automation claims cover Lit Triggers running Lit Actions in ChainSecured mode.
 const triggerAuthority: Claim = {
-  text: 'Your account wallet approves on Base which Actions can use each wallet. Trigger settings, such as the schedule and whether a trigger is enabled, are changed through your Lit Triggers login.',
-  sources: ['litGroups', 'litChain', 'litTriggers'],
+  text: 'Your account wallet approves on Base which Actions can use each PKP wallet. Lit’s 2-of-4 Safe can upgrade the account contracts without a timelock. Trigger settings, such as the schedule and whether a trigger is enabled, are changed through your Lit Triggers login.',
+  sources: ['litGroups', 'litChain', 'litGovernance', 'litTriggerTypes'],
 };
 const actionReplacement: Claim = {
-  text: 'Each Action version is fixed by its code hash. A new version cannot use a wallet until your account authorizes it. Separately, the approvers authorized by the governance contracts approve runtime releases.',
+  text: 'Each Action version is fixed by its code hash. A new version cannot use a PKP wallet until your account authorizes it. Separately, Lit’s 2-of-4 Safe approves runtime releases, with no timelock.',
   sources: ['litActions', 'litGroups', 'litGovernance'],
 };
 const triggerDependency: Claim = {
-  text: 'Lit runs the Triggers service that decides when each job fires, and the operator can pause signing. Your permissions stay on-chain, but execution needs the runtime and key-management system. Recovery requires a separate plan.',
-  sources: ['litTriggers', 'litChain', 'litKms'],
+  text: 'Lit runs the Triggers service that decides when each job fires, and the operator can pause signing. The service stores your usage key, so it can also run the Actions that key permits. Your permissions stay on-chain, but execution needs the runtime and key-management system. Recovery requires a separate plan.',
+  sources: ['litTriggersService', 'litChain', 'litKms'],
 };
 
 export const comparisons: Comparison[] = [
@@ -491,7 +499,7 @@ export const comparisons: Comparison[] = [
     headline: 'Automate with an address your contracts already accept.',
     introduction: 'Compare where an automated job’s code runs, how its transactions reach your contracts, and who can change or pause it.',
     assessment: {
-      text: 'A Lit Action signs with a wallet whose key stays in the enclave, so your contracts grant that wallet’s address a role and need no receiver interface. The code that checks each transaction runs next to the key, and your account approves on-chain which code can use it.',
+      text: 'A Lit Action signs with a PKP wallet whose key stays in the enclave, so your contracts grant that wallet’s address a role and need no receiver interface. The code that checks each transaction runs next to the key, and your account approves on-chain which code can use that wallet.',
       sources: ['litActions', 'litGroups', 'litChain'],
     },
     parity: {
@@ -504,21 +512,21 @@ export const comparisons: Comparison[] = [
         sources: ['creKeyTerms'],
       } },
       { dimension: 'Who can approve replacement code?', lit: actionReplacement, provider: {
-        text: 'The workflow owner deploys new code, and each deployment replaces the previous one. A receiver that pins the expected workflow ID rejects the replacement until the receiver is updated. Deploying currently requires approval from Chainlink.',
+        text: 'The workflow owner deploys new code, and each deployment replaces the previous one. A receiver that pins the expected workflow ID rejects the replacement until the receiver is updated. An organization needs deploy access from Chainlink before its first deployment.',
         sources: ['creUpdating', 'creDeployAccess'],
       } },
       { dimension: 'Who can stop access?', lit: triggerDependency, provider: {
-        text: 'The workflow owner can pause a workflow. Execution depends on the nodes of the workflow network, and reports reach your contract through Chainlink’s forwarder contract.',
+        text: 'The workflow owner can pause a workflow, as can team members with a CRE Developer or Admin role for private-registry workflows. Execution depends on the nodes of the workflow network, and reports reach your contract through Chainlink’s forwarder contract.',
         sources: ['crePausing', 'creOnchainWrite'],
       } },
     ],
     custody: {
-      text: 'In CRE, network nodes sign a report and a Chainlink forwarder delivers it, so your contract trusts the forwarder and checks the workflow’s identity. In Lit, a key inside the enclave sends the transaction, and your account controls which code can use that key. CRE spreads execution across independent nodes. Lit’s runtime has an operator that can pause signing.',
+      text: 'In CRE, network nodes sign a report and a Chainlink forwarder delivers it, so your contract trusts the forwarder and checks the workflow’s identity. In Lit, a PKP wallet’s key inside the enclave sends the transaction, and your account controls which code can use that wallet. CRE spreads execution across independent nodes. Lit’s runtime has an operator that can pause signing.',
       sources: ['creOnchainWrite', 'creKeyTerms', 'litChain'],
     },
     detail: {
       title: 'Moving from Chainlink Automation',
-      text: 'Chainlink deprecated Automation. Version 1.x ended on June 30, 2026, and version 2.1 ended on July 31, 2026. Chainlink’s migration path is CRE, which delivers results to a receiver contract you deploy. Contracts written for an upkeep forwarder need changes for either destination.',
+      text: 'Chainlink deprecated Automation v1.x on June 30, 2026, and v2.1 on July 31, 2026. Chainlink’s migration path is CRE, which delivers results to a receiver contract you deploy, either your own or a bridge that forwards calls to your existing contracts. Contracts that only accept calls from an upkeep forwarder need their allowed caller updated for either destination.',
       sources: ['chainlinkAutomation', 'creMigration'],
     },
   },
@@ -531,7 +539,7 @@ export const comparisons: Comparison[] = [
     headline: 'Keep the job’s rules next to the key.',
     introduction: 'Compare where workflow code runs, who holds the signing key, and who can change a job after it is live.',
     assessment: {
-      text: 'A Lit Action runs inside the enclave that holds the wallet key, so the limits in its code are checked where the signature happens. Each version of the code is fixed by its hash, and your account approves on-chain which versions can use a wallet.',
+      text: 'A Lit Action runs inside the enclave that holds the wallet key, so the limits in its code are checked where the signature happens. Each version of the code is fixed by its hash, and your account approves on-chain which versions can use a PKP wallet.',
       sources: ['litActions', 'litGroups'],
     },
     parity: {
@@ -544,8 +552,8 @@ export const comparisons: Comparison[] = [
         sources: ['keeperhubFaq', 'keeperhubSafe'],
       } },
       { dimension: 'Who can approve replacement code?', lit: actionReplacement, provider: {
-        text: 'Users with edit access can change a workflow’s steps, including custom JavaScript that runs in a sandbox on KeeperHub’s service. The cited documentation does not describe pinning workflow code by hash.',
-        sources: ['keeperhubCode', 'keeperhubFaq'],
+        text: 'Organization members can create and edit workflows, including custom JavaScript that runs in a sandbox on KeeperHub’s service. The cited documentation does not describe pinning workflow code by hash.',
+        sources: ['keeperhubPermissions', 'keeperhubCode', 'keeperhubFaq'],
       } },
       { dimension: 'Who can stop access?', lit: triggerDependency, provider: {
         text: 'KeeperHub runs the scheduler and executes workflows. Its FAQ says scheduled workflows that would have fired during an outage do not run until the platform recovers. Signing also depends on Turnkey’s enclave infrastructure.',
@@ -553,7 +561,7 @@ export const comparisons: Comparison[] = [
       } },
     ],
     custody: {
-      text: 'KeeperHub states that its employees cannot move funds and that workflows can only trigger the transactions they define. Its optional Safe setup enforces an allowlist on-chain. Lit puts the rules in the code that runs with the key, and records on-chain which code can use it. In both, check who can change the schedule and who can stop it.',
+      text: 'KeeperHub states that it can only trigger the transactions your workflows define and that its employees cannot move your funds. Its optional Safe setup checks workflow calls against an on-chain allowlist, which KeeperHub describes as a scoping tool rather than a hard spending limit when the Safe has a single owner. Lit puts the rules in the code that runs with the key, and records on-chain which code can use it. In both, check who can change the schedule and who can stop it.',
       sources: ['keeperhubFaq', 'keeperhubSafe', 'litChain'],
     },
   },
@@ -566,29 +574,29 @@ export const comparisons: Comparison[] = [
     headline: 'Run automated jobs without hosting the signer.',
     introduction: 'Compare who runs the scheduler and signer, where the key lives, and who can change an automated job.',
     assessment: {
-      text: 'Lit Triggers runs Lit Actions on schedules, webhooks, and on-chain events, so you do not host the scheduler or the signer. The key stays in the enclave with the code that checks each transaction, and your account approves on-chain which code can use it.',
+      text: 'Lit Triggers runs Lit Actions on schedules, webhooks, and on-chain events, so you do not host the scheduler or the signer. A PKP wallet’s key stays in the enclave with the code that checks each transaction, and your account approves on-chain which code can use that wallet.',
       sources: ['litTriggers', 'litActions', 'litGroups'],
     },
     parity: {
-      text: 'Both can limit what an automated signer sends. OpenZeppelin Relayer supports receiver allowlists and gas price caps, and it can sign with HSM-backed keys in a cloud KMS, Vault, or Turnkey.',
+      text: 'Both can limit what an automated signer sends. OpenZeppelin Relayer supports receiver allowlists and gas price caps. It can sign with keys held in AWS or Google Cloud KMS, HashiCorp Vault, Turnkey, or Coinbase CDP, and OpenZeppelin recommends HSM-backed keys for production.',
       sources: ['ozRelayerPolicies', 'ozSigners', 'litActions'],
     },
     rows: [
       { dimension: 'Who can change the permissions?', lit: triggerAuthority, provider: {
-        text: 'You run Relayer and Monitor on your own infrastructure. Whoever administers those servers and their configuration can change the policies, such as allowed receivers and gas price caps.',
-        sources: ['ozRelayer', 'ozRelayerPolicies'],
+        text: 'You run Relayer and Monitor on your own infrastructure, or OpenZeppelin runs them under its managed service. Whoever administers those servers and their configuration can change the policies, such as allowed receivers and gas price caps.',
+        sources: ['ozRelayer', 'ozRelayerPolicies', 'ozSunset'],
       } },
       { dimension: 'Who can approve replacement code?', lit: actionReplacement, provider: {
         text: 'You deploy each release of Relayer, Monitor, and your own plugins and scripts. Your deployment process decides who can ship a change.',
         sources: ['ozRelayer', 'ozMonitor'],
       } },
       { dimension: 'Who can stop access?', lit: triggerDependency, provider: {
-        text: 'You control availability because you host the services. Signing also depends on the key backend you configure, such as a cloud KMS, Vault, or Turnkey.',
+        text: 'If you host the services, you control their availability. Signing also depends on the key backend you configure, such as a cloud KMS, Vault, or Turnkey.',
         sources: ['ozSigners'],
       } },
     ],
     custody: {
-      text: 'Self-hosting gives you control of every component and the work of running them. With Lit, you do not operate the servers, and jobs depend on Lit’s runtime and Triggers service. Your account still controls on-chain which code can use each wallet.',
+      text: 'Self-hosting gives you control of every component and the work of running them. With Lit, you do not operate the servers, and jobs depend on Lit’s runtime and Triggers service. Your account still controls on-chain which code can use each PKP wallet.',
       sources: ['ozRelayer', 'litTriggers', 'litChain'],
     },
     detail: {

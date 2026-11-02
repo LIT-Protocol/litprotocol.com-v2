@@ -15,13 +15,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${BASE}/compare`,
-      lastModified: '2026-09-16',
+      lastModified: '2026-11-02',
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     ...comparisons.map(item => ({
       url: `${BASE}/compare/${item.slug}`,
-      lastModified: '2026-09-16',
+      lastModified: item.reviewedOn
+        ? new Date(`${item.reviewedOn} UTC`).toISOString().slice(0, 10)
+        : '2026-09-16',
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
