@@ -72,7 +72,7 @@
 
 .comparisonGroups {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.2fr 1fr;
   gap: 1.5rem;
 }
 
@@ -131,6 +131,9 @@
   .compare {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+  .comparisonGroups {
+    grid-template-columns: 1fr 1fr;
   }
   .footer li a,
   .legal a {

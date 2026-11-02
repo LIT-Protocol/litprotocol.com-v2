@@ -11,6 +11,12 @@ import {
   GITHUB_LINK,
   DOCS_LINK,
 } from '@/utils/constants';
+import {
+  categoryInfo,
+  comparisons,
+  comparisonHref,
+  type Category,
+} from '@/content/comparisons';
 import s from './platform.module.css';
 
 export const evidence = {
@@ -138,35 +144,20 @@ export function PageHero({
     </section>
   );
 }
-export function ComparisonRow({ compute = false }: { compute?: boolean }) {
-  const links = compute
-    ? [
-        ['google-cloud', 'Google Confidential Cloud'],
-        ['fortanix', 'Fortanix'],
-        ['tinfoil', 'Tinfoil'],
-      ]
-    : [
-        ['privy', 'Privy'],
-        ['turnkey', 'Turnkey'],
-        ['fireblocks', 'Fireblocks'],
-      ];
+export function ComparisonRow({ category = 'wallets' }: { category?: Category }) {
+  const info = categoryInfo(category);
   return (
     <section className={s.comparisons}>
       <div className={s.container}>
-        <p>
-          {compute
-            ? 'Compare private compute'
-            : 'Compare wallet infrastructure'}
-        </p>
-        <nav
-          className={s.inlineLinks}
-          aria-label={compute ? 'Compare private compute' : 'Compare wallets'}
-        >
-          {links.map(([slug, name]) => (
-            <TextLink key={slug} href={`/compare/${slug}`}>
-              Lit vs {name}
-            </TextLink>
-          ))}
+        <p>{info.links}</p>
+        <nav className={s.inlineLinks} aria-label={info.links}>
+          {comparisons
+            .filter(item => item.category === category)
+            .map(item => (
+              <TextLink key={item.slug} href={comparisonHref(item.slug)}>
+                Lit vs {item.provider}
+              </TextLink>
+            ))}
         </nav>
       </div>
     </section>

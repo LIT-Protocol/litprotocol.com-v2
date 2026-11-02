@@ -53,7 +53,7 @@ Protocol updates follow an on-chain approval process. Source code, approved rele
 
 ## Comparisons
 
-These comparisons examine operator authority: who can change permissions, approve software, withhold service, and recover access. Wallet comparisons cover Chipotle ChainSecured, not the legacy MPC network. Compute comparisons cover confidential containers whose code and network policies require on-chain release approval. Shared TEE protections are distinguished from on-chain authorization. Wallet permissions, runtime approvals, and contract upgrade rules are separate. Deployment-specific approval policies are evaluated separately.
+These comparisons examine operator authority: who can change permissions, approve software, withhold service, and recover access. Wallet comparisons cover Chipotle ChainSecured, not the legacy MPC network. Compute comparisons cover confidential containers whose code and network policies require on-chain release approval. Automation comparisons cover Lit Triggers running Lit Actions in ChainSecured mode; Lit operates the Triggers service, and trigger settings change through a Triggers login. Shared TEE protections are distinguished from on-chain authorization. Wallet permissions, runtime approvals, and contract upgrade rules are separate. Deployment-specific approval policies are evaluated separately.
 
 - [Comparison methodology](https://litprotocol.com/compare#methodology)
 - [Lit vs Privy](https://litprotocol.com/compare/privy)
@@ -62,6 +62,9 @@ These comparisons examine operator authority: who can change permissions, approv
 - [Lit vs Google Confidential Cloud](https://litprotocol.com/compare/google-cloud): scoped to Google Confidential Space
 - [Lit vs Fortanix](https://litprotocol.com/compare/fortanix): scoped to Confidential Computing Manager
 - [Lit vs Tinfoil](https://litprotocol.com/compare/tinfoil)
+- [Lit vs Chainlink CRE](https://litprotocol.com/compare/chainlink-cre): automation; Chainlink's replacement for the deprecated Chainlink Automation
+- [Lit vs KeeperHub](https://litprotocol.com/compare/keeperhub): automation
+- [Lit vs OpenZeppelin](https://litprotocol.com/compare/openzeppelin): automation; scoped to the self-hosted Relayer and Monitor that replace the retired Defender
 
 ## Guides
 
