@@ -9,13 +9,17 @@ import {
   sources,
   REVIEWED_ON,
   COMPARISON_BASE,
+  categoryInfo,
 } from '@/content/comparisons';
 import ComparisonLinks from './ComparisonLinks';
 import styles from './comparisons.module.css';
 
 export default function ComparisonArticle({ comparison }: { comparison: Comparison }) {
   const compute = comparison.category === 'compute';
-  const litLabel = compute ? 'Lit · On-chain approvals' : 'Lit · ChainSecured';
+  const automation = comparison.category === 'automation';
+  const litLabel = compute
+    ? 'Lit · On-chain approvals'
+    : automation ? 'Lit · Triggers + Actions' : 'Lit · ChainSecured';
   const governanceSources: SourceId[] = compute
     ? ['litAi', 'litGovernance', 'litKms']
     : ['litGovernance', 'litUpgradeCode', 'litVerification'];
@@ -42,12 +46,12 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
         </a>
         <header className={styles.header}>
           <p className={styles.eyebrow}>
-            {comparison.category === 'wallets' ? 'Wallet infrastructure' : 'Private compute & AI'}
+            {categoryInfo(comparison.category).title}
           </p>
           <h1>Lit Protocol vs {comparison.provider}</h1>
           <p className={styles.headline}>{comparison.headline}</p>
           <p className={styles.introduction}>{comparison.introduction}</p>
-          <p className={styles.meta}>By Lit Protocol · Reviewed {REVIEWED_ON}</p>
+          <p className={styles.meta}>By Lit Protocol · Reviewed {comparison.reviewedOn ?? REVIEWED_ON}</p>
         </header>
         <p className={styles.scope}><strong>Scope: </strong>{comparison.scope}</p>
         <section className={styles.section} aria-labelledby="authority-heading">
@@ -56,7 +60,7 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
           <div className={styles.tableWrap}>
             <table>
               <caption className="sr-only">
-                Operator authority: {compute ? 'Lit confidential containers' : 'Lit Chipotle ChainSecured'} compared with {comparison.provider}
+                Operator authority: {compute ? 'Lit confidential containers' : automation ? 'Lit Triggers and Actions' : 'Lit Chipotle ChainSecured'} compared with {comparison.provider}
               </caption>
               <thead><tr>
                 <th scope="col">Control</th>
@@ -91,12 +95,14 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
             <p className={styles.eyebrow}>The Lit advantage</p>
             <h2>{compute
               ? 'On-chain rules govern runtime key access'
-              : 'Your on-chain rules govern signing'}</h2>
+              : automation
+                ? 'Your on-chain rules govern what jobs can sign'
+                : 'Your on-chain rules govern signing'}</h2>
             <p className={styles.assessment}>
               {comparison.assessment.text}{references(comparison.assessment.sources)}
             </p>
-            <a href={compute ? sources.litAi.url : sources.litChain.url} className={styles.inlineLink}>
-              {compute ? 'How confidential AI works' : 'How ChainSecured works'} <span aria-hidden="true">↗</span>
+            <a href={compute ? sources.litAi.url : automation ? sources.litTriggers.url : sources.litChain.url} className={styles.inlineLink}>
+              {compute ? 'How confidential AI works' : automation ? 'How Lit Triggers works' : 'How ChainSecured works'} <span aria-hidden="true">↗</span>
             </a>
           </section>
         </div>
@@ -145,9 +151,9 @@ export default function ComparisonArticle({ comparison }: { comparison: Comparis
           </details>
         </div>
         <div className={styles.actions}>
-          <Button href={comparison.category === 'wallets' ? DASHBOARD_LINK : AI_CONTACT_FORM}
+          <Button href={compute ? AI_CONTACT_FORM : DASHBOARD_LINK}
             target="_blank" style={{ padding: '0.7rem 1.1rem', borderRadius: '8px', background: '#181818' }}>
-            {comparison.category === 'wallets' ? 'Get started with crypto' : 'Contact for Lit AI'}
+            {compute ? 'Contact for Lit AI' : 'Get started with crypto'}
           </Button>
           <a href="/security" className={styles.back}>Explore Lit’s security <span aria-hidden="true">→</span></a>
         </div>

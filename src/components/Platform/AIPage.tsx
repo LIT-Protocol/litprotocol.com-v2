@@ -193,7 +193,7 @@ export default function AIPage() {
           },
         ]}
       />
-      <ComparisonRow compute />
+      <ComparisonRow category="compute" />
       <Closing ai />
     </div>
   );

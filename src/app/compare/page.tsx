@@ -6,6 +6,7 @@ import {
   comparisons,
   comparisonHref,
   sources,
+  categories,
   REVIEWED_ON,
 } from '@/content/comparisons';
 
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
     title: 'Compare infrastructure | Lit Protocol',
     url: '/compare',
     description:
-      'Compare operator authority, custody, and attack surfaces across wallet and confidential-compute providers.',
+      'Compare operator authority, custody, and attack surfaces across wallet, confidential-compute, and automation providers.',
   },
   description:
-      'Compare Lit with wallet and confidential-compute providers: on-chain permissions, software approvals, and access.',
+      'Compare Lit with wallet, confidential-compute, and automation providers: on-chain permissions, software approvals, and access.',
 };
 
 export default function Comparisons() {
@@ -42,16 +43,12 @@ export default function Comparisons() {
               other providers handle each decision.
             </p>
           </header>
-          {(['wallets', 'compute'] as const).map(category => (
-            <section key={category} id={category} className={styles.indexGroup}>
-              <h2 className="text-2xl font-medium">
-                {category === 'wallets'
-                  ? 'Wallet infrastructure'
-                  : 'Private compute & AI'}
-              </h2>
+          {categories.map(category => (
+            <section key={category.id} id={category.id} className={styles.indexGroup}>
+              <h2 className="text-2xl font-medium">{category.title}</h2>
               <div className={styles.indexGrid}>
                 {comparisons
-                  .filter(item => item.category === category)
+                  .filter(item => item.category === category.id)
                   .map(item => (
                     <a href={comparisonHref(item.slug)} key={item.slug}>
                       <h3>
@@ -66,12 +63,13 @@ export default function Comparisons() {
           <section id="methodology" className={styles.methodology}>
             <h2>How we make these comparisons</h2>
             <p>
-              Published by Lit Protocol. Reviewed {REVIEWED_ON}. We compare operator
+              Published by Lit Protocol. Reviewed {REVIEWED_ON}; automation
+              comparisons reviewed November 2, 2026. We compare operator
               powers using primary documentation and identified source snapshots.
               Our conclusions are architectural assessments, not security audits,
               exploit findings, or legal classifications of custody.
             </p>
-            <h3>Wallets and confidential containers</h3>
+            <h3>Wallets, confidential containers, and automation</h3>
             <p>
               The wallet comparisons cover Chipotle in ChainSecured mode. A
               customer-controlled wallet administers account permissions on Base,
@@ -85,6 +83,14 @@ export default function Comparisons() {
               account or Lit Actions API as the AI deployment interface.
               {/* Restore "Read the AI deployment guide" (sources.litAi) when
                   developer.litprotocol.com/ai/overview is published (LIT-Protocol/chipotle#740). */}
+            </p>
+            <p>
+              The automation comparisons cover Lit Triggers running Lit Actions
+              in ChainSecured mode. Lit operates the Triggers service, which
+              decides when a job runs. Trigger settings are changed through a
+              Triggers login, while the Actions and wallets a job can use are
+              governed by the account on Base.{' '}
+              <a href={sources.litTriggers.url}>How Lit Triggers works</a>.
             </p>
             <h3>On-chain governance</h3>
             <p>

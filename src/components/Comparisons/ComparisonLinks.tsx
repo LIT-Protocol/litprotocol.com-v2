@@ -1,26 +1,17 @@
 import {
   comparisons,
   comparisonHref,
+  categoryInfo,
   type Category,
 } from '@/content/comparisons';
 
 import styles from './comparisons.module.css';
 
 export default function ComparisonLinks({ category }: { category: Category }) {
+  const info = categoryInfo(category);
   return (
-    <nav
-      aria-label={
-        category === 'wallets'
-          ? 'Wallet infrastructure comparisons'
-          : 'Private compute comparisons'
-      }
-      className={styles.related}
-    >
-      <p>
-        {category === 'wallets'
-          ? 'Compare wallet infrastructure'
-          : 'Compare private compute'}
-      </p>
+    <nav aria-label={`${info.title} comparisons`} className={styles.related}>
+      <p>{info.links}</p>
       <div>
         {comparisons
           .filter(item => item.category === category)

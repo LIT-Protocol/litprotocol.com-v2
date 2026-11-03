@@ -205,6 +205,7 @@ export default function CryptoPage() {
         ]}
       />
       <ComparisonRow />
+      <ComparisonRow category="automation" />
       <Closing />
     </div>
   );

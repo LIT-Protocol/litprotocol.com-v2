@@ -1,6 +1,6 @@
 import { Container } from '@mantine/core';
 import LitLogo from '../LitLogo/LitLogo';
-import { comparisons, comparisonHref } from '@/content/comparisons';
+import { categories, comparisons, comparisonHref } from '@/content/comparisons';
 import {
   BRAND_LINK,
   CAREERS_LINK,
@@ -92,21 +92,19 @@ export default function PreviewFooter() {
           <FooterGroup group={groups[0]} />
           <section className={styles.compare} aria-label="Comparisons">
             <div className={styles.comparisonGroups}>
-              {(['wallets', 'compute'] as const).map(category => (
+              {categories.map(category => (
                 <nav
-                  key={category}
-                  aria-label={`Footer ${category} comparisons`}
+                  key={category.id}
+                  aria-label={`Footer ${category.id} comparisons`}
                 >
                   <h2>
-                    <a href={`/compare#${category}`}>
-                      {category === 'wallets'
-                        ? 'Compare wallets'
-                        : 'Compare private compute'}
+                    <a href={`/compare#${category.id}`}>
+                      {category.id === 'wallets' ? 'Compare wallets' : category.links}
                     </a>
                   </h2>
                   <ul>
                     {comparisons
-                      .filter(item => item.category === category)
+                      .filter(item => item.category === category.id)
                       .map(item => (
                         <li key={item.slug}>
                           <a href={comparisonHref(item.slug)}>
