@@ -85,6 +85,15 @@ Step-by-step answers to common questions about building with Lit, on the Lit blo
 - [How fintechs make sure no single employee can move funds](https://spark.litprotocol.com/no-single-employee-can-move-funds/): answers "How do fintechs manage signing keys so that no single employee or vendor can move funds?"
 - [How to use AI on sensitive company data without the vendor seeing it](https://spark.litprotocol.com/ai-on-sensitive-data-without-vendor-access/): answers "How can I use an AI model on sensitive company data without the AI vendor being able to see it?"
 - [How to run an AI agent on customer data so the hosting provider can't read it](https://spark.litprotocol.com/ai-agent-on-customer-data/): answers "How do I run an AI agent on customer data so that even the hosting provider can't read it?"
+- [How to show regulators exactly which code handled your data](https://spark.litprotocol.com/show-regulators-which-code-ran/): answers "How can I run code that handles regulated data in a secure enclave and show regulators exactly which code ran?"
+- [Customer-managed keys vs zero operator access](https://spark.litprotocol.com/customer-managed-keys-vs-zero-operator-access/): answers "What is the difference between customer-managed keys and true zero operator access?"
+- [How fast is signing in a secure enclave? Hyperliquid signing latency, measured](https://spark.litprotocol.com/tee-signing-latency-hyperliquid/): answers "What signing latency do wallet APIs like Turnkey and Fireblocks have?"
+- [How to build a Hyperliquid trading bot without keeping the private key on your server](https://spark.litprotocol.com/hyperliquid-trading-bot-without-private-key/): answers "How do I build a Hyperliquid trading bot without keeping my private key on the server?"
+- [How to send email without exposing your email provider's API key](https://spark.litprotocol.com/send-email-without-exposing-api-key/): answers "How do I send email from a TEE or serverless function without exposing my email provider API key?"
+- [How to store email addresses on-chain without making them public or guessable](https://spark.litprotocol.com/store-email-addresses-onchain-privately/): answers "How do I store email addresses in an on-chain registry without making them public or guessable?"
+- [How to verify a user's email and link it to their wallet](https://spark.litprotocol.com/verify-email-link-wallet/): answers "How do I verify a user's email address and link it to their crypto wallet?"
+- [How to run a scheduled job that signs blockchain transactions without running a server](https://spark.litprotocol.com/scheduled-job-signs-blockchain-transactions/): answers "How do I run a scheduled job that signs and sends blockchain transactions without running a server?"
+- [How to turn a webhook into a signed blockchain transaction](https://spark.litprotocol.com/webhook-to-signed-blockchain-transaction/): answers "How do I turn a webhook into a signed blockchain transaction?"
 
 ## Company
 
