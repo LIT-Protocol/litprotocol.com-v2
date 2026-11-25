@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   // Relative canonical resolves against metadataBase per-route, so every page
   // gets a self-referencing canonical unless it overrides alternates itself.
   alternates: { canonical: './' },
+  // Bing Webmaster Tools ownership check for litprotocol.com.
+  verification: { other: { 'msvalidate.01': '7CE260DB2E9DC0C7C20DEE9B0F0CBAE3' } },
   openGraph: {
     type: 'website',
     title: 'Lit Protocol',
